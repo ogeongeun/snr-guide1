@@ -33,7 +33,7 @@ export default function ExpeditionTeamPage() {
 
   // 🔹 영웅 카드 렌더링
   const renderHeroes = (heroes) => (
-    <div className="grid grid-cols-5 gap-3 mt-2">
+    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mt-2">
       {heroes.map((hero, idx) => {
         const imagePath = hero.image?.startsWith('/images/')
           ? hero.image
@@ -45,33 +45,33 @@ export default function ExpeditionTeamPage() {
               e.stopPropagation();
               handleHeroClick(hero);
             }}
-            className="flex flex-col items-center bg-gradient-to-b from-gray-50 to-gray-100 border border-gray-300 rounded-xl p-2 shadow-md hover:shadow-lg hover:scale-105 hover:border-indigo-400 transition-all duration-300"
+            className="flex flex-col items-center bg-gradient-to-b from-gray-50 to-gray-100 border border-gray-300 rounded-xl p-1.5 sm:p-2 shadow-md hover:shadow-lg hover:scale-105 hover:border-indigo-400 transition-all duration-300"
           >
             {/* 이미지 */}
             <div className="relative">
               <img
                 src={imagePath}
                 alt={hero.name}
-                className="w-14 h-14 object-contain rounded-md"
+                className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-md"
               />
               <div className="absolute inset-0 opacity-0 hover:opacity-100 transition bg-indigo-500/20 rounded-md"></div>
             </div>
 
             {/* 이름 */}
-            <p className="text-[11px] mt-1 text-gray-800 font-medium">
+            <p className="text-[10px] sm:text-[11px] mt-1 text-gray-800 font-medium text-center">
               {hero.name}
             </p>
 
             {/* 프리셋 태그 */}
             {hero.preset && (
-              <span className="text-[10px] text-white bg-indigo-500/70 px-2 py-0.5 rounded-full mt-1">
+              <span className="text-[9px] sm:text-[10px] text-white bg-indigo-500/70 px-2 py-0.5 rounded-full mt-1">
                 {hero.preset}
               </span>
             )}
 
             {/* 개별 노트 */}
             {hero.note && (
-              <p className="text-[9px] text-red-500 italic mt-0.5 text-center">
+              <p className="text-[8px] sm:text-[9px] text-red-500 italic mt-0.5 text-center">
                 {hero.note}
               </p>
             )}
