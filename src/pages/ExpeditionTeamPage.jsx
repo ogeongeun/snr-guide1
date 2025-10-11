@@ -31,9 +31,9 @@ export default function ExpeditionTeamPage() {
     }
   };
 
-  // 🔹 영웅 카드 렌더링
+  // 🔹 영웅 카드 렌더링 (SiegePage 스타일로 compact)
   const renderHeroes = (heroes) => (
-    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mt-2">
+    <div className="grid grid-cols-5 gap-2 mt-2">
       {heroes.map((hero, idx) => {
         const imagePath = hero.image?.startsWith('/images/')
           ? hero.image
@@ -45,33 +45,33 @@ export default function ExpeditionTeamPage() {
               e.stopPropagation();
               handleHeroClick(hero);
             }}
-            className="flex flex-col items-center bg-gradient-to-b from-gray-50 to-gray-100 border border-gray-300 rounded-xl p-1.5 sm:p-2 shadow-md hover:shadow-lg hover:scale-105 hover:border-indigo-400 transition-all duration-300"
+            className="flex flex-col items-center bg-gradient-to-b from-gray-50 to-gray-100 border border-gray-300 rounded-lg p-1 shadow-sm hover:shadow-md hover:scale-105 hover:border-indigo-400 transition-all duration-300"
           >
-            {/* 이미지 */}
+            {/* 영웅 이미지 */}
             <div className="relative">
               <img
                 src={imagePath}
                 alt={hero.name}
-                className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-md"
+                className="w-12 h-12 object-contain rounded-md"
               />
               <div className="absolute inset-0 opacity-0 hover:opacity-100 transition bg-indigo-500/20 rounded-md"></div>
             </div>
 
             {/* 이름 */}
-            <p className="text-[10px] sm:text-[11px] mt-1 text-gray-800 font-medium text-center">
+            <p className="text-[10px] mt-1 text-gray-800 font-medium text-center">
               {hero.name}
             </p>
 
-            {/* 프리셋 태그 */}
+            {/* 프리셋 */}
             {hero.preset && (
-              <span className="text-[9px] sm:text-[10px] text-white bg-indigo-500/70 px-2 py-0.5 rounded-full mt-1">
+              <span className="text-[9px] text-white bg-indigo-500/70 px-1.5 py-0.5 rounded-full mt-1">
                 {hero.preset}
               </span>
             )}
 
             {/* 개별 노트 */}
             {hero.note && (
-              <p className="text-[8px] sm:text-[9px] text-red-500 italic mt-0.5 text-center">
+              <p className="text-[9px] text-red-500 italic mt-0.5 text-center">
                 {hero.note}
               </p>
             )}
@@ -84,17 +84,20 @@ export default function ExpeditionTeamPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f7f7fb] to-[#eceef6] py-10 px-4">
       <div className="max-w-6xl mx-auto bg-white/80 backdrop-blur-md shadow-xl rounded-3xl p-8 border border-gray-200 relative">
+        {/* 제목 */}
         <h1 className="text-3xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 drop-shadow">
           ⚔️ {heroId.toUpperCase()} - 팀 선택
         </h1>
 
+        {/* 세트별 반복 */}
         {teamSets.map((set, setIdx) => (
           <div key={setIdx} className="mb-12">
             <h2 className="text-2xl font-semibold text-center text-indigo-700 mb-6 tracking-tight">
               {set.setName}
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {/* 팀 목록 */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {set.teams.map((team, teamIdx) => (
                 <div
                   key={teamIdx}
@@ -105,18 +108,18 @@ export default function ExpeditionTeamPage() {
                     🧩 {team.teamName}
                   </h3>
 
-                  {/* 영웅 목록 */}
+                  {/* 영웅 카드 */}
                   {renderHeroes(team.heroes)}
 
-                  {/* 팀 전체 메모 */}
+                  {/* 팀 메모 */}
                   {team.note && (
                     <p className="text-xs text-red-500 text-center mt-3 italic">
                       ※ {team.note}
                     </p>
                   )}
 
-                  {/* 버튼 — 카드 아래 정렬 */}
-                  <div className="flex justify-end mt-5">
+                  {/* 스킬순서 보기 버튼 */}
+                  <div className="flex justify-end mt-4">
                     <Link
                       to={`/expedition/${heroId}/${teamIdx}`}
                       className="px-3 py-1.5 text-xs font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform backdrop-blur-md bg-opacity-90"
