@@ -18,7 +18,6 @@ export default function ExpeditionTeamPage() {
     );
   }
 
-  // 🔹 영웅 클릭 시 장비 모달 열기
   const handleHeroClick = (hero) => {
     const heroKey = Object.keys(equipmentData).find(
       (key) => equipmentData[key].name === hero.name
@@ -31,7 +30,6 @@ export default function ExpeditionTeamPage() {
     }
   };
 
-  // 🔹 영웅 카드 렌더링 (균형 잡힌 사이즈)
   const renderHeroes = (heroes) => (
     <div className="grid grid-cols-5 gap-2 mt-3">
       {heroes.map((hero, idx) => {
@@ -50,18 +48,18 @@ export default function ExpeditionTeamPage() {
             <img
               src={imagePath}
               alt={hero.name}
-              className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-md"
+              className="w-14 h-14 sm:w-16 sm:h-16 object-contain rounded-md"
             />
-            <p className="text-[11px] sm:text-[12px] mt-1 text-gray-800 font-medium text-center">
+            <p className="text-[10px] sm:text-[11px] mt-1 text-gray-800 font-medium text-center leading-tight">
               {hero.name}
             </p>
             {hero.preset && (
-              <span className="text-[9px] sm:text-[10px] text-white bg-indigo-500/80 px-1.5 py-0.5 rounded-full mt-1">
+              <span className="text-[9px] sm:text-[10px] text-white bg-indigo-500/80 px-1.5 py-0.5 rounded-full mt-1 leading-tight">
                 {hero.preset}
               </span>
             )}
             {hero.note && (
-              <p className="text-[9px] text-red-500 italic mt-0.5 text-center">
+              <p className="text-[9px] text-red-500 italic mt-0.5 text-center leading-tight">
                 {hero.note}
               </p>
             )}
@@ -72,33 +70,33 @@ export default function ExpeditionTeamPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f7f7fb] to-[#eceef6] py-10 px-4 sm:px-8">
-      <div className="max-w-7xl mx-auto bg-white/90 backdrop-blur-md shadow-xl rounded-3xl p-6 sm:p-8 border border-gray-200">
-        <h1 className="text-4xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 drop-shadow">
+    <div className="min-h-screen bg-gradient-to-b from-[#f7f7fb] to-[#eceef6] py-8 px-3 sm:px-6">
+      <div className="max-w-6xl mx-auto bg-white/95 backdrop-blur-md shadow-lg rounded-3xl p-4 sm:p-6 border border-gray-200">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 drop-shadow">
           ⚔️ {heroId.toUpperCase()} - 팀 선택
         </h1>
 
         {teamSets.map((set, setIdx) => (
-          <div key={setIdx} className="mb-12">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-center text-indigo-700 mb-6">
+          <div key={setIdx} className="mb-10">
+            <h2 className="text-xl sm:text-2xl font-semibold text-center text-indigo-700 mb-4">
               {set.setName}
             </h2>
 
-            {/* 🔹 팀 카드 영역 (가로 넓고 세로 얕게) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5">
+            {/* 🔹 폰에서도 안정적인 높이의 카드 */}
+            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {set.teams.map((team, teamIdx) => (
-                <div
+                <li
                   key={teamIdx}
-                  className="bg-gradient-to-b from-white to-gray-50 border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 flex flex-col justify-between group"
+                  className="bg-gradient-to-b from-white to-gray-50 border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-4 sm:p-5 flex flex-col justify-between h-fit max-h-[480px]"
                 >
-                  <h3 className="font-bold text-gray-800 text-center mb-3 text-lg sm:text-xl">
+                  <h3 className="font-bold text-gray-800 text-center mb-2 text-lg sm:text-xl">
                     🧩 {team.teamName}
                   </h3>
 
                   {renderHeroes(team.heroes)}
 
                   {team.note && (
-                    <p className="text-xs sm:text-sm text-red-500 text-center mt-2 italic">
+                    <p className="text-[11px] text-red-500 text-center mt-2 italic">
                       ※ {team.note}
                     </p>
                   )}
@@ -111,13 +109,13 @@ export default function ExpeditionTeamPage() {
                       ⚡ 스킬순서 보기
                     </Link>
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         ))}
 
-        <div className="text-center mt-8">
+        <div className="text-center mt-6">
           <Link
             to="/expedition"
             className="text-sm sm:text-base font-medium text-indigo-500 hover:underline hover:text-indigo-600 transition"
