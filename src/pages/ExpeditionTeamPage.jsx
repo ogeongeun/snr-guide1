@@ -47,6 +47,7 @@ export default function ExpeditionTeamPage() {
             }}
             className="flex flex-col items-center bg-gradient-to-b from-gray-50 to-gray-100 border border-gray-300 rounded-xl p-2 shadow-md hover:shadow-lg hover:scale-105 hover:border-indigo-400 transition-all duration-300"
           >
+            {/* 이미지 */}
             <div className="relative">
               <img
                 src={imagePath}
@@ -55,9 +56,25 @@ export default function ExpeditionTeamPage() {
               />
               <div className="absolute inset-0 opacity-0 hover:opacity-100 transition bg-indigo-500/20 rounded-md"></div>
             </div>
+
+            {/* 이름 */}
             <p className="text-[11px] mt-1 text-gray-800 font-medium">
               {hero.name}
             </p>
+
+            {/* 프리셋 태그 */}
+            {hero.preset && (
+              <span className="text-[10px] text-white bg-indigo-500/70 px-2 py-0.5 rounded-full mt-1">
+                {hero.preset}
+              </span>
+            )}
+
+            {/* 개별 노트 */}
+            {hero.note && (
+              <p className="text-[9px] text-red-500 italic mt-0.5 text-center">
+                {hero.note}
+              </p>
+            )}
           </button>
         );
       })}
@@ -88,10 +105,10 @@ export default function ExpeditionTeamPage() {
                     🧩 {team.teamName}
                   </h3>
 
-                  {/* 영웅들 */}
+                  {/* 영웅 목록 */}
                   {renderHeroes(team.heroes)}
 
-                  {/* 메모 */}
+                  {/* 팀 전체 메모 */}
                   {team.note && (
                     <p className="text-xs text-red-500 text-center mt-3 italic">
                       ※ {team.note}
