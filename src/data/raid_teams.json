@@ -1,0 +1,78 @@
+{
+  "파멸의 눈동자(15단계)": [
+    {
+      "team": [
+        
+        { "name": "에반", "image": "evan.png" },
+        { "name": "유이", "image": "yui.png" },
+        { "name": "세인", "image": "sein.png","note":"치확49%/약확24%" },
+        { "name": "레이첼", "image": "rachel.png" },
+        { "name": "비스킷", "image": "bisket.png","note":" 1스킬,패시브 스강" }
+      ],
+      
+      "note": "안정적 대신 느림(지크 4초월 전 사용)"
+    },
+    {
+      "team": [
+        
+        { "name": "지크", "image": "zick.png","note":"복수자(장비추천 확인)" },
+        { "name": "유이", "image": "yui.png" },
+        { "name": "세인", "image": "sein.png","note":"치확49%/약확24%" },
+        { "name": "레이첼", "image": "rachel.png" },
+        { "name": "비스킷", "image": "bisket.png","note":" 1스킬,패시브 스강" }
+      ],
+      
+      "note": "안정적 대신 느림(지크 4초월 전 사용)"
+    }
+  ],
+  "우마왕(15단계)": [
+    {
+      "team": [
+       
+        { "name": "리나", "image": "lina.png" },
+        { "name": "데이지", "image": "dage.png","note":"복수자(치치공공)" },
+         { "name": "에스파다", "image": "espada.png" ,"note":"복수자(치치(약)공공/약공46%)"},
+        { "name": "카론", "image": "karon.png" },
+        { "name": "비스킷", "image": "bisket.png","note":"2초월 필수" }
+      ],
+      "note": "에스파다 2스 최소컷 113만,블랙로즈 쫄컷 18000딜/필수(에스파다 속공 4~5번째)"
+    },
+    {
+      "team": [
+       
+        { "name": "리나", "image": "lina.png" },
+        { "name": "블랙로즈", "image": "blackrose.png","note":"복수자(치치받받)" },
+         { "name": "에스파다", "image": "espada.png" ,"note":"복수자(치치(약)공공/약공46%)"},
+        { "name": "카론", "image": "karon.png" },
+        { "name": "비스킷", "image": "bisket.png","note":"2초월 필수" }
+      ],
+      "note": "에스파다 2스 최소컷 113만,블랙로즈 쫄컷 18000딜/필수(에스파다 속공 4~5번째)"
+    }
+    
+  ],
+  "강철의 포식자(15단계)": [
+    {
+      "team": [
+        { "name": "파스칼", "image": "pascal.png","note":"약공45%" },
+        { "name": "루시", "image": "lucy.png" },
+        { "name": "빅토리아", "image": "victoria.png" },
+        { "name": "비스킷", "image": "bisket.png", "note":"스강 필수"},
+        { "name": "리나", "image": "lina.png" }
+      ],
+     
+      "note": "2방컷,3방컷"
+    },
+     {
+      "team": [
+       { "name": "파스칼", "image": "pascal.png","note":"약공45%" },
+        { "name": "루시", "image": "lucy.png" },
+        { "name": "빅토리아", "image": "victoria.png" },
+        { "name": "비스킷", "image": "bisket.png", "note":"스강 필수"},
+        { "name": "에반", "image": "evan.png" }
+      ],
+     
+      "note": "4방컷"
+    }
+    
+  ]
+}

@@ -1,0 +1,263 @@
+{
+   "100층": {
+    "0": {
+      "1스테이지": ["melkir2.png","Yeonhee1.png","vanessa2.png"],
+      "2스테이지": ["Yeonhee2.png","melkir1.png","lina1.png"],
+      "3스테이지": [
+        "yushin2.png", "melkir2.png" ,"Yeonhee1.png"
+        
+      ]
+    }
+    
+  },
+  "108층": {
+    "0": {
+      "1스테이지": ["melkir2.png","Yeonhee1.png","vanessa2.png"],
+      "2스테이지": ["Yeonhee2.png","melkir1.png","lina1.png"],
+      "3스테이지": [
+        "yushin2.png", "melkir2.png" ,"Yeonhee1.png"
+        
+      ]
+    }
+     
+  },
+  "120층": {
+    "0": {
+      "1스테이지": ["chris2.png","nox2.png","rudy2.png","elise2.png","chris1.png","elise1.png"],
+      "2스테이지": ["chris2.png","nox2.png","rudy2.png","elise2.png","chris1.png","elise1.png"],
+      "3스테이지": ["chris2.png","nox2.png","rudy2.png","elise2.png","chris1.png","elise1.png"]
+    }
+     
+  },
+   "127층": {
+    "0": {
+      "1스테이지": ["yushin2.png","melkir2.png", { "image": "vanessa1.png", "label": "크리스 버프해제" }],
+      "2스테이지": ["Yeonhee2.png","melkir1.png","Yeonhee1.png","lina1.png"],
+      "3스테이지": ["yushin2.png","melkir2.png","yushin1.png","melkir1.png"]
+    }
+     
+  },
+   "129층": {
+    "0": {
+      "1스테이지": ["melkir2.png","Yeonhee1.png", { "image": "vanessa1.png", "label": "크리스 버프해제" }, { "image": "lina2.png", "label": "턴남을 때" }],
+      "2스테이지": ["melkir1.png","Yeonhee2.png","Yeonhee1.png","lina1.png"],
+      "3스테이지": ["yushin2.png","melkir2.png","yushin1.png","melkir1.png"]
+    }
+     
+  },
+   "130층": {
+     "0": {
+      "1스테이지": ["melkir2.png","Yeonhee1.png", { "image": "vanessa1.png", "label": "크리스 버프해제" }, { "image": "lina2.png", "label": "턴남을 때" }],
+      "2스테이지": ["melkir1.png","Yeonhee2.png","Yeonhee1.png","lina1.png"],
+      "3스테이지": ["yushin2.png","melkir2.png","yushin1.png","melkir1.png"]
+    },
+    "1": {
+      "1스테이지": ["teo2.png","Yeonhee1.png","lina1.png" ,{ "image": "lina2.png", "label": "턴남을 때" }],
+      "2스테이지": ["Yeonhee2.png","teo1.png","Yeonhee1.png"],
+      "3스테이지": ["eileene2.png","teo2.png"]
+    }
+     
+  },
+  "142층": {
+     "0": {
+      "1스테이지": ["melkir1.png","melkir2.png","Yeonhee1.png", "vanessa1.png","lina2.png"],
+      "2스테이지": ["Yeonhee2.png","yushin1.png","vanessa2.png"],
+      "3스테이지": ["melkir1.png","melkir2.png","yushin2.png"]
+    }
+   
+     
+  },
+  "145층": {
+     "0": {
+      "1스테이지": ["melkir1.png","melkir2.png","Yeonhee1.png", "vanessa1.png","lina2.png"],
+      "2스테이지": ["Yeonhee2.png","yushin1.png","vanessa2.png"],
+      "3스테이지": ["melkir1.png","melkir2.png","yushin2.png"]
+    }
+   
+     
+  },
+  "150층": {
+     "0": {
+      "1스테이지": {
+  "skills": [
+    "teo1.png",
+     { "image": "vanessa1.png", "label": "불사해제" }
+   
+    
+  ],
+  "note": "태오 1스킬에 한번에 안죽으면 리나2스킬 후 태오 1스킬"
+},
+      "2스테이지": ["teo2.png","Yeonhee2.png","yushin1.png","vanessa2.png"],
+      "3스테이지": ["yushin2.png","teo1.png","teo2.png"]
+    },
+     "1": {
+      "videoUrl": "https://youtu.be/8xqPPVSoixE?t=728&si=Qyh7UaFr77J_Hig7",
+      "1스테이지": {
+  "skills": [
+    "teo1.png","Yushin1.png",
+      "lina2.png","lina1.png"
+    
+  ],
+  "note": "태오 1스킬에 한번에 안죽으면 리나2스킬 후 태오 1스킬"
+},
+      "2스테이지": ["teo2.png","Yeonhee2.png","vanessa2.png"],
+      "3스테이지": ["yushin2.png","teo1.png","teo2.png"]
+    }
+   
+   
+  },
+  "163층": {
+    "0": {
+      "videoUrl": "https://youtu.be/8xqPPVSoixE?t=1045&si=38Im7pKTWOm5i4dP",
+      "1스테이지": ["teo1.png","Yeonhee1.png","lina2.png"],
+      "2스테이지": ["Yeonhee2.png","vanessa2.png","lina1.png"],
+      "3스테이지": [
+        "melkir1.png","melkir2.png","teo1.png","teo2.png","Yeonhee1.png"
+      ]
+    }
+    
+  },
+   "164층": {
+    "0": {
+      "videoUrl": "https://youtu.be/8xqPPVSoixE?t=1201&si=MRirGGgX8WjKGIvX",
+      "1스테이지": ["melkir1.png","teo1.png","Yeonhee1.png","vanessa1.png","lina2.png"],
+      "2스테이지": ["Yeonhee2.png","teo2.png","vanessa2.png","Yeonhee1.png"],
+      "3스테이지": [
+        "melkir1.png","melkir2.png","teo1.png","teo2.png","Yeonhee1.png"
+      ]
+    }
+    
+  },
+   "169층": {
+    "0": {
+      "videoUrl": "https://youtu.be/8xqPPVSoixE?t=1389&si=K5M7EBcEPN3ceAe_",
+      "1스테이지": ["teo1.png","Yeonhee1.png","vanessa1.png","lina2.png"],
+      "2스테이지": ["Yeonhee2.png","teo2.png","vanessa2.png","Yeonhee1.png"],
+      "3스테이지": [
+        "melkir1.png","melkir2.png","teo1.png","teo2.png","Yeonhee1.png"
+      ]
+    }
+    
+  },
+  "170층": {
+    "0": {
+      "1스테이지": ["Yeonhee2.png","yushin2.png","melkir1.png","yui1.png","Yeonhee1.png","yushin1.png","evan2.png"],
+      "2스테이지": ["melkir2.png","yushin2.png","Yeonhee2.png","melkir1.png","yushin1.png","yui1.png","evan1.png"],
+      "3스테이지": [
+        "melkir2.png", "evan2.png", "yushin2.png", "Yeonhee2.png",
+        "Yeonhee1.png", "yushin1.png", "yui1.png"
+      ]
+    },
+    "1": {
+      "1스테이지": ["teo1.png","Yeonhee2.png","teo2.png"],
+      "2스테이지": ["melkir1.png","Yeonhee1.png","yui1.png","vanessa2.png","vanessa1.png","teo2.png"],
+      "3스테이지": ["melkir1.png", "melkir2.png","yui2.png","Yeonhee2.png","teo1.png","vanessa2.png","yui1.png","Yeonhee1.png"]
+    },
+     "2": {
+       "videoUrl": "https://youtu.be/8xqPPVSoixE?t=1564&si=zadR3suRrxEpkfJL",
+      "1스테이지": ["melkir1.png","teo1.png","Yeonhee1.png","lina1.png","lina2.png"],
+      "2스테이지": ["Yeonhee2.png","teo2.png","vanessa1.png"],
+      "3스테이지": ["melkir1.png", "melkir2.png","teo1.png","Yeonhee1.png",{ "image": "teo1.png", "label": "태오 불사" },{ "image": "teo2.png", "label": "태오 불사" }]
+    }
+  },
+   "180층": {
+    "0": {
+      "1스테이지": ["teo1.png","Yeonhee2.png","yushin1.png",{ "image": "teo2.png", "label": "쥬리,크리스 부활해제" },"yui1.png"],
+      "2스테이지": ["melkir1.png","yushin2.png","teo1.png","Yeonhee2.png",{ "image": "teo2.png", "label": "쥬리 부활해제" },{ "image": "yushin1.png", "label": "로지 부활후" },"yui1.png"],
+      "3스테이지": [
+        "melkir1.png", "melkir2.png", "yushin2.png","teo1.png", "Yeonhee2.png",
+        "Yeonhee1.png",{ "image": "teo2.png", "label": "쥬리,크리스 부활해제" }, "yushin1.png", "yui1.png"
+      ]
+    }
+   
+  },
+   "190층": {
+    "0": {
+       "videoUrl": "https://www.youtube.com/watch?v=L6eL15HLCgs",
+      "1스테이지": [{ "image": "Melkir2.png", "label": "상대 힐" },"lee1.png","Yeonhee1.png","yushin1.png","yui1.png"],
+      "2스테이지": [{ "image": "Yeonhee2.png", "label": "상대 힐" },"lee1.png","yushin2.png","melkir1.png","yushin1.png","Yeonhee1.png","yui1.png"],
+      "3스테이지": [
+        { "image": "Yeonhee2.png", "label": "상대 힐" },"lee1.png","yushin2.png","yushin1.png","melkir2.png","melkir1.png","lee1.png"
+      ]
+    },
+    "1": {
+      
+      "1스테이지": ["melkir1.png","Yeonhee2.png","Yeonhee1.png","lina1.png"],
+      "2스테이지": ["yushin2.png","melkir2.png" ,"vanessa2.png","yushin1.png","vanessa1.png","lina2.png"],
+      "3스테이지": [
+        "melkir1.png","Yeonhee2.png","yushin2.png","Yeonhee1.png"
+      ]
+    }
+   
+  },
+  
+  "200층": {
+    "0": {
+       "videoUrl": "https://www.youtube.com/watch?v=J7D8-KJmNho",
+      "1스테이지": ["melkir2.png","lee1.png","melkir1.png","Yeonhee1.png","yushin2.png","yushin1.png",{ "image": "lee1.png", "label": "도발 쓰고 넘어가면 베스트" }],
+      "2스테이지": ["melkir2.png","lee1.png","Yeonhee2.png","melkir1.png","yushin2.png","yushin1.png","yui1.png","Yeonhee1.png"],
+      "3스테이지": [
+        "melkir2.png","lee1.png","melkir1.png","Yeonhee2.png","yushin2.png","yushin1.png","melkir2.png","melkir1.png","lee1.png"
+      ]
+    },
+    "1": {
+        "videoUrl": "https://www.youtube.com/watch?v=KTdMMImgIZ0",
+      "1스테이지": ["teo1.png","Yeonhee2.png","Yeonhee1.png","teo2.png","lina2.png"],
+      "2스테이지": [{ "image": "Melkir1.png", "label": "파이 cc아니면 리트(3~4명 cc)" },"melkir2.png","teo1.png","yushin2.png","lina1.png","Yeonhee1.png","Yeonhee2.png","teo2.png"],
+      "3스테이지": [
+        "melkir1.png","melkir2.png","teo1.png","yushin2.png"
+      ]
+    }
+    
+   
+  },
+  "201층": {
+    "0": {
+       "videoUrl": "https://youtu.be/uyAjAAa2D9Q?t=159&si=V6gJbUhjx1LHwdR9",
+      "1스테이지": ["teo2.png","teo1.png","lina2.png"],
+      "2스테이지": ["eileene2.png","dellons1.png","dellons2.png","vanessa2.png","vanessa1.png","lina1.png"],
+      "3스테이지": [
+        "lina2.png","teo1.png","teo2.png","eileene2.png"]
+    }
+    
+   
+  },
+  "202층": {
+    "0": {
+       "videoUrl": "https://youtu.be/uyAjAAa2D9Q?t=375&si=2M5Jj5TTdIIkKRXt",
+      "1스테이지": ["Yeonhee2.png","Yeonhee1.png"],
+      "2스테이지": ["rin2.png","vanessa2.png","rin1.png","vanessa1.png"],
+      "3스테이지": [
+        "melkir1.png","melkir2.png","lina2.png","Yeonhee2.png","rin2.png"]
+    }
+    
+   
+  },
+    "205층": {
+    "0": {
+       "videoUrl": "https://youtu.be/uyAjAAa2D9Q?t=1025&si=5_K4moO75QNzIbe6",
+      "1스테이지": ["lina2.png","teo1.png","dellons1.png",{ "image": "pie2.png", "label": "크리스 불사에 사용" }],
+      "2스테이지": ["pie1.png","teo2.png","eileene2.png","lina1.png",{ "image": "pie2.png", "label": "크리스 불사에 사용" }],
+      "3스테이지": [
+        "lina2.png","teo1.png","dellons1.png","pie1.png","teo2.png"]
+    }
+    
+   
+  },
+  "일반층": {
+    "0": {
+      "1스테이지": ["melkir2.png","teo1.png","teo2.png"],
+      "2스테이지": ["melkir1.png","Yeonhee2.png","lina1.png","Yeonhee1.png","vanessa1.png","vanessa2.png"],
+      "3스테이지": [
+        "melkir2.png", "teo1.png" ,"melkir1.png", "Yeonhee1.png","Yeonhee2.png","teo2.png"
+        
+      ]
+    },
+     "1": {
+       "1스테이지": ["melkir2.png","teo1.png","teo2.png"],
+      "2스테이지": ["melkir1.png","Yeonhee2.png","Yeonhee1.png","yushin1.png","teo2.png"],
+      "3스테이지": [
+        "melkir2.png","yushin2.png" ,"melkir1.png","teo1.png", "lina1.png","teo2.png"]
+    }
+  }
+}

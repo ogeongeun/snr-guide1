@@ -1,0 +1,637 @@
+  {
+    "schema": {
+      "Team": {
+        "fields": {
+          "teamId": "number",
+          "name": "string",
+          "heroes": "Array<{ name: string, image: string, note?: string }>",
+          "skillOrders": {
+            "속공덱": "string[]",
+            "내실덱": "string[]",
+            
+            "threshold?": "number (optional; guidance only)"
+          },
+          "note?": "string"
+        }
+      }
+    },
+    "categories": {
+      "공덱": {
+
+        "teams": [
+          {
+            "teamId": 1,
+            "name": "테오덱",
+            "heroes": [
+              {
+                "name": "파이",
+                "image": "pie.png",
+                "note":"내실일때 약공80%챙기기"
+
+              },
+              {
+                "name": "태오",
+                "image": "teo.png"
+              },
+              {
+                "name": "카구라",
+                "image": "cagura.png"
+                
+              }
+            ],
+        "pet": "irin.png",
+            "skillOrders": {
+              "threshold": 220,
+            
+              "공통": [
+                "cagura2.png",
+              
+            
+                "pie1.png",
+                    "teo1.png"
+                
+              ]
+              
+            },
+            "note": "1티어/속공220 미만시 추적자 태오 "
+          },
+          {
+            "teamId": 1,
+            "name": "테오덱",
+            "heroes": [
+              {
+                "name": "델론즈",
+                "image": "dellons.png"
+                
+              
+
+              },
+              {
+                "name": "태오",
+                "image": "teo.png"
+              },
+              {
+                "name": "카구라",
+                "image": "cagura.png"
+                
+              }
+            ],
+         "pet": "irin.png",
+            "skillOrders": {
+              "threshold": 220,
+            
+              "내실덱": [
+                "cagura2.png",
+              
+            
+                "teo2.png",
+                    "dellons2.png"
+                
+              ],
+              "속공덱": [
+                "cagura2.png",
+              
+            
+                "teo2.png",
+                    "teo1.png"
+                
+              ]
+              
+            },
+            "note": "1티어/속공220 미만시 추적자 태오 "
+          },
+          
+          
+          
+          {
+            "teamId": 1,
+            "name": "테오덱",
+            "heroes": [
+            
+              {
+                "name": "태오",
+                "image": "teo.png",
+                "note":"뒤배치(추적자/치약공공)"
+              },
+              {
+                "name": "델론즈",
+                "image": "dellons.png",
+              "preset": "프리셋1(내실)"
+                
+
+              },
+              {
+                "name": "아일린",
+                "image": "eileene.png",
+                "note":"조율자(효저100/효적60이상)"
+                
+              }
+            ],
+         "pet": "irin.png",
+            "skillOrders": {
+              "threshold": 220,
+              "내실덱": [
+              
+                "dellons2.png",
+                "teo2.png",
+                "teo1.png"
+              ]
+              
+            },
+          "note": "1.5티어/방덱잡이 내실세팅 속공x "
+          }
+          
+          
+          
+        
+          
+          
+        
+        ]
+      },
+      "마덱": {
+        "desc": "연희 로지 바네사 이덱 우선 배치(사기임)",
+        "teams": [
+          {
+            "teamId": 0,
+            "name": "연희덱",
+            "heroes": [
+              {
+                "name": "로지",
+                "image": "lozy.png",
+              "preset": "프리셋1(내실)"
+              },
+              {
+                "name": "연희",
+                "image": "Yeonhee.png",
+                
+              "preset": "프리셋1(내실)"
+              },
+              {
+                "name": "바네사",
+                "image": "vanessa.png",
+              "preset": "프리셋1(내실)"
+              
+              }
+            ],
+             "pet": "pike.png",
+            "skillOrders": {
+              "내실덱": [
+                "vanessa1.png",
+                "Yeonhee2.png",
+                "Yeonhee1.png"
+              ]
+              
+            },
+            "note":"op티어/표기상 효저100이최대지만 그이상치로 세팅하면 실제론 오름/파이크 펫까지"
+          },
+          {
+            "teamId": 0,
+            "name": "연희덱",
+            "heroes": [
+              {
+                "name": "로지",
+                "image": "lozy.png",
+              "preset": "프리셋2(속공)"
+              },
+              {
+                "name": "연희",
+                "image": "Yeonhee.png",
+                "preset": "프리셋2(속공)"
+              },
+              {
+                "name": "바네사",
+                "image": "vanessa.png",
+                "preset": "프리셋2(속공)"
+              }
+            ],
+             "pet": ["yeonji.png","chri.png"],
+            "skillOrders": {
+              "속공덱": [
+                "vanessa1.png",
+                "Yeonhee2.png",
+                "Yeonhee1.png"
+              ]
+              
+            },
+            "note":"op티어(셋다 부옵 속공)/속공230이상"
+          },
+          {
+            "teamId": 0,
+            "name": "오를리 덱",
+            "heroes": [
+              {
+                "name": "연희",
+                "image": "Yeonhee.png",
+                  "preset": "프리셋2(내실)",
+                  "note":"치확70만"
+              },
+              {
+                "name": "오를리",
+                "image": "orly.png",
+                  "preset": "프리셋1(내실)"
+              },
+              {
+                "name": "바네사",
+                "image": "vanessa.png",
+                "preset": "프리셋3(극딜)"
+              }
+            ],
+             "pet": "yeonji.png",
+            "skillOrders": {
+              "내실덱": [
+                "vanessa1.png",
+                "orly2.png",
+                "Yeonhee1.png"
+              ]
+              
+            },
+            "note":"op티어/반지랑 6초월이상이여야함"
+          },
+          
+          
+        
+          
+          {
+            "teamId": 2,
+            "name": "린덱",
+            "heroes": [
+              {
+                "name": "쥬리",
+                "image": "juri.png",
+                "preset": "프리셋1(속공)"
+              },
+              {
+                "name": "린",
+                "image": "rin.png",
+                  "preset": "프리셋1(속공)"
+            
+              },
+              {
+                "name": "멜키르",
+                "image": "Melkir.png",
+                  "preset": "프리셋2(속공)"
+                
+              }
+            ],
+             "pet": ["chri.png","yeonji.png"],
+            "skillOrders": {
+              
+              "속공덱": [
+                
+                "Melkir1.png",
+                "rin2.png",
+                "rin1.png"
+                
+              ]
+            
+            },
+            "note": "1티어/속공최대치 세팅"
+          },
+          {
+            "teamId": 2,
+            "name": "린덱",
+            "heroes": [
+              {
+                "name": "실베스타",
+                "image": "silvesta.png",
+                "note":"6초월이상/반지 부활이 젤 좋음"
+              },
+              {
+                "name": "린",
+                "image": "rin.png",
+                "note": "내실일때 약공 세팅"
+              },
+              {
+                "name": "유신",
+                "image": "Yushin.png",
+                "note": "멜키르 대체가능/권능"
+              }
+            ],
+                         "pet": ["yeonji.png"],
+            "skillOrders": {
+              
+              "속공덱": [
+                
+                "rin2.png",
+                "Yushin1.png",
+                "silvesta1.png"
+                
+              ],
+              "내실덱": [
+                
+              
+                "Yushin1.png",
+                  "rin2.png",
+                "silvesta1.png"
+                
+              ]
+            },
+            "note": "op티어/속공230이상일때 속공덱/그 아래일시 내실덱으로 세팅/속공이 더 좋아보임"
+          },
+          
+          
+          {
+            "teamId": 0,
+            "name": "연희,린 덱",
+            "heroes": [
+              {
+                "name": "바네사",
+                "image": "vanessa.png",
+                "preset": "프리셋2(속공)"
+              },
+              {
+                "name": "연희",
+                "image": "Yeonhee.png",
+                  "preset": "프리셋1(속공)"
+              },
+              {
+                "name": "린",
+                "image": "rin.png",
+                  "preset": "프리셋1(속공)"
+            
+              }
+            ],
+                         "pet": ["chri.png","yeonji.png"],
+            "skillOrders": {
+              "공통": [
+                "vanessa1.png",
+                "Yeonhee2.png",
+                "rin2.png"
+              ]
+              
+            },
+            "note": "1티어/속공 최대치 세팅"
+          }
+          ,
+          {
+            "teamId": 0,
+            "name": "연희,린 덱",
+            "heroes": [
+              {
+                "name": "바네사",
+                "image": "vanessa.png",
+                "preset": "프리셋1(내실)"
+              },
+              {
+                "name": "연희",
+                "image": "Yeonhee.png",
+                  "preset": "프리셋2(내실)",
+                  "note":"5불사"
+              },
+              {
+                "name": "린",
+                "image": "rin.png",
+                  "preset": "프리셋2(내실)",
+                  "note":"6권능 추천"
+            
+              }
+            ],
+                         "pet": ["chri.png","yeonji.png"],
+            "skillOrders": {
+              "공통": [
+                "vanessa1.png",
+                "Yeonhee2.png",
+                "rin2.png"
+              ]
+              
+            },
+            "note": "1티어/내실"
+          }
+        ]
+      },
+      "방덱": {
+        "desc": "콜트,플라튼,파이 이덱 우선 배치",
+        "teams": [
+          {
+            "teamId": 0,
+            "name": "레이첼 방덱",
+            "heroes": [
+              {
+                "name": "스파이크",
+                "image": "spike.png"
+              
+              },
+              {
+                "name": "레이첼",
+                "image": "rachel.png",
+                "note": "6초월시 사용(복수자/치치공공)"
+              },
+              {
+                "name": "실베스타",
+                "image": "silvesta.png",
+                  "note":"추적자(치약공공)"
+              
+              }
+            ],
+                         "pet": ["rechel.png","pike.png"],
+            "skillOrders": {
+              
+              "내실덱": [
+                "spike2.png",
+                "rachel1.png",
+
+              
+
+                "silvesta2.png"
+              ]
+            },
+            "note": "1.5티어"
+          },
+          {
+            "teamId": 0,
+            "name": "레이첼 방덱",
+            "heroes": [
+              {
+                "name": "카르마",
+                "image": "carma.png",
+                "note":"추적자(치약공공)"
+              },
+              {
+                "name": "레이첼",
+                "image": "rachel.png",
+                "note": "6초월시 사용(복수자/치치공공)"
+              },
+              {
+                "name": "스파이크",
+                "image": "spike.png",
+                "note":"6초이상 사용"
+              
+              }
+            ],
+             "pet": ["rechel.png","pike.png"],
+            "skillOrders": {
+              
+              "내실덱": [
+                "spike2.png",
+                "rachel1.png",
+                "carma2.png"
+              ]
+            },
+            "note": "2티어/파이크 펫"
+          },
+          {
+            "teamId": 0,
+            "name": "콜트+플라튼 방덱",
+            "heroes": [
+              {
+                "name": "카구라",
+                "image": "cagura.png",
+                  "preset": "2스킬 스킬예약시"
+              },
+              {
+                "name": "콜트",
+                "image": "colt.png",
+                "note":"즉반 or cc반지"
+              },
+              {
+                "name": "플라튼",
+                "image": "platon.png",
+                "preset": "프리셋2(속공)"
+              }
+            ],
+             "pet": ["irin.png","pike.png"],
+            "skillOrders": {
+              "공통": [
+                "cagura2.png",
+                "colt1.png",
+                "colt2.png"
+              ]
+              
+            },
+            "note": "op티어/카구라 속공이 콜트 속공보다 높아야함+파이크펫보다 이린 펫쓰는게 나음"
+          },
+          {
+            "teamId": 0,
+            "name": "콜트+플라튼 방덱",
+            "heroes": [
+              {
+                "name": "파이",
+                "image": "pie.png",
+                  "preset": "프리셋1(속공)"
+              },
+              {
+                "name": "콜트",
+                "image": "colt.png",
+                "note":"즉반 or cc반지"
+              },
+              {
+                "name": "플라튼",
+                "image": "platon.png",
+                "preset": "프리셋2(속공)"
+              }
+            ],
+              "pet": ["irin.png","pike.png"],
+            "skillOrders": {
+              
+               "공통": [
+                "pie2.png",
+                "colt1.png",
+                "colt2.png"
+              ]
+              
+            },
+            "note": "op티어/파이속공이 콜트 속공보다 높아야함,파이위시작 가능"
+          },
+          {
+            "teamId": 0,
+            "name": "콜트+플라튼 방덱",
+            "heroes": [
+              {
+                "name": "레이첼",
+                "image": "rachel.png",
+                  "preset": "프리셋2(속공)/6초이상시 사용"
+              },
+              {
+                "name": "콜트",
+                "image": "colt.png",
+                "note":"즉반 or cc반지"
+              },
+              {
+                "name": "플라튼",
+                "image": "platon.png",
+              "preset": "프리셋2(속공)"
+              }
+            ],
+              "pet": ["irin.png","pike.png"],
+            "skillOrders": {
+              "공통": [
+                "rachel1.png",
+                "colt1.png",
+                "colt2.png"
+              ]
+              
+            },
+            "note": "op티어/레이첼 속공이 콜트 속공보다 높아야함+파이크펫보다 이린 펫쓰는게 나음"
+          },
+          {
+            "teamId": 0,
+            "name": "레이첼 방덱",
+            "heroes": [
+              {
+                "name": "레이첼",
+                "image": "rachel.png",
+                "note": "6초월시 사용(복수자/치치공공)"
+              },
+              {
+                "name": "파이",
+                "image": "pie.png"
+              
+              },
+              {
+                "name": "스파이크",
+                "image": "spike.png",
+                "note":"6초월시 사용(추적자/치약받받)"
+              }
+            ],
+              "pet": ["rechel.png","pike.png"],
+            "skillOrders": {
+              "내실덱": [
+                
+                "rachel1.png",
+                "spike2.png",
+                "pie1.png"
+              ]
+            
+            },
+            "note": "1.5티어/파이크펫"
+          },
+          
+          
+          
+          {
+            "teamId": 0,
+            "name": "콜트+플라튼 방덱",
+            "heroes": [
+              {
+                "name": "실베스타",
+                "image": "silvesta.png",
+                "preset": "프리셋1(내실)"
+              
+              },
+              {
+                "name": "콜트",
+                "image": "colt.png",
+                  "note":"즉반 or cc반지"
+              },
+              {
+                "name": "플라튼",
+                "image": "platon.png",
+                "preset": "프리셋1(탱)"
+              }
+            ],  "pet": ["rechel.png","pike.png"],
+            "skillOrders": {
+              "공통": [
+              "platon2.png",
+              
+                "colt2.png",
+                "silvesta1.png"
+              ]
+              
+            },
+            "note": "1.5티어"
+          }
+        ]
+      }
+    }
+  }

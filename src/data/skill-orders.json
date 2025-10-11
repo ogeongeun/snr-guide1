@@ -1,0 +1,77 @@
+[
+  {
+    "name": "유이",
+    "image": "/images/heroes/yui.png",
+    "skills": ["1스킬", "2스킬", "패시브"]
+   
+  },
+  {
+    "name": "에반",
+    "image": "/images/heroes/evan.png",
+  
+    "skills": ["1스킬", "2스킬","패시브"]
+   
+  },
+  {
+    "name": "아수라",
+    "image": "/images/heroes/asura.png",
+  
+    "skills": ["1스킬","패시브"]
+   
+  },
+  {
+    "name": "빅토리아",
+    "image": "/images/heroes/victoria.png",
+  
+    "skills": ["2스킬","패시브"]
+   
+  },
+  {
+    "name": "루시",
+    "image": "/images/heroes/lucy.png",
+  
+    "skills": ["2스킬","패시브"]
+   
+  },{
+    "name": "블랙로즈",
+    "image": "/images/heroes/blackrose.png",
+  
+    "skills": ["2스킬","패시브"]
+   
+  },
+  {
+    "name": "카론",
+    "image": "/images/heroes/caron.png",
+  
+    "skills": ["1스킬","2스킬","패시브"]
+   
+  },
+  {
+    "name": "클로에",
+    "image": "/images/heroes/chloe.png",
+  
+    "skills": ["2스킬","패시브"]
+   
+  },
+  {
+    "name": "레오",
+    "image": "/images/heroes/leo.png",
+  
+    "skills": ["패시브"]
+   
+  },
+  {
+    "name": "노호",
+    "image": "/images/heroes/noho.png",
+  
+    "skills": ["패시브"]
+   
+  },
+  {
+    "name": "아리엘",
+    "image": "/images/heroes/ariel.png",
+  
+    "skills": ["패시브"]
+   
+  }
+]

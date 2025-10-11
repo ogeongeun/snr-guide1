@@ -1,0 +1,103 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+export default function ExpeditionPage() {
+  const heroes = [
+     {
+      id: 'darkteo',
+      name: '테오',
+      role: '딜러',
+      image: 'darkteo.png',
+      attackers: [
+        '건근본', '빈빈빈', '함북이', '파뚱이', '파이',
+        '하이퍼울트라깹짱', '병살', '법원', '오리시기', '나쁜남자서동연'
+      ]
+    },
+     {
+      id: 'darkkile',
+      name: '카일',
+      role: '딜러',
+      image: 'darkkile.png',
+      attackers: [
+        '사랑이차차차', 'purplesky', '밤초', '시기1',
+        '막창추적자', 'JJJOUND', 'Killsick', '연바리'
+      ]
+    },
+    {
+      id: 'darkyeonhee',
+      name: '연희',
+      role: '버퍼',
+      image: 'darkyeonhee.png',
+      attackers: ['CryingStop', '염신メ', '이향', '밀리엔']
+    },
+    {
+      id: 'darkcarma',
+      name: '카르마',
+      role: '탱커',
+      image: 'darkcarma.png',
+      attackers: [
+        '렝차', '버터1230호', '아도어', '때오',
+        '신주노입니다', '겁많아요', '종아리', '당당이'
+      ]
+    },
+   
+   
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-100 py-8 px-3">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-6">
+          ⚔️ 강림원정대 공격 인원 현황
+        </h1>
+        <p className="text-center text-gray-600 mb-8 text-sm sm:text-base">
+          각 영웅 이미지를 클릭하면 세트 조합과 장비 추천 페이지로 이동합니다.
+        </p>
+
+        {/* 🔹 카드 레이아웃 */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          {heroes.map((hero) => (
+            <div
+              key={hero.id}
+              className="bg-white rounded-2xl shadow-md hover:shadow-lg transition transform hover:-translate-y-1 p-3 sm:p-4"
+            >
+              <Link to={`/expedition/${hero.id}`}>
+                <div className="flex flex-col items-center text-center">
+                  <img
+                    src={`/images/heroes/${hero.image}`}
+                    alt={hero.name}
+                    className="w-24 h-24 sm:w-28 sm:h-28 object-contain mb-2"
+                  />
+                  <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
+                    {hero.name}
+                  </h2>
+                  <p className="text-xs sm:text-sm text-gray-500 mb-3">
+                    {hero.role}
+                  </p>
+                </div>
+              </Link>
+
+              <div className="bg-gray-50 rounded-lg p-2 text-center">
+                <p className="text-xs sm:text-sm font-semibold text-indigo-700 mb-1">
+                  공격 인원 ({hero.attackers.length}명)
+                </p>
+                <div className="flex flex-wrap justify-center gap-1">
+                  {hero.attackers.map((name, idx) => (
+                    <span
+                      key={idx}
+                      className="bg-indigo-100 text-indigo-700 text-[10px] sm:text-xs px-2 py-0.5 rounded-md"
+                    >
+                      {name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="absolute bottom-2 right-4 text-[10px] sm:text-xs text-gray-400">sj</div>
+    </div>
+  );
+}

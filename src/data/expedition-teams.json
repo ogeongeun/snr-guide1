@@ -1,0 +1,45 @@
+{
+  "expeditionTeams": {
+    "darkteo": [
+      {
+        "setName": "종결세팅",
+        "teams": [
+          {
+            "id": 1,
+            "teamName": "1팀",
+            "heroes": [
+              { "name": "미호", "image": "miho.png", "preset": "프리셋1(강림)" },
+              { "name": "아리엘", "image": "ariel.png", "preset": "프리셋2(강림)" },
+              { "name": "파스칼", "image": "pascal.png", "preset": "프리셋2(강림)","note":"뒤배치" },
+              { "name": "비스킷", "image": "bisket.png", "preset": "프리셋2(강림)" },
+              { "name": "레이첼", "image": "rachel.png", "preset": "프리셋3(강림)" }
+            ],
+            "recommendedGear": {
+              "pet": "rechel.png"
+            },
+            "note":"비스킷 패시브 파스칼+미호"
+            
+          },
+          {
+            "id": 2,
+            "teamName": "2팀",
+            "heroes": [
+              { "name": "바네사", "image": "vanessa.png", "preset": "프리셋4(강림)" },
+              { "name": "데이지", "image": "dage.png", "preset": "프리셋1(강림)" },
+              { "name": "유리", "image": "yuri.png", "preset": "프리셋1(강림)","note":"뒤배치" },
+              { "name": "리나", "image": "lina.png" },
+              { "name": "에스파다", "image": "espada.png", "preset": "프리셋2(강림)" }
+            ],
+            "recommendedGear": {
+        
+              "pet": "yeonji.png"
+            }
+           
+          }
+        ],
+      
+        "note": "미흡한 스펙은 반지로 충족/스펙이 된다면 피해량 반지"
+      }
+    ]
+  }
+}

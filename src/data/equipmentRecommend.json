@@ -1,0 +1,1364 @@
+{
+  "juri": {
+    "name": "쥬리",
+    "image": "/images/heroes/juri.png",
+    "roles": {
+      "ring":"6성 빙결+침묵",
+      "프리셋1(속공)": {
+        "전체": [
+          {
+            "set": "주술사",
+            "mainOption": "효적%/효적%/모공%/모공%",
+            "subOption": "효적 70% 이상",  
+            "note": "속공 최대치/팀내 속공1등"
+          }
+         
+        ]
+      },
+      "프리셋2(내실)": {
+        "전체": [
+          {
+            "set": "주술사",
+            "mainOption": "효적%/치확%/모공%/모공%",
+            "subOption": "최대한 치확100%,효적70%",  
+            "note": "치확"
+          }
+         
+        ]
+      }
+     ,
+    "프리셋3(길드전)": {
+        "전체": [
+          {
+            "set": "주술사",
+            "mainOption": "효적%/효적%/효저%/효저%",
+            "subOption": "효저100%",  
+            "note": "효저"
+          }
+         
+        ]
+      }
+     
+    }
+  },
+  "pie": {
+    "name": "파이",
+    "image": "/images/heroes/pie.png",
+    "roles": {
+      "프리셋1(속공)": {
+       
+        "전체": [
+            
+          {
+            "set": "추적자",
+            "mainOption": "약확%/약공or모공%/모공%/모공%",
+            "subOption": "약공 90% 이상",  
+            "note": "속공 최대치"
+          }
+          
+        ]
+      }
+      
+    }
+  },
+   "lozy": {
+    "name": "로지",
+    "image": "/images/heroes/lozy.png",
+    "roles": {
+      "ring": "부활 반지",
+       "프리셋1(내실)": {
+       
+        "전체": [
+             {
+            "set": "주술사",
+            "mainOption": "효적%/생%/막%/막%",
+            "note": "효적60%이상 세팅"
+          }
+          
+        ]
+      },
+      "프리셋2(속공)": {
+       
+        "전체": [
+             {
+            "set": "주술사",
+            "mainOption": "효적%/생%/막%/막%",
+            "note": "효적60%이상 세팅/속공최대치"
+          }
+          
+        ]
+      }
+    }
+    
+  },
+  "cagura": {
+    "name": "카구라",
+    "image": "/images/heroes/cagura.png",
+     "isPresetHero": true,  
+    "roles": {
+      "ring": "피해량반지등 딜관련 반지또는 즉사",
+     
+      "2스킬 스킬예약시": {
+       
+        "전체": [
+             {
+            "set": "주술사",
+            "mainOption": "치확%/치확%/모공%/모공%",
+            "subOption": "효적 70% 이상",  
+            "note": "부옵 극속공,효적"
+          }
+          
+        ]
+      },
+      "2스킬 스킬예약 안할시": {
+       
+        "전체": [
+             {
+            "set": "복수자",
+            "mainOption": "치확%/치확or효적%/모공%/모공%",
+            "note": "극딜"
+          }
+          
+        ]
+      }
+    }
+    
+  },
+  "zick": {
+    "name": "지크",
+    "image": "/images/heroes/zick.png",
+    "roles": {
+      "ring": "권능 반지",
+       "레이드": {
+       
+        "전체": [
+             {
+            "set": "복수자",
+            "mainOption": "치확%/치확%/모공%/모공%",
+            "note": ""
+          }
+          
+        ]
+      },
+      "범용": {
+       
+        "전체": [
+             {
+            "set": "수문장",
+            "mainOption": "생%/생%/막%/막ㄴ%",
+            "note": ""
+          }
+          
+        ]
+      }
+    }
+    
+  },"platon": {
+    "name": "플라튼",
+    "image": "/images/heroes/platon.png",
+    "roles": {
+       "ring": "부활 반지",
+      "프리셋1(탱)": {
+       
+        "전체": [
+             {
+            "set": "수호자/성기사",
+            "mainOption": "방어%/방어%/받피감%/받피감%",
+            "subOption": "방어력 2500 이상", 
+            "note": "방어력"
+          }
+          
+        ]
+      },
+      "프리셋2(속공)": {
+       
+        "전체": [
+             {
+            "set": "수호자/성기사",
+            "mainOption": "방어%/방어%/받피감%/받피감%",
+            "subOption": "속공최대치", 
+            "note": "속공"
+          }
+          
+        ]
+      }
+      
+    }
+  },
+  "bisket": {
+    "name": "비스킷",
+    "image": "/images/heroes/bisket.png",
+    "roles": {
+       "ring": "부활 반지",
+      "프리셋1(탱)": {
+       
+        "전체": [
+             {
+            "set": "수문장",
+            "mainOption": "방어>생명%/방어>생명%/막기>받피감%/막기>받피감%",
+            "note": "2초월까진 무조건 필수(1스킬,패시브 스강)"
+          }
+          
+        ]
+      },
+      "프리셋2(강림)": {
+       
+        "전체": [
+             {
+            "set": "복수자",
+            "mainOption": "치%/치%/모공/모공",
+                   "subOption": "치확100%", 
+            "note": ""
+          }
+          
+        ]
+      }
+      
+    }
+  },
+   "miho": {
+    "name": "미호",
+    "image": "/images/heroes/miho.png",
+    "roles": {
+       "ring": "치확반지",
+      "프리셋1(강림)": {
+       
+        "전체": [
+             {
+            "set": "복수자",
+            "mainOption": "치확%/치피%/모공%/모공%",
+               "subOption": "모공4100,약공45%", 
+            "note": ""
+          }
+          
+        ]
+      }
+      
+    }
+  },
+  "dage": {
+    "name": "데이지",
+    "image": "/images/heroes/dage.png",
+    "roles": {
+       "ring": "치확반지",
+      "프리셋1(강림)": {
+       
+        "전체": [
+             {
+            "set": "복수자",
+            "mainOption": "치확%/치피%/모공%/모공%",
+               "subOption": "치확100%,치피250%", 
+            "note": ""
+          }
+          
+        ]
+      }
+      
+    }
+  },
+  "colt": {
+    "name": "콜트",
+    "image": "/images/heroes/colt.png",
+    "roles": {
+       "ring": "불사 반지",
+      "버퍼": {
+       
+        "전체": [
+             
+           {
+            "set": "복수자",
+            "mainOption": "효적%/모공%/모공%/모공%",
+            "note": "속공65~77 / 효적70%맞추기 "
+          }
+        ]
+      }
+      
+    }
+  },
+  "sein": {
+    "name": "세인",
+    "image": "/images/heroes/sein.png",
+    "roles": {
+      "딜러": {
+       
+        "전체": [
+             {
+            "set": "복수자",
+            "mainOption": "치확/치피/모공%/모공%",
+            "note": "종결(치확 59% 맞추기 + 패시브 41%(스킬강화 포함))"
+          },
+          {
+            "set": "암살자",
+            "mainOption": "치확/치피/모공%/모공%",
+            "note": "치확 59% 맞추기 + 패시브 41%(스킬강화 포함)"
+          }
+        ]
+      }
+    }
+  },
+  "dellons": {
+    "name": "델론즈",
+    "image": "/images/heroes/dellons.png",
+    "isPresetHero": true, 
+    "roles": {
+       "ring": "불사 반지",
+        "프리셋1(내실)": {
+       
+        "전체": [
+           
+          {
+            "set": "추적자",
+            "mainOption": "약확/치확/모공%/모공%",
+            "note": "약확 100%/치확100% 맞추기"
+          }
+          
+        ]
+      },
+      "프리셋2(속공)": {
+       
+        "전체": [
+            
+          {
+            "set": "추적자",
+            "mainOption": "약확/약확/모공%/모공%",
+            "subOption": "약공 100% 이상", 
+            "note": "속공 최대치"
+          },
+          {
+            "set": "암살자",
+            "mainOption": "치확/치피/모공%/모공%",
+            "subOption": "치확 90% 이상", 
+            "note": "속공 최대치"
+          }
+        ]
+      }
+     
+    }
+  },
+  "taka": {
+    "name": "타카",
+    "image": "/images/heroes/taka.png",
+    "roles": {
+      "딜러": {
+       
+        "전체": [
+             {
+            "set": "복수자",
+            "mainOption": "치확/치피/모공%/모공%",
+            "note": "치확 100 맞추기"
+          },
+          {
+            "set": "암살자",
+            "mainOption": "치확/치피/모공%/모공%",
+            "note": "치확 100 맞추기"
+          }
+        ]
+      }
+    }
+  },
+  "teo": {
+    "name": "태오",
+    "image": "/images/heroes/teo.png",
+    "roles": {
+       "ring": "권능 반지",
+      "프리셋1(내실)": {
+        
+        "전체": [
+          {
+            "set": "추적자",
+            "mainOption": "약공/치피/모공%/모공%",
+            "subOption": "약공 100%", 
+            "note": "치피"
+          }
+          
+         ]
+          
+      },
+       "프리셋2(속공)": {
+        
+        "전체": [
+          {
+            "set": "추적자",
+            "mainOption": "약공/치피/모공%/모공%",
+            "subOption": "약공 100%", 
+            "note": "속공"
+          }
+          
+         ]
+          
+      }
+      
+    }
+  },
+  "Yeonhee": {
+    "name": "연희",
+    "image": "/images/heroes/Yeonhee.png",
+     "isPresetHero": true, 
+    "roles": {
+       "ring": "권능/불사 반지",
+       
+       "프리셋1(속공)": {
+       
+        "전체": [
+             {
+            "set": "복수자",
+            "mainOption": "치확/치피/모공%/모공%",
+            "subOption": "치확 100%", 
+            "note": "속공최대치"
+          },
+          {
+            "set": "복수자",
+            "mainOption": "치확/치피/모공%/모공%",
+            "subOption": "치확 100%", 
+            "note": "속공최대치"
+          }
+          
+        ]
+      },
+       "프리셋2(내실)": {
+       
+        "전체": [
+          {
+            "set": "추적자",
+            "mainOption": "치확/약공/모공%/모공%",
+             "subOption": "치확 100%/약공100%", 
+            "note": "약공/치확"
+          }
+          
+        ]
+      }
+      
+    }
+  },
+  "silvesta": {
+    "name": "실베스타",
+    "image": "/images/heroes/silvesta.png",
+    "roles": {
+       "ring": "불사 반지",
+        "프리셋1(내실)": {
+       
+        "전체": [
+            
+          {
+            "set": "추적자",
+            "mainOption": "치확/약공/모공%/모공%",
+             "subOption": "약공,치확 100%", 
+            "note": "약공/치확"
+          }
+        ]
+      },
+       "프리셋2(속공)": {
+       
+        "전체": [
+            
+          {
+            "set": "암살자/복수자",
+            "mainOption": "치확/치확/모공%/모공%",
+             "subOption": "속공최대치", 
+            "note": "속공"
+          }
+        ]
+      }
+      
+    }
+  },
+  "luri": {
+    "name": "루리",
+    "image": "/images/heroes/luri.png",
+    "roles": {
+       "프리셋1(길드전)": {
+       
+       
+        "전체": [
+             
+          {
+            "set": "추적자",
+            "mainOption": "치확%/약공%/모공%/모공%",
+         "note": "약공61%,치확 100% 맞추기"
+          }
+         
+        ]
+      },
+       "프리셋2(공성전)": {
+       
+       
+        "전체": [
+             
+          {
+            "set": "복수자",
+            "mainOption": "치확%/약공%/모공%/모공%",
+         "note": "약공,치확 100% 맞추기, 약공 61%맞추기+패시브 39%"
+          }
+          
+        ]
+      }
+    }
+  },
+  "yui": {
+    "name": "유이",
+    "image": "/images/heroes/yui.png",
+    "roles": {
+      "프리셋1(범용)": {
+        "전체": [
+          
+          {
+            "set": "성기사",
+            "mainOption": "생%/생%/생%or막"
+          }
+        ]
+      },
+      "프리셋2(길드전)": {
+        "전체": [
+       {
+            "set": "수문장",
+            "mainOption": "생%/생%/막/막",
+            "note": "전체 구간 공용"
+          }
+        ]
+      }
+     
+    }
+  },
+  "orly": {
+    "name": "오를리",
+    "image": "/images/heroes/orly.png",
+    "roles": {
+      "프리셋1(내실)": {
+        "전체": [
+          {
+            "set": "조율자",
+            "mainOption": "방%/방%/받피감%/받피감",
+            "note": "막기,모공"
+          }
+        
+        ]
+      },
+       "프리셋2(속공)": {
+        "전체": [
+          {
+            "set": "조율자",
+            "mainOption": "방%/방%/받피감%/받피감",
+            "note": "속공 최대치"
+          }
+        
+        ]
+      }
+     
+    }
+  },
+  "lina": {
+    "name": "리나",
+    "image": "/images/heroes/lina.png",
+    "roles": {
+      "힐러": {
+        "전체": [
+         
+          {
+            "set": "성기사",
+            "mainOption": "생%/생%/받%/받%",
+             "subOption": "효저40%",
+             "note":"효저,생"
+          }
+        ]
+        
+      }
+     
+    }
+  },
+    "elise": {
+    "name": "엘리스",
+    "image": "/images/heroes/elise.png",
+    "roles": {
+      "힐러": {
+        
+        "길드전": [
+          {
+            "set": "조율자",
+            "mainOption": "생%/생%/받/받",
+             "subOption": "효저 70%", 
+            "note": "효저,생"
+          }
+         
+        ]
+      }
+     
+    }
+  },
+   "pascal": {
+    "name": "파스칼",
+    "image": "/images/heroes/pascal.png",
+    "roles": {
+      "프리셋1(범용)": {
+       
+        
+        "6초월": [
+              {
+            "set": "복수자",
+            "mainOption": "치피/치피/모공%/모공%",
+           "subOption": "치피320%/약공10%/모공4400", 
+             "note": ""
+          }
+          
+        ]
+      },
+      "프리셋2(강림)": {
+       
+        
+        "6초월": [
+              {
+            "set": "복수자",
+            "mainOption": "치피/치피/모공%/모공%",
+            "subOption": "치피320%/약공10%/모공4400"
+     
+          }
+          
+        ]
+      }
+    }
+  },
+   "espada": {
+    "name": "에스파다",
+    "image": "/images/heroes/espada.png",
+    "roles": {
+      "프리셋1(레이드)": {
+       
+        "우마왕15단계": [
+              {
+            "set": "복수자",
+            "mainOption": "치확%/치피(또는 약공)%/모공%/모공%",
+            "note": "최소컷(치확 60%/약공46%)//마공3900,치피216%(최소컷이니 치피 더 올리고 마공 내리는등 유동적으로 변경 가능"
+          }
+          
+        ]
+        
+      },
+       "프리셋2(강림)": {
+       
+        "6초월": [
+              {
+            "set": "복수자",
+            "mainOption": "치확%/치피%/모공%/모공%",
+            "note": "치확100%,치피220%"
+          }
+          
+        ]
+        
+      }
+    }
+  },
+  "Melkir": {
+    "name": "멜키르",
+    "image": "/images/heroes/Melkir.png",
+     "isPresetHero": true, 
+    "roles": {
+       "ring": "권능 반지",
+      "악몽&무함&모험": {
+       
+        "전체": [
+              {
+            "set": "복수자",
+            "mainOption": "효적/모공%/모공%/모공%",
+             "subOption": "효적 700%",
+             "note":"모공,효적"
+            
+          }
+          
+        ]
+        
+      },
+      "프리셋2(속공)": {
+       
+        "전체": [
+              {
+            "set": "주술사",
+            "mainOption": "효적/생%/받피감%/받피감%",
+             "subOption": "효적 70%이상", 
+            "note": "속공 최대치"
+          }
+          
+        ]
+        
+      }
+    }
+  },
+  "vanessa": {
+    "name": "바네사",
+    "image": "/images/heroes/vanessa.png",
+     "isPresetHero": true, 
+    "roles": {
+       "ring": "권능",
+      "프리셋1(내실)": {
+       
+        "전체": [
+              {
+            "set": "조율자",
+            "mainOption": "효적%/효적or약공%/효저%/효저%",
+             "subOption": "효적80%/효저100%",
+            "note": "약공,효적,효저"
+          }
+         
+          
+        ]
+        
+      },
+      
+        "프리셋2(속공)": {
+       
+        "전체": [
+               {
+            "set": "주술사",
+            "mainOption": "약%/효적%/모공%/모공%",
+            "note": "속공최대치"
+          }
+        ]
+      },
+       "프리셋3(극딜)": {
+       
+        "전체": [
+               {
+            "set": "추적자",
+            "mainOption": "약%/치확%/모공%/모공%",
+             "subOption": "치확70%/약공100%",
+            "note": "치확,약공"
+          }
+        ]
+      },
+       "프리셋4(강림)": {
+       
+        "전체": [
+              {
+            "set": "복수자",
+            "mainOption": "치%/치%/모공%/모공%",
+             "subOption": "치확100%%",
+            "note": "치피,모공,치확"
+          }
+         
+          
+        ]
+        
+      }
+    }
+  },
+  "rin": {
+    "name": "린",
+    "image": "/images/heroes/rin.png",
+      "isPresetHero": true, 
+    "roles": {
+       "ring": "권능 or 불사 반지",
+        
+      "프리셋1(속공)": {
+       
+        "전체": [
+              {
+            "set": "복수자",
+            "mainOption": "치확/치피/모공%/모공%",
+             "subOption": "치확 67%/공력3850",
+            "note": "속공 최대치,치피"
+          }
+          
+        ]
+        
+      },
+       "무탑,시탑": {
+       
+        "전체": [
+              {
+            "set": "복수자",
+            "mainOption": "치확/치피/모공%/모공%",
+             "subOption": "치확 67%/공력3850",
+            "note": "치피,모공"
+          }
+          
+        ]
+        
+      },
+       "프리셋2(내실)": {
+       
+        "전체": [
+              {
+            "set": "추적자",
+            "mainOption": "치확/약공/모공%/모공%",
+             "subOption": "치확 67%/약공100%",
+            "note": "치피,약공"
+          }
+          
+        ]
+        
+      }
+      
+    }
+  },
+  
+  "rudy": {
+    "name": "루디",
+    "image": "/images/heroes/rudy.png",
+     "isPresetHero": true, 
+    "roles": {
+      "프리셋1(범용)": {
+       
+        "전체": [
+              {
+            "set": "조율자",
+            "mainOption": "방%/방%/받/받",
+             "subOption": "효저95%",
+           "note":"방%,효저"
+          }
+          
+          
+        ]
+       
+      },
+      "프리셋2": {
+       
+        "전체": [
+              {
+            "set": "조율자",
+            "mainOption": "방%/방%/받/받",
+             "subOption": "막기100%/효저x",
+           "note":"막기"
+          }
+          
+          
+        ]
+       
+      }
+    }
+    
+  },
+  "nox": {
+    "name": "녹스",
+    "image": "/images/heroes/nox.png",
+    "roles": {
+      "cc": {
+       
+        "전체": [
+              {
+            "set": "주술사",
+            "mainOption": "효적%/효적%/막/막"
+           ,"note":"효적 100%, 막기 100%"
+          }
+          
+          
+        ]
+       
+      }
+    }
+    
+  },
+  "carma": {
+    "name": "카르마",
+    "image": "/images/heroes/carma.png",
+    "roles": {
+      "ring": "권능 ",
+       "프리셋1(범용)": {
+       
+       
+       
+         "전체": [
+              {
+            "set": "추적자",
+            "mainOption": "치확%/약확%/받/받",
+             "subOption": "약공90%/치확90%",
+             "note": "약공,치확"
+          }
+          
+        ]
+
+        
+      },
+      "프리셋2(길드전)": {
+       
+       
+       
+         "전체": [
+              
+          {
+            "set": "추적자",
+            "mainOption": "치확%/약확%/받/받",
+             "subOption": "약공80%/치확80%/막기50%",
+             "note": "막기"
+          }
+        ]
+
+        
+      }
+    }
+  },
+   "ballista": {
+    "name": "발리스타",
+    "image": "/images/heroes/ballista.png",
+    "roles": {
+      "프리셋1(내실)": {
+       
+        "전체": [
+              {
+            "set": "추적자",
+            "mainOption": "치확/약공/모공%/모공%",
+             "subOption": "치확90%,약공90%",
+            "note": "약공,치확,치피,모공"
+          }
+          
+          
+        ]
+       
+      },
+       "프리셋2(속공)": {
+       
+        "전체": [
+              {
+            "set": "암살자",
+            "mainOption": "치확/치확/모공%/모공%",
+             "subOption": "치확100%",
+            "note": "속공"
+          }
+          
+          
+        ]
+       
+      }
+      
+    }
+  },
+  "chancellor": {
+    "name": "첸슬러",
+    "image": "/images/heroes/chancellor.png",
+    "roles": {
+      "프리셋1(범용)": {
+       
+        "전체": [
+             
+          {
+            "set": "조율자",
+            "mainOption": "방%/생%or방%/받%/받%",
+             "subOption": "효저70%",
+             "note": "방,효저,막"
+           
+          }
+          
+          
+        ]
+       
+      },
+       "프리셋2(길드전)": {
+       
+        "전체": [
+             
+          {
+            "set": "수문장",
+            "mainOption": "방%/생%or방%/받%/받%",
+             "subOption": "막기10070%",
+             "note": "막기"
+           
+          }
+          
+          
+        ]
+       
+      }
+    }
+    
+  },
+   "eileene": {
+    "name": "아일린",
+    "image": "/images/heroes/eileene.png",
+     "isPresetHero": true, 
+    "roles": {
+       "ring": "권능 반지",
+      "속공": {
+       
+        "전체": [
+              {
+            "set": "주술사",
+            "mainOption": "효적/효적/막/막",
+             "subOption": "효적80%",
+             "note":"속공 최대치"
+           
+          }
+           
+          
+          
+        ]
+       
+      },
+      "내실": {
+       
+        "전체": [
+              {
+            "set": "조율자",
+            "mainOption": "효적%/효적%/효저%/받%",
+             "subOption": "효적80%/효저100%",
+              "note": "효저,효적"
+           
+          }
+           
+          
+          
+        ]
+       
+      }
+    }
+    
+  },
+  "jave": {
+    "name": "제이브",
+    "image": "/images/heroes/jave.png",
+     "isPresetHero": true, 
+    "roles": {
+      "프리셋1(범용)": {
+       
+        "전체": [
+              {
+            "set": "주술사",
+            "mainOption": "효적/모공/막/막",
+           "note":"즉사 반지(부옵 막기/효저)"
+          }
+          
+          
+        ]
+       
+      },
+       "프리셋2(길드전)": {
+       
+        "전체": [
+              {
+            "set": "복수자",
+            "mainOption": "모공/모공/막/막",
+             "subOption": "막기79%%",
+           "note":"막기,모공"
+          }
+          
+          
+        ]
+       
+      }
+    }
+    
+  },
+  "rachel": {
+    "name": "레이첼",
+    "image": "/images/heroes/rachel.png",
+    "roles": {
+      "프리셋1(내실)": {
+       
+        "전체": [
+            {
+            "set": "복수자",
+            "mainOption": "치확%/약공%/모공%/모공%",
+            "subOption": "약공70%/치확90%",
+           "note":"약공,치확,모공"
+          },
+              {
+            "set": "추적자",
+            "mainOption": "치확%/약공%/모공%/모공%",
+            "subOption": "약공70%/치확90%",
+           "note":"약공,치확,모공"
+          }
+          
+          
+          
+          
+        ]
+       
+      },
+      "프리셋2(속공)": {
+       
+        "전체": [
+            
+              {
+            "set": "추적자/복수자",
+            "mainOption": "치확%/약공%/모공%/모공%",
+            "subOption": "약공70%",
+       "note":"속공최대치"
+          }
+          
+          
+          
+          
+        ]
+       
+      },
+        "프리셋3(강림)": {
+       
+        "전체": [
+            {
+            "set": "복수자",
+            "mainOption": "치확%/약공%/모공%/모공%",
+            "subOption": "약공45%/치확90%",
+           "note":"약공,치확,모공"
+          }
+             
+          
+          
+          
+        ]
+       
+      }
+     
+    }
+    
+  },
+  "spike": {
+    "name": "스파이크",
+    "image": "/images/heroes/spike.png",
+    "roles": {
+      "탱커": {
+       
+        "전체": [
+              {
+            "set": "성기사",
+            "mainOption": "생%/생%/받%/받%",
+            "subOption": "효저50%",
+           "note":"효저,방,생"
+          }
+          
+          
+        ]
+       
+      }
+    }
+    
+  },
+  "chris": {
+    "name": "크리스",
+    "image": "/images/heroes/chris.png",
+    "roles": {
+      "cc": {
+       
+        "전체": [
+              {
+            "set": "주술사",
+            "mainOption": "효적%/효적%/막/막"
+           ,"note":"효적 100%, 막기 100%"
+          }
+          
+          
+        ]
+       
+      }
+    }
+    
+  },
+  "ace": {
+    "name": "에이스",
+    "image": "/images/heroes/ace.png",
+    "roles": {
+       "ring": "불사or부활 반지",
+      "토템": {
+       
+        "전체": [
+              {
+            "set": "수문장",
+            "mainOption": "생%or방%/생%or방%/막%/막%",
+           "note":"속공최대치"
+          }
+          
+          
+        ]
+       
+      }
+    }
+    
+  },
+  "aragon": {
+    "name": "아라곤",
+    "image": "/images/heroes/aragon.png",
+    "roles": {
+      "딜러": {
+       
+        "전체": [
+              {
+            "set": "수문장",
+            "mainOption": "방%/방%/받%/받%",
+            "note":"부옵: 막기/효과저항"
+           
+          }
+          
+          
+        ]
+       
+      }
+    }
+  },
+   "yushin": {
+    "name": "유신",
+    "image": "/images/heroes/Yushin.png",
+    "roles": {
+       "ring": "권능 or 불사 반지",
+      "속공": {
+       
+        "전체": [
+              {
+            "set": "조율자",
+            "mainOption": "효적/효적(남으면 생명)/막/막",
+            "subOption": "효적70%",
+           "note": "속공최대치"
+          }
+          
+          
+        ]
+       
+      }
+    }
+  },
+   "nia": {
+    "name": "니아",
+    "image": "/images/heroes/nia.png",
+    "roles": {
+       "ring": "권능 or 불사 반지",
+      "속공": {
+       
+        "전체": [
+             
+           {
+            "set": "주술사",
+            "mainOption": "효적/효적(남으면 생명)/막/막",
+            "subOption": "효적100%",
+           "note": "속공최대치"
+          }
+          
+          
+        ]
+       
+      }
+    }
+  },
+  "helenia": {
+    "name": "헬레니아",
+    "image": "/images/heroes/helenia.png",
+    "roles": {
+      "탱커": {
+       
+        "전체": [
+             {
+            "set": "수문장",
+            "mainOption": "방%/방%/받%/받%",
+            "note": ""
+          }
+         
+        ]
+      }
+    }
+  },
+  "blackrose": {
+    "name": "블랙로즈",
+    "image": "/images/heroes/blackrose.png",
+    "roles": {
+       "ring": "부활 or 권능 반지",
+      "딜러": {
+       
+        "우마왕15단계": [
+             {
+            "set": "복수자",
+            "mainOption": "치확%/치확%/받%/빋%",
+            "note": "쫄컷(공력3300,치피190이상)"
+          },
+          {
+            "set": "암삷자",
+            "mainOption": "치확%/치피%/받%/빋%",
+            "note": "쫄컷(공력3500,치피230이상)"
+          }
+          
+        ]
+      }
+      
+    }
+  },
+   "lucy": {
+    "name": "루시",
+    "image": "/images/heroes/lucy.png",
+    "roles": {
+      "힐러": {
+        "전체": [
+          {
+            "set": "수문장",
+            "mainOption": "생%/생%/받/받",
+            "note": "받피감39%,막기50% 이상적"
+          }
+          
+        ]
+      }
+     
+    }
+  },
+   "look": {
+    "name": "룩",
+    "image": "/images/heroes/look.png",
+    "roles": {
+      "프리셋1(범용)": {
+        "전체": [
+          {
+            "set": "수문장",
+            "mainOption": "생%/생%/받/받",
+            "note": "막기30%%"
+          }
+          
+        ]
+      },
+       "프리셋2(길드전)": {
+        "전체": [
+          {
+            "set": "조율자",
+            "mainOption": "생%/생%/받/받",
+            "note": "막기30%%"
+          }
+          
+        ]
+      }
+     
+    }
+  },
+  "caron": {
+    "name": "카론",
+    "image": "/images/heroes/caron.png",
+    "roles": {
+      "힐러": {
+        "전체": [
+          {
+            "set": "수문장",
+            "mainOption": "공%/생%/받/받",
+            "note": "받피감39%,막기50% 이상적"
+          }
+          
+        ]
+      }
+     
+    }
+  },
+  "ariel": {
+    "name": "아리엘",
+    "image": "/images/heroes/ariel.png",
+    "roles": {
+      "프리셋1(강림)": {
+        "전체": [
+          {
+            "set": "복수자",
+            "mainOption": "치%/치%/모공/모공",
+                     "subOption": "",
+            "note": ""
+          }
+          
+        ]
+      }
+     
+    }
+  },
+   "yuri": {
+    "name": "유리",
+    "image": "/images/heroes/yuri.png",
+    "roles": {
+      "프리셋1(강림)": {
+        "전체": [
+          {
+            "set": "복수자",
+            "mainOption": "치%/치%/모공/모공",
+                     "subOption": "치확70~80%%,치피300%",
+            "note": ""
+          }
+          
+        ]
+      }
+     
+    }
+  }
+  
+}

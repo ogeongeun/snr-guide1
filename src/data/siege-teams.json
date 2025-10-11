@@ -1,0 +1,1160 @@
+ {
+ "siegeTeams": {
+    "수호자의 성 (월요일)": [
+      {
+        "team": [
+          {
+            "name": "에반",
+            "image": "evan.png"
+          },
+          {
+            "name": "미호",
+            "image": "miho.png",
+            "note":"6초아니면 연희가 더 좋음"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png",
+            "note": "뒤배치"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          { "name": "비스킷", "image": "/images/heroes/bisket.png" }
+        ],
+        "tags": [
+          "루리,미호 속공1,2순위/ 나머지 속공 25 위"
+        ]
+        
+      },
+      {
+        "team": [
+          {
+            "name": "에반",
+            "image": "evan.png"
+          },
+          {
+            "name": "연희",
+            "image": "Yeonhee.png"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png",
+            "note": "뒤배치"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          { "name": "비스킷", "image": "/images/heroes/bisket.png" }
+        ]
+        
+      },
+      {
+        "team": [
+          {
+            "name": "에반",
+            "image": "evan.png"
+          },
+          {
+            "name": "연희",
+            "image": "Yeonhee.png"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png",
+            "note": "뒤배치"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          { "name": "바네사", "image": "/images/heroes/vanessa.png" ,"note": "2초월" }
+        ],
+        "tags": [
+          "바네사 자리에 노호,조커,소이 대체가능(바네사 스킬자리에 버프해제 스킬로 대체)"
+        ]
+        
+      },
+        {
+        "team": [
+          {
+            "name": "에반",
+            "image": "evan.png"
+          },
+          {
+            "name": "연희",
+            "image": "Yeonhee.png"
+          },
+          {
+            "name": "세라",
+            "image": "sera.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          { "name": "바네사", "image": "/images/heroes/vanessa.png" ,"note": "2초월" }
+        ],
+        "tags": [
+          "바네사 자리에 노호,조커,소이 대체가능(바네사 스킬자리에 버프해제 스킬로 대체)"
+        ],
+        "note": "루리2초월 전에는 세라 6초월 이상이 더 좋음"
+      }
+    ],
+    "포디나의 성 (화요일)": [
+      {
+        "team": [
+          {
+            "name": "클로에",
+            "image": "chloe.png"
+          },
+          
+          {
+            "name": "비스킷",
+            "image": "bisket.png",
+            "note":"복수자(치확100/치피160/공2600)"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "미호",
+            "image": "miho.png",
+            "note":"2초월부터 가능"
+          }
+        ],
+         "tags": [
+          "루리,미호 속공1,2순위/ 나머지 속공 25 위"
+        ]
+        
+      },
+       {
+        "team": [
+          {
+            "name": "클로에",
+            "image": "chloe.png"
+          },
+          
+          {
+            "name": "비스킷",
+            "image": "bisket.png",
+            "note":"복수자(치확/모공)"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "연희",
+            "image": "Yeonhee.png",
+            "note":"불사반지"
+          }
+        ],
+        "tags": [
+          "비스킷 굳이 딜셋 아니여도 쓸수는있음"
+        ]
+        
+      },
+      {
+        "team": [
+          {
+            "name": "클로에",
+            "image": "chloe.png"
+          },
+          
+          {
+            "name": "바네사",
+            "image": "vanessa.png"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "연희",
+            "image": "Yeonhee.png"
+          }
+        ],
+        "tags": [
+          "턴감소x, 피해면역동안 버프스킬 쓰면서 버팀"
+        ]
+        
+      },
+       {
+        "team": [
+          {
+            "name": "클로에",
+            "image": "chloe.png"
+          },
+          
+          {
+            "name": "세라",
+            "image": "sera.png"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "연희",
+            "image": "Yeonhee.png"
+          }
+        ],
+        "tags": [
+          "세라를 이용한 피해면역 해제( 연희 기용)"
+        ]
+        
+      },{
+        "team": [
+          {
+            "name": "클로에",
+            "image": "chloe.png"
+          },
+          
+          {
+            "name": "세라",
+            "image": "sera.png"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "바네사",
+            "image": "vanessa.png"
+          }
+        ],
+        "tags": [
+          "세라를 이용한 피해면역 해제(바네사 기용)"
+        ]
+        
+      },
+    {
+        "team": [
+          {
+            "name": "클로에",
+            "image": "chloe.png"
+          },
+          {
+            "name": "연희",
+            "image": "Yeonhee.png"
+          },
+          {
+            "name": "세라",
+            "image": "sera.png"
+            ,"note": "뒤배치"
+          },
+          
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "바네사",
+            "image": "vanessa.png"
+          }
+        ],
+        "tags": [
+          "루리 초월 낮을때"
+        ]
+        
+      }
+     
+
+    ],
+    "불멸의 성 (수요일)": [
+      {
+        "team": [
+          {
+            "name": "아리엘",
+            "image": "ariel.png"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "비스킷",
+            "image": "bisket.png",
+            "note":"딜 세팅"
+          },
+          {
+            "name": "미호",
+            "image": "miho.png",
+            "note":"2초월 부터 연희랑 비슷함"
+          }
+        ],
+        "tags": [
+          "속공 전부 25위/루리4등, 미호5등"
+        ]
+      },
+      {
+        "team": [
+          {
+            "name": "아리엘",
+            "image": "ariel.png"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "비스킷",
+            "image": "bisket.png",
+            "note":"딜 세팅"
+          },
+          {
+            "name": "연희",
+            "image": "Yeonhee.png"
+          }
+        ],
+        "tags": [
+          "전부 속공 25이상/루리 속공 3순위 이하"
+        ]
+      },
+      {
+        "team": [
+          {
+            "name": "아리엘",
+            "image": "ariel.png"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "바네사",
+            "image": "vanessa.png"
+          },
+          {
+            "name": "연희",
+            "image": "Yeonhee.png"
+          }
+        ],
+        "tags": [
+          "화상면역 -> 아리엘"
+        ]
+      },
+      {
+        "team": [
+          {
+            "name": "아리엘",
+            "image": "ariel.png"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "새라",
+            "image": "sera.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "바네사",
+            "image": "vanessa.png"
+          },
+          {
+            "name": "연희",
+            "image": "Yeonhee.png"
+          }
+        ],
+        "tags": [
+          "화상면역 -> 아리엘"
+        ]
+      },
+      {
+        "team": [
+          {
+            "name": "유이",
+            "image": "yui.png"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "바네사",
+            "image": "vanessa.png"
+          },
+          {
+            "name": "연희",
+            "image": "Yeonhee.png"
+          }
+        ],
+        "tags": [
+          "화상면역 -> 유이"
+        ]
+      },
+      {
+        "team": [
+          {
+            "name": "아리엘",
+            "image": "ariel.png"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "바네사",
+            "image": "vanessa.png"
+          },
+          {
+            "name": "클로에",
+            "image": "chloe.png"
+          }
+        ],
+        "tags": [
+          "클로에 -> 마공증가"
+        ]
+      },
+      {
+        "team": [
+          {
+            "name": "아리엘",
+            "image": "ariel.png"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "세라",
+            "image": "sera.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "바네사",
+            "image": "vanessa.png"
+          },
+          {
+            "name": "클로에",
+            "image": "chloe.png"
+          }
+        ],
+        "tags": [
+           "클로에 -> 마공증가 , 루리 - > 세라"
+        ]
+      }
+      ,
+      {
+        "team": [
+          {
+            "name": "아리엘",
+            "image": "ariel.png"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "연희",
+            "image": "Yeonhee.png"
+          },
+          {
+            "name": "클로에",
+            "image": "chloe.png"
+          }
+        ],
+        "tags": [
+          "바네사 - > 연희"
+        ]
+      }
+    ],
+    "죽음의 성 (목요일)": [
+      {
+        "team": [
+          {
+            "name": "비스킷",
+            "image": "bisket.png",
+             "note":"2초이상"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png",
+            "note":"6초월(전반 들어가면 좋음)"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "진",
+            "image": "jin.png",
+            "note":"전반"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          
+          }
+        ],
+        "tags": [
+       
+        ]
+        
+      },
+      {
+        "team": [
+          {
+            "name": "에이스",
+            "image": "ace.png",
+             "note":""
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png",
+            "note":"2초월(전반 들어가면 좋음)"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "진",
+            "image": "jin.png",
+            "note":"전반"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          
+          }
+        ],
+        "tags": [
+          
+        ],
+        "note": "파이 대신 레이첼(전반들어가면 리트확률낮아짐)"
+      },
+      {
+        "team": [
+          {
+            "name": "에이스",
+            "image": "ace.png"
+          },
+          {
+            "name": "파이",
+            "image": "pie.png"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "진",
+            "image": "jin.png",
+             "note":"전반"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+            
+          }
+        ],
+        "tags": [
+          
+        ],
+        "note": "운빨 초고점덱(전반들어가면 리트확률낮아짐)"
+      },
+      {
+        "team": [
+          {
+            "name": "에이스",
+            "image": "ace.png"
+          },
+          {
+            "name": "리",
+            "image": "lee.png"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "진",
+            "image": "jin.png"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          }
+        ],
+        "tags": [
+          "레이첼 ->에이스"
+        ],
+        "note": ""
+      },
+      
+      {
+        "team": [
+          {
+            "name": "레이첼",
+            "image": "rachel.png"
+          },
+          {
+            "name": "리",
+            "image": "lee.png"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "진",
+            "image": "jin.png"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          }
+        ],
+        "tags": [
+          
+        ],
+        "note": ""
+      },
+      {
+        "team": [
+          {
+            "name": "풍연",
+            "image": "poongyeon.png",
+            "note": "비담2초이상 대체"
+          },
+          {
+            "name": "리",
+            "image": "lee.png"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "진",
+            "image": "jin.png"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          }
+        ],
+        "tags": [
+          
+        ],
+        "note": "풍연1스=비담1스,풍연2스=비담2스로 대체"
+      },
+      
+      {
+        "team": [
+          {
+            "name": "레이첼",
+            "image": "rachel.png"
+          },
+          {
+            "name": "리",
+            "image": "lee.png"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "진",
+            "image": "jin.png"
+          },
+          {
+            "name": "유이",
+            "image": "yui.png"
+          }
+        ],
+        "tags": [
+          "리나 -> 유이"
+        ],
+        "note": ""
+      },
+      {
+        "team": [
+          {
+            "name": "풍연",
+            "image": "poongyeon.png"
+          },
+          {
+            "name": "리",
+            "image": "lee.png"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "진",
+            "image": "jin.png"
+          },
+          {
+            "name": "에이스",
+            "image": "ace.png"
+          }
+        ],
+        "tags": [
+          "많이 약할때 리나대신 딜러"
+        ],
+        "note": ""
+      }
+      
+    ],
+    "고대용의 성 (금요일)": [
+      {
+        "team": [
+          {
+            "name": "지크",
+            "image": "zick.png"
+          },
+          {
+            "name": "유이",
+            "image": "yui.png"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png",
+           "note":"복수자(치확/모공)"
+          },
+          {
+            "name": "비스킷",
+            "image": "bisket.png"
+          }
+        ],
+        "tags": [
+          "비스킷 사용(최고점)"
+        ],
+        "note": ""
+      },
+       {
+        "team": [
+          {
+            "name": "지크",
+            "image": "zick.png"
+          },
+          {
+            "name": "유이",
+            "image": "yui.png"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "비담",
+            "image": "bidam.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png"
+          }
+        ],
+        "tags": [
+          "운빨최고점"
+        ],
+        "note": ""
+      },
+      {
+        "team": [
+          {
+            "name": "지크",
+            "image": "zick.png"
+          },
+          {
+            "name": "유이",
+            "image": "yui.png"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png"
+          }
+        ],
+        "tags": [
+          "운빨최고점"
+        ],
+        "note": ""
+      },
+       {
+        "team": [
+          {
+            "name": "에반",
+            "image": "evan.png"
+          },
+          {
+            "name": "유이",
+            "image": "yui.png"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "풍연",
+            "image": "poongyeon.png"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png"
+          }
+        ],
+        "tags": [
+          "정석"
+        ],
+        "note": ""
+      },
+       {
+        "team": [
+          {
+            "name": "에반",
+            "image": "evan.png"
+          },
+          {
+            "name": "유이",
+            "image": "yui.png"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "풍연",
+            "image": "poongyeon.png"
+          },
+          {
+            "name": "메이",
+            "image": "mei.png"
+          }
+        ],
+        "tags": [
+          "반격 상쇄"
+        ],
+        "note": ""
+      }
+    ],
+    "흑한의 성 (토요일)": [
+      
+         {
+        "team": [
+          {
+            "name": "풍연",
+            "image": "poongyeon.png"
+          },
+           { "name": "비스킷", "image": "/images/heroes/bisket.png" ,"note": "2초월시 좋음" },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png"
+          }
+        ],
+        "tags":["속공 순서:비스킷-리나-풍연-타카-레이첼"]
+     
+      },
+      {
+        "team": [
+          {
+            "name": "풍연",
+            "image": "poongyeon.png"
+          },
+           { "name": "바네사", "image": "/images/heroes/vanessa.png" ,"note": "2초월" },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "리나",
+            "image": "lina.png"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png"
+          }
+        ],
+        "tags": [
+          "바네사 자리에 노호,조커,소이 대체가능(바네사 스킬자리에 버프해제 스킬로 대체)"
+        ],
+        "note": "바네사는 2초월부터 버프해제가능"
+      },{
+        "team": [
+          {
+            "name": "풍연",
+            "image": "poongyeon.png"
+          },
+          {
+            "name": "바네사",
+            "image": "vanessa.png"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "유이",
+            "image": "yui.png"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png"
+          }
+        ],
+        "tags": [
+          "바네사 자리에 노호,조커,소이 대체가능(바네사 스킬자리에 버프해제 스킬로 대체)"
+        ],
+        "note": "바네사는 2초월부터 버프해제가능"
+      }
+
+    ],
+    "지옥의 성 (일요일)": [
+      {
+        "team": [
+          {
+            "name": "비스킷",
+            "image": "bisket.png",
+            "note":"약공70%"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png",
+            "note":"암살자 치확100,약공70%(6초월)"
+          },
+          {
+            "name": "세인",
+            "image": "sein.png"
+            ,"note": "뒤배치(약공15%)"
+          },
+          
+          {
+            "name": "지크",
+            "image": "zick.png",
+            "note":"뒤배치(약공46%%/비스킷6초시 15%)"
+          },
+          {
+            "name": "레오",
+            "image": "leo.png",
+            "note":"암살자(약공70%)%"
+          }
+        ],
+        "tags": [
+          "세인 기용"
+        ]
+        
+      },
+      {
+        "team": [
+          {
+            "name": "비스킷",
+            "image": "bisket.png",
+            "note":"약공70%"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png",
+            "note":"암살자 치확100,약공70정도%(6초월)"
+          },
+          {
+            "name": "파스칼",
+            "image": "pascal.png"
+            ,"note": "뒤배치(약공 15%정도)"
+          },
+          {
+            "name": "레오",
+            "image": "leo.png",
+            "note":"약공70%"
+          },
+          {
+            "name": "에스파다",
+            "image": "espada.png",
+            "note":"약공70정도%/비스킷6초시15%"
+          }
+        ],
+        "tags": [
+          "에스파다 기용"
+        ]
+       
+      },
+       {
+        "team": [
+          {
+            "name": "아수라",
+            "image": "asura.png"
+          },
+          {
+            "name": "비스킷",
+            "image": "bisket.png"
+          },
+          {
+            "name": "파스칼",
+            "image": "pascal.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "레오",
+            "image": "leo.png"
+          },
+          {
+            "name": "바네사",
+            "image": "vanessa.png"
+          }
+        ],
+        "tags": [
+          "에스파다 기용"
+        ],
+        "note": "아수라 2스킬은 피없을떄 알아서 사용"
+      },
+      {
+        "team": [
+          {
+            "name": "아수라",
+            "image": "asura.png"
+          },
+          {
+            "name": "바네사",
+            "image": "vanessa.png"
+          },
+          {
+            "name": "파스칼",
+            "image": "pascal.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "레오",
+            "image": "leo.png"
+          },
+          {
+            "name": "에스파다",
+            "image": "espada.png"
+          }
+        ],
+        "tags": [
+          "에스파다 기용"
+        ],
+        "note": "아수라 2스킬은 피없을떄 알아서 사용"
+      },
+      {
+        "team": [
+          {
+            "name": "아수라",
+            "image": "asura.png"
+          },
+          {
+            "name": "바네사",
+            "image": "vanessa.png"
+          },
+          {
+            "name": "파스칼",
+            "image": "pascal.png"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "레오",
+            "image": "leo.png"
+          },
+          {
+            "name": "세인",
+            "image": "sein.png"
+          }
+        ],
+        "tags": [
+          "세인 기용"
+        ],
+         "note": "아수라 2스킬은 피없을떄 알아서 사용"
+      }
+    ]
+  }
+}

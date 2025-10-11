@@ -1,0 +1,197 @@
+
+{
+  
+
+"1층": {
+    "description": "침묵면역",
+  "teams": [
+    {
+      
+      "heroes": [
+        { "name": "진", "image": "/images/heroes/jin.png" },
+         { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+          { "name": "태오", "image": "/images/heroes/teo.png" },
+        { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+        { "name": "멜키르", "image": "/images/heroes/Melkir.png" }
+      ]
+    }
+    
+  ]
+
+},
+"2층": {
+    "description": "조건:에이스,아수라 효과적중35%이상",
+     "medal": 6,
+  "teams": [
+    {
+     "videos": ["https://youtu.be/GtEyxgpZTGk?t=98&si=hDUp0hnWrFAc92h1",
+      "https://youtu.be/GNCAx5jL5ek?t=119&si=bm6SbWkVep3tMahY"],
+      "heroes": [
+        { "name": "아수라", "image": "/images/heroes/asura.png" },
+         { "name": "리나", "image": "/images/heroes/lina.png" },
+          { "name": "파스칼", "image": "/images/heroes/pascal.png" },
+        { "name": "에이스", "image": "/images/heroes/ace.png" },
+        { "name": "레오", "image": "/images/heroes/leo.png" }
+      ]
+    }
+    
+  ]
+
+},
+
+"3층": {
+    "description": "침묵면역",
+  "teams": [
+    {
+      
+      "heroes": [
+        { "name": "진", "image": "/images/heroes/jin.png" },
+         { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+          { "name": "태오", "image": "/images/heroes/teo.png" },
+        { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+        { "name": "멜키르", "image": "/images/heroes/Melkir.png" }
+      ]
+    }
+    
+  ]
+
+},
+"4층": {
+   
+     
+  "teams": [
+    { "description": "기도메타",
+      "medal": 6,
+       "videos": ["https://youtu.be/GtEyxgpZTGk?t=263&si=DUuU1pcLCu9VP9Dr"
+  ],
+      "heroes": [
+        
+        { "name": "클로에", "image": "/images/heroes/chloe.png" },
+         { "name": "메이", "image": "/images/heroes/mei.png" },
+          { "name": "제인", "image": "/images/heroes/jane.png" },
+        { "name": "녹스", "image": "/images/heroes/nox.png" ,"note":"2초월 이상"},
+        { "name": "리", "image": "/images/heroes/lee.png" }
+      ]
+    },
+     { "description": "녹스 2초월 안될시",
+      "medal": 6,
+       "videos": ["https://youtu.be/dBLbO18MPRY?si=HSmLVWQ90pQLGzut"
+  ],
+      "heroes": [
+        
+        { "name": "제이브", "image": "/images/heroes/jave.png" },
+         { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+          { "name": "파이", "image": "/images/heroes/pie.png" },
+        { "name": "레이첼", "image": "/images/heroes/rachel.png"},
+        { "name": "리", "image": "/images/heroes/lee.png" }
+      ]
+    }
+    
+     
+    
+  ]
+  
+
+},
+"5층": {
+   
+     
+  "teams": [
+    { "description": "",
+      "medal": 6,
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+         { "name": "멜키르", "image": "/images/heroes/Melkir.png" },
+          { "name": "테오", "image": "/images/heroes/teo.png" ,"note":"뒤배치"},
+        { "name": "진", "image": "/images/heroes/jin.png" },
+        { "name": "연희", "image": "/images/heroes/Yeonhee.png","note":"불사나 부활 반지는 있어야할듯" }
+      ]
+    }
+    
+     
+    
+  ]
+  
+
+},
+"6층": {
+    "description": "평타로 피격30회 까기",
+     
+  "teams": [
+    {
+       "medal": 6,
+        "videos": ["https://youtu.be/GtEyxgpZTGk?t=459&si=33x0l0ULSw9awX1c",
+       "https://youtu.be/GNCAx5jL5ek?t=775&si=QXLQWJGDntOCResK"
+  ],
+      "heroes": [
+        { "name": "린", "image": "/images/heroes/rin.png" },
+         { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+          { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+        { "name": "멜키르", "image": "/images/heroes/Melkir.png" },
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+    
+  ]
+
+},
+"8층": {
+    "description": "여기서부터 빡셈",
+     
+  "teams": [
+    {
+       "medal": 6,
+        "videos": ["https://youtu.be/GtEyxgpZTGk?t=568&si=ca6Nk1gXpVrUJKs4",
+      "https://youtu.be/GNCAx5jL5ek?t=1077&si=fiLVsPOMzf3F8k2o"
+  ],
+      "heroes": [
+
+        { "name": "리나", "image": "/images/heroes/lina.png" },
+         { "name": "리", "image": "/images/heroes/lee.png" },
+          { "name": "파스칼", "image": "/images/heroes/pascal.png" },
+        { "name": "엘리스", "image": "/images/heroes/elise.png" },
+        { "name": "에반", "image": "/images/heroes/evan.png" }
+      ]
+    }
+    
+  ]
+
+},
+"10층": {
+    
+      
+  "teams": [
+    {
+      "description": "룩 앞 공진",
+      "medal": 6,
+       "videos": ["https://youtu.be/GtEyxgpZTGk?t=840&si=6JC_zXe1XfmqQyoF"
+  ],
+      "heroes": [
+        { "name": "에반", "image": "/images/heroes/evan.png"},
+         { "name": "파스칼", "image": "/images/heroes/pascal.png" },
+          { "name": "룩", "image": "/images/heroes/look.png" },
+        { "name": "엘리스", "image": "/images/heroes/elise.png" },
+        { "name": "유이", "image": "/images/heroes/yui.png" }
+      ]
+    },
+    {
+      "description": "파스칼 뒤 보진",
+      "medal": 6,
+       "videos": ["https://youtu.be/GNCAx5jL5ek?t=1819&si=HKpc_WvtkAQe5xDP"
+  ],
+      "heroes": [
+        { "name": "에반", "image": "/images/heroes/evan.png"},
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+         { "name": "파스칼", "image": "/images/heroes/pascal.png" },
+          
+        { "name": "리나", "image": "/images/heroes/lina.png" },
+        { "name": "아리엘", "image": "/images/heroes/ariel.png" }
+      ]
+    }
+    
+  ]
+
+}
+
+
+}

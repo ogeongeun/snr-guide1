@@ -1,0 +1,38 @@
+{
+  "expeditionSkills": {
+    "darkteo": [
+      {
+        "setName": "종결세팅",
+        "teams": [
+          {
+            "teamName": "1팀",
+            "skills": [
+              "miho1.png",
+              "bisket1.png",
+              "pascal2.png",
+              "pascal1.png",
+              "pascal2.png",
+              
+              "miho2.png",
+        { "image": "miho1.png", "label": "테오 불사 " },
+        "bisket2.png"
+            ]
+          },
+          {
+            "teamName": "2팀",
+            "skills": [
+              "espada1.png",
+              "lina2.png",
+              "yuri1.png",
+              "yuri2.png",
+              "dage1.png",
+              "espada1.png",
+              "lina1.png",
+              "yuri1.png","yuri2.png","dage1.png","espada2.png"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

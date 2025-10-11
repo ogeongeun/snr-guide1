@@ -1,0 +1,212 @@
+{
+  "categories": {
+    "공덱": {
+     "desc": "속공 중요",
+      "teams": [
+        {
+          "teamId": 1,
+          "name": "파이 공덱",
+          "heroes": [
+            { "name": "파이", "image": "pie.png"},
+            { "name": "아일린", "image": "eileene.png" },
+            { "name": "테오", "image": "teo.png" },
+            { "name": "콜트", "image": "colt.png","note":"에이스 대체" },
+            { "name": "델론즈", "image": "dellons.png" }
+          ],
+        "skillOrders": [
+  {
+    "title": "보편적",
+    "sequence": ["pie1.png", "colt1.png", "colt2.png"]
+  },
+  {
+    "title": "방덱 저격",
+    "sequence": ["pie1.png", "teo2.png", "colt2.png"]
+  }
+],
+"note":"스킬순서는 승률 더 잘나온느걸로"
+          
+        },
+        {
+          "teamId": 2,
+          "name": "테오공덱(파이x)",
+          "heroes": [
+            { "name": "델론즈", "image": "dellons.png" },
+            { "name": "아일린", "image": "eileene.png"},
+            { "name": "테오", "image": "teo.png" },
+            { "name": "에이스", "image": "ace.png" },
+            { "name": "콜트", "image": "colt.png","note":"스파이크 대체" }
+          ],
+          "skillOrders": [
+            
+  {
+    "title": "콜트o",
+    "sequence": ["colt1.png", "colt2.png", "teo2.png"]
+  },
+  {
+    "title": "콜트x",
+    "sequence": ["eileene2.png", "teo2.png", "teo1.png"]
+  }
+],
+"note":"스킬순서는 승률 더 잘나온느걸로"
+        }
+       
+      ]
+    },
+    "마덱": {
+      "desc": "속공 중요",
+      "teams": [
+        {
+          "teamId": 1,
+          "name": "린 마덱",
+          "heroes": [
+             { "name": "쥬리", "image": "juri.png","note":"유신 대체가능"},
+             { "name": "바네사", "image": "vanessa.png"},
+            { "name": "연희", "image": "Yeonhee.png"},
+            { "name": "린", "image": "rin.png" },
+            { "name": "멜키르", "image": "melkir.png" }
+          ],
+          "skillOrders": [
+  {
+    "title": "보편적",
+    "sequence": ["rin2.png", "melkir1.png", "Yeonhee2.png"]
+  },
+  {
+    "title": "부활 저격",
+    "sequence": ["rin2.png", "juri2.png", "Yeonhee2.png"]
+  },
+   {
+    "title": "방덱 저격",
+    "sequence": ["rin2.png", "melkir2.png", "Yeonhee2.png"]
+  }
+],
+"note":"스킬순서는 승률 더 잘나온느걸로"
+        },
+        {
+          "teamId": 2,
+          "name": "로지 마덱",
+          "heroes": [
+            { "name": "멜키르", "image": "melkir.png" },
+            { "name": "로지", "image": "lozy.png" },
+            { "name": "연희", "image": "Yeonhee.png" },
+             { "name": "니아", "image": "nia.png" },
+              { "name": "린", "image": "rin.png","note":"바네사,유신 대체가능" }
+          ],
+          "skillOrder": ["nia2.png", "melkir2.png", "Yeonhee2.png"]
+        }
+        
+      ]
+    },
+     "방덱": {
+      "desc": "체급 중요(속공x)",
+      "teams": [
+        {
+          "teamId": 1,
+          "name": "카르마 방덱",
+          "heroes": [
+             { "name": "엘리스", "image": "elise.png"},
+             { "name": "루디", "image": "rudy.png"},
+            { "name": "카르마", "image": "carma.png","note":"6초 핵심"},
+            { "name": "제이브", "image": "jave.png" },
+            { "name": "헬레니아", "image": "helenia.png","note":"로지 대체가능" }
+          ],
+          "skillOrders": [
+  {
+    "title": "보편적1",
+    "sequence": ["rudy2.png", "helenia1.png", "carma2.png"]
+  },
+  {
+    "title": "보편적2",
+    "sequence": ["rudy2.png", "jave1.png", "carma2.png"]
+  }
+   
+],
+"note":"스킬순서는 승률 더 잘나온느걸로"
+        },
+        {
+          "teamId": 2,
+          "name": "카르마 없거나 약할때",
+          "heroes": [
+            { "name": "엘리스", "image": "elise.png" },
+            { "name": "루디", "image": "rudy.png" },
+            { "name": "제이브", "image": "jave.png" },
+             { "name": "룩", "image": "look.png" },
+              { "name": "첸슬러", "image": "chancellor.png","note":"스파이크 로지 대체가능" }
+          ],
+          "skillOrders": [
+  {
+    "title": "보편적1",
+    "sequence": ["rudy2.png", "look2.png", "jave1.png"]
+  },
+  {
+    "title": "보편적2",
+    "sequence": ["rudy2.png", "chancellor2.png", "jave1.png"]
+  }
+   
+],
+"note":"스킬순서는 승률 더 잘나온느걸로"
+        }
+        
+      ]
+    },
+     "즉사덱": {
+      "desc": "체급 중요(속공x)",
+      "teams": [
+        {
+          "teamId": 1,
+          "name": "즉사 방덱",
+          "heroes": [
+             { "name": "로지", "image": "lozy.png","note":"제이브 대체가능"},
+             { "name": "루디", "image": "rudy.png","note":"6초 핵심"},
+            { "name": "크리스", "image": "chris.png"},
+            { "name": "녹스", "image": "nox.png" },
+            { "name": "엘리스", "image": "elise.png" }
+          ],
+          "skillOrders": [
+  {
+    "title": "보편적1",
+    "sequence": ["rudy2.png", "chris2.png", "nox2.png"]
+  },
+  {
+    "title": "로지쓰는덱",
+    "sequence": ["rudy2.png", "lozy1.png", "chris2.png"]
+  }
+   
+],
+"note":"스킬순서는 승률 더 잘나온느걸로"
+        },
+        {
+          "teamId": 2,
+          "name": "가성비 즉방덱",
+          "heroes": [
+             { "name": "카린", "image": "carin.png"},
+             { "name": "에반", "image": "evan.png","note":"룩으로 대체가능"},
+            { "name": "크리스", "image": "chris.png"},
+            { "name": "녹스", "image": "nox.png" },
+            { "name": "엘리스", "image": "elise.png" ,"note":"유이,헬레니아 대체가능"}
+          ],
+          "skillOrders": [
+  {
+    "title": "보편적1",
+    "sequence": ["nox1.png", "evan2.png", "chris2.png"]
+  },
+  {
+    "title": "보편적2",
+    "sequence": ["nox1.png", "chris2.png", "nox2.png"]
+  },
+  {
+    "title": "보편적3",
+    "sequence": ["nox1.png", "helenia1.png", "chris2.png"]
+  },
+  {
+    "title": "보편적4",
+    "sequence": ["evan2.png", "helenia1.png", "chris2.png"]
+  }
+   
+],
+"note":"스킬순서는 승률 더 잘나온느걸로"
+        }
+        
+      ]
+    }
+  }
+}

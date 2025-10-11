@@ -1,0 +1,8 @@
+cd "C:\Users\sgala\snr-guide1"
+
+git status
+git add -A
+git commit -m "Feat: ...."
+git push origin main
+git pull origin main --rebase
+https://app.netlify.com/projects/geongeun251/overview

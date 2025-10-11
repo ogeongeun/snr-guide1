@@ -1,0 +1,378 @@
+{
+  
+ "100층": {
+  "teams": [
+    {
+      "description": "유신자리 cc캐릭 대체 가능",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+         { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+          { "name": "멜키르", "image": "/images/heroes/Melkir.png","note": "뒤배치(복수자/효생 받받)" },
+        { "name": "유신", "image": "/images/heroes/Yushin.png" ,"note": "대체 가능"},
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+    
+  ]
+},
+"108층": {
+  "teams": [
+    {
+      "description": "유신자리 cc캐릭 대체 가능",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+         { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+          { "name": "멜키르", "image": "/images/heroes/Melkir.png","note": "뒤배치(복수자/효생 받받)"  },
+        { "name": "유신", "image": "/images/heroes/Yushin.png" ,"note": "대체 가능"},
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+    
+  ]
+},
+"117층": {
+  "teams": [
+    {
+      "description": "유신자리 cc캐릭 대체 가능",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+        { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+          { "name": "멜키르", "image": "/images/heroes/Melkir.png" ,"note": "뒤배치(복수자/효생 받받)" },
+        { "name": "유신", "image": "/images/heroes/Yushin.png" },
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+    
+  ]
+},
+  
+ "120층": {
+  "teams": [
+    {
+      "description": "즉사 기도덱",
+      "heroes": [
+        { "name": "엘리스", "image": "/images/heroes/elise.png" ,"note": "리나 대체 가능"},
+          { "name": "녹스", "image": "/images/heroes/nox.png" },
+           { "name": "크리스", "image": "/images/heroes/chris.png" },
+        { "name": "유이", "image": "/images/heroes/yui.png" },
+        { "name": "루디", "image": "/images/heroes/rudy.png" }
+      ]
+    }
+    
+  ]
+},
+"127층": {
+  "teams": [
+    {
+      "description": "cc 마덱",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" , "note": "2초월"},
+          { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+           { "name": "멜키르", "image": "/images/heroes/Melkir.png", "note": "뒤배치(복수자/효생 받받)"},
+        { "name": "유신", "image": "/images/heroes/Yushin.png" },
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+    
+  ]
+},
+"129층": {
+  "teams": [
+    {
+      "description": "cc 마덱",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" , "note": "2초월"},
+          { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+           { "name": "멜키르", "image": "/images/heroes/Melkir.png", "note": "뒤배치(복수자/효생 받받)"},
+        { "name": "유신", "image": "/images/heroes/Yushin.png" },
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+    
+  ]
+},
+"142층": {
+  "teams": [
+     {
+      "description": "마덱",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+          { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+           { "name": "멜키르", "image": "/images/heroes/Melkir.png", "note": "뒤배치(복수자/효생 받받)"},
+        { "name": "유신", "image": "/images/heroes/Yushin.png" },
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+    
+  
+    
+  ]
+},
+"145층": {
+  "teams": [
+     {
+      "description": "마덱",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+          { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+           { "name": "멜키르", "image": "/images/heroes/Melkir.png", "note": "뒤배치(복수자/효생 받받)"},
+        { "name": "유신", "image": "/images/heroes/Yushin.png" },
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+  ]
+},
+"150층": {
+  "teams": [
+     {
+      "description": "태오 + 연희",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" ,"note":"2초월"},
+          { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+           { "name": "태오", "image": "/images/heroes/teo.png"},
+        { "name": "유신", "image": "/images/heroes/Yushin.png" ,"note": "다른 cc영웅 대체가능"},
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    },
+    {
+      "description": "태오 + 연희",
+      
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+          { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+           { "name": "태오", "image": "/images/heroes/teo.png"},
+        { "name": "유신", "image": "/images/heroes/Yushin.png" ,"note": "다른 cc영웅 대체가능"},
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+  ]
+},
+"163층": {
+  "teams": [
+     {
+      "description": "빙결에 최대한 안걸리는 판 찾기",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" ,"note":"2초월"},
+          { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+           { "name": "태오", "image": "/images/heroes/teo.png"},
+        { "name": "멜키르", "image": "/images/heroes/Melkir.png" },
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+    
+  ]
+},
+"164층": {
+  "teams": [
+     {
+      "description": "1라운드 원콤 핵심",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" ,"note":"2초월"},
+          { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+           { "name": "태오", "image": "/images/heroes/teo.png"},
+        { "name": "멜키르", "image": "/images/heroes/Melkir.png" },
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+    
+  ]
+},"169층": {
+  "teams": [
+     {
+      
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" ,"note":"2초월"},
+          { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+           { "name": "태오", "image": "/images/heroes/teo.png"},
+        { "name": "멜키르", "image": "/images/heroes/Melkir.png" },
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+    
+  ]
+},
+ "170층": {
+  "teams": [
+    {
+      "description": "마법형 3명",
+      "heroes": [
+        { "name": "유신", "image": "/images/heroes/Yushin.png" },
+          { "name": "멜키르", "image": "/images/heroes/Melkir.png" },
+           { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+        { "name": "유이", "image": "/images/heroes/yui.png" },
+        { "name": "에반", "image": "/images/heroes/evan.png" }
+      ]
+    },
+     {
+      "description": "마법형 3명",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+          { "name": "멜키르", "image": "/images/heroes/Melkir.png" },
+           { "name": "태오", "image": "/images/heroes/teo.png" },
+        { "name": "연희", "image": "/images/heroes/Yeonhee.png"},
+        { "name": "유이", "image": "/images/heroes/yui.png" }
+      ]
+    },
+    
+     {
+      "description": "딜스킬쓰면 상대 힐쓰는꼼수 이용",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+          { "name": "멜키르", "image": "/images/heroes/Melkir.png" },
+              { "name": "태오", "image": "/images/heroes/teo.png" },
+           { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+    
+      ]
+    }
+    
+  ]
+},
+ "180층": {
+  "teams": [
+    {
+      "description": "태오 + 연희",
+      "heroes": [
+        { "name": "유신", "image": "/images/heroes/Yushin.png" },
+          { "name": "멜키르", "image": "/images/heroes/Melkir.png" },
+              { "name": "태오", "image": "/images/heroes/teo.png" },
+           { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+        { "name": "유이", "image": "/images/heroes/yui.png" }
+    
+      ]
+    }
+    
+    
+  ]
+},
+"190층": {
+  "teams": [
+    {
+      "description": "팀속공172이상",
+      "heroes": [
+        { "name": "유신", "image": "/images/heroes/Yushin.png" },
+          { "name": "멜키르", "image": "/images/heroes/Melkir.png" },
+              { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+           { "name": "리", "image": "/images/heroes/lee.png" ,"note":"주술사(효저100%+효적100%)+ cc반지" },
+        { "name": "유이", "image": "/images/heroes/yui.png" }
+    
+      ]
+    },
+    {
+      "description": "팀속공172이상",
+      "heroes": [
+        { "name": "멜키르", "image": "/images/heroes/Melkir.png" },
+          { "name": "유신", "image": "/images/heroes/Yushin.png"},
+              { "name": "연희", "image": "/images/heroes/Yeonhee.png","note":"뒤 배치"  },
+           { "name": "리나", "image": "/images/heroes/lina.png" },
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" }
+    
+      ]
+    }
+    
+    
+  ]
+  
+},
+"200층": {
+  "teams": [
+    {
+      "description": "팀속공166이상",
+      "heroes": [
+        { "name": "유신", "image": "/images/heroes/Yushin.png" },
+          { "name": "멜키르", "image": "/images/heroes/Melkir.png" },
+              { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+           { "name": "리", "image": "/images/heroes/lee.png" ,"note":"주술사(효저100%+효적100%)+ cc반지" },
+        { "name": "유이", "image": "/images/heroes/yui.png" }
+    
+      ]
+    },
+    {
+     
+      "heroes": [
+        { "name": "유신", "image": "/images/heroes/Yushin.png" },
+          { "name": "테오", "image": "/images/heroes/teo.png" },
+              { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+           { "name": "리", "image": "/images/heroes/lee.png" ,"note":"주술사(효저100%+효적100%)+ cc반지" },
+        { "name": "유이", "image": "/images/heroes/yui.png" }
+    
+      ]
+    }
+    
+    
+  ]
+},
+"201층": {
+  "teams": [
+    {
+      "description": "",
+      "heroes": [
+        { "name": "아일린", "image": "/images/heroes/eileene.png" },
+          { "name": "델론즈", "image": "/images/heroes/dellons.png" },
+              { "name": "테오", "image": "/images/heroes/teo.png" },
+           { "name": "리나", "image": "/images/heroes/lina.png" },
+        { "name": "바네사", "image": "/images/heroes/vanessa.png","note":"에이스 대체가능" }
+    
+      ]
+    }
+    ]
+},
+"202층": {
+  "teams": [
+    {
+      "description": "",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+          { "name": "린", "image": "/images/heroes/rin.png","note":"뒤배치" },
+              { "name": "연희", "image": "/images/heroes/Yeonhee.png" ,"note":"뒤배치"},
+           { "name": "리나", "image": "/images/heroes/lina.png" },
+        { "name": "멜키르", "image": "/images/heroes/Melkir.png" }
+    
+      ]
+    }
+    ]
+},
+"205층": {
+  "teams": [
+     {
+      "description": "",
+      "heroes": [
+        { "name": "아일린", "image": "/images/heroes/eileene.png" },
+          { "name": "델론즈", "image": "/images/heroes/dellons.png" },
+              { "name": "테오", "image": "/images/heroes/teo.png" },
+           { "name": "리나", "image": "/images/heroes/lina.png" },
+        { "name": "파이", "image": "/images/heroes/pie.png","note":"바네사 대체가능" }
+    
+      ]
+    }
+    ]
+},
+"일반층": {
+  "teams": [
+    {
+      "description": "태오,연희 극딜",
+      "heroes": [
+        { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+         { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+          { "name": "멜키르", "image": "/images/heroes/Melkir.png" ,"note": "뒤배치(복수자/효생 받받)" },
+        { "name": "태오", "image": "/images/heroes/teo.png" },
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    },
+     {
+      "description": "유신 기용 상태이상 저항",
+      "heroes": [
+        { "name": "유신", "image": "/images/heroes/Yushin.png" },
+        { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+          { "name": "멜키르", "image": "/images/heroes/Melkir.png" ,"note": "뒤배치(복수자/효생 받받)" },
+        { "name": "태오", "image": "/images/heroes/teo.png" },
+        { "name": "리나", "image": "/images/heroes/lina.png" }
+      ]
+    }
+    
+  ]
+}
+
+
+ 
+}

@@ -1,0 +1,212 @@
+{
+  "3별작": {
+     "일반맵": {
+    "team1": {
+        "description": "1라운드(테오공덱)",
+           "heroes": [
+      { "name": "델론즈", "image": "/images/heroes/dellons.png" },
+      { "name": "에이스", "image": "/images/heroes/ace.png","subText":"로지나 파이 대체가능" },
+      { "name": "테오", "image": "/images/heroes/teo.png" },
+      { "name": "리나", "image": "/images/heroes/lina.png" },
+      { "name": "아일린", "image": "/images/heroes/eileene.png" }
+    ]
+},
+    "team2": {
+         "description": "2라운드(멜키르 마덱)",
+         "heroes": [
+      { "name": "멜키르", "image": "/images/heroes/melkir.png" },
+      { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+      { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+      { "name": "린", "image": "/images/heroes/rin.png" },
+      { "name": "유신", "image": "/images/heroes/yushin.png","subText":"쥬리 대체가능" }
+    ]
+}
+},
+
+"보스맵": {
+    "team1": {
+        "description": "1라운드(즉사덱 무한리트)",
+           "heroes": [
+      { "name": "녹스", "image": "/images/heroes/nox.png" },
+      { "name": "루디", "image": "/images/heroes/rudy.png" },
+       { "name": "크리스", "image": "/images/heroes/chris.png","subText":"6초월이 핵심(6초월아니면 무한 리트)" },
+      { "name": "로지", "image": "/images/heroes/lozy.png","subText":"다른 탱커나 면역캐 대체" },
+      { "name": "엘리스", "image": "/images/heroes/elise.png","subText": "리나 대체가능" }
+    ]
+},
+     "team2": {
+         "description": "2라운드(멜키르 마덱)",
+         "heroes": [
+      { "name": "멜키르", "image": "/images/heroes/melkir.png" },
+      { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+      { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+      { "name": "린", "image": "/images/heroes/rin.png" },
+      { "name": "유신", "image": "/images/heroes/yushin.png","subText":"쥬리 대체가능" }
+    ]
+}
+}
+  },
+  "악몽1-30": {
+     "team1": {
+    "team1": {
+        "description": "녹스로 즉사 + 파스칼로 한명씩 잘라먹기",
+           "heroes": [
+      { "name": "녹스", "image": "/images/heroes/nox.png" },
+      { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+      { "name": "파스칼", "image": "/images/heroes/pascal.png" },
+      { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+      { "name": "유이", "image": "/images/heroes/yui.png","subText": "대체 가능" }
+    ]
+},
+    "team2": {
+         "description": "크리스로 즉사 + 세인으로 한명씩 잘라먹기",
+         "heroes": [
+      { "name": "에반", "image": "/images/heroes/evan.png" ,"subText": "대체 가능"},
+      { "name": "크리스", "image": "/images/heroes/chris.png" },
+      { "name": "세인", "image": "/images/heroes/sein.png" },
+      { "name": "에이스", "image": "/images/heroes/ace.png" },
+      { "name": "리나", "image": "/images/heroes/lina.png","subText": "대체 가능" }
+    ]
+}
+},
+
+"team2": {
+    "team1": {
+        "description": "멜키르 최생뎀 + 파스칼로 한명씩 잘라먹기",
+           "heroes": [
+      { "name": "멜키르", "image": "/images/heroes/melkir.png" },
+      { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+       { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+      { "name": "파스칼", "image": "/images/heroes/pascal.png" },
+      { "name": "유이", "image": "/images/heroes/yui.png","subText": "대체 가능" }
+    ]
+},
+    "team2": {
+         "description": "공덱",
+         "heroes": [
+      { "name": "에반", "image": "/images/heroes/evan.png" ,"subText": "대체 가능"},
+      { "name": "크리스", "image": "/images/heroes/chris.png" },
+      { "name": "태오", "image": "/images/heroes/teo.png" },
+      { "name": "에이스", "image": "/images/heroes/ace.png" },
+      { "name": "리나", "image": "/images/heroes/lina.png" ,"subText": "대체 가능"}
+    ]
+}
+}
+  },
+     "악몽2-30": {
+     "team1": {
+    "team1": {
+        "description": "즉사덱",
+           "heroes": [
+      { "name": "녹스", "image": "/images/heroes/nox.png" },
+      { "name": "루디", "image": "/images/heroes/rudy.png" ,"subText": "대체 가능"},
+      { "name": "크리스", "image": "/images/heroes/chris.png" },
+      { "name": "에반", "image": "/images/heroes/evan.png" ,"subText": "대체 가능"},
+      { "name": "유이", "image": "/images/heroes/yui.png" ,"subText": "대체 가능"}
+    ]
+},
+    "team2": {
+         "description": "태오 공덱 관통 ",
+         "heroes": [
+      { "name": "제이브", "image": "/images/heroes/jave.png" },
+      { "name": "델론즈", "image": "/images/heroes/dellons.png" ,"subText": "대체 가능"},
+      { "name": "태오", "image": "/images/heroes/teo.png" },
+      { "name": "아일린", "image": "/images/heroes/eileene.png" ,"subText": "대체 가능"},
+      { "name": "리나", "image": "/images/heroes/lina.png" ,"subText": "대체 가능"}
+    ]
+}
+},
+
+ "team2": {
+    "team1": {
+        "description": "즉사덱",
+           "heroes": [
+      { "name": "녹스", "image": "/images/heroes/nox.png" },
+      { "name": "루디", "image": "/images/heroes/rudy.png" ,"subText": "대체 가능"},
+      { "name": "크리스", "image": "/images/heroes/chris.png" },
+      { "name": "에반", "image": "/images/heroes/evan.png" ,"subText": "대체 가능"},
+      { "name": "유이", "image": "/images/heroes/yui.png" ,"subText": "대체 가능"}
+    ]
+},
+    "team2": {
+         "description": "세라로 피해면역 2턴감소 ",
+         "heroes": [
+      { "name": "제이브", "image": "/images/heroes/jave.png" },
+      { "name": "델론즈", "image": "/images/heroes/dellons.png" ,"subText": "대체 가능"},
+      { "name": "태오", "image": "/images/heroes/teo.png" },
+      { "name": "세라", "image": "/images/heroes/sera.png" },
+      { "name": "리나", "image": "/images/heroes/lina.png","subText": "대체 가능" }
+    ]
+}
+},
+"team3": {
+    "team1": {
+        "description": "세라 피해면역 턴감소+파스칼 잘라먹기",
+           "heroes": [
+      { "name": "세라", "image": "/images/heroes/sera.png" },
+      { "name": "바네사", "image": "/images/heroes/vanessa.png" ,"subText": "대체 가능"},
+      { "name": "파스칼", "image": "/images/heroes/pascal.png" },
+      { "name": "연희", "image": "/images/heroes/Yeonhee.png" ,"subText": "대체 가능"},
+      { "name": "유이", "image": "/images/heroes/yui.png","subText": "대체 가능" }
+    ]
+},
+    "team2": {
+         "description": "관통 덱",
+         "heroes": [
+      { "name": "제이브", "image": "/images/heroes/jave.png" },
+      { "name": "델론즈", "image": "/images/heroes/dellons.png" ,"subText": "대체 가능"},
+      { "name": "태오", "image": "/images/heroes/teo.png" },
+      { "name": "아일린", "image": "/images/heroes/eileene.png" ,"subText": "대체 가능"},
+      { "name": "리나", "image": "/images/heroes/lina.png" ,"subText": "대체 가능"}
+    ]
+}
+}
+  },
+   "악몽12-30": {
+     "team1": {
+    "team1": {
+        "description": "녹스로 즉사 + 파스칼로 한명씩 잘라먹기",
+           "heroes": [
+       { "name": "엘리스", "image": "/images/heroes/elise.png" },
+      { "name": "룩", "image": "/images/heroes/look.png" ,"note":"클로에 데려가도됨ㄴ"},
+      { "name": "크리스", "image": "/images/heroes/chris.png" },
+      { "name": "루디", "image": "/images/heroes/rudy.png" },
+      { "name": "녹스", "image": "/images/heroes/nox.png" }
+    ]
+},
+    "team2": {
+         "description": "태오+연희",
+         "heroes": [
+      { "name": "연희", "image": "/images/heroes/Yeonhee.png"},
+      { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+      { "name": "테오", "image": "/images/heroes/teo.png" },
+      { "name": "델론즈", "image": "/images/heroes/dellons.png" },
+      { "name": "아일린", "image": "/images/heroes/eileene.png"}
+    ]
+}
+},
+
+"team2": {
+    "team1": {
+        "description": "녹스로 즉사 + 파스칼로 한명씩 잘라먹기",
+           "heroes": [
+      { "name": "엘리스", "image": "/images/heroes/elise.png" },
+      { "name": "룩", "image": "/images/heroes/look.png" ,"note":"클로에 데려가도됨ㄴ"},
+      { "name": "크리스", "image": "/images/heroes/chris.png" },
+      { "name": "루디", "image": "/images/heroes/rudy.png" },
+      { "name": "녹스", "image": "/images/heroes/nox.png" }
+    ]
+},
+    "team2": {
+         "description": "마덱",
+         "heroes": [
+      { "name": "연희", "image": "/images/heroes/Yeonhee.png"},
+      { "name": "바네사", "image": "/images/heroes/vanessa.png" },
+      { "name": "연희", "image": "/images/heroes/Yeonhee.png" },
+      { "name": "멜키르", "image": "/images/heroes/melkir.png" },
+      { "name": "테오", "image": "/images/heroes/teo.png"}
+    ]
+}
+}
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "elementalEffects": {
+    "불의 원소 던전": {
+      "화상면역": [
+        {
+          "name": "유이",
+          "image": "yui.png"
+        }
+      ],
+      "빌결cc 딜러(택2)": [
+        {
+          "name": "라니아",
+          "image": "rania.png"
+        },
+        {
+          "name": "스파이크",
+          "image": "spike.png"
+        },
+        {
+          "name": "헤브니아",
+          "image": "hebnia.png"
+        }
+      ],
+      "나머지자리": [
+        {
+          "name": "에반",
+          "image": "evan.png"
+        },
+        {
+          "name": "리나",
+          "image": "lina.png"
+        },
+        {
+          "name": "레이첼",
+          "image": "rachel.png"
+        },
+        {
+          "name": "세인",
+          "image": "sein.png"
+        }
+      ],
+      "비고": ""
+    },
+    "물의 원소 던전": {
+      "중독딜러": [
+        {
+          "name": "제인",
+          "image": "jane.png"
+        }
+      ],
+      "회복불가": [
+        {
+          "name": "클로에",
+          "image": "chloe.png"
+        }
+      ],
+      "빙결면역(택1)": [
+        {
+          "name": "풍연",
+          "image": "poongyeon.png"
+        },
+        {
+          "name": "라니아",
+          "image": "rania.png"
+        }
+      ],
+      "나머지자리": [
+        {
+          "name": "유이",
+          "image": "yui.png"
+        },
+        {
+          "name": "에반",
+          "image": "evan.png"
+        },
+        {
+          "name": "리나",
+          "image": "lina.png"
+        },
+        {
+          "name": "레이첼",
+          "image": "rachel.png"
+        }
+      ],
+      "비고": ""
+    },
+    "땅의 원소 던전": {
+      "화상딜러(택2)": [
+        {
+          "name": "유리",
+          "image": "yuri.png"
+        },
+        {
+          "name": "레이첼",
+          "image": "rachel.png"
+        },
+        {
+          "name": "제이브",
+          "image": "jave.png"
+        },
+        {
+          "name": "벨리카",
+          "image": "velika.png"
+        }
+      ],
+      "기절면역": [
+        {
+          "name": "에반",
+          "image": "evan.png"
+        }
+      ],
+      "나머지자리": [
+        {
+          "name": "유이",
+          "image": "yui.png"
+        },
+        {
+          "name": "리나",
+          "image": "lina.png"
+        }
+      ],
+      "비고": ""
+    },
+    "빛의 원소 던전": {
+      "버프해제(택2)": [
+        {
+          "name": "레이첼",
+          "image": "rachel.png"
+        },
+        {
+          "name": "조커",
+          "image": "joker.png"
+        }
+      ],
+      "감전면역": [
+        {
+          "name": "클로에",
+          "image": "chloe.png"
+        }
+      ],
+      "나머지자리": [
+        {
+          "name": "유이",
+          "image": "yui.png"
+        },
+        {
+          "name": "에반",
+          "image": "evan.png"
+        },
+        {
+          "name": "리나",
+          "image": "lina.png"
+        }
+      ],
+      "비고": ""
+    },
+    "암흑의 원소 던전": {
+      "출혈딜러(택2)": [
+        {
+          "name": "소이",
+          "image": "soi.png"
+        },
+        {
+          "name": "레오",
+          "image": "leo.png"
+        },
+        {
+          "name": "비담",
+          "image": "bidam.png"
+        },
+        {
+          "name": "쥬피",
+          "image": "juppi.png"
+        }
+      ],
+      "즉사면역": [
+        {
+          "name": "레오",
+          "image": "leo.png"
+        }
+      ],
+      "디버프해제(택1또는2)": [
+        {
+          "name": "루시",
+          "image": "lucy.png"
+        },
+        {
+          "name": "루디",
+          "image": "rudy.png"
+        },
+        {
+          "name": "클로에",
+          "image": "chloe.png"
+        }
+      ],
+      "나머지자리": [
+        {
+          "name": "리",
+          "image": "lee.png"
+        }
+      ],
+      "비고": "디버프해제 택1일때는 리 채용"
+    }
+  },
+  "bossCounters": {
+    "파멸의 눈동자": {
+      "필수": [
+        {
+          "name": "유이",
+          "image": "yui.png"
+        },
+        {
+          "name": "에반",
+          "image": "evan.png"
+        },
+        {
+          "name": "레이첼",
+          "image": "rachel.png"
+        }
+      ],
+      "딜러(택1)": [
+        {
+          "name": "세인",
+          "image": "sein.png"
+        },
+        {
+          "name": "쥬피",
+          "image": "juppi.png"
+        }
+      ],
+      "나머지자리": [
+        {
+          "name": "바네사",
+          "image": "vanessa.png"
+        },
+        {
+          "name": "에이스",
+          "image": "ace.png"
+        },
+        {
+          "name": "리나",
+          "image": "lina.png"
+        },
+        {
+          "name": "제이브",
+          "image": "jave.png"
+        }
+      ],
+      "비고": ""
+    },
+    "우마왕": {
+      "필수": [
+        {
+          "name": "유이",
+          "image": "yui.png"
+        },
+        {
+          "name": "에반",
+          "image": "evan.png"
+        },
+        {
+          "name": "블랙로즈",
+          "image": "blackrose.png"
+        },
+        {
+          "name": "카론",
+          "image": "karon.png"
+        }
+      ],
+      "딜러(택1)": [
+        {
+          "name": "에스파다",
+          "image": "espada.png"
+        },
+        {
+          "name": "스니퍼",
+          "image": "sniper.png"
+        }
+      ],
+      "비고": ""
+    },
+    "강철의 포식자": {
+      "필수": [
+        {
+          "name": "빅토리아",
+          "image": "victoria.png"
+        },
+        {
+          "name": "루시",
+          "image": "lucy.png"
+        },
+        {
+          "name": "아수라",
+          "image": "asura.png"
+        }
+      ],
+      "딜러(택1)": [
+        {
+          "name": "파스칼",
+          "image": "pascal.png"
+        },
+        {
+          "name": "유리",
+          "image": "yuri.png"
+        }
+      ],
+      "나머지자리": [
+        {
+          "name": "에반",
+          "image": "evan.png"
+        },
+        {
+          "name": "바네사",
+          "image": "vanessa.png"
+        },
+        {
+          "name": "리나",
+          "image": "lina.png"
+        }
+      ],
+      "비고": ""
+    }
+  }
+}
