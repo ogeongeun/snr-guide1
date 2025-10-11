@@ -10,7 +10,7 @@
             "heroes": [
               { "name": "미호", "image": "miho.png", "preset": "프리셋1(강림)" },
               { "name": "아리엘", "image": "ariel.png", "preset": "프리셋2(강림)" },
-              { "name": "파스칼", "image": "pascal.png", "preset": "프리셋2(강림)","note":"뒤배치" },
+              { "name": "파스칼", "image": "pascal.png", "preset": "프리셋2(강림)","note":"뒤배치2" },
               { "name": "비스킷", "image": "bisket.png", "preset": "프리셋2(강림)" },
               { "name": "레이첼", "image": "rachel.png", "preset": "프리셋3(강림)" }
             ],
