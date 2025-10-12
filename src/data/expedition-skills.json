@@ -10,13 +10,14 @@
               "rachel2.png",
            
               "bisket1.png",
+              { "image": "miho1.png", "label": "미호1스없이 두방컷나면 안써도됨" },
               "pascal2.png",
               "pascal1.png",
             { "image": "pascal2.png", "label": "테오 불사 상태 진입(딜부족지 미호 스킬)" },
               
       
 
-     { "image": "bisket1.png", "label": "태오 불사 해제" }
+     { "image": "bisket2.png", "label": "태오 불사 해제" }
             ]
           },
           {
