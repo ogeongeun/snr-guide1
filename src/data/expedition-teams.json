@@ -10,7 +10,7 @@
             "heroes": [
               { "name": "미호", "image": "miho.png", "preset": "프리셋1(강림)" },
               { "name": "아리엘", "image": "ariel.png", "preset": "프리셋2(강림)" },
-              { "name": "파스칼(6초)", "image": "pascal.png", "preset": "프리셋2(강림)","note":"뒤배치" },
+              { "name": "파스칼", "image": "pascal.png", "preset": "프리셋2(강림)","note":"뒤배치(6초)" },
               { "name": "비스킷", "image": "bisket.png", "preset": "프리셋2(강림)" },
               { "name": "레이첼", "image": "rachel.png", "preset": "프리셋3(강림)" }
             ],
@@ -25,9 +25,9 @@
             "teamName": "2팀",
             "heroes": [
               { "name": "바네사", "image": "vanessa.png", "preset": "프리셋4(강림)" },
-              { "name": "데이지(6초)", "image": "dage.png", "preset": "프리셋1(강림)" },
+              { "name": "데이지", "image": "dage.png", "preset": "프리셋1(강림)" ,"note":"6초" },
               { "name": "유리", "image": "yuri.png", "preset": "프리셋1(강림)","note":"뒤배치" },
-              { "name": "리나(6초)", "image": "lina.png" },
+              { "name": "리나", "image": "lina.png" ,"note":"6초" },
               { "name": "에스파다", "image": "espada.png", "preset": "프리셋2(강림)" }
             ],
             "recommendedGear": {
@@ -49,10 +49,10 @@
             "id": 1,
             "teamName": "1팀",
             "heroes": [
-              { "name": "바네사(6초)", "image": "vanessa.png", "preset": "프리셋5(강림)" },
-              { "name": "연희(6초)", "image": "Yeonhee.png", "preset": "프리셋3(강림)" },
-              { "name": "루리(6초)", "image": "luri.png", "preset": "프리셋3(강림)","note":"뒤배치" },
-              { "name": "리나(6초)", "image": "lina.png", "preset": "프리셋2(강림)" },
+              { "name": "바네사", "image": "vanessa.png", "preset": "프리셋5(강림)" ,"note":"6초" },
+              { "name": "연희", "image": "Yeonhee.png", "preset": "프리셋3(강림)" ,"note":"6초" },
+              { "name": "루리", "image": "luri.png", "preset": "프리셋3(강림)","note":"뒤배치(6초)" },
+              { "name": "리나", "image": "lina.png", "preset": "프리셋2(강림)" ,"note":"6초" },
               { "name": "클로에", "image": "chloe.png","preset": "프리셋1(강림)" }
             ],
             "recommendedGear": {
@@ -68,8 +68,8 @@
               { "name": "쥬리", "image": "juri.png", "preset": "프리셋4(강림)" },
               { "name": "오를리", "image": "orly.png", "preset": "프리셋3(강림)" ,"note":"뒤배치" },
               { "name": "데이지", "image": "dage.png", "preset": "프리셋2(강림)","note":"뒤배치" },
-              { "name": "비스킷(6초)", "image": "bisket.png","preset": "프리셋1(탱)","note":"뒤배치"  },
-              { "name": "미호(6초)", "image": "miho.png", "preset": "프리셋2(강림)" }
+              { "name": "비스킷", "image": "bisket.png","preset": "프리셋1(탱)","note":"뒤배치(6초)"  },
+              { "name": "미호", "image": "miho.png", "preset": "프리셋2(강림)","note":"6초"  }
             ],
             "recommendedGear": {
         
@@ -92,7 +92,7 @@
             "heroes": [
               { "name": "에이스", "image": "ace.png"},
               { "name": "풍연", "image": "poongyeon.png", "preset": "프리셋1(강림)" ,"note":"뒤배치"},
-              { "name": "타카(6초)", "image": "taka.png", "preset": "프리셋2(강림)","note":"뒤배치" },
+              { "name": "타카", "image": "taka.png", "preset": "프리셋2(강림)","note":"뒤배치(6초)" },
               { "name": "지크", "image": "zick.png", "preset": "범용" },
               { "name": "파이", "image": "pie.png","preset": "프리셋2(강림)" }
             ],
@@ -106,10 +106,10 @@
             "id": 2,
             "teamName": "2팀",
             "heroes": [
-              { "name": "리나(6초)", "image": "lina.png" },
-              { "name": "레이첼(6초)", "image": "rachel.png", "preset": "프리셋3(강림)"  },
-              { "name": "비담(6초)", "image": "bidam.png", "preset": "프리셋1(강림)","note":"뒤배치/제일 좋은템주기" },
-              { "name": "비스킷(6초)", "image": "bisket.png","preset": "프리셋1(탱)"  },
+              { "name": "리나", "image": "lina.png","note":"6초"  },
+              { "name": "레이첼", "image": "rachel.png", "preset": "프리셋3(강림)"  ,"note":"6초" },
+              { "name": "비담", "image": "bidam.png", "preset": "프리셋1(강림)","note":"뒤배치/제일 좋은템주기(6초)" },
+              { "name": "비스킷", "image": "bisket.png","preset": "프리셋1(탱)" ,"note":"6초"  },
               { "name": "아일린", "image": "eileene.png", "preset": "프리셋3(강림)" }
             ],
             "recommendedGear": {
@@ -147,11 +147,11 @@
             "id": 2,
             "teamName": "2팀",
             "heroes": [
-              { "name": "리나(6초)", "image": "lina.png" },
-              { "name": "비스킷(6초)", "image": "bisket.png", "preset": "프리셋3(카일)" },
-              { "name": "세인(6초)", "image": "sein.png", "preset": "프리셋2(강림)","note":"뒤배치(비스킷 버프)" },
+              { "name": "리나", "image": "lina.png","note":"6초"  },
+              { "name": "비스킷", "image": "bisket.png", "preset": "프리셋3(카일)" ,"note":"6초" },
+              { "name": "세인", "image": "sein.png", "preset": "프리셋2(강림)","note":"뒤배치(비스킷 버프)" },
               { "name": "레이첼", "image": "rachel.png","preset": "프리셋3(강림)" ,"note":"권능추천" },
-              { "name": "지크(6초)", "image": "zick.png", "preset": "레이드","note":"비스킷 버프"  }
+              { "name": "지크", "image": "zick.png", "preset": "레이드","note":"비스킷 버프"  ,"note":"6초" }
             ],
             "recommendedGear": {
         
