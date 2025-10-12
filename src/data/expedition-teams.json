@@ -122,6 +122,47 @@
       
         "note": "미흡한 스펙은 반지로 충족/스펙이 된다면 피해량 반지"
       }
+    ],
+     "darkkile": [
+      {
+        "setName": "종결세팅",
+        "teams": [
+          {
+            "id": 1,
+            "teamName": "1팀",
+            "heroes": [
+              { "name": "에이스", "image": "ace.png", "preset": "프리셋2(카일)" },
+              { "name": "파이", "image": "pie.png", "preset": "프리셋3(카일)" },
+              { "name": "쥬피", "image": "jupi.png", "preset": "프리셋2(강림)","note":"뒤배치" },
+              { "name": "델론즈", "image": "dellons.png", "preset": "프리셋3(카일)" },
+              { "name": "유이", "image": "yui.png" }
+            ],
+            "recommendedGear": {
+              "pet": "dello.png"
+            },
+            "note":"델로로 치확 올리고 남는걸로 치피 올리기"
+            
+          },
+          {
+            "id": 2,
+            "teamName": "2팀",
+            "heroes": [
+              { "name": "리나", "image": "lina.png" },
+              { "name": "비스킷", "image": "bisket.png", "preset": "프리셋3(카일)" },
+              { "name": "세인", "image": "sein.png", "preset": "프리셋2(강림)","note":"뒤배치(비스킷 버프)" },
+              { "name": "레이첼", "image": "rachel.png","preset": "프리셋3(강림)" ,"note":"권능추천" },
+              { "name": "지크", "image": "zick.png", "preset": "레이드","note":"비스킷 버프"  }
+            ],
+            "recommendedGear": {
+        
+              "pet": "irin.png"
+            }
+           
+          }
+        ],
+      
+        "note": "미흡한 스펙은 반지로 충족/스펙이 된다면 피해량 반지"
+      }
     ]
   }
 }

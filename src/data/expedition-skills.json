@@ -102,6 +102,44 @@
           }
         ]
       }
+    ],
+      "darkkile": [
+      {
+        "setName": "종결세팅",
+        "teams": [
+          {
+            "teamName": "1팀(36턴)",
+            "skills": [
+              "jupi1.png",
+              "pie1.png",
+              "jupi2.png",
+              "jupi1.png",
+              "dellons2.png",
+              
+              "yui1.png",
+                "pie2.png",
+                  "jupi2.png",
+                     "jupi1.png",
+                     "ace1.png"
+      
+            ]
+          },
+          {
+            "teamName": "2팀",
+            "skills": [
+              "bisket1.png",
+              "rachel2.png",
+              "sein1.png",
+              "lina2.png",
+              "zick2.png",
+              "sein1.png",
+              "lina1.png",
+              "rachel2.png",
+              "sein1.png"
+            ]
+          }
+        ]
+      }
     ]
   }
 }
