@@ -7,14 +7,15 @@
           {
             "teamName": "1팀",
             "skills": [
-              "miho1.png",
+              "rachel2.png",
+           
               "bisket1.png",
               "pascal2.png",
               "pascal1.png",
-              "pascal2.png",
+            { "image": "pascal2.png", "label": "테오 불사 상태 진입(딜부족지 미호 스킬)" },
               
-              "miho2.png",
-        { "image": "miho1.png", "label": "테오 불사 " },
+      
+
         "bisket2.png"
             ]
           },
@@ -28,7 +29,7 @@
               "dage1.png",
               "espada1.png",
               "lina1.png",
-              "yuri1.png","yuri2.png","dage1.png","espada2.png"
+              "yuri1.png","dage2.png","yuri2.png","lina2.png","dage1.png","yuri1.png"
             ]
           }
         ]
