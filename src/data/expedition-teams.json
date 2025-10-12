@@ -66,7 +66,7 @@
             "teamName": "2팀",
             "heroes": [
               { "name": "쥬리", "image": "juri.png", "preset": "프리셋4(강림)" },
-              { "name": "오를리", "image": "orly.png", "preset": "프리셋1(내실)" ,"note":"뒤배치" },
+              { "name": "오를리", "image": "orly.png", "preset": "프리셋3(강림)" ,"note":"뒤배치" },
               { "name": "데이지", "image": "dage.png", "preset": "프리셋2(강림)","note":"뒤배치" },
               { "name": "비스킷", "image": "bisket.png","preset": "프리셋1(탱)","note":"뒤배치"  },
               { "name": "미호", "image": "miho.png", "preset": "프리셋2(강림)" }
