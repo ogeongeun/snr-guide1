@@ -33,6 +33,75 @@
           }
         ]
       }
+    ],
+    "darkyeonhee": [
+      {
+        "setName": "종결세팅",
+        "teams": [
+          {
+            "teamName": "1팀",
+            "skills": [
+              "lina2.png",
+              "chloe2.png",
+              "vanessa1.png",
+              "luri2.png",
+              "luri1.png",
+              
+              "Yeonhee1.png"
+      
+            ]
+          },
+          {
+            "teamName": "2팀",
+            "skills": [
+              "miho1.png",
+              "orly1.png",
+              "dage2.png",
+              "miho2.png",
+              "juri2.png",
+              "orly2.png",
+              "miho1.png",
+              "orly1.png","bisket1.png","juri1.png","miho2.png","dage2.png","miho1.png"
+            ]
+          }
+        ]
+      }
+    ],
+     "darkcarma": [
+      {
+        "setName": "종결세팅",
+        "teams": [
+          {
+            "teamName": "1팀(32턴)",
+            "skills": [
+              "poongyeon1.png",
+              "taka1.png",
+              "ace2.png",
+              "taka2.png",
+              "poongyeon2.png",
+              
+              "poongyeon1.png",
+                "pie1.png",
+                  "taka1.png",
+                     "taka2.png"
+      
+            ]
+          },
+          {
+            "teamName": "2팀",
+            "skills": [
+              "bisket1.png",
+              "rachel2.png",
+              "bidam1.png",
+              "bidam2.png",
+              "lina2.png",
+              "rachel1.png",
+              "bidam1.png",
+              "rachel2.png","bidam2.png",  { "image": "bisket1.png", "label": "아마 이때 딜스킬쓰는게 더 좋을듯" }
+            ]
+          }
+        ]
+      }
     ]
   }
 }
