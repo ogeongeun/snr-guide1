@@ -27,7 +27,7 @@ export default function ExpeditionPage() {
       id: 'darkyeonhee',
       name: '연희',
       role: '버퍼',
-      image: 'darkyeonhee.png',
+      image: 'darkYeonhee.png',
       attackers: ['CryingStop', '염신メ', '이향', '밀리엔']
     },
     {
