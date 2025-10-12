@@ -41,7 +41,7 @@
         "note": "미흡한 스펙은 반지로 충족/스펙이 된다면 피해량 반지/속공순서):미호4,5번째,쿨 애매하면 다음스킬이랑 바꿔쓰기"
       }
     ],
-    "darkyeonhee": [
+    "darkYeonhee": [
       {
         "setName": "종결세팅",
         "teams": [
@@ -50,7 +50,7 @@
             "teamName": "1팀",
             "heroes": [
               { "name": "바네사", "image": "vanessa.png", "preset": "프리셋5(강림)" },
-              { "name": "연희", "image": "yeonhee.png", "preset": "프리셋3(강림)" },
+              { "name": "연희", "image": "Yeonhee.png", "preset": "프리셋3(강림)" },
               { "name": "루리", "image": "luri.png", "preset": "프리셋3(강림)","note":"뒤배치" },
               { "name": "리나", "image": "lina.png", "preset": "프리셋2(강림)" },
               { "name": "클로에", "image": "chloe.png","preset": "프리셋1(강림)" }
