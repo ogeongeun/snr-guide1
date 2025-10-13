@@ -18,6 +18,7 @@ export default function ExpeditionTeamPage() {
     );
   }
 
+  // 🔹 영웅 클릭 시 장비 모달 열기
   const handleHeroClick = (hero) => {
     const heroKey = Object.keys(equipmentData).find(
       (key) => equipmentData[key].name === hero.name
@@ -30,6 +31,7 @@ export default function ExpeditionTeamPage() {
     }
   };
 
+  // 🔹 영웅 카드 렌더링
   const renderHeroes = (heroes) => (
     <div className="grid grid-cols-5 gap-2 mt-3">
       {heroes.map((hero, idx) => {
@@ -76,17 +78,17 @@ export default function ExpeditionTeamPage() {
           ⚔️ {heroId.toUpperCase()} - 팀 선택
         </h1>
 
+        {/* 🔹 팀 세트 목록 */}
         {teamSets.map((set, setIdx) => (
           <div key={setIdx} className="mb-10">
             <h2 className="text-xl sm:text-2xl font-semibold text-center text-indigo-700 mb-4">
               {set.setName}
             </h2>
 
-            {/* 🔹 폰에서도 안정적인 높이의 카드 */}
             <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {set.teams.map((team, teamIdx) => (
+              {set.teams.map((team) => (
                 <li
-                  key={teamIdx}
+                  key={team.id}
                   className="bg-gradient-to-b from-white to-gray-50 border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-4 sm:p-5 flex flex-col justify-between h-fit max-h-[480px]"
                 >
                   <h3 className="font-bold text-gray-800 text-center mb-2 text-lg sm:text-xl">
@@ -101,9 +103,10 @@ export default function ExpeditionTeamPage() {
                     </p>
                   )}
 
+                  {/* 🔹 스킬순서 페이지로 이동 */}
                   <div className="flex justify-end mt-4">
                     <Link
-                      to={`/expedition/${heroId}/${teamIdx}`}
+                      to={`/expedition/${heroId}/${team.id - 1}`} // ✅ id(1,2) → index(0,1)
                       className="px-3 py-1.5 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform"
                     >
                       ⚡ 스킬순서 보기
@@ -112,9 +115,17 @@ export default function ExpeditionTeamPage() {
                 </li>
               ))}
             </ul>
+
+            {/* 🔹 세트 노트 */}
+            {set.note && (
+              <p className="text-[12px] text-gray-600 text-center mt-4 italic">
+                📘 {set.note}
+              </p>
+            )}
           </div>
         ))}
 
+        {/* 🔹 메인으로 돌아가기 */}
         <div className="text-center mt-6">
           <Link
             to="/expedition"
@@ -125,6 +136,7 @@ export default function ExpeditionTeamPage() {
         </div>
       </div>
 
+      {/* 🔹 장비 모달 */}
       {selectedHeroKey && (
         <EquipmentModal
           heroKey={selectedHeroKey}

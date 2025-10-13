@@ -6,32 +6,46 @@
         "teams": [
           {
             "teamName": "1팀",
-            "skills": [
+            "skills1": {
+              "tag": "2방컷",
+              "sequence": [
+                "rachel2.png",
+                "bisket1.png",
+                "pascal2.png",
+                "pascal1.png",
+                { "image": "pascal2.png", "label": "테오 불사 진입(딜부족 시 미호 사용)" },
+                { "image": "bisket2.png", "label": "태오 불사 해제" }
+              ]
+            },
+            "skills2": {
+              "tag": "3방컷",
+              "sequence": [
               "rachel2.png",
-           
-              "bisket1.png",
-             
-              "pascal2.png",
-              "pascal1.png",
-            { "image": "pascal2.png", "label": "테오 불사 상태 진입(딜부족지 미호 스킬)" },
-              
-      
-
-     { "image": "bisket2.png", "label": "태오 불사 해제" }
-            ]
+                "bisket1.png",
+                "pascal2.png",
+                "pascal1.png",
+                "pascal2.png",
+                "miho1.png",
+                "pascal1.png",
+                { "image": "pascal2.png", "label": "테오 불사 진입(딜부족 시 미호 사용)" },
+                { "image": "bisket2.png", "label": "태오 불사 해제" }
+              ]
+            }
           },
           {
             "teamName": "2팀",
-            "skills": [
+            "skills": {
+               "sequence": [
               "espada1.png",
               "lina2.png",
               "yuri1.png",
               "yuri2.png",
               "dage1.png",
+                 "lina1.png",
               "espada1.png",
-              "lina1.png",
+           
               "yuri1.png","dage2.png","yuri2.png","lina2.png","dage1.png","yuri1.png"
-            ]
+                ] }
           }
         ]
       }
@@ -42,7 +56,8 @@
         "teams": [
           {
             "teamName": "1팀",
-            "skills": [
+            "skills": {
+               "sequence": [
               "lina2.png",
               "chloe2.png",
               "vanessa1.png",
@@ -51,11 +66,12 @@
               
               "Yeonhee1.png"
       
-            ]
+            ]}
           },
           {
             "teamName": "2팀",
-            "skills": [
+          "skills": {
+               "sequence": [
               "bisket1.png",
               "miho1.png",
               "orly1.png",
@@ -65,7 +81,7 @@
               "orly2.png",
               "miho1.png",
               "orly1.png","bisket1.png","juri1.png","miho2.png","dage2.png","miho1.png"
-            ]
+            ]}
           }
         ]
       }
@@ -76,7 +92,8 @@
         "teams": [
           {
             "teamName": "1팀(32턴)",
-            "skills": [
+        "skills": {
+               "sequence": [
               "poongyeon1.png",
               "taka1.png",
               "ace2.png",
@@ -88,11 +105,12 @@
                   "taka1.png",
                      "taka2.png"
       
-            ]
+            ]}
           },
           {
             "teamName": "2팀",
-            "skills": [
+         "skills": {
+               "sequence": [
               "bisket1.png",
               "rachel2.png",
               "bidam1.png",
@@ -101,7 +119,7 @@
               "rachel1.png",
               "bidam1.png",
               "rachel2.png","bidam2.png",  { "image": "bisket1.png", "label": "아마 이때 딜스킬쓰는게 더 좋을듯" }
-            ]
+            ]}
           }
         ]
       }
@@ -112,7 +130,8 @@
         "teams": [
           {
             "teamName": "1팀(36턴)",
-            "skills": [
+         "skills": {
+               "sequence": [
               "jupi1.png",
               "pie1.png",
               "jupi2.png",
@@ -125,11 +144,12 @@
                      "jupi1.png",
                      "ace1.png"
       
-            ]
+            ]}
           },
           {
             "teamName": "2팀",
-            "skills": [
+      "skills": {
+               "sequence": [
               "bisket1.png",
               "rachel2.png",
               "sein1.png",
@@ -139,7 +159,7 @@
               "lina1.png",
               "rachel2.png",
               "sein1.png"
-            ]
+            ]}
           }
         ]
       }

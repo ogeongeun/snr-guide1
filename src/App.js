@@ -44,7 +44,7 @@ const App = () => {
         <Route path="/skill-order" element={<SkillOrderPage />} />
         <Route path="/raid-guide" element={<RaidGuidePage/>} />
         <Route path="/adventure" element={<Adventure/>} />
-        
+        <Route path="/expedition/:heroId/:teamIdx" element={<ExpeditionSkillPage />} />
        
         <Route path="/adventure/:stage" element={<AdventureDetailPage />} />
         <Route path="/expedition/:heroId" element={<ExpeditionTeamPage />} />
