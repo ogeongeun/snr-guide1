@@ -4,29 +4,31 @@ import { useParams, Link } from 'react-router-dom';
 import expeditionSkills from '../data/expedition-skills.json';
 
 export default function ExpeditionSkillPage() {
-  // ✅ URL 파라미터에서 heroId와 teamIdx 가져오기
-  const { heroId, teamIdx } = useParams();
+  // ✅ heroId, setIdx, teamIdx 세 개 받기
+  const { heroId, setIdx, teamIdx } = useParams();
   const decodedHeroId = decodeURIComponent(heroId);
 
-  // ✅ JSON 데이터 불러오기
+  // ✅ 세트와 팀 인덱스 숫자로 변환
+  const setIndex = Number.parseInt(setIdx, 10) || 0;
+  const teamIndex = Number.parseInt(teamIdx, 10) || 0;
+
+  // ✅ JSON 데이터 접근
   const heroSkillSets = expeditionSkills.expeditionSkills?.[decodedHeroId];
-  const teams = heroSkillSets?.[0]?.teams || [];
+  const selectedSet = heroSkillSets?.[setIndex];
+  const teams = selectedSet?.teams || [];
 
-  // ✅ teamIdx를 숫자로 변환하여 초기 팀 선택
-  const initialTeamIndex = Number.parseInt(teamIdx, 10) || 0;
-
-  // ✅ 상태관리
-  const [activeTeam, setActiveTeam] = useState(initialTeamIndex);
+  // ✅ 상태
+  const [activeTeam, setActiveTeam] = useState(teamIndex);
   const [activeSkillSet, setActiveSkillSet] = useState('skills');
 
-  // ✅ URL 변경 시 팀 자동 동기화
+  // ✅ URL 바뀔 때마다 초기화
   useEffect(() => {
-    setActiveTeam(initialTeamIndex);
+    setActiveTeam(teamIndex);
     setActiveSkillSet('skills');
-  }, [initialTeamIndex, heroId]);
+  }, [heroId, setIndex, teamIndex]);
 
   // ✅ 예외 처리
-  if (!teams.length) {
+  if (!selectedSet || !teams.length) {
     return (
       <div className="min-h-screen flex items-center justify-center text-red-500">
         ⚠️ 스킬 순서 데이터를 찾을 수 없습니다.
@@ -40,7 +42,7 @@ export default function ExpeditionSkillPage() {
 
   const selectedTeam = teams[activeTeam];
 
-  // ✅ skills, skills1, skills2 등 다양한 구조를 감지
+  // ✅ skills, skills1, skills2 등 감지
   const skillEntries = Object.entries(selectedTeam).filter(([key]) =>
     key.startsWith('skills')
   );
@@ -48,14 +50,12 @@ export default function ExpeditionSkillPage() {
   let skillSets = [];
 
   if (skillEntries.length > 0) {
-    // skills1, skills2 등의 세트 처리
     skillSets = skillEntries.map(([key, val]) => ({
       key,
       tag: val?.tag || '기본컷',
       sequence: val?.sequence || [],
     }));
   } else if (Array.isArray(selectedTeam.skills)) {
-    // 배열 형태일 때
     skillSets = [
       {
         key: 'skills',
@@ -64,7 +64,6 @@ export default function ExpeditionSkillPage() {
       },
     ];
   } else if (selectedTeam.skills?.sequence) {
-    // 객체 형태일 때
     skillSets = [
       {
         key: 'skills',
@@ -80,10 +79,13 @@ export default function ExpeditionSkillPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-6">
-        {/* 헤더 */}
-        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          ⚔️ {decodedHeroId.toUpperCase()} - {selectedTeam.teamName} 스킬 순서
+        {/* 🔹 헤더 */}
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-2">
+          ⚔️ {decodedHeroId.toUpperCase()} - {selectedSet.setName}
         </h1>
+        <p className="text-center text-gray-500 mb-6">
+          {selectedTeam.teamName} 스킬 순서
+        </p>
 
         {/* 🔹 팀 전환 탭 */}
         <div className="flex justify-center gap-3 mb-6 flex-wrap">
