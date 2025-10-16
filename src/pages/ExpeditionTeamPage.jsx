@@ -1,3 +1,4 @@
+// src/pages/ExpeditionTeamPage.jsx
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import expeditionTeams from '../data/expedition-teams.json';
@@ -78,7 +79,7 @@ export default function ExpeditionTeamPage() {
           ⚔️ {heroId.toUpperCase()} - 팀 선택
         </h1>
 
-        {/* 🔹 팀 세트 목록 */}
+        {/* 🔹 세트별 팀 목록 */}
         {teamSets.map((set, setIdx) => (
           <div key={setIdx} className="mb-10">
             <h2 className="text-xl sm:text-2xl font-semibold text-center text-indigo-700 mb-4">
@@ -106,7 +107,8 @@ export default function ExpeditionTeamPage() {
                   {/* 🔹 스킬순서 페이지로 이동 */}
                   <div className="flex justify-end mt-4">
                     <Link
-                      to={`/expedition/${heroId}/${team.id - 1}`} // ✅ id(1,2) → index(0,1)
+                      // ✅ 세트 인덱스(setIdx) + 팀 인덱스(team.id - 1)를 함께 전달
+                      to={`/expedition-skill/${heroId}/${setIdx}/${team.id - 1}`}
                       className="px-3 py-1.5 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform"
                     >
                       ⚡ 스킬순서 보기
