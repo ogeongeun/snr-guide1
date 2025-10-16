@@ -163,6 +163,44 @@
           }
         ]
       }
+    ],
+      "bosss": [
+      {
+        "setName": "안전 빌드",
+        "teams": [
+          {
+            "teamName": "1팀(20)",
+         "skills": {
+               "sequence": [
+              "bisket1.png",
+              "miho1.png",
+              "lina1.png",
+              "lina2.png",
+              "pascal2.png",
+              
+              "pascal1.png",
+                "pascal2.png"
+                  
+      
+            ]}
+          },
+          {
+            "teamName": "2팀",
+      "skills": {
+               "sequence": [
+              "rachel2.png",
+              "sein1.png",
+              "elise2.png",
+              "zick2.png",
+              "sein1.png",
+              "zick1.png",
+              "elise1.png",
+              "sein1.png",
+              "rachel2.png","elise2.png","sein1.png","zick2.png"
+            ]}
+          }
+        ]
+      }
     ]
   }
 }

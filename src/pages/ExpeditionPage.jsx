@@ -1,9 +1,10 @@
+// src/pages/ExpeditionPage.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function ExpeditionPage() {
   const heroes = [
-     {
+    {
       id: 'darkteo',
       name: '테오',
       role: '딜러',
@@ -13,7 +14,7 @@ export default function ExpeditionPage() {
         '하이퍼울트라깹짱', '병살', '법원', '오리시기', '나쁜남자서동연'
       ]
     },
-     {
+    {
       id: 'darkkile',
       name: '카일',
       role: '딜러',
@@ -40,8 +41,13 @@ export default function ExpeditionPage() {
         '신주노입니다', '겁많아요', '종아리', '당당이'
       ]
     },
-   
-   
+    {
+      id: 'bosss',
+      name: '파괴신',
+      role: '딜러',
+      image: 'bosss.png',
+      // attackers가 없더라도 안전하게 처리됨
+    }
   ];
 
   return (
@@ -79,17 +85,23 @@ export default function ExpeditionPage() {
 
               <div className="bg-gray-50 rounded-lg p-2 text-center">
                 <p className="text-xs sm:text-sm font-semibold text-indigo-700 mb-1">
-                  공격 인원 ({hero.attackers.length}명)
+                  공격 인원 ({hero.attackers?.length || 0}명)
                 </p>
                 <div className="flex flex-wrap justify-center gap-1">
-                  {hero.attackers.map((name, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-indigo-100 text-indigo-700 text-[10px] sm:text-xs px-2 py-0.5 rounded-md"
-                    >
-                      {name}
+                  {hero.attackers?.length > 0 ? (
+                    hero.attackers.map((name, idx) => (
+                      <span
+                        key={idx}
+                        className="bg-indigo-100 text-indigo-700 text-[10px] sm:text-xs px-2 py-0.5 rounded-md"
+                      >
+                        {name}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="text-gray-400 text-[10px] sm:text-xs">
+                      등록된 인원이 없습니다
                     </span>
-                  ))}
+                  )}
                 </div>
               </div>
             </div>
@@ -97,7 +109,10 @@ export default function ExpeditionPage() {
         </div>
       </div>
 
-      <div className="absolute bottom-2 right-4 text-[10px] sm:text-xs text-gray-400">sj</div>
+      {/* 하단 표시 */}
+      <div className="absolute bottom-2 right-4 text-[10px] sm:text-xs text-gray-400">
+        sj
+      </div>
     </div>
   );
 }

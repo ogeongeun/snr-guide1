@@ -151,7 +151,7 @@
               { "name": "비스킷", "image": "bisket.png", "preset": "프리셋3(카일)" ,"note":"6초" },
               { "name": "세인", "image": "sein.png", "preset": "프리셋2(강림)","note":"뒤배치(비스킷 버프)" },
               { "name": "레이첼", "image": "rachel.png","preset": "프리셋3(강림)" ,"note":"권능추천" },
-              { "name": "지크", "image": "zick.png", "preset": "레이드","note":"비스킷 버프"  ,"note":"6초" }
+              { "name": "지크", "image": "zick.png", "preset": "레이드"  ,"note":"6초" }
             ],
             "recommendedGear": {
         
@@ -162,6 +162,47 @@
         ],
       
         "note": "미흡한 스펙은 반지로 충족/스펙이 된다면 피해량 반지"
+      }
+    ],
+    "bosss": [
+      {
+        "setName": "안전 빌드",
+        "teams": [
+          {
+            "id": 1,
+            "teamName": "1팀(빔초빔)",
+            "heroes": [
+              { "name": "미호", "image": "miho.png", "preset": "프리셋1(강림)/부활,권능" },
+              { "name": "아리엘", "image": "ariel.png", "preset": "프리셋2(강림)" },
+              { "name": "파스칼", "image": "pascal.png", "preset": "프리셋1(범용)","note":"뒤배치(6초)/권능반지" },
+              { "name": "비스킷", "image": "bisket.png", "preset": "프리셋2(강림)" },
+              { "name": "리나", "image": "lina.png" }
+            ],
+            "recommendedGear": {
+              "pet": "yeonji.png"
+            },
+            "note":"비스킷 패시브 파스칼+미호"
+            
+          },
+          {
+            "id": 2,
+            "teamName": "2팀",
+            "heroes": [
+                { "name": "엘리스", "image": "elise.png" },
+              { "name": "에이스", "image": "ace.png", "preset": "프리셋2(카일)"  },
+              { "name": "세인", "image": "sein.png", "preset": "프리셋2(강림)","note":"뒤배치(비스킷 버프)/부활,권능" },
+              { "name": "레이첼", "image": "rachel.png","preset": "프리셋3(강림)" ,"note":"권능추천" },
+              { "name": "지크", "image": "zick.png", "preset": "레이드"  ,"note":"부활,권능" }
+            ],
+            "recommendedGear": {
+        
+              "pet": "irin.png"
+            }
+           
+          }
+        ],
+      
+        "note": "리첼쓸거면 세인이랑 지크 반지까지 해서  약공70 만들어도됨"
       }
     ]
   }
