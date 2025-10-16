@@ -1,28 +1,31 @@
+// src/pages/ExpeditionSkillPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import expeditionSkills from '../data/expedition-skills.json';
 
 export default function ExpeditionSkillPage() {
-  // ✅ teamIdx도 받아오기
+  // ✅ URL 파라미터에서 heroId와 teamIdx 가져오기
   const { heroId, teamIdx } = useParams();
   const decodedHeroId = decodeURIComponent(heroId);
 
+  // ✅ JSON 데이터 불러오기
   const heroSkillSets = expeditionSkills.expeditionSkills?.[decodedHeroId];
   const teams = heroSkillSets?.[0]?.teams || [];
 
-  // ✅ URL에서 받은 teamIdx를 숫자로 변환
+  // ✅ teamIdx를 숫자로 변환하여 초기 팀 선택
   const initialTeamIndex = Number.parseInt(teamIdx, 10) || 0;
 
-  // ✅ teamIdx에 따라 초기화
+  // ✅ 상태관리
   const [activeTeam, setActiveTeam] = useState(initialTeamIndex);
   const [activeSkillSet, setActiveSkillSet] = useState('skills');
 
-  // ✅ URL이 바뀔 때마다 activeTeam 동기화
+  // ✅ URL 변경 시 팀 자동 동기화
   useEffect(() => {
     setActiveTeam(initialTeamIndex);
     setActiveSkillSet('skills');
   }, [initialTeamIndex, heroId]);
 
+  // ✅ 예외 처리
   if (!teams.length) {
     return (
       <div className="min-h-screen flex items-center justify-center text-red-500">
@@ -31,12 +34,13 @@ export default function ExpeditionSkillPage() {
     );
   }
 
+  // ✅ 이미지 경로 처리
   const imgPath = (img) =>
     img?.startsWith?.('/images/') ? img : `/images/skills/${img}`;
 
   const selectedTeam = teams[activeTeam];
 
-  // ✅ skills / skills1 / skills2 모두 감지
+  // ✅ skills, skills1, skills2 등 다양한 구조를 감지
   const skillEntries = Object.entries(selectedTeam).filter(([key]) =>
     key.startsWith('skills')
   );
@@ -44,12 +48,14 @@ export default function ExpeditionSkillPage() {
   let skillSets = [];
 
   if (skillEntries.length > 0) {
+    // skills1, skills2 등의 세트 처리
     skillSets = skillEntries.map(([key, val]) => ({
       key,
       tag: val?.tag || '기본컷',
       sequence: val?.sequence || [],
     }));
   } else if (Array.isArray(selectedTeam.skills)) {
+    // 배열 형태일 때
     skillSets = [
       {
         key: 'skills',
@@ -58,6 +64,7 @@ export default function ExpeditionSkillPage() {
       },
     ];
   } else if (selectedTeam.skills?.sequence) {
+    // 객체 형태일 때
     skillSets = [
       {
         key: 'skills',
@@ -73,6 +80,7 @@ export default function ExpeditionSkillPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md p-6">
+        {/* 헤더 */}
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
           ⚔️ {decodedHeroId.toUpperCase()} - {selectedTeam.teamName} 스킬 순서
         </h1>
@@ -97,7 +105,7 @@ export default function ExpeditionSkillPage() {
           ))}
         </div>
 
-        {/* 🔹 세트 전환 버튼 */}
+        {/* 🔹 세트 전환 버튼 (skills1 / skills2 구분) */}
         {skillSets.length > 1 && (
           <div className="flex justify-center gap-2 mb-6 flex-wrap">
             {skillSets.map((set) => (
