@@ -16,9 +16,231 @@
       }
     },
     "categories": {
+            "추천덱": {
+     
+        "teams": [
+          {
+            "teamId": 0,
+            "name": "카일 덱",
+            "heroes": [
+               {
+                "name": "발리스타",
+                "image": "ballista.png",
+                "preset":"프리셋2(속공)",
+                "note": "델론즈 대체가능"
+              },
+              {
+                "name": "카일",
+                "image": "kyle.png",
+                "preset":"프리셋1(속공)"
+              
+              },
+             
+              {
+                "name": "카구라",
+                "image": "cagura.png",
+                "preset":"2스킬예약시",
+                  "note":""
+              
+              }
+            ],
+                         "pet": ["irin.png","rechel.png"],
+            "skillOrders": {
+              
+              "속공덱": [
+                "cagura2.png",
+                "kyle1.png",
+
+              
+
+                "kyle2.png"
+              ]
+            },
+            "note": "op티어/속공220"
+          },
+          {
+            "teamId": 0,
+            "name": "첸슬러+콜트 방덱",
+            "heroes": [
+              {
+                "name": "콜트",
+                "image": "colt.png",
+               "preset":""
+              },
+              {
+                "name": "첸슬러",
+                "image": "chancellor.png",
+              "preset":"프리셋3(속공)",
+              "note":"앞배치"
+              },
+              {
+                "name": "파이",
+                "image": "pie.png",
+               "preset":"프리셋1(속공)"
+              
+              }
+            ],
+             "pet": ["irin.png","chri.png"],
+            "skillOrders": {
+              
+              "속공덱": [
+                "pie1.png",
+                "colt1.png",
+                "colt2.png"
+              ]
+            },
+            "note": "1티어/속공200"
+          },
+          
+          {
+            "teamId": 0,
+            "name": "연바로 덱",
+            "heroes": [
+              {
+                "name": "바네사",
+                "image": "vanessa.png",
+                  "preset": "프리셋2(속공)"
+              },
+              {
+                "name": "연희",
+                "image": "Yeonhee.png",
+                "preset":"프리셋1(속공)"
+              },
+              {
+                "name": "로지",
+                "image": "lozy.png",
+                "preset": "프리셋2(속공)"
+              }
+            ],
+              "pet": ["yeonji.png","chri.png"],
+            "skillOrders": {
+              
+               "속공덱": [
+                "vanessa1.png",
+                "Yeonhee2.png",
+                "Yeonhee1.png"
+              ]
+              
+            },
+            "note": "op티어/속공220이상"
+          },
+          {
+            "teamId": 0,
+            "name": "린+플라튼 방덱",
+            "heroes": [
+              {
+                "name": "린",
+                "image": "rin.png",
+                  "preset": "프리셋1(속공)"
+              },
+              {
+                "name": "플라튼",
+                "image": "platon.png",
+                 "preset": "프리셋2(속공)",
+                "note":"앞배치"
+              },
+              {
+                "name": "실베스타",
+                "image": "silvesta.png",
+              "preset": "프리셋2(속공)"
+              }
+            ],
+              "pet": ["yeonji.png","rechel.png"],
+            "skillOrders": {
+              "공통": [
+                "rin2.png",
+                "platon2.png",
+                "silvesta1.png"
+              ]
+              
+            },
+            "note": "1티어/속공200"
+          },
+          {
+            "teamId": 1,
+            "name": "테오덱",
+            "heroes": [
+            
+              {
+                "name": "태오",
+                "image": "teo.png",
+                "note":"뒤배치(추적자/치약공공)"
+              },
+              {
+                "name": "델론즈",
+                "image": "dellons.png",
+              "preset": "프리셋1(내실)"
+                
+
+              },
+              {
+                "name": "아일린",
+                "image": "eileene.png",
+                "note":"조율자(효저100/효적60이상)"
+                
+              }
+            ],
+         "pet": "irin.png",
+            "skillOrders": {
+              "threshold": 220,
+              "내실덱": [
+              
+                "dellons2.png",
+                "teo2.png",
+                "teo1.png"
+              ]
+              
+            },
+          "note": "1.5티어/방덱잡이 내실세팅 속공x "
+          }
+          
+          
+          
+         
+        ]
+      },
       "공덱": {
 
         "teams": [
+           {
+            "teamId": 0,
+            "name": "카일 덱",
+            "heroes": [
+               {
+                "name": "발리스타",
+                "image": "ballista.png",
+                "preset":"프리셋2(속공)",
+                "note": "델론즈 대체가능"
+              },
+              {
+                "name": "카일",
+                "image": "kyle.png",
+                "preset":"프리셋1(속공)"
+              
+              },
+             
+              {
+                "name": "카구라",
+                "image": "cagura.png",
+                "preset":"2스킬예약시",
+                  "note":""
+              
+              }
+            ],
+                         "pet": ["irin.png","rechel.png"],
+            "skillOrders": {
+              
+              "속공덱": [
+                "cagura2.png",
+                "kyle1.png",
+
+              
+
+                "kyle2.png"
+              ]
+            },
+            "note": "op티어/속공220"
+          },
           {
             "teamId": 1,
             "name": "테오덱",
@@ -403,6 +625,72 @@
       "방덱": {
         "desc": "콜트,플라튼,파이 이덱 우선 배치",
         "teams": [
+          {
+            "teamId": 0,
+            "name": "린+플라튼 방덱",
+            "heroes": [
+              {
+                "name": "린",
+                "image": "rin.png",
+                  "preset": "프리셋1(속공)"
+              },
+              {
+                "name": "플라튼",
+                "image": "platon.png",
+                 "preset": "프리셋2(속공)",
+                "note":"앞배치"
+              },
+              {
+                "name": "실베스타",
+                "image": "silvesta.png",
+              "preset": "프리셋2(속공)"
+              }
+            ],
+              "pet": ["yeonji.png","rechel.png"],
+            "skillOrders": {
+              "공통": [
+                "rin2.png",
+                "platon2.png",
+                "silvesta1.png"
+              ]
+              
+            },
+            "note": "1티어/속공200"
+          },
+            {
+            "teamId": 0,
+            "name": "첸슬러+콜트 방덱",
+            "heroes": [
+              {
+                "name": "콜트",
+                "image": "colt.png",
+               "preset":""
+              },
+              {
+                "name": "첸슬러",
+                "image": "chancellor.png",
+              "preset":"프리셋3(속공)",
+              "note":"앞배치"
+              },
+              {
+                "name": "파이",
+                "image": "pie.png",
+               "preset":"프리셋1(속공)"
+              
+              }
+            ],
+             "pet": ["irin.png","chri.png"],
+            "skillOrders": {
+              
+              "속공덱": [
+                "pie1.png",
+                "colt1.png",
+                "colt2.png"
+              ]
+            },
+            "note": "1티어/속공200"
+          },
+          
           {
             "teamId": 0,
             "name": "레이첼 방덱",

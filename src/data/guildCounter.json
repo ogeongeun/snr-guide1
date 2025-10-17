@@ -2,6 +2,198 @@
     "categories": {
       
       "공덱": [
+         {
+        "id": "team1",
+        "label": "카일 공덱",
+        "defenseTeam": [
+          {
+            "name": "콜트",
+            "image": "/images/heroes/colt.png",
+            "note":"또는 발리스타"
+          },
+          {
+            "name": "카일",
+            "image": "/images/heroes/teo.png"
+          },
+          {
+            "name": "카구라",
+            "image": "/images/heroes/pie.png"
+          }
+        ],
+        "defenseNotes": [
+          "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+        ],
+        "defenseVariants": [
+          {
+            "defenseSkills": [
+              "cagura2.png",
+              "kyle1.png",
+              "kyle2.png"
+            ],
+            "counters": [
+               {
+                "recommendation": 3,
+                  "pet": ["pike.png", "ru.png"],
+                "team": [
+                  {
+                    "name": "스파이크",
+                    "image": "/images/heroes/spike.png",
+                    "preset":"부활"
+                   
+                
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                    "preset":"프리셋1(탱)"
+                   
+                   
+                  },
+                  {
+                    "name": "엘리스",
+                    "image": "/images/heroes/elise.png",
+                    "note":"부활"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"카일이 권능일때",
+                "skillOrders": [
+                  {
+                    "label": "속공 질때",
+                    "skills": [
+                      "platon2.png",
+                      "spike2.png",
+                      "elise2.png"
+                    ]
+                  }
+                ]
+              },
+              
+                 {
+                  "recommendation": 3,  "pet": ["irin.png"],
+                "team": [
+                  {
+                    "name": "쥬리",
+                    "image": "/images/heroes/juri.png",
+                    "preset":"프리셋3(길드전)"
+                   
+                
+                  },
+                  {
+                    "name": "델론즈",
+                    "image": "/images/heroes/dellons.png",
+                    "preset":"프리셋1(내실)",
+                    "note":"4권능이상"
+                   
+                   
+                  },
+                  {
+                    "name": "블랙로즈",
+                    "image": "/images/heroes/blackrose.png",
+                    "preset":"프리셋2(길드전)"
+                 
+                     
+                  }
+                ],
+                "note":"카일 부활일때",
+                "skillOrders": [
+                  {
+                    "label": "공통",
+                    "skills": [
+                      "juri2.png",
+                      "dellons2.png",
+                      "blackrose2.png"
+                    ]
+                  }
+                ]
+              }
+               
+               
+            ]
+            
+          }
+          
+          
+        ]
+      }, {
+        "id": "team1",
+        "label": "카일 공덱",
+        "defenseTeam": [
+          {
+            "name": "델론즈",
+            "image": "/images/heroes/dellons.png"
+          
+          },
+          {
+            "name": "카일",
+            "image": "/images/heroes/teo.png"
+          },
+          {
+            "name": "카구라",
+            "image": "/images/heroes/pie.png"
+          }
+        ],
+        "defenseNotes": [
+          "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+        ],
+        "defenseVariants": [
+          {
+            "defenseSkills": [
+              "cagura2.png",
+              "kyle1.png",
+              "kyle2.png"
+            ],
+            "counters": [
+              
+               {
+                  "recommendation": 3,  "pet": ["yeonji.png"],
+                "team": [
+                  {
+                    "name": "쥬리",
+                    "image": "/images/heroes/juri.png",
+                    "preset":"프리셋3(길드전)"
+                   
+                
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋1(내실)",
+                    "note":"4권능이상"
+                   
+                   
+                  },
+                  {
+                    "name": "데이지",
+                    "image": "/images/heroes/dage.png",
+                    "note":"체력 제일 낮게"
+                 
+                     
+                  }
+                ],
+                "note":"카일 부활일때",
+                "skillOrders": [
+                  {
+                    "label": "공통",
+                    "skills": [
+                      "juri2.png",
+                      "Yeonhee1.png",
+                      "Yeonhee2.png"
+                    ]
+                  }
+                ]
+              }
+              
+               
+            ]
+            
+          }
+          
+          
+        ]
+      },
           {
           "id": "team1",
           "label": "태오 공덱",
