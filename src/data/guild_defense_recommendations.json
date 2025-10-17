@@ -27,12 +27,13 @@
                 "name": "발리스타",
                 "image": "ballista.png",
                 "preset":"프리셋2(속공)",
-                "note": "델론즈 대체가능"
+                "note": "델론즈 대체가능/권능"
               },
               {
                 "name": "카일",
                 "image": "kyle.png",
-                "preset":"프리셋1(속공)"
+                "preset":"프리셋1(속공)",
+                 "note":"부활"
               
               },
              
@@ -40,7 +41,7 @@
                 "name": "카구라",
                 "image": "cagura.png",
                 "preset":"2스킬예약시",
-                  "note":""
+                  "note":"권능또는 즉사"
               
               }
             ],
@@ -65,18 +66,20 @@
               {
                 "name": "콜트",
                 "image": "colt.png",
-               "preset":""
+               "preset":"",
+               "note":"불사"
               },
               {
                 "name": "첸슬러",
                 "image": "chancellor.png",
               "preset":"프리셋3(속공)",
-              "note":"앞배치"
+              "note":"앞배치/부활"
               },
               {
                 "name": "파이",
                 "image": "pie.png",
-               "preset":"프리셋1(속공)"
+               "preset":"프리셋1(속공)",
+                "note":"권능"
               
               }
             ],
@@ -99,17 +102,20 @@
               {
                 "name": "바네사",
                 "image": "vanessa.png",
-                  "preset": "프리셋2(속공)"
+                  "preset": "프리셋2(속공)",
+                  "note":"불사"
               },
               {
                 "name": "연희",
                 "image": "Yeonhee.png",
-                "preset":"프리셋1(속공)"
+                "preset":"프리셋1(속공)",
+                "note":"권능"
               },
               {
                 "name": "로지",
                 "image": "lozy.png",
-                "preset": "프리셋2(속공)"
+                "preset": "프리셋2(속공)",
+                "note":"즉사반지"
               }
             ],
               "pet": ["yeonji.png","chri.png"],
