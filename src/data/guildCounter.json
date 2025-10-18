@@ -128,11 +128,11 @@
           },
           {
             "name": "카일",
-            "image": "/images/heroes/teo.png"
+            "image": "/images/heroes/kyle.png"
           },
           {
             "name": "카구라",
-            "image": "/images/heroes/pie.png"
+            "image": "/images/heroes/cagura.png"
           }
         ],
         "defenseNotes": [
@@ -148,7 +148,8 @@
             "counters": [
               
                {
-                  "recommendation": 3,  "pet": ["yeonji.png"],
+                  "recommendation": 3,  
+                  "pet": ["yeonji.png"],
                 "team": [
                   {
                     "name": "쥬리",
