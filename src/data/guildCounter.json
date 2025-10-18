@@ -681,7 +681,7 @@
                   },
                   {
                     "name": "유신",
-                    "image": "/images/heroes/yushin.png"
+                    "image": "/images/heroes/Yushin.png"
                   }
                 ],
                 "note": "상대 콜트아래 스킬에 맞춰서 유신 아래스킬로로 해제하기",
@@ -689,7 +689,7 @@
                   {
                     "skills": [
                       "Yeonhee1.png",
-                      "Yushin1.png",
+                      "yushin1.png",
                       "vanessa1.png"
                     ]
                   }
@@ -1142,7 +1142,7 @@
                     "label": "속공 질 때",
                     "skills": [
                       "Yeonhee1.png",
-                      "Yushin1.png",
+                      "yushin1.png",
                       "vanessa1.png"
                     ]
                   }
@@ -1470,7 +1470,7 @@
         ],
         "defenseVariants": [
           {
-            "defenseSkills": ["Yushin1.png","teo1.png","teo2.png"],
+            "defenseSkills": ["yushin1.png","teo1.png","teo2.png"],
             "counters": [
                {
                 "recommendation": 3,
@@ -1751,7 +1751,7 @@
                   {
                     "label": "속공 질 때",
                     "skills": [
-                      "Yushin1.png",
+                      "yushin1.png",
                       "vanessa1.png",
                       "vanessa2.png"
                     ]
@@ -2229,7 +2229,7 @@
         "defenseVariants": [
           
           {
-            "defenseSkills": ["rin2.png","Melkir1.png","Yushin1.png"],
+            "defenseSkills": ["rin2.png","Melkir1.png","yushin1.png"],
             "counters": [
               {
                 "recommendation": 3,
@@ -2394,7 +2394,7 @@
         "defenseVariants": [
           
           {
-            "defenseSkills": ["rin2.png","Yushin1.png","silvesta2.png"],
+            "defenseSkills": ["rin2.png","yushin1.png","silvesta2.png"],
             "counters": [
               {
                 "recommendation": 3,
@@ -2778,7 +2778,7 @@
         "defenseTeam": [
           {
             "name": "유신",
-            "image": "/images/heroes/yushin.png"
+            "image": "/images/heroes/Yushin.png"
           },
           {
             "name": "연희",
@@ -2792,7 +2792,7 @@
         ],
         "defenseVariants": [
           {
-            "defenseSkills": ["Yushin1.png","juri2.png","Yeonhee2.png"],
+            "defenseSkills": ["yushin1.png","juri2.png","Yeonhee2.png"],
             "counters": [
               
               {
@@ -2970,7 +2970,7 @@
                     "label": "속공 이길때",
                     "skills": [
                       "nia2.png",
-                      "Yushin1.png",
+                      "yushin1.png",
                       "rin2.png"
                    
                     ]
@@ -3192,7 +3192,7 @@
         "defenseTeam": [
           {
             "name": "유신",
-            "image": "/images/heroes/yushin.png"
+            "image": "/images/heroes/Yushin.png"
           },
           {
             "name": "연희",
@@ -3602,7 +3602,7 @@
                 "team": [
                   {
                     "name": "유신",
-                    "image": "/images/heroes/yushin.png",
+                    "image": "/images/heroes/Yushin.png",
                     "note": "2초월 이상(조율자)"
                   },
                   {
@@ -3619,7 +3619,7 @@
                   {
                     "label": "속공 질 때",
                     "skills": [
-                      "Yushin1.png",
+                      "yushin1.png",
                       "Yushin2.png",
                       "Yeonhee2.png"
                     ]
@@ -4146,7 +4146,7 @@
                 "team": [
                   {
                     "name": "유신",
-                    "image": "/images/heroes/yushin.png"
+                    "image": "/images/heroes/Yushin.png"
                   },
                   {
                     "name": "연희",
@@ -4165,7 +4165,7 @@
                     "skills": [
                       "Yushin2.png",
                       "Yeonhee2.png",
-                      "Yushin1.png"
+                      "yushin1.png"
                      
                     ]
                   }
@@ -4957,7 +4957,7 @@
                 "team": [
                   {
                     "name": "유신",
-                    "image": "/images/heroes/yushin.png"
+                    "image": "/images/heroes/Yushin.png"
                   },
                   {
                     "name": "루리",
@@ -4973,7 +4973,7 @@
                   {
                     "label": "속공 이길 때",
                     "skills": [
-                      "Yushin1.png",
+                      "yushin1.png",
                       "luri2.png",
                       "luri1.png"
                     ]
