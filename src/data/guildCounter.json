@@ -1133,7 +1133,7 @@
                   },
                   {
                     "name": "유신",
-                    "image": "/images/heroes/yushin.png"
+                    "image": "/images/heroes/Yushin.png"
                   }
                 ],
                 "note": "상대 콜트아래 스킬에 맞춰서 유신 아래스킬로로 해제하기",
@@ -1465,7 +1465,7 @@
           },
           {
             "name": "유신",
-            "image": "/images/heroes/yushin.png"
+            "image": "/images/heroes/Yushin.png"
           }
         ],
         "defenseVariants": [
@@ -1743,7 +1743,7 @@
                   },
                   {
                     "name": "유신",
-                    "image": "/images/heroes/yushin.png"
+                    "image": "/images/heroes/Yushin.png"
                   }
                 ],
                 "note": "씹 카운터 명함으로도 이김",
@@ -1840,7 +1840,7 @@
                 "team": [
                   {
                     "name": "유신",
-                    "image": "/images/heroes/yushin.png"
+                    "image": "/images/heroes/Yushin.png"
                  
                   },
                   {
@@ -2215,7 +2215,7 @@
         "defenseTeam": [
           {
             "name": "유신",
-            "image": "/images/heroes/yushin.png"
+            "image": "/images/heroes/Yushin.png"
           },
           {
             "name": "린",
@@ -2380,7 +2380,7 @@
         "defenseTeam": [
           {
             "name": "유신",
-            "image": "/images/heroes/yushin.png"
+            "image": "/images/heroes/Yushin.png"
           },
           {
             "name": "린",
@@ -2560,7 +2560,7 @@
         "defenseTeam": [
           {
             "name": "유신",
-            "image": "/images/heroes/yushin.png"
+            "image": "/images/heroes/Yushin.png"
           },
           {
             "name": "실베스타",
