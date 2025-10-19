@@ -149,7 +149,7 @@
               
                {
                   "recommendation": 3,  
-                  "pet": ["yeonji.png"],
+                  "pet": ["Yeonji.png"],
                 "team": [
                   {
                     "name": "쥬리",
@@ -226,7 +226,7 @@
                 
                 {
                   "recommendation": 2,
-                  "pet": ["yeonji.png", "chri.png"],
+                  "pet": ["Yeonji.png", "chri.png"],
                   "team": [
                     {
                       "name": "데이지",
@@ -424,7 +424,7 @@
               },
               
                  {
-                  "recommendation": 2,  "pet": ["yeonji.png", "chri.png"],
+                  "recommendation": 2,  "pet": ["Yeonji.png", "chri.png"],
                 "team": [
                   {
                     "name": "바네사",
@@ -668,7 +668,7 @@
               },
               {
                 "recommendation": 2,
-                   "pet": ["yeonji.png","chri.png"],
+                   "pet": ["Yeonji.png","chri.png"],
                 "team": [
                   {
                     "name": "바네사",
@@ -1880,7 +1880,7 @@
           },
           {
             "name": "연희",
-            "image": "/images/heroes/yeonhee.png"
+            "image": "/images/heroes/Yeonhee.png"
           },
           {
             "name": "바네사",
@@ -1928,7 +1928,7 @@
               
                {
                 "recommendation": 2,
-                   "pet": ["chri.png","yeonji.png"],
+                   "pet": ["chri.png","Yeonji.png"],
                 "team": [
                   {
                     "name": "쥬리",
@@ -1938,7 +1938,7 @@
                   },
                   {
                     "name": "연희",
-                    "image": "/images/heroes/yeonhee.png",
+                    "image": "/images/heroes/Yeonhee.png",
                        "note":"프리셋2"
                   },
                   {
@@ -2280,7 +2280,7 @@
                   },
                   {
                     "name": "연희",
-                    "image": "/images/heroes/yeonhee.png",
+                    "image": "/images/heroes/Yeonhee.png",
                        "preset":"프리셋2(내실)"
                   },
                   {
@@ -2469,7 +2469,7 @@
                   },
                   {
                     "name": "연희",
-                    "image": "/images/heroes/yeonhee.png",
+                    "image": "/images/heroes/Yeonhee.png",
                     "note": "약공세팅이면 좋음"
                   },
                   {
@@ -2782,7 +2782,7 @@
           },
           {
             "name": "연희",
-            "image": "/images/heroes/yeonhee.png"
+            "image": "/images/heroes/Yeonhee.png"
           },
           {
             "name": "쥬리",
@@ -2840,7 +2840,7 @@
           },
           {
             "name": "연희",
-            "image": "/images/heroes/yeonhee.png"
+            "image": "/images/heroes/Yeonhee.png"
           },
           {
             "name": "쥬리",
@@ -2900,7 +2900,7 @@
           },
           {
             "name": "연희",
-            "image": "/images/heroes/yeonhee.png"
+            "image": "/images/heroes/Yeonhee.png"
           },
           {
             "name": "바네사",
@@ -3115,7 +3115,7 @@
           },
           {
             "name": "연희",
-            "image": "/images/heroes/yeonhee.png"
+            "image": "/images/heroes/Yeonhee.png"
           },
           {
             "name": "니아",
@@ -3196,7 +3196,7 @@
           },
           {
             "name": "연희",
-            "image": "/images/heroes/yeonhee.png"
+            "image": "/images/heroes/Yeonhee.png"
           },
           {
             "name": "바네사",
@@ -3435,7 +3435,7 @@
                   },
                   {
                     "name": "연희",
-                    "image": "/images/heroes/yeonhee.png",
+                    "image": "/images/heroes/Yeonhee.png",
                        "note":"약공세팅이면 좋음"
                   },
                   {
@@ -3607,7 +3607,7 @@
                   },
                   {
                     "name": "연희",
-                    "image": "/images/heroes/yeonhee.png"
+                    "image": "/images/heroes/Yeonhee.png"
                   },
                   {
                     "name": "바네사",
