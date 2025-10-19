@@ -433,7 +433,7 @@
                 "preset": "프리셋2(속공)"
               }
             ],
-             "pet": ["yeonji.png","chri.png"],
+             "pet": ["Yeonji.png","chri.png"],
             "skillOrders": {
               "속공덱": [
                 "vanessa1.png",
@@ -465,7 +465,7 @@
                 "preset": "프리셋3(극딜)"
               }
             ],
-             "pet": "yeonji.png",
+             "pet": "Yeonji.png",
             "skillOrders": {
               "내실덱": [
                 "vanessa1.png",
@@ -502,12 +502,12 @@
                 
               }
             ],
-             "pet": ["chri.png","yeonji.png"],
+             "pet": ["chri.png","Yeonji.png"],
             "skillOrders": {
               
               "속공덱": [
                 
-                "Melkir1.png",
+                "melkir1.png",
                 "rin2.png",
                 "rin1.png"
                 
@@ -536,20 +536,20 @@
                 "note": "멜키르 대체가능/권능"
               }
             ],
-                         "pet": ["yeonji.png"],
+                         "pet": ["Yeonji.png"],
             "skillOrders": {
               
               "속공덱": [
                 
                 "rin2.png",
-                "Yushin1.png",
+                "yushin1.png",
                 "silvesta1.png"
                 
               ],
               "내실덱": [
                 
               
-                "Yushin1.png",
+                "yushin1.png",
                   "rin2.png",
                 "silvesta1.png"
                 
@@ -580,7 +580,7 @@
             
               }
             ],
-                         "pet": ["chri.png","yeonji.png"],
+                         "pet": ["chri.png","Yeonji.png"],
             "skillOrders": {
               "공통": [
                 "vanessa1.png",
@@ -615,7 +615,7 @@
             
               }
             ],
-                         "pet": ["chri.png","yeonji.png"],
+                         "pet": ["chri.png","Yeonji.png"],
             "skillOrders": {
               "공통": [
                 "vanessa1.png",
@@ -652,7 +652,7 @@
               "preset": "프리셋2(속공)"
               }
             ],
-              "pet": ["yeonji.png","rechel.png"],
+              "pet": ["Yeonji.png","rechel.png"],
             "skillOrders": {
               "공통": [
                 "rin2.png",
