@@ -2229,7 +2229,7 @@
         "defenseVariants": [
           
           {
-            "defenseSkills": ["rin2.png","Melkir1.png","yushin1.png"],
+            "defenseSkills": ["rin2.png","melkir1.png","yushin1.png"],
             "counters": [
               {
                 "recommendation": 3,
@@ -2457,7 +2457,7 @@
         ],
         "defenseVariants": [
           {
-            "defenseSkills": ["rin2.png","juri2.png","Melkir2.png"],
+            "defenseSkills": ["rin2.png","juri2.png","melkir2.png"],
             "counters": [
               
               {"recommendation": 2,
@@ -3392,7 +3392,7 @@
         ],
       "defenseVariants": [
           {
-            "defenseSkills": ["rin2.png","Melkir2.png","vanessa1.png"],
+            "defenseSkills": ["rin2.png","melkir2.png","vanessa1.png"],
             "counters": [
               {
                 "team": [
@@ -3715,7 +3715,7 @@
             ]
           },
           {
-            "defenseSkills": ["vanessa1.png","Melkir2.png","rin2.png"],
+            "defenseSkills": ["vanessa1.png","melkir2.png","rin2.png"],
             "counters": [
               {
                 "team": [
@@ -3920,6 +3920,88 @@
           {
             "defenseSkills": ["pie1.png","colt1.png","colt2.png"],
             "counters": [
+               {
+                "recommendation": 3,
+                "team": [
+                  
+                  {
+                    "name": "카구라",
+                    "image": "/images/heroes/cagura.png",
+                    "preset":"프리셋2(속공)",
+                       "note":""
+                   
+                  },
+                  {
+                    "name": "카일",
+                    "image": "/images/heroes/kyle.png",
+                   "preset":"프리셋1(속공)",
+                    "note":"부활"
+                   
+                  },
+                  {
+                    "name": "파이",
+                    "image": "/images/heroes/pie.png",
+                     "preset":"프리셋1(속공)",
+                     "note":"권능"
+                  
+                  }
+                ],
+           
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "cagura1.png",
+                      "kyle1.png",
+                      "kyle2.png"
+                      
+                      
+                     
+                    ]
+                  }
+                ]
+              },
+               {
+                "recommendation": 3,
+                "team": [
+                  
+                  {
+                    "name": "아멜리아",
+                    "image": "/images/heroes/amelia.png",
+                    "preset":"길드전",
+                       "note":"6초이상"
+                   
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                   "preset":"프리셋1(속공)",
+                    "note":"권능또는 불사"
+                   
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                     "preset":"프리셋2(속공)",
+                     "note":"유신도 될거임"
+                  
+                  }
+                ],
+           
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "amelia2.png",
+                      "Yeonhee2.png",
+                      "Yeonhee1.png"
+                      
+                      
+                     
+                    ]
+                  }
+                ]
+              },
                {
                 "recommendation": 3,
                 "team": [
