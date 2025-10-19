@@ -511,6 +511,168 @@
       },
       {
         "id": "team1",
+        "label": "아멜리아 공덱",
+        "defenseTeam": [
+          {
+            "name": "실베스타",
+            "image": "/images/heroes/silvesta.png"
+          },
+          {
+            "name": "오를리",
+            "image": "/images/heroes/orly.png"
+          },
+          {
+            "name": "아멜리아",
+            "image": "/images/heroes/amelia.png"
+          }
+        ],
+        "defenseNotes": [
+          "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+        ],
+        "defenseVariants": [
+          {
+            "defenseSkills": [
+              "amelia1.png",
+              "orly2.png",
+              "silvesta2.png"
+            ],
+            "counters": [
+               {
+                "recommendation": 2,
+                  "pet": ["ru.png", "pike.png"],
+                "team": [
+                  {
+                    "name": "첸슬러",
+                    "image": "/images/heroes/chancellor.png",
+                    "preset":"프리셋1(범용)"
+                   
+                
+                  },
+                  {
+                    "name": "카르마",
+                    "image": "/images/heroes/carma.png",
+                     "preset":"프리셋1(범용)",
+                     "note":"부활반지"
+                   
+                   
+                  },
+                  {
+                    "name": "루디",
+                    "image": "/images/heroes/rudy.png",
+                     "preset":"프리셋2"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"상대 권능 아닐때",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "rudy2.png",
+                      "chancellor2.png",
+                      "chancellor1.png"
+                    ]
+                  }
+                ]
+              }
+              
+               
+               
+            ]
+          },
+          {
+            "defenseSkills": [
+              "amelia2.png",
+              "orly2.png",
+              "silvesta2.png"
+            ],
+            "counters": [
+                 {
+                  "recommendation": 2,
+                "team": [
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋2(속공)"
+                   
+                
+                  },
+                 
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                   "preset":"프리셋1(속공)"
+                 
+                     
+                  },
+                   {
+                    "name": "린",
+                    "image": "/images/heroes/rin.png",
+                       "preset":"프리셋1(속공)"
+                   
+                   
+                  }
+                ],
+                "note":"상대 아멜 약공이면 바네사 쿨증 먼저",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "rin2.png",
+                      "vanessa1.png",
+                      "Yeonhee2.png"
+                    ]
+                  }
+                ]
+              }
+               ,
+                 {
+                  "recommendation": 2,
+                "team": [
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋3(극딜)"
+                   
+                
+                  },
+                  {
+                    "name": "오를리",
+                    "image": "/images/heroes/orly.png",
+                       "preset":"프리셋1(내실)"
+                   
+                   
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                   "preset":"프리셋2(내실)"
+                 
+                     
+                  }
+                  
+                ],
+                "note":"상대 아멜 약공이면 바네사 쿨증 먼저",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "orly2.png",
+                      "vanessa1.png",
+                      "Yeonhee2.png"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+          
+        ]
+      },
+      {
+        "id": "team1",
         "label": "태오 공덱",
         "defenseTeam": [
           {
