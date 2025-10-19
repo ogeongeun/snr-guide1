@@ -211,7 +211,7 @@
             "id": 1,
             "teamName": "1팀(빔초빔)",
             "heroes": [
-              { "name": "미호", "image": "miho.png", "preset": "프리셋1(강림)/부활,권능" },
+              { "name": "미호", "image": "miho.png", "preset": "프리셋1(강림)","note":"부활,권능" },
               { "name": "아리엘", "image": "ariel.png", "preset": "프리셋2(파괴신)" },
               { "name": "파스칼", "image": "pascal.png", "preset": "프리셋1(범용)","note":"뒤배치(6초)/권능반지" },
               { "name": "비스킷", "image": "bisket.png", "preset": "프리셋1(탱)" },

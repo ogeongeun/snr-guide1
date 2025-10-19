@@ -7,48 +7,23 @@
           "teamId": 1,
           "name": "파이 공덱",
           "heroes": [
-            { "name": "파이", "image": "pie.png"},
-            { "name": "아일린", "image": "eileene.png" },
-            { "name": "테오", "image": "teo.png" },
-            { "name": "콜트", "image": "colt.png","note":"에이스 대체" },
-            { "name": "델론즈", "image": "dellons.png" }
+            { "name": "파이", "image": "pie.png","preset":"프리셋1(속공)"},
+            { "name": "카구라", "image": "cagura.png","preset":"프리셋2(속공)" },
+              { "name": "카일", "image": "kyle.png","preset":"프리셋1(속공)" },
+            { "name": "콜트", "image": "colt.png","preset":"","note":"에이스 대체" },
+           { "name": "태오", "image": "teo.png","preset":"프리셋2(속공)" }
           ],
         "skillOrders": [
   {
     "title": "보편적",
-    "sequence": ["pie1.png", "colt1.png", "colt2.png"]
-  },
-  {
-    "title": "방덱 저격",
-    "sequence": ["pie1.png", "teo2.png", "colt2.png"]
+    "sequence": ["cagura2.png", "pie1.png", "kyle2.png"]
   }
+  
 ],
 "note":"스킬순서는 승률 더 잘나온느걸로"
           
-        },
-        {
-          "teamId": 2,
-          "name": "테오공덱(파이x)",
-          "heroes": [
-            { "name": "델론즈", "image": "dellons.png" },
-            { "name": "아일린", "image": "eileene.png"},
-            { "name": "테오", "image": "teo.png" },
-            { "name": "에이스", "image": "ace.png" },
-            { "name": "콜트", "image": "colt.png","note":"스파이크 대체" }
-          ],
-          "skillOrders": [
-            
-  {
-    "title": "콜트o",
-    "sequence": ["colt1.png", "colt2.png", "teo2.png"]
-  },
-  {
-    "title": "콜트x",
-    "sequence": ["eileene2.png", "teo2.png", "teo1.png"]
-  }
-],
-"note":"스킬순서는 승률 더 잘나온느걸로"
         }
+        
        
       ]
     },
@@ -57,41 +32,37 @@
       "teams": [
         {
           "teamId": 1,
-          "name": "린 마덱",
+          "name": "플라튼 마덱",
           "heroes": [
-             { "name": "쥬리", "image": "juri.png","note":"유신 대체가능"},
-             { "name": "바네사", "image": "vanessa.png"},
-            { "name": "연희", "image": "Yeonhee.png"},
-            { "name": "린", "image": "rin.png" },
-            { "name": "멜키르", "image": "melkir.png" }
+             { "name": "쥬리", "image": "juri.png","preset":"프리셋1(속공)"},
+           
+            { "name": "아멜리아", "image": "amelia.png","preset":""},
+              { "name": "플라튼", "image": "platon.png","preset":"프리셋2(속공)"},
+            { "name": "린", "image": "rin.png","preset":"프리셋1(속공)" },
+            { "name": "멜키르", "image": "melkir.png","preset":"프리셋2(속공)" }
           ],
           "skillOrders": [
   {
     "title": "보편적",
-    "sequence": ["rin2.png", "melkir1.png", "Yeonhee2.png"]
-  },
-  {
-    "title": "부활 저격",
-    "sequence": ["rin2.png", "juri2.png", "Yeonhee2.png"]
-  },
-   {
-    "title": "방덱 저격",
-    "sequence": ["rin2.png", "melkir2.png", "Yeonhee2.png"]
+    "sequence": ["melkir1.png", "melkir2.png", "amelia2.png"]
   }
+ 
 ],
 "note":"스킬순서는 승률 더 잘나온느걸로"
         },
         {
           "teamId": 2,
-          "name": "로지 마덱",
+          "name": "오를리 마덱",
           "heroes": [
-            { "name": "멜키르", "image": "melkir.png" },
-            { "name": "로지", "image": "lozy.png" },
-            { "name": "연희", "image": "Yeonhee.png" },
-             { "name": "니아", "image": "nia.png" },
-              { "name": "린", "image": "rin.png","note":"바네사,유신 대체가능" }
+            { "name": "유신", "image": "Yushin.png","preset":"" },
+            { "name": "바네사", "image": "vanessa.png" ,"preset":"프리셋2(속공)"},
+               { "name": "오를리", "image": "orly.png","preset":"프리셋2(속공)" },
+            { "name": "연희", "image": "Yeonhee.png","preset":"프리셋2(내실)" },
+          
+              { "name": "실베스타", "image": "silvesta.png","preset":"프리셋1(내실)" }
           ],
-          "skillOrder": ["nia2.png", "melkir2.png", "Yeonhee2.png"]
+          "skillOrder": ["Yeonhee2.png", "orly2.png", "silvesta2.png"],
+          "note":"오를리 치확20%만큼 연희,실베스타 속공 챙겨주기"
         }
         
       ]
@@ -103,48 +74,23 @@
           "teamId": 1,
           "name": "카르마 방덱",
           "heroes": [
-             { "name": "엘리스", "image": "elise.png"},
-             { "name": "루디", "image": "rudy.png"},
-            { "name": "카르마", "image": "carma.png","note":"6초 핵심"},
-            { "name": "제이브", "image": "jave.png" },
-            { "name": "헬레니아", "image": "helenia.png","note":"로지 대체가능" }
+             { "name": "엘리스", "image": "elise.png","preset":""},
+             { "name": "루디", "image": "rudy.png","preset":"프리셋1(범용)"},
+            { "name": "카르마", "image": "carma.png","preset":"프리셋1(범용)"},
+            { "name": "제이브", "image": "jave.png" ,"preset":"프리셋1(범용)"},
+            { "name": "리나", "image": "lina.png","preset":"" }
           ],
           "skillOrders": [
   {
     "title": "보편적1",
-    "sequence": ["rudy2.png", "helenia1.png", "carma2.png"]
-  },
-  {
-    "title": "보편적2",
-    "sequence": ["rudy2.png", "jave1.png", "carma2.png"]
+    "sequence": ["rudy2.png", "carma2.png", "elise1.png"]
   }
-   
-],
-"note":"스킬순서는 승률 더 잘나온느걸로"
-        },
-        {
-          "teamId": 2,
-          "name": "카르마 없거나 약할때",
-          "heroes": [
-            { "name": "엘리스", "image": "elise.png" },
-            { "name": "루디", "image": "rudy.png" },
-            { "name": "제이브", "image": "jave.png" },
-             { "name": "룩", "image": "look.png" },
-              { "name": "첸슬러", "image": "chancellor.png","note":"스파이크 로지 대체가능" }
-          ],
-          "skillOrders": [
-  {
-    "title": "보편적1",
-    "sequence": ["rudy2.png", "look2.png", "jave1.png"]
-  },
-  {
-    "title": "보편적2",
-    "sequence": ["rudy2.png", "chancellor2.png", "jave1.png"]
-  }
+ 
    
 ],
 "note":"스킬순서는 승률 더 잘나온느걸로"
         }
+        
         
       ]
     },
@@ -155,56 +101,23 @@
           "teamId": 1,
           "name": "즉사 방덱",
           "heroes": [
-             { "name": "로지", "image": "lozy.png","note":"제이브 대체가능"},
-             { "name": "루디", "image": "rudy.png","note":"6초 핵심"},
-            { "name": "크리스", "image": "chris.png"},
-            { "name": "녹스", "image": "nox.png" },
-            { "name": "엘리스", "image": "elise.png" }
+             { "name": "로지", "image": "lozy.png","preset":""},
+             { "name": "크리스", "image": "chris.png","preset":""},
+            { "name": "니아", "image": "nia.png","preset":""},
+            { "name": "녹스", "image": "nox.png","preset":"" },
+            { "name": "카린", "image": "carin.png","preset":"","note":"아킬라 대체가능" }
           ],
           "skillOrders": [
   {
     "title": "보편적1",
-    "sequence": ["rudy2.png", "chris2.png", "nox2.png"]
-  },
-  {
-    "title": "로지쓰는덱",
-    "sequence": ["rudy2.png", "lozy1.png", "chris2.png"]
+    "sequence": ["nia2.png", "chris2.png", "lozy1.png"]
   }
+ 
    
 ],
-"note":"스킬순서는 승률 더 잘나온느걸로"
-        },
-        {
-          "teamId": 2,
-          "name": "가성비 즉방덱",
-          "heroes": [
-             { "name": "카린", "image": "carin.png"},
-             { "name": "에반", "image": "evan.png","note":"룩으로 대체가능"},
-            { "name": "크리스", "image": "chris.png"},
-            { "name": "녹스", "image": "nox.png" },
-            { "name": "엘리스", "image": "elise.png" ,"note":"유이,헬레니아 대체가능"}
-          ],
-          "skillOrders": [
-  {
-    "title": "보편적1",
-    "sequence": ["nox1.png", "evan2.png", "chris2.png"]
-  },
-  {
-    "title": "보편적2",
-    "sequence": ["nox1.png", "chris2.png", "nox2.png"]
-  },
-  {
-    "title": "보편적3",
-    "sequence": ["nox1.png", "helenia1.png", "chris2.png"]
-  },
-  {
-    "title": "보편적4",
-    "sequence": ["evan2.png", "helenia1.png", "chris2.png"]
-  }
-   
-],
-"note":"스킬순서는 승률 더 잘나온느걸로"
+"note":"다 속공 짬통으로 주기"
         }
+        
         
       ]
     }
