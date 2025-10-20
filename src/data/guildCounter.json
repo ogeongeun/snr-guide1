@@ -152,24 +152,25 @@
                   "pet": ["Yeonji.png"],
                 "team": [
                   {
-                    "name": "쥬리",
-                    "image": "/images/heroes/juri.png",
-                    "preset":"프리셋3(길드전)"
-                   
+                    "name": "룩",
+                    "image": "/images/heroes/look.png",
+                    "note":"부활반지"
+                    
                 
                   },
                   {
-                    "name": "연희",
-                    "image": "/images/heroes/Yeonhee.png",
-                    "preset":"프리셋1(내실)",
-                    "note":"4권능이상"
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                    "preset":"프리셋3(카일상대)",
+                    "note":"부활"
                    
                    
                   },
                   {
-                    "name": "데이지",
-                    "image": "/images/heroes/dage.png",
-                    "note":"체력 제일 낮게"
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "note":"불사 반지"
+              
                  
                      
                   }
