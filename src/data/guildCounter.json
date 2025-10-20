@@ -149,7 +149,7 @@
               
                {
                   "recommendation": 3,  
-                  "pet": ["Yeonji.png"],
+                  "pet": ["ru.png"],
                 "team": [
                   {
                     "name": "룩",
@@ -182,7 +182,7 @@
                     "skills": [
                       "colt1.png",
                       "colt2.png",
-                      "loock2.png"
+                      "look2.png"
                     ]
                   }
                 ]
