@@ -24,10 +24,10 @@
             "name": "카일 덱",
             "heroes": [
                {
-                "name": "태오",
-                "image": "teo.png",
-                "preset":"프리셋2(속공)",
-                "note": "파이 대체가능/권능"
+                "name": "파이",
+                "image": "pie.png",
+                "preset":"프리셋1(속공)",
+                "note": "태오대체가능/권능"
               },
               {
                 "name": "카일",
@@ -216,10 +216,10 @@
             "name": "카일 덱",
             "heroes": [
                {
-                "name": "태오",
-                "image": "teo.png",
-                "preset":"프리셋2(속공)",
-                "note": "파이 대체가능/권능"
+                "name": "파이",
+                "image": "pie.png",
+                "preset":"프리셋1(속공)",
+                "note": "태오 대체가능/권능"
               },
               {
                 "name": "카일",
