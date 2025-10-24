@@ -32,7 +32,7 @@
             ],
             "counters": [
                {
-                "recommendation": 3,
+                "recommendation": 2,
                   "pet": ["pike.png", "ru.png"],
                 "team": [
                   {
@@ -70,9 +70,91 @@
                   }
                 ]
               },
+               {
+                "recommendation": 3,
+                  "pet": ["ru.png"],
+                "team": [
+                  {
+                    "name": "룩",
+                    "image": "/images/heroes/look.png",
+                    "preset":"프리셋1(범용)"
+                   
+                
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                    "preset":"프리셋1(탱)",
+                    "note":"막기70%"
+                   
+                   
+                  },
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"룩 패시브 제외 막기100은 맞춰야함",
+                "skillOrders": [
+                  {
+                    "label": "속공 질때",
+                    "skills": [
+                      "colt1.png",
+                      "colt2.png",
+                      "look2.png"
+                    ]
+                  }
+                ]
+              },
+              {
+                "recommendation": 3,
+                  "pet": ["ru.png"],
+                "team": [
+                  {
+                    "name": "첸슬러",
+                    "image": "/images/heroes/chancellor.png",
+                    "preset":"프리셋3(카일대응)",
+                    "note":"부활반지"
+                   
+                
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                    "preset":"프리셋1(탱)",
+                    "note":"막기70%"
+                   
+                   
+                  },
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"룩 패시브 제외 막기100은 맞춰야함",
+                "skillOrders": [
+                  {
+                    "label": "속공 질때",
+                    "skills": [
+                      "chancellor2.png",
+                      "colt1.png",
+                      "colt2.png"
+                    ]
+                  }
+                ]
+              },
+              
               
                  {
-                  "recommendation": 3,  "pet": ["irin.png"],
+                  "recommendation": 1,  "pet": ["irin.png"],
                 "team": [
                   {
                     "name": "쥬리",
@@ -146,6 +228,174 @@
               "kyle2.png"
             ],
             "counters": [
+              {
+                "recommendation": 3,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "쥬리",
+                    "image": "/images/heroes/juri.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"cc반지"
+                   
+                
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋2(속공)",
+                    "note":"바네사 뒤배치(중요)/권능필수"
+                   
+                   
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"바네사 혼자 뒤배치 매우중요(카일 강자 바네사로 빼는법)/바네사 속공 마지막이면 좋음",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "vanessa1.png",
+                      "vanessa2.png",
+                      "juri2.png"
+                    ]
+                  }
+                ]
+              },
+              
+               {
+                "recommendation": 3,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "린",
+                    "image": "/images/heroes/rin.png",
+                    "preset":"프리셋1(속공)"
+                   
+                   
+                
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋2(속공)",
+                    "note":"바네사 뒤배치(중요)/권능필수"
+                   
+                   
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"바네사 혼자 뒤배치 매우중요(카일 강자 바네사로 빼는법)/바네사 속공 마지막이면 좋음",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "rin2.png",
+                      "Yeonhee2.png",
+                      "vanessa1.png"
+                    ]
+                  }
+                ]
+              }
+              ,
+               {
+                "recommendation": 3,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "실베스타",
+                    "image": "/images/heroes/silvesta.png",
+                    "preset":"프리셋2(속공)"
+                   
+                   
+                
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋2(속공)",
+                    "note":"바네사 뒤배치(중요)/권능필수"
+                   
+                   
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"바네사 혼자 뒤배치 매우중요(카일 강자 바네사로 빼는법)/바네사 속공 마지막이면 좋음",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "vanessa1.png",
+                      "Yeonhee2.png",
+                      "silvesta1.png"
+                    ]
+                  }
+                ]
+              },  {
+                "recommendation": 3,
+                  "pet": ["ru.png"],
+                "team": [
+                  {
+                    "name": "첸슬러",
+                    "image": "/images/heroes/chancellor.png",
+                    "preset":"프리셋3(카일대응)",
+                    "note":"부활반지"
+                   
+                
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                    "preset":"프리셋1(탱)",
+                    "note":"막기70%"
+                   
+                   
+                  },
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"룩 패시브 제외 막기100은 맞춰야함",
+                "skillOrders": [
+                  {
+                    "label": "속공 질때",
+                    "skills": [
+                      "chancellor2.png",
+                      "colt1.png",
+                      "colt2.png"
+                    ]
+                  }
+                ]
+              },
               
                {
                   "recommendation": 3,  
@@ -188,6 +438,252 @@
                 ]
               }
               
+               
+            ]
+            
+          }
+          
+          
+        ]
+      },
+       {
+        "id": "team1",
+        "label": "카일 공덱",
+        "defenseTeam": [
+          {
+            "name": "아멜리아",
+            "image": "/images/heroes/amelia.png"
+          
+          },
+          {
+            "name": "카일",
+            "image": "/images/heroes/kyle.png"
+          },
+          {
+            "name": "카구라",
+            "image": "/images/heroes/cagura.png"
+          }
+        ],
+        "defenseNotes": [
+          "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+        ],
+        "defenseVariants": [
+          {
+            "defenseSkills": [
+              "amelia1.png",
+              "kyle1.png",
+              "kyle2.png"
+            ],
+            "counters": [  {
+                "recommendation": 3,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                 
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋2(속공)",
+                    "note":"권능"
+                   
+                   
+                  },
+                   {
+                    "name": "실베스타",
+                    "image": "/images/heroes/silvesta.png",
+                    "preset":"프리셋2(속공)",
+                    "note":"부활이나 불사/뒤배치"
+                   
+                
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"아멜이나 카구라 둘중 하나라도 권능없을떄/실베 아래로 둘중 한명은 죽일 딜 나와야함",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "silvesta1.png",
+                      "vanessa1.png",
+                      "Yeonhee2.png"
+                    ]
+                  }
+                ]
+              }
+              
+              
+               
+            ]
+            
+          }
+          
+          
+        ]
+      },
+       {
+        "id": "team1",
+        "label": "카일 공덱",
+        "defenseTeam": [
+          {
+            "name": "파이",
+            "image": "/images/heroes/pie.png"
+          
+          },
+          {
+            "name": "카일",
+            "image": "/images/heroes/kyle.png"
+          },
+          {
+            "name": "카구라",
+            "image": "/images/heroes/cagura.png"
+          }
+        ],
+        "defenseNotes": [
+          "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+        ],
+        "defenseVariants": [
+          {
+            "defenseSkills": [
+              "cagura2.png",
+              "kyle1.png",
+              "kyle2.png"
+            ],
+            "counters": [  {
+                "recommendation": 3,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "쥬리",
+                    "image": "/images/heroes/juri.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"cc반지"
+                   
+                
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋2(속공)",
+                    "note":"바네사 뒤배치(중요)/권능필수"
+                   
+                   
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"바네사 혼자 뒤배치 매우중요(카일 강자 바네사로 빼는법)/바네사 속공 마지막이면 좋음",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "vanessa1.png",
+                      "vanessa2.png",
+                      "juri2.png"
+                    ]
+                  }
+                ]
+              },
+              
+               {
+                "recommendation": 3,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "린",
+                    "image": "/images/heroes/rin.png",
+                    "preset":"프리셋1(속공)"
+                   
+                   
+                
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋2(속공)",
+                    "note":"바네사 뒤배치(중요)/권능필수"
+                   
+                   
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"바네사 혼자 뒤배치 매우중요(카일 강자 바네사로 빼는법)/바네사 속공 마지막이면 좋음",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "rin2.png",
+                      "Yeonhee2.png",
+                      "vanessa1.png"
+                    ]
+                  }
+                ]
+              }
+              
+              ,
+               {
+                "recommendation": 3,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "실베스타",
+                    "image": "/images/heroes/silvesta.png",
+                    "preset":"프리셋2(속공)"
+                   
+                   
+                
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋2(속공)",
+                    "note":"바네사 뒤배치(중요)/권능필수"
+                   
+                   
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"바네사 혼자 뒤배치 매우중요(카일 강자 바네사로 빼는법)/바네사 속공 마지막이면 좋음",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "vanessa1.png",
+                      "Yeonhee2.png",
+                      "silvesta1.png"
+                    ]
+                  }
+                ]
+              }
                
             ]
             
