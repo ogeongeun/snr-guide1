@@ -80,16 +80,24 @@ export default function GuildDefenseBuildPage() {
     </div>
   );
 
-  // 🔹 스킬 순서 표시
+  // 🔹 스킬 순서 표시 (속공덱1, 속공덱2 등 자동 처리)
   const renderSkillOrdersBlock = (team) => {
     const orders = team.skillOrders || EMPTY_OBJ;
-    const hasFast = Array.isArray(orders['속공덱']) && orders['속공덱'].length > 0;
-    const hasStable = Array.isArray(orders['내실덱']) && orders['내실덱'].length > 0;
-    const hasCommon = Array.isArray(orders['공통']) && orders['공통'].length > 0;
     const threshold = typeof orders.threshold === 'number' ? orders.threshold : null;
 
+    const keys = Object.keys(orders).filter(
+      (key) =>
+        Array.isArray(orders[key]) &&
+        key !== 'threshold' &&
+        orders[key].length > 0
+    );
+
+    if (keys.length === 0) {
+      return <p className="text-[12px] text-gray-500 mt-3">등록된 스킬 순서가 없습니다.</p>;
+    }
+
     const block = (label, list, tone = 'slate') => (
-      <div>
+      <div key={label} className="mb-3">
         <div className="flex items-center gap-2 mb-1">
           <span className="text-xs font-semibold text-gray-700">스킬 순서</span>
           {label && (
@@ -99,7 +107,7 @@ export default function GuildDefenseBuildPage() {
               {label}
             </span>
           )}
-          {threshold != null && label === '속공덱' && (
+          {threshold != null && label.startsWith('속공덱') && (
             <span className="px-2 py-0.5 rounded-full text-[11px] border bg-amber-50 text-amber-700">
               참고 임계값: 속공 {threshold}+
             </span>
@@ -108,9 +116,9 @@ export default function GuildDefenseBuildPage() {
         <div className="flex flex-wrap gap-2">
           {list.map((img, idx) => (
             <img
-              key={`${label || 'common'}-${img}-${idx}`}
+              key={`${label}-${idx}`}
               src={imgPath(img, '/images/skills')}
-              alt={`${label || 'Skill'} ${idx + 1}`}
+              alt={`${label} ${idx + 1}`}
               className="w-10 h-10 border rounded"
               loading="lazy"
             />
@@ -119,36 +127,17 @@ export default function GuildDefenseBuildPage() {
       </div>
     );
 
-    if (hasFast || hasStable || hasCommon) {
-      return (
-        <div className="mt-3 space-y-4">
-          {hasFast && block('속공덱', orders['속공덱'], 'indigo')}
-          {hasStable && block('내실덱', orders['내실덱'], 'slate')}
-          {!hasFast && !hasStable && hasCommon && block(null, orders['공통'])}
-        </div>
-      );
-    }
-
-    if (Array.isArray(team.skillOrder) && team.skillOrder.length) {
-      return (
-        <div className="mt-3">
-          <p className="text-xs font-semibold text-gray-600 mb-1">스킬 순서</p>
-          <div className="flex flex-wrap gap-2">
-            {team.skillOrder.map((img, idx) => (
-              <img
-                key={`legacy-${img}-${idx}`}
-                src={imgPath(img, '/images/skills')}
-                alt={`Skill ${idx + 1}`}
-                className="w-10 h-10 border rounded"
-                loading="lazy"
-              />
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    return <p className="text-[12px] text-gray-500 mt-3">등록된 스킬 순서가 없습니다.</p>;
+    return (
+      <div className="mt-3 space-y-4">
+        {keys.map((key) => {
+          const tone =
+            key.startsWith('속공덱') ? 'indigo' :
+            key.startsWith('내실덱') ? 'slate' :
+            key === '공통' ? 'gray' : 'blue';
+          return block(key, orders[key], tone);
+        })}
+      </div>
+    );
   };
 
   return (
@@ -158,7 +147,7 @@ export default function GuildDefenseBuildPage() {
 
         {/* 설명 */}
         <div className="bg-red-50 border border-red-300 rounded-lg p-4 text-sm text-red-800 mb-6">
-          <p className="font-semibold mb-1">속공덱 내실덱 개념</p>
+          <p className="font-semibold mb-1">속공덱 / 내실덱 개념</p>
           <ul className="list-disc list-inside leading-relaxed">
             <li>속공덱: 속공220↑ / 메인딜러 속공 / 앞라인 효적·속공</li>
             <li>내실덱: 공덱-약공80↑ / 앞라인 조율자(효적60%, 효저100%)</li>

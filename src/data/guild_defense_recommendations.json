@@ -38,10 +38,10 @@
               },
              
               {
-                "name": "카구라",
-                "image": "cagura.png",
-                "preset":"2스킬예약시",
-                  "note":"권능또는 즉사"
+                "name": "아멜리아",
+                "image": "amelia.png",
+                "preset":"길드전",
+                  "note":"즉반또는cc반지(6초아니여도될듯)"
               
               }
             ],
@@ -49,6 +49,55 @@
             "skillOrders": {
               
               "속공덱": [
+                "amelia1.png",
+                "kyle1.png",
+
+              
+
+                "kyle2.png"
+              ]
+             
+            },
+            "note": "op티어/속공230"
+          },
+           {
+            "teamId": 0,
+            "name": "카일 덱",
+            "heroes": [
+               {
+                "name": "카구라",
+                "image": "cagura.png",
+                "preset":"프리셋1(속공)",
+                "note": "권능"
+              },
+              {
+                "name": "카일",
+                "image": "kyle.png",
+                "preset":"프리셋1(속공)",
+                 "note":"부활"
+              
+              },
+             
+              {
+                "name": "아멜리아",
+                "image": "amelia.png",
+                "preset":"길드전",
+                  "note":"즉반또는cc반지(6초아니여도될듯)"
+              
+              }
+            ],
+                         "pet": ["irin.png","rechel.png"],
+            "skillOrders": {
+              
+              "속공덱1": [
+                "amelia1.png",
+                "kyle1.png",
+
+              
+
+                "kyle2.png"
+              ],
+               "속공덱2": [
                 "cagura2.png",
                 "kyle1.png",
 
@@ -56,8 +105,9 @@
 
                 "kyle2.png"
               ]
+             
             },
-            "note": "op티어/속공220"
+            "note": "op티어/속공230"
           },
           {
             "teamId": 0,
@@ -79,7 +129,7 @@
                 "name": "파이",
                 "image": "pie.png",
                "preset":"프리셋1(속공)",
-                "note":"권능/레이첼 대체가능"
+                "note":"권능/속공1등"
               
               }
             ],
@@ -91,8 +141,44 @@
                 "colt1.png",
                 "colt2.png"
               ]
+             
             },
-            "note": "1티어/속공200"
+            "note": "1티어/파이속공1등 중요/속공200"
+          },
+           {
+            "teamId": 0,
+            "name": "플라튼+콜트 방덱",
+            "heroes": [
+              {
+                "name": "콜트",
+                "image": "colt.png",
+               "preset":"",
+               "note":"불사"
+              },
+              {
+                "name": "플라튼",
+                "image": "platon.png",
+              "preset":"프리셋2(속공)",
+              "note":"앞배치/부활"
+              },
+              {
+                "name": "레이첼",
+                "image": "rachel.png",
+               "preset":"프리셋2(속공)",
+                "note":"권능/속공1등세팅"
+              
+              }
+            ],
+             "pet": ["irin.png","chri.png"],
+            "skillOrders": {
+              
+              "속공덱": [
+                "rachel1.png",
+                "colt1.png",
+                "colt2.png"
+              ]
+            },
+            "note": "1티어/레이첼 속공1등 중요/속공200"
           },
           
           {
@@ -163,46 +249,51 @@
             },
             "note": "1티어/속공200"
           },
-          {
+         {
             "teamId": 1,
-            "name": "아멜리아덱",
+            "name": "테오덱",
             "heroes": [
-            
               {
-                "name": "아멜리아",
-                "image": "amelia.png",
-                "note":"6초이상"
-              },
-              {
-                "name": "실베스타",
-                "image": "silvesta.png",
-              "preset": "프리셋2(속공)",
-               "note":"6초이상"
+                "name": "델론즈",
+                "image": "dellons.png"
                 
+              
 
               },
               {
-                "name": "오를리",
-                "image": "orly.png",
-             "preset": "프리셋2(속공)",
-             "note":"레이첼대체가능"
+                "name": "태오",
+                "image": "teo.png"
+              },
+              {
+                "name": "카구라",
+                "image": "cagura.png"
                 
               }
             ],
-         "pet": ["chri.png","rechel.png"],
+         "pet": "irin.png",
             "skillOrders": {
-              "threshold": 230,
-              "속공덱": [
+              "threshold": 220,
+            
+              "내실덱": [
+                "dellons2.png",
               
-                "amelia2.png",
-                "orly2.png",
-                "silvesta2.png"
+            
+                "teo2.png",
+                    "teo1.png"
+                
+              ],
+              "속공덱": [
+                "cagura2.png",
+              
+            
+                "teo2.png",
+                    "teo1.png"
+                
               ]
               
             },
-          "note": "1.5티어/속공 230이상"
+            "note": "1티어/속공220 미만시 추적자 태오 "
           }
-          
           
           
          
