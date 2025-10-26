@@ -475,7 +475,7 @@
               "kyle2.png"
             ],
             "counters": [  {
-                "recommendation": 3,
+                "recommendation": 2,
                   "pet": ["Yeonji.png"],
                 "team": [
                  
@@ -513,6 +513,94 @@
                       "silvesta1.png",
                       "vanessa1.png",
                       "Yeonhee2.png"
+                    ]
+                  }
+                ]
+              },
+              {
+                "recommendation": 3,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                 
+                 
+                   {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋2(속공)",
+                    "note":"부활이나 불사/뒤배치"
+                   
+                
+                  },
+                   {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋2(속공)",
+                    "note":"뒤배치/카일 강자주시 어그로(권능)"
+                   
+                   
+                  },
+                  {
+                    "name": "유신",
+                    "image": "/images/heroes/Yushin.png",
+                    "preset":"프리셋1(속공)"
+                    
+                 
+                 
+                     
+                  }
+                ],
+                "note":"",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "vanessa1.png",
+                      "Yeonhee2.png",
+                      "Yeonhee1.png"
+                    ]
+                  }
+                ]
+              },
+              {
+                "recommendation": 2,
+                  "pet": ["irin.png"],
+                "team": [
+                 
+                 
+                   {
+                    "name": "카일",
+                    "image": "/images/heroes/kyle.png",
+                    "preset":"프리셋1(속공)",
+                    "note":""
+                   
+                
+                  },
+                   {
+                    "name": "카구라",
+                    "image": "/images/heroes/cagura.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"뒤배치/카일 강자주시 어그로(권능)"
+                   
+                   
+                  },
+                  {
+                    "name": "델론즈",
+                    "image": "/images/heroes/dellons.png",
+                    "preset":"프리셋2(속공)"
+                    
+                 
+                 
+                     
+                  }
+                ],
+                "note":"",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "kyle2.png",
+                      "kyle1.png",
+                      "dellons2.png"
                     ]
                   }
                 ]
