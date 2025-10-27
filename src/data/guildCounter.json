@@ -4918,29 +4918,29 @@
                   }
                 ]
               },
-              {
+               {
                 "recommendation": 3,
                 "team": [
                   
                   {
-                    "name": 콜트",
-                    "image": "/images/heroes/colt.png",
-                  
+                    "name": "아멜리아",
+                    "image": "/images/heroes/amelia.png",
+                    "preset":"6초아니여도됨/선봉장(모공모공받받)",
                        "note":""
                    
                   },
                   {
                     "name": "플라튼",
                     "image": "/images/heroes/platon.png",
-                   "preset":"프리셋1(탱)",
+                   "preset":"프리셋2(탱)",
                     "note":"부활"
                    
                   },
                   {
-                    "name": "아멜리아",
-                    "image": "/images/heroes/amelia.png",
-                     
-                     "note":"6초아니여도됨/선봉장(모공/모공/받 받)"
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+               
+                     "note":"불사"
                   
                   }
                 ],
@@ -4949,50 +4949,9 @@
                   {
                     "label": "속공 질 때",
                     "skills": [
-                      "amelia2.png",
+                      "amelia.png",
                       "colt1.png",
                       "colt2.png"
-                      
-                      
-                     
-                    ]
-                  }
-                ]
-              },
-               {
-                "recommendation": 3,
-                "team": [
-                  
-                  {
-                    "name": "아멜리아",
-                    "image": "/images/heroes/amelia.png",
-                    "preset":"길드전",
-                       "note":"6초이상"
-                   
-                  },
-                  {
-                    "name": "연희",
-                    "image": "/images/heroes/Yeonhee.png",
-                   "preset":"프리셋1(속공)",
-                    "note":"권능또는 불사"
-                   
-                  },
-                  {
-                    "name": "바네사",
-                    "image": "/images/heroes/vanessa.png",
-                     "preset":"프리셋2(속공)",
-                     "note":"유신도 될거임"
-                  
-                  }
-                ],
-           
-                "skillOrders": [
-                  {
-                    "label": "속공 이길 때",
-                    "skills": [
-                      "amelia2.png",
-                      "Yeonhee2.png",
-                      "Yeonhee1.png"
                       
                       
                      
