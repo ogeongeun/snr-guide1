@@ -4918,6 +4918,47 @@
                   }
                 ]
               },
+              {
+                "recommendation": 3,
+                "team": [
+                  
+                  {
+                    "name": 콜트",
+                    "image": "/images/heroes/colt.png",
+                  
+                       "note":""
+                   
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                   "preset":"프리셋1(탱)",
+                    "note":"부활"
+                   
+                  },
+                  {
+                    "name": "아멜리아",
+                    "image": "/images/heroes/amelia.png",
+                     
+                     "note":"6초아니여도됨/선봉장(모공/모공/받 받)"
+                  
+                  }
+                ],
+           
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "amelia2.png",
+                      "colt1.png",
+                      "colt2.png"
+                      
+                      
+                     
+                    ]
+                  }
+                ]
+              },
                {
                 "recommendation": 3,
                 "team": [
