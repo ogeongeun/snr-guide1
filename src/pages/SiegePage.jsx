@@ -148,7 +148,7 @@ export default function SiegePage() {
                       onClick={() => handleShowTextBuild(team.textBuild)}
                       className="px-2 py-1 text-[11px] rounded-md border border-gray-400 text-gray-600 hover:bg-gray-100"
                     >
-                      📖 텍스트로 보기(렝차전용)
+                      📖 텍스트로 보기
                     </button>
                   )}
                 </div>
