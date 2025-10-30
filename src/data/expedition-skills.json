@@ -162,6 +162,45 @@
             ]}
           }
         ]
+      },
+      {
+        "setName": "안전세팅",
+        "teams": [
+          {
+            "teamName": "1팀",
+         "skills": {
+               "sequence": [
+             "bisket1.png",
+              "rachel2.png",
+              "sein1.png",
+             
+              "zick2.png",
+              "yui1.png",
+              "sein1.png",
+              "zick1.png",
+              "rachel2.png",
+              "sein1.png",
+              "zick2.png"
+      
+            ]}
+          },
+          {
+            "teamName": "2팀",
+      "skills": {
+               "sequence": [
+              "jupi1.png",
+              "lina2.png",
+              "jupi2.png",
+              "jupi1.png",
+              "lina1.png",
+              "ace2.png",
+              "jupi2.png",
+              "dellons2.png",
+              "jupi1.png",
+              "pie2.png"
+            ]}
+          }
+        ]
       }
     ],
       "bosss": [{
