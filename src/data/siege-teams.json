@@ -522,6 +522,43 @@
       }
     ],
     "죽음의 성 (목요일)": [
+       {
+        "team": [
+          {
+            "name": "비스킷",
+            "image": "bisket.png",
+             "note":"2초이상"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png",
+            "preset":"프리셋4(목요일)"
+           
+          },
+           {
+            "name": "카일",
+            "image": "kyle.png",
+            "preset": "프리셋3(목요일 공성)" 
+           
+          },
+          {
+            "name": "타카",
+            "image": "taka.png",
+           "preset": "프리셋1(목요일 공성)" 
+          
+          },
+          {
+            "name": "진",
+            "image": "jin.png",
+            "note":"카일,타카보다 공500낮춰야함"
+          }
+         
+        ],
+        "tags": [
+       
+        ]
+        
+      },
       {
         "team": [
           {
