@@ -19,6 +19,7 @@ export default function SiegePage() {
   const [selectedDay, setSelectedDay] = useState(dayOrder[0]);
   const [selectedHeroKey, setSelectedHeroKey] = useState(null);
   const [presetTag, setPresetTag] = useState(null);
+  const [openTextBuild, setOpenTextBuild] = useState(null); // ✅ 텍스트 팝업용 상태
 
   // ✅ 영웅 클릭 시 장비 모달 열기
   const handleHeroClick = (hero) => {
@@ -72,15 +73,18 @@ export default function SiegePage() {
     </div>
   );
 
-  // ✅ 텍스트 빌드 alert로 띄우기
-  const showTextBuildAlert = (textBuild) => {
-    if (!textBuild || !textBuild.content) return;
-    const text = [textBuild.title, '', ...textBuild.content].join('\n');
-    alert(text);
+  // ✅ 텍스트 빌드 팝업 열기
+  const handleShowTextBuild = (textBuild) => {
+    setOpenTextBuild(textBuild);
+  };
+
+  // ✅ 팝업 닫기
+  const handleClosePopup = () => {
+    setOpenTextBuild(null);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-8">
+    <div className="min-h-screen bg-gray-50 px-4 py-8 relative">
       <div className="max-w-5xl mx-auto bg-white shadow-md rounded-2xl p-6">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
           🏰 공성전 필수 정보
@@ -141,10 +145,10 @@ export default function SiegePage() {
                   </Link>
                   {team.textBuild && (
                     <button
-                      onClick={() => showTextBuildAlert(team.textBuild)}
+                      onClick={() => handleShowTextBuild(team.textBuild)}
                       className="px-2 py-1 text-[11px] rounded-md border border-gray-400 text-gray-600 hover:bg-gray-100"
                     >
-                      📖 텍스트로 보기
+                      📖 텍스트로 보기(렝차전용)
                     </button>
                   )}
                 </div>
@@ -164,6 +168,28 @@ export default function SiegePage() {
             setPresetTag(null);
           }}
         />
+      )}
+
+      {/* ✅ 커스텀 텍스트 팝업 */}
+      {openTextBuild && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+          <div className="bg-white max-w-lg w-[90%] max-h-[80vh] overflow-y-auto rounded-2xl shadow-2xl p-6 relative animate-fade-in">
+            <h2 className="text-lg font-bold text-purple-700 text-center mb-4">
+              {openTextBuild.title}
+            </h2>
+            <div className="whitespace-pre-line text-sm text-gray-800 leading-relaxed space-y-1">
+              {openTextBuild.content.map((line, idx) => (
+                <p key={idx}>{line}</p>
+              ))}
+            </div>
+            <button
+              onClick={handleClosePopup}
+              className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-lg font-bold"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
