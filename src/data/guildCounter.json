@@ -31,47 +31,9 @@
               "kyle2.png"
             ],
             "counters": [
+             
                {
                 "recommendation": 2,
-                  "pet": ["pike.png", "ru.png"],
-                "team": [
-                  {
-                    "name": "스파이크",
-                    "image": "/images/heroes/spike.png",
-                    "preset":"부활"
-                   
-                
-                  },
-                  {
-                    "name": "플라튼",
-                    "image": "/images/heroes/platon.png",
-                    "preset":"프리셋1(탱)"
-                   
-                   
-                  },
-                  {
-                    "name": "엘리스",
-                    "image": "/images/heroes/elise.png",
-                    "note":"부활"
-                 
-                 
-                     
-                  }
-                ],
-                "note":"카일이 권능일때",
-                "skillOrders": [
-                  {
-                    "label": "속공 질때",
-                    "skills": [
-                      "platon2.png",
-                      "spike2.png",
-                      "elise2.png"
-                    ]
-                  }
-                ]
-              },
-               {
-                "recommendation": 3,
                   "pet": ["ru.png"],
                 "team": [
                   {
@@ -106,6 +68,47 @@
                       "colt1.png",
                       "colt2.png",
                       "look2.png"
+                    ]
+                  }
+                ]
+              },
+                {
+                "recommendation": 2,
+                  "pet": ["ru.png"],
+                "team": [
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋2(속공)"
+                   
+                
+                  },
+                  {
+                    "name": "실베스타",
+                    "image": "/images/heroes/silvesta.png",
+                    "preset":"프리셋2(속공)",
+                    "note":""
+                   
+                   
+                  },
+                  {
+                    "name": "쥬리",
+                    "image": "/images/heroes/juri.png",
+                     "preset":"프리셋1(속공)",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"룩 패시브 제외 막기100은 맞춰야함",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길때",
+                    "skills": [
+                      "vanessa1.png",
+                      "juri2.png",
+                      "silvesta1.png"
                     ]
                   }
                 ]
@@ -244,7 +247,7 @@
                     "name": "바네사",
                     "image": "/images/heroes/vanessa.png",
                     "preset":"프리셋2(속공)",
-                    "note":"바네사 뒤배치(중요)/권능필수"
+                    "note":"바네사 뒤배치(연희랑 공차이 600~800일때 뒤배치 안되면 연희 뒤배치)/권능필수"
                    
                    
                   },
@@ -264,8 +267,9 @@
                     "label": "속공 이길 때",
                     "skills": [
                       "vanessa1.png",
-                      "vanessa2.png",
-                      "juri2.png"
+            
+                      "juri2.png",
+                      "Yeonhee2.png"
                     ]
                   }
                 ]
@@ -285,7 +289,7 @@
                   {
                     "name": "플라튼",
                     "image": "/images/heroes/platon.png",
-                    "preset":"프리셋1(탱)",
+                    "preset":"프리셋3(카일상대)",
                     "note":"5부활"
                    
                    
@@ -329,7 +333,7 @@
                     "name": "바네사",
                     "image": "/images/heroes/vanessa.png",
                     "preset":"프리셋2(속공)",
-                    "note":"바네사 뒤배치(중요)/권능필수"
+                    "note":"바네사 뒤배치(연희랑 공차이 600~800일때 뒤배치 안되면 연희 뒤배치)/권능필수"
                    
                    
                   },
@@ -372,7 +376,7 @@
                     "name": "바네사",
                     "image": "/images/heroes/vanessa.png",
                     "preset":"프리셋2(속공)",
-                    "note":"바네사 뒤배치(중요)/권능필수"
+                    "note":"바네사 뒤배치(연희랑 공차이 600~800일때 뒤배치 안되면 연희 뒤배치)/권능필수"
                    
                    
                   },
@@ -412,8 +416,8 @@
                   {
                     "name": "플라튼",
                     "image": "/images/heroes/platon.png",
-                    "preset":"프리셋1(탱)",
-                    "note":"막기70%"
+                    "preset":"프리셋3(카일상대)",
+                    "note":"막기100%"
                    
                    
                   },
@@ -453,8 +457,8 @@
                   {
                     "name": "플라튼",
                     "image": "/images/heroes/platon.png",
-                    "preset":"프리셋3(카일상대)",
-                    "note":"부활"
+                    "preset":"프리셋1(탱)",
+                    "note":"부활/막기70%"
                    
                    
                   },
@@ -577,7 +581,7 @@
                     "name": "바네사",
                     "image": "/images/heroes/vanessa.png",
                     "preset":"프리셋2(속공)",
-                    "note":"뒤배치/카일 강자주시 어그로(권능)"
+                    "note":"바네사 뒤배치(연희랑 공차이 600~800일때 뒤배치 안되면 연희 뒤배치)/권능필수"
                    
                    
                   },
@@ -701,7 +705,7 @@
                     "name": "바네사",
                     "image": "/images/heroes/vanessa.png",
                     "preset":"프리셋2(속공)",
-                    "note":"바네사 뒤배치(중요)/권능필수"
+                       "note":"바네사 뒤배치(연희랑 공차이 600~800일때 뒤배치 안되면 연희 뒤배치)/권능필수"
                    
                    
                   },
@@ -744,7 +748,7 @@
                     "name": "바네사",
                     "image": "/images/heroes/vanessa.png",
                     "preset":"프리셋2(속공)",
-                    "note":"바네사 뒤배치(중요)/권능필수"
+                     "note":"바네사 뒤배치(연희랑 공차이 600~800일때 뒤배치 안되면 연희 뒤배치)/권능필수"
                    
                    
                   },
@@ -788,7 +792,7 @@
                     "name": "바네사",
                     "image": "/images/heroes/vanessa.png",
                     "preset":"프리셋2(속공)",
-                    "note":"바네사 뒤배치(중요)/권능필수"
+                       "note":"바네사 뒤배치(연희랑 공차이 600~800일때 뒤배치 안되면 연희 뒤배치)/권능필수"
                    
                    
                   },
@@ -3227,108 +3231,7 @@
           }
         ]
       },
-       {
-        "id": "team2",
-        "label": "린 마덱",
-        "defenseTeam": [
-          {
-            "name": "멜키르",
-            "image": "/images/heroes/Melkir.png"
-          },
-          {
-            "name": "린",
-            "image": "/images/heroes/rin.png"
-          },
-          {
-            "name": "실베스타",
-            "image": "/images/heroes/silvesta.png"
-          }
-        ],
-        "defenseVariants": [
-          
-          {
-            "defenseSkills": ["rin2.png","melkir1.png","silvesta2.png"],
-            "counters": [
-              {
-                "recommendation": 3,
-                   "pet": ["irin.png","rechel.png"],
-                "team": [
-                  {
-                    "name": "루디",
-                    "image": "/images/heroes/rudy.png",
-                      "preset":"프리셋2",
-                  "note":"4초월/4권능 이상"
-                   
-                  },
-                  {
-                    "name": "카르마",
-                    "image": "/images/heroes/carma.png",
-                      "preset":"프리셋1(내실)",
-                      "note":"권능필수"
-                   
-                  },
-                  {
-                    "name": "리나",
-                    "image": "/images/heroes/lina.png"
-                  
-                  }
-                ],
-            "note": "",
-                "skillOrders": [
-                  {
-                    "label": "속공 질 때",
-                    "skills": [
-                      "rudy2.png",
-                      "carma2.png",
-                      "carma1.png"
-                    ]
-                  }
-                ]
-              },
-               {
-                "recommendation": 2,
-                   "pet": ["irin.png","rechel.png"],
-                "team": [
-                  {
-                    "name": "루디",
-                    "image": "/images/heroes/rudy.png",
-                      "preset":"프리셋2",
-                  "note":"4초월/4권능 이상"
-                   
-                  },
-                  {
-                    "name": "카르마",
-                    "image": "/images/heroes/carma.png",
-                      "preset":"프리셋2(길드전)",
-                      "note":"권능필수"
-                   
-                  },
-                  {
-                    "name": "레이첼",
-                    "image": "/images/heroes/rachel.png",
-                    "note":"6초이상"
-                  
-                  }
-                ],
-            "note": "",
-                "skillOrders": [
-                  {
-                    "label": "속공 질 때",
-                    "skills": [
-                      "rudy2.png",
-                      "rachel1.png",
-                      "carma2.png"
-                    ]
-                  }
-                ]
-              }
-              
-              
-             
-            ]
-          }
-        ]
-      },
+      
       {
         "id": "team2",
         "label": "린 마덱",
@@ -3452,6 +3355,37 @@
           {
             "defenseSkills": ["rin2.png","juri2.png","melkir2.png"],
             "counters": [
+               {
+                "recommendation": 3,
+                "team": [
+                  {
+                    "name": "리나",
+                    "image": "/images/heroes/lina.png",
+                    "note": ""
+                  },
+                  {
+                    "name": "카르마",
+                    "image": "/images/heroes/carma.png",
+                    "preset":"프리셋2(길드전)",
+                    "note": "4권능이상"
+                  },
+                  {
+                    "name": "루디",
+                    "image": "/images/heroes/rudy.png"
+                  }
+                ],
+                "note": "발리 스킬에 한명이상 죽어야함",
+                "skillOrders": [
+                  {
+                    
+                    "skills": [
+                      "rudy2.png",
+                      "carma2.png"
+                     
+                    ]
+                  }
+                ]
+              },
               
               {"recommendation": 2,
                 "team": [
@@ -3916,7 +3850,7 @@
                     "name": "첸슬러",
                     "image": "/images/heroes/chancellor.png",
                     "preset":"프리셋2(길드전)",
-                    "note":"부활"
+                    "note":"부활/아라곤 대체가능"
                   },
                   {
                     "name": "엘리스",
@@ -4009,7 +3943,7 @@
                     
                   },
                   {
-                    "name": "린",
+                    "name": "연희",
                     "image": "/images/heroes/rin.png",
                     "preset":"프리셋1(속공)"
                     
@@ -4026,8 +3960,8 @@
                     "label": "속공 이길때",
                     "skills": [
                       "nia2.png",
-                      "yushin1.png",
-                      "rin2.png"
+                      "Yeonhee2.png",
+                      "Yeonhee1.png"
                    
                     ]
                   }
@@ -4552,8 +4486,8 @@
                     "image": "/images/heroes/colt.png"
                   },
                   {
-                    "name": "엘리스",
-                    "image": "/images/heroes/elise.png"
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png"
                   }
                 ],
                 "note": "상대하고 초월 비슷해야될듯",
@@ -4788,8 +4722,8 @@
                     "image": "/images/heroes/colt.png"
                   },
                   {
-                    "name": "엘리스",
-                    "image": "/images/heroes/elise.png"
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png"
                   }
                 ],
                 "note": "상대하고 초월 비슷해야될듯",
@@ -4951,6 +4885,47 @@
                     "label": "속공 이길 때",
                     "skills": [
                       "cagura1.png",
+                      "kyle2.png",
+                      "kyle1.png"
+                      
+                      
+                     
+                    ]
+                  }
+                ]
+              },
+               {
+                "recommendation": 3,
+                "team": [
+                  
+                  {
+                    "name": "카구라",
+                    "image": "/images/heroes/cagura.png",
+                    "preset":"프리셋2(속공)",
+                       "note":""
+                   
+                  },
+                  {
+                    "name": "카일",
+                    "image": "/images/heroes/kyle.png",
+                   "preset":"프리셋1(속공)",
+                    "note":"부활"
+                   
+                  },
+                  {
+                    "name": "아멜리아",
+                    "image": "/images/heroes/amelia.png",
+                     "preset":"프리셋1(속공)",
+                     "note":"6초이상/권능"
+                  
+                  }
+                ],
+           
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "amelia2.png",
                       "kyle2.png",
                       "kyle1.png"
                       
