@@ -1029,9 +1029,7 @@
                 "teo1.png"
               ],
               "counters": [
-                 "recommendation": 1,
-                  "pet": ["chri.png", "irin.png"],
-                "team": [
+                 
                 {
                   "recommendation": 2,
                   "pet": ["Yeonji.png", "chri.png"],
@@ -1059,7 +1057,7 @@
                   
                       
                     }
-                   ]
+                   
                   ],
                   "skillOrders": [
                     {
