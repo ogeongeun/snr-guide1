@@ -279,8 +279,8 @@
                   {
                     "name": "카구라",
                     "image": "/images/heroes/cagura.png",
-                    "preset":"프리셋4(카일 상대)",
-                    "note":"4권능"
+                    "preset":"프리셋4(카일 상대)"
+                  
                    
                 
                   },
@@ -294,8 +294,8 @@
                   },
                   {
                     "name": "파이",
-                    "image": "/images/heroes/Yeonhee.png",
-                    "preset":"프리셋4(카일 상대)",
+                    "image": "/images/heroes/pie.png",
+                    "preset":"프리셋4(카일상대)",
                     "note":"4권능"
                  
                  
@@ -607,7 +607,50 @@
               "kyle1.png",
               "kyle2.png"
             ],
-            "counters": [  {
+            "counters": [
+                {
+                "recommendation": 3,
+                  "pet": ["irin.png"],
+                "team": [
+                  {
+                    "name": "카구라",
+                    "image": "/images/heroes/cagura.png",
+                    "preset":"프리셋4(카일 상대)"
+                  
+                   
+                
+                  },
+                  {
+                    "name": "카일",
+                    "image": "/images/heroes/kyle.png",
+                    "preset":"프리셋2(내실)",
+                    "note":"뒤배치"
+                   
+                   
+                  },
+                  {
+                    "name": "파이",
+                    "image": "/images/heroes/pie.png",
+                    "preset":"프리셋4(카일상대)",
+                    "note":"4권능"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"강자주시 카구라가 받아야함",
+                "skillOrders": [
+                  {
+                    "label": "속공 때",
+                    "skills": [
+                      "cagura2.png",
+            
+                      "kyle1.png",
+                      "kyle2.png"
+                    ]
+                  }
+                ]
+              },{
                 "recommendation": 2,
                   "pet": ["Yeonji.png"],
                 "team": [
@@ -856,6 +899,49 @@
           "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
         ],
         "defenseVariants": [
+            {
+                "recommendation": 3,
+                  "pet": ["irin.png"],
+                "team": [
+                  {
+                    "name": "카구라",
+                    "image": "/images/heroes/cagura.png",
+                    "preset":"프리셋4(카일 상대)"
+                  
+                   
+                
+                  },
+                  {
+                    "name": "카일",
+                    "image": "/images/heroes/kyle.png",
+                    "preset":"프리셋2(내실)",
+                    "note":"뒤배치"
+                   
+                   
+                  },
+                  {
+                    "name": "파이",
+                    "image": "/images/heroes/pie.png",
+                    "preset":"프리셋4(카일상대)",
+                    "note":"4권능"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"강자주시 카구라가 받아야함",
+                "skillOrders": [
+                  {
+                    "label": "속공 때",
+                    "skills": [
+                      "cagura2.png",
+            
+                      "kyle1.png",
+                      "kyle2.png"
+                    ]
+                  }
+                ]
+              },
           {
             "defenseSkills": [
               "cagura2.png",
