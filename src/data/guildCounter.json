@@ -393,9 +393,11 @@
                   {
                     "label": "속공 이길 때",
                     "skills": [
-                      "rin2.png",
-                      "Yeonhee2.png",
-                      "vanessa1.png"
+                       "vanessa1.png",
+                         "Yeonhee2.png",
+                     
+                      "rin2.png"
+                   
                     ]
                   }
                 ]
