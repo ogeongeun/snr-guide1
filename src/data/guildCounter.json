@@ -1050,13 +1050,13 @@
                     {
                       "name": "쥬리",
                       "image": "/images/heroes/juri.png",
-                          "preset":"프리셋2(내실)"
+                      "preset":"프리셋2(내실)"
                     
                   
                   
                       
                     }
-                  ],
+                  ]
             
                   "skillOrders": [
                     {
