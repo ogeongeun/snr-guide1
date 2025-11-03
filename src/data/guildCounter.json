@@ -3549,36 +3549,7 @@
                   }
                 ]
               },
-              {
-                "recommendation": 2,
-                "team": [
-                  {
-                    "name": "리나",
-                    "image": "/images/heroes/lina.png",
-                    "note": "6초이상(효저90이상)"
-                  },
-                  {
-                    "name": "발리스타",
-                    "image": "/images/heroes/ballista.png",
-                    "note": "6초이상/4권능이상"
-                  },
-                  {
-                    "name": "아일린",
-                    "image": "/images/heroes/eileene.png"
-                  }
-                ],
-                "note": "발리 스킬에 한명이상 죽어야함",
-                "skillOrders": [
-                  {
-                    
-                    "skills": [
-                      "lina2.png",
-                      "ballista1.png",
-                      "lina1.png"
-                    ]
-                  }
-                ]
-              },{
+             {
                 "recommendation": 3,
                 "team": [
                   {
