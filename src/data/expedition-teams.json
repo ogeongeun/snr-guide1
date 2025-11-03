@@ -205,6 +205,45 @@
     ],
     "bosss": [
       {
+        "setName": "종결 빌드(420만)",
+        "teams": [
+          {
+            "id": 1,
+            "teamName": "1팀(빔초빔)",
+            "heroes": [
+              { "name": "에스파다", "image": "espada.png", "preset": "프리셋2(강림)/치확+약공반지" },
+              { "name": "데이지", "image": "dage.png", "preset": "프리셋1(강림)","note":"뒤배치(6초)/치확+약공반지" },
+              { "name": "파스칼", "image": "pascal.png", "preset": "프리셋1(범용)","note":"뒤배치(6초)/약공반지" },
+              { "name": "바네사", "image": "vanessa.png", "preset": "프리셋4(강림)" },
+              { "name": "첸슬러", "image": "chancellor.png","preset": "길드전" }
+            ],
+            "recommendedGear": {
+              "pet": "yeonji.png"
+            },
+            "note":"6연지 3잠재,토벌,공성반지 필수"
+            
+          },
+          {
+            "id": 2,
+            "teamName": "2팀",
+            "heroes": [ 
+                { "name": "리나", "image": "lina.png","preset": "레이드" },
+              { "name": "파이", "image": "pie.png", "preset": "프리셋2(강림)" ,"note":"뒤배치(비스킷 버프)/토벌+치확반지" },
+              { "name": "세인", "image": "sein.png", "preset": "프리셋2(강림)","note":"뒤배치(비스킷 버프)/부활+치확반지" },
+              { "name": "레이첼", "image": "rachel.png","preset": "프리셋3(강림)" ,"note":"치확반지" },
+              { "name": "비스킷", "image": "bisket.png", "preset": "프리셋2(강림)"  ,"note":"부활,권능" }
+            ],
+            "recommendedGear": {
+        
+              "pet": "irin.png"
+            }
+           
+          }
+        ],
+      
+        "note": "리첼쓸거면 세인이랑 지크 반지까지 해서  약공70 만들어도됨"
+      },
+      {
         "setName": "종결 빌드(300만)",
         "teams": [
           {

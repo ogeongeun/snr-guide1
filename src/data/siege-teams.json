@@ -10,18 +10,21 @@
           {
             "name": "미호",
             "image": "miho.png",
+            "preset":"프리셋1(목요일 공성)",
             "note":"6초아니면 연희가 더 좋음"
           },
           {
             "name": "루리",
             "image": "luri.png",
+            "preset":"프리셋2(공성전)",
             "note": "뒤배치"
           },
           {
             "name": "리나",
-            "image": "lina.png"
+            "image": "lina.png",
+            "preset":"레이드"
           },
-          { "name": "비스킷", "image": "/images/heroes/bisket.png" }
+          { "name": "비스킷", "image": "/images/heroes/bisket.png","preset":"프리셋4(공성전)" }
         ],
         "tags": [
           "루리,미호 속공1,2순위/ 나머지 속공 25 위"
@@ -1000,7 +1003,34 @@
       }
     ],
     "흑한의 성 (토요일)": [
-      
+       {
+        "team": [
+          {
+            "name": "풍연",
+            "image": "poongyeon.png",
+             "preset":"프리셋2(토요일 공성)"
+          },
+           { "name": "비스킷", "image": "/images/heroes/bisket.png" , "preset":"프리셋1(탱)","note": "2초월시 좋음" },
+          {
+            "name": "타카",
+            "image": "taka.png",
+ "preset":"프리셋3(토요일 공성)"
+            ,"note": "뒤배치"
+          },
+          {
+            "name": "카일",
+            "image": "kyle.png",
+            "preset":"프리셋3(토요일 공성)"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png",
+             "preset":"프리셋3(강림)"
+          }
+        ],
+        "tags":["속공 순서:타카-카일 4,5번째"]
+     
+      },
          {
         "team": [
           {

@@ -1251,6 +1251,119 @@
      
       "skillOrders": [
         {
+          "orderTitle": "레이첼 6초(600만)",
+          "skills": [
+            {
+              "stageTitle": "1스테이지",
+              "images": ["poongyeon2.png"]
+            },
+            {
+              "stageTitle": "2스테이지",
+              "images": ["rachel1.png"]
+            },
+            {
+              "stageTitle": "3스테이지",
+              "images": [
+                "rachel2.png",{ "image": "taka2.png", "label": "버프해제" },"bisket1.png","taka1.png","kyle1.png","taka2.png","rachel1.png",{ "image": "bisket2.png", "label": "버프해제" },"rachel2.png","taka1.png","kyle1.png","bisket1.png","taka2.png",{ "image": "kyle2.png", "label": "버프해제" },"rachel2.png","taka1.png","kyle1.png","taka2.png"
+                
+              ]
+              
+               
+            }
+          
+          ]
+        },
+        {
+          "orderTitle": "22턴 스킬 밀렸을때",
+          "skills": [
+            {
+              "stageTitle": "1스테이지",
+              "images": ["poongyeon1.png"]
+            },
+            {
+              "stageTitle": "2스테이지",
+              "images": ["poongyeon2.png"]
+            },
+            {
+              "stageTitle": "3스테이지",
+              "images": [
+                "bisket1.png",{ "image": "bisket2.png", "label": "버프해제" },"rachel2.png","lina2.png","taka1.png","taka2.png","rachel1.png",{ "image": "poongyeon2.png", "label": "스킬 밀렸을 때" },{ "image": "bisket2.png", "label": "버프해제" },"rachel2.png","bisket1.png","taka2.png","taka1.png","lina1.png",{ "image": "bisket2.png", "label": "버프해제" },"rachel1.png","rachel2.png","taka2.png"
+                
+              ]
+              
+               
+            }
+          
+          ]
+        }
+        
+       
+   
+        
+        
+        
+      ]
+    },{
+     
+      "skillOrders": [
+        {
+          "orderTitle": "레이첼 6초시",
+          "skills": [
+            {
+              "stageTitle": "1스테이지",
+              "images": ["poongyeon1.png"]
+            },
+            {
+              "stageTitle": "2스테이지",
+              "images": ["poongyeon2.png"]
+            },
+            {
+              "stageTitle": "3스테이지",
+              "images": [
+                "bisket1.png",{ "image": "bisket2.png", "label": "버프해제" },"rachel2.png","lina2.png","taka1.png","taka2.png","rachel1.png",{ "image": "bisket2.png", "label": "버프해제" },"rachel2.png","bisket1.png","taka1.png","taka2.png","lina1.png",{ "image": "bisket2.png", "label": "버프해제" },"rachel1.png","rachel2.png","taka1.png","taka2.png"
+                
+              ]
+              
+               
+            }
+          
+          ]
+        },
+        {
+          "orderTitle": "22턴 스킬 밀렸을때",
+          "skills": [
+            {
+              "stageTitle": "1스테이지",
+              "images": ["poongyeon1.png"]
+            },
+            {
+              "stageTitle": "2스테이지",
+              "images": ["poongyeon2.png"]
+            },
+            {
+              "stageTitle": "3스테이지",
+              "images": [
+                "bisket1.png",{ "image": "bisket2.png", "label": "버프해제" },"rachel2.png","lina2.png","taka1.png","taka2.png","rachel1.png",{ "image": "poongyeon2.png", "label": "스킬 밀렸을 때" },{ "image": "bisket2.png", "label": "버프해제" },"rachel2.png","bisket1.png","taka2.png","taka1.png","lina1.png",{ "image": "bisket2.png", "label": "버프해제" },"rachel1.png","rachel2.png","taka2.png"
+                
+              ]
+              
+               
+            }
+          
+          ]
+        }
+        
+       
+   
+        
+        
+        
+      ]
+    },
+    {
+     
+      "skillOrders": [
+        {
           "orderTitle": "레이첼 6초시",
           "skills": [
             {

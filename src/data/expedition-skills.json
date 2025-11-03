@@ -203,7 +203,44 @@
         ]
       }
     ],
-      "bosss": [{
+      "bosss": [
+        {
+        "setName": "종결 빌드",
+        "teams": [
+          {
+            "teamName": "1팀(16턴)",
+         "skills": {
+               "sequence": [
+                "chancellor1.png",
+              "dage2.png",
+              "espada1.png",
+             
+               { "image": "dage1.png", "label": "30만" },
+              
+              "pascal2.png"
+        
+                  
+      
+            ]}
+          },
+          {
+            "teamName": "2팀",
+      "skills": {
+               "sequence": [
+                "bisket1.png",
+              "rachel2.png",
+              "lina1.png",
+              "sein1.png",
+              "lina2.png",
+              "pie2.png",
+              "sein1.png",
+             
+             
+              "pie1.png","rachel2.png","sein1.png","bisket1.png","pie2.png","sein1.png","pie1.png"
+            ]}
+          }
+        ]
+      },{
         "setName": "종결 빌드",
         "teams": [
           {
