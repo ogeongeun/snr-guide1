@@ -272,6 +272,49 @@
               "kyle2.png"
             ],
             "counters": [
+                 {
+                "recommendation": 3,
+                  "pet": ["irin.png"],
+                "team": [
+                  {
+                    "name": "카구라",
+                    "image": "/images/heroes/cagura.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"4권능"
+                   
+                
+                  },
+                  {
+                    "name": "카일",
+                    "image": "/images/heroes/kyle.png",
+                    "preset":"프리셋2(속공)",
+                    "note":"뒤배치"
+                   
+                   
+                  },
+                  {
+                    "name": "파이",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"4권능"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"강자주시 카구라가 받아야함",
+                "skillOrders": [
+                  {
+                    "label": "속공 때",
+                    "skills": [
+                      "cagura2.png",
+            
+                      "kyle1.png",
+                      "kyle2.png"
+                    ]
+                  }
+                ]
+              },
               {
                 "recommendation": 3,
                   "pet": ["Yeonji.png"],
