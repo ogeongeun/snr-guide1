@@ -249,6 +249,39 @@
             },
             "note": "1티어/속공200"
           },
+           {
+            "teamId": 0,
+            "name": "린 마덱",
+            "heroes": [
+              
+              {
+                "name": "멜키르",
+                "image": "Melkir.png",
+                 "preset": "프리셋2(속공)"
+         
+              },
+              {
+                "name": "린",
+                "image": "rin.png",
+                  "preset": "프리셋2(내실)"
+              },
+              {
+                "name": "실베스타",
+                "image": "silvesta.png",
+              "preset": "프리셋1(내실)"
+              }
+            ],
+              "pet": ["yeonji.png","rechel.png"],
+            "skillOrders": {
+              "공통": [
+                "rin2.png",
+                "melkir1.png",
+                "silvesta1.png"
+              ]
+              
+            },
+            "note": "1티어/빡내실"
+          },
          {
             "teamId": 1,
             "name": "테오덱",
