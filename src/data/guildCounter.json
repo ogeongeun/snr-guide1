@@ -279,7 +279,8 @@
                   {
                     "name": "카구라",
                     "image": "/images/heroes/cagura.png",
-                    "preset":"프리셋4(카일 상대)"
+                    "preset":"프리셋4(카일 상대)",
+                    "note":"권능 주면안됨"
                   
                    
                 
@@ -288,7 +289,7 @@
                     "name": "카일",
                     "image": "/images/heroes/kyle.png",
                     "preset":"프리셋2(내실)",
-                    "note":"뒤배치"
+                    "note":"뒤배치(권능)"
                    
                    
                   },
@@ -615,7 +616,8 @@
                   {
                     "name": "카구라",
                     "image": "/images/heroes/cagura.png",
-                    "preset":"프리셋4(카일 상대)"
+                    "preset":"프리셋4(카일 상대)",
+                    "note":"권능 주면안됨"
                   
                    
                 
@@ -906,7 +908,8 @@
                   {
                     "name": "카구라",
                     "image": "/images/heroes/cagura.png",
-                    "preset":"프리셋4(카일 상대)"
+                    "preset":"프리셋4(카일 상대)",
+                    "note":"권능 주면안됨"
                   
                    
                 
