@@ -324,6 +324,7 @@
                     "image": "/images/heroes/juri.png",
                     "preset":"프리셋1(속공)",
                     "note":"cc반지"
+                    
                    
                 
                   },
@@ -1028,7 +1029,9 @@
                 "teo1.png"
               ],
               "counters": [
-                
+                 "recommendation": 1,
+                  "pet": ["chri.png", "irin.png"],
+                "team": [
                 {
                   "recommendation": 2,
                   "pet": ["Yeonji.png", "chri.png"],
@@ -1056,8 +1059,8 @@
                   
                       
                     }
+                   ]
                   ],
-            
                   "skillOrders": [
                     {
                       "label": "속공 질때",
