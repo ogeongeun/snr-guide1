@@ -5105,7 +5105,8 @@
                   },
                   {
                     "name": "카린",
-                    "image": "/images/heroes/carin.png"
+                    "image": "/images/heroes/carin.png",
+                    "note":"성기사(생방 받받)"
                   }
                 ],
                 
