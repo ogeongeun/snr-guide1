@@ -5072,6 +5072,63 @@
         "label": "콜트+플라튼 방덱",
         "defenseTeam": [
           {
+            "name": "아멜리아",
+            "image": "/images/heroes/amelia.png"
+          },
+          {
+            "name": "콜트",
+            "image": "/images/heroes/colt.png"
+          },
+          {
+            "name": "플라튼",
+            "image": "/images/heroes/platon.png"
+          }
+        ],
+        "defenseVariants": [
+          {
+            "defenseSkills": ["amelia1.png","colt1.png","colt2.png"],
+            "counters": [
+             
+              
+              {
+                "recommendation": 3,
+                "team": [
+                  {
+                    "name": "리나",
+                    "image": "/images/heroes/lina.png",
+                    "preset":"프리셋3(조율자)"
+                  },
+                  {
+                    "name": "루리",
+                    "image": "/images/heroes/luri.png",
+                     "preset":"프리셋4(조율자)"
+                  },
+                  {
+                    "name": "카린",
+                    "image": "/images/heroes/carin.png"
+                  }
+                ],
+                
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "luri2.png",
+                      "luri1.png"
+                     
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "team4",
+        "label": "콜트+플라튼 방덱",
+        "defenseTeam": [
+          {
             "name": "파이",
             "image": "/images/heroes/pie.png"
           },
