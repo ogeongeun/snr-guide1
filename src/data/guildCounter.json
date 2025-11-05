@@ -5096,17 +5096,19 @@
                   {
                     "name": "리나",
                     "image": "/images/heroes/lina.png",
-                    "preset":"프리셋3(조율자)"
+                    "preset":"프리셋3(조율자)",
+                     "note":"부활"
                   },
                   {
                     "name": "루리",
                     "image": "/images/heroes/luri.png",
-                     "preset":"프리셋4(조율자)"
+                     "preset":"프리셋4(조율자)",
+                     "note":"권능 필수"
                   },
                   {
                     "name": "카린",
                     "image": "/images/heroes/carin.png",
-                    "note":"성기사(생방 받받)"
+                    "note":"성기사(생방 받받)/권능"
                   }
                 ],
                 
