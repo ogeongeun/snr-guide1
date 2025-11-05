@@ -5092,6 +5092,7 @@
               
               {
                 "recommendation": 3,
+                "pet": ["dello.png"],
                 "team": [
                   {
                     "name": "리나",
