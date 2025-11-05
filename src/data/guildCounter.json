@@ -5238,8 +5238,8 @@
                   {
                     "name": "아멜리아",
                     "image": "/images/heroes/amelia.png",
-                    "preset":"6초아니여도됨/선봉장(모공모공받받)",
-                       "note":""
+                    "preset":"6초아니여도됨/선봉장(모공효적모공모공)",
+                       "note":"권응 줘야할듯"
                    
                   },
                   {
@@ -5260,7 +5260,7 @@
            
                 "skillOrders": [
                   {
-                    "label": "속공 이길 때",
+                    "label": "속공 질 때",
                     "skills": [
                       "amelia2.png",
                       "colt1.png",
