@@ -901,7 +901,15 @@
           "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
         ],
         "defenseVariants": [
-            {
+           
+          {
+            "defenseSkills": [
+              "cagura2.png",
+              "kyle1.png",
+              "kyle2.png"
+            ],
+            "counters": [  
+               {
                 "recommendation": 3,
                   "pet": ["irin.png"],
                 "team": [
@@ -945,13 +953,7 @@
                   }
                 ]
               },
-          {
-            "defenseSkills": [
-              "cagura2.png",
-              "kyle1.png",
-              "kyle2.png"
-            ],
-            "counters": [  {
+              {
                 "recommendation": 3,
                   "pet": ["Yeonji.png"],
                 "team": [
