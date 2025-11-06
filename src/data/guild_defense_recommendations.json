@@ -156,7 +156,7 @@
                 "note":"즉사반지/린 대체가능"
               }
             ],
-              "pet": ["yeonji.png","chri.png"],
+              "pet": ["Yeonji.png","chri.png"],
             "skillOrders": {
               
                "속공덱": [
@@ -190,7 +190,7 @@
               "preset": "프리셋2(속공)"
               }
             ],
-              "pet": ["yeonji.png","rechel.png"],
+              "pet": ["Yeonji.png","rechel.png"],
             "skillOrders": {
               "속공덱": [
                 "amelia1.png",
