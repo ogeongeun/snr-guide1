@@ -5127,7 +5127,113 @@
                 ]
               }
             ]
+          },
+          {
+            "defenseSkills": ["amelia2.png","colt1.png","colt2.png"],
+            "counters": [
+             
+              
+              {
+                "recommendation": 3,
+                "pet": ["dello.png"],
+                "team": [
+                  {
+                    "name": "엘리스",
+                    "image": "/images/heroes/elise.png",
+                    "preset":"길드전(콜트 상대)",
+                     "note":"부활"
+                  },
+                  {
+                    "name": "루리",
+                    "image": "/images/heroes/luri.png",
+                     "preset":"프리셋1(길드전)",
+                     "note":"권능 필수"
+                  },
+                  {
+                    "name": "루시",
+                    "image": "/images/heroes/lucy.png",
+                     "preset":"길드전",
+                    "note":"부활"
+                  }
+                ],
+                
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "luri2.png",
+                      "lucy2.png",
+                      "elise2.png"
+                     
+                    ]
+                  }
+                ]
+              }
+            ]
           }
+        ]
+      },
+        {
+        "id": "team4",
+        "label": "콜트+플라튼 방덱",
+        "defenseTeam": [
+          {
+            "name": "아멜리아",
+            "image": "/images/heroes/amelia.png"
+          },
+          {
+            "name": "실베스타",
+            "image": "/images/heroes/silvesta.png"
+          },
+          {
+            "name": "플라튼",
+            "image": "/images/heroes/platon.png"
+          }
+        ],
+        "defenseVariants": [
+          {
+            "defenseSkills": ["amelia1.png","amelia2.png","silvesta1.png"],
+            "counters": [
+             
+              
+              {
+                "recommendation": 3,
+                "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "린",
+                    "image": "/images/heroes/rin.png",
+                    "preset":"프리셋1(속공)",
+                     "note":"권능"
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                     "preset":"프리셋2(내실)",
+                     "note":"부활"
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+      "preset":"프리셋2(속공)"
+                  }
+                ],
+                
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "vanessa1.png",
+                      "Yeonhee2.png",
+                      "Yeonhee1.png"
+                     
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+         
         ]
       },
       {
