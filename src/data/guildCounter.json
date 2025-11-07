@@ -2854,7 +2854,7 @@
                     "image": "/images/heroes/dellons.png"
                   },
                   {
-                    "name": "발리",
+                    "name": "발리스타",
                     "image": "/images/heroes/ballista.png"
                   }
                 ],
@@ -5221,7 +5221,7 @@
                 
                 "skillOrders": [
                   {
-                    "label": "속공 질 때",
+                    "label": "속공 이길 때",
                     "skills": [
                       "vanessa1.png",
                       "Yeonhee2.png",
@@ -6733,7 +6733,7 @@
                     "image": "/images/heroes/pascal.png"
                   },
                   {
-                    "name": "유и",
+                    "name": "유신",
                     "image": "/images/heroes/yui.png"
                   }
                 ],
@@ -6813,7 +6813,7 @@
                     "image": "/images/heroes/pascal.png"
                   },
                   {
-                    "name": "유и",
+                    "name": "유신",
                     "image": "/images/heroes/yui.png"
                   }
                 ],
@@ -7022,7 +7022,7 @@
                     "note": "속공세팅"
                   },
                   {
-                    "name": "발리",
+                    "name": "발리스타",
                     "image": "/images/heroes/ballista.png"
                   },
                   {
