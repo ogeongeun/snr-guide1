@@ -64,7 +64,7 @@ export default function GuildOffenseSetupPage() {
   return (
     <div className="min-h-screen bg-white text-gray-800 flex flex-col items-center py-10 px-6 relative">
       <h1 className="text-3xl font-bold mb-8 text-blue-600">
-        ⚡ Guild Offense Setup Page
+        속공 계산기
       </h1>
 
       {/* 입력 카드 */}
