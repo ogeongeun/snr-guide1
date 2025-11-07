@@ -13,10 +13,10 @@ export default function GuildDefensePage() {
       category: '방어 관련'
     },
     {
-      label: '공격팀 배치',
+      label: '속공 계산기',
       path: '/guild-offense/setup',
       bg: 'bg-rose-500',
-      description: '길드원별 본성,내성,외성을 배치합니다.',
+      description: '상대의 속공을 유추합니다.',
       category: '공격 관련'
     },
      {
