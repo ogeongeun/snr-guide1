@@ -858,25 +858,31 @@
         "team": [
           {
             "name": "지크",
-            "image": "zick.png"
+            "image": "zick.png",
+            "preset":"프리셋3(금요일)"
           },
           {
             "name": "유이",
-            "image": "yui.png"
+            "image": "yui.png",
+            "preset":"프리셋1(범용)"
           },
           {
             "name": "타카",
-            "image": "taka.png"
-            ,"note": "뒤배치"
+            "image": "taka.png",
+            "preset":"프리셋1(목요일 공성)",
+            "note": "뒤배치"
           },
           {
             "name": "레이첼",
             "image": "rachel.png",
+              "preset":"프리셋5(금요일)",
            "note":"복수자(치확/모공)"
           },
           {
             "name": "비스킷",
-            "image": "bisket.png"
+            "image": "bisket.png",
+            "preset":"프리셋1(탱)",
+            "note":"실명 반지"
           }
         ],
         "tags": [

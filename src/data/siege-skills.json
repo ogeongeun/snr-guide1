@@ -1045,16 +1045,16 @@
           "skills": [
             {
               "stageTitle": "1스테이지",
-              "images": ["rachel1.png"]
+              "images": ["taka1.png"]
             },
             {
               "stageTitle": "2스테이지",
-              "images": ["taka1.png"]
+              "images": ["rachel1.png"]
             },
             {
               "stageTitle": "3스테이지",
               "images": [
-               "bisket1.png","rachel2.png","taka2.png","zick2.png","yui1.png","rachel1.png","taka1.png","taka2.png","zick2.png","bisket1.png","rachel2.png","rachel1.png","taka2.png","taka1.png","yui1.png","zick2.png","rachel2.png","taka2.png"
+               "bisket1.png","rachel2.png","taka2.png","zick2.png","yui1.png","taka1.png","rachel1.png","taka2.png","rachel2.png","bisket1.png","zick2.png","taka1.png","taka2.png","rachel1.png","yui1.png","rachel2.png","taka2.png","taka1.png"
                 
               ]
               
