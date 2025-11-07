@@ -154,12 +154,7 @@ export default function GuildOffenseFinderPage() {
       <div className="max-w-5xl mx-auto p-5">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-2xl font-bold">공격 가능 카운터덱 찾기</h1>
-          <button
-            onClick={() => navigate('/guild-offense-list')}
-            className="px-3 py-1.5 text-sm rounded-md border text-gray-700 hover:bg-gray-50"
-          >
-            목록으로
-          </button>
+       
         </div>
 
         {/* 입력 패널 */}
