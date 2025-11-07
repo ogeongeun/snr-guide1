@@ -23,14 +23,6 @@ export default function GuildDefensePage() {
       category: '공격 관련',
     },
     {
-      label: '속공 계산기',
-      path: '/guild-offense/setup',
-      bg: 'from-amber-400 to-orange-500',
-      icon: Zap,
-      description: '턴 순서를 기반으로 속공을 유추',
-      category: '공격 관련',
-    },
-    {
       label: '카운터덱 편성',
       path: '/guild-offense',
       bg: 'from-rose-300 to-pink-400',
@@ -38,6 +30,15 @@ export default function GuildDefensePage() {
       description: '방어팀별 추천 카운터 조합 확인',
       category: '공격 관련',
     },
+    {
+      label: '속공 계산기',
+      path: '/guild-offense/setup',
+      bg: 'from-amber-400 to-orange-500',
+      icon: Zap,
+      description: '턴 순서를 기반으로 속공을 유추',
+      category: '공격 관련',
+    }
+    
   ];
 
   return (
