@@ -21,7 +21,7 @@ import TrialTowerDetailPage from './pages/TrialTowerDetailPage';
 import TrialTowerPage from './pages/TrialTowerPage';
 import GuildDefensePage from './pages/GuildDefensePage';
 import GuildDefenseBuildPage from './pages/GuildDefenseBuildPage';
-
+import GuildOffenseFinderPage from './pages/GuildOffenseFinderPage'; // 추가된 FinderPage
 import GuildOffenseSetupPage from './pages/GuildOffenseSetupPage';
 import EquipmentRecommendationPage from './pages/EquipmentRecommendationPage';
 import GuildOffenseCounterPage from './pages/GuildOffenseCounterPage';
@@ -44,8 +44,7 @@ const App = () => {
         <Route path="/skill-order" element={<SkillOrderPage />} />
         <Route path="/raid-guide" element={<RaidGuidePage/>} />
         <Route path="/adventure" element={<Adventure/>} />
-       
-       
+        <Route path="/guild-offense-finder" element={<GuildOffenseFinderPage />} />
         <Route path="/adventure/:stage" element={<AdventureDetailPage />} />
         <Route path="/expedition/:heroId" element={<ExpeditionTeamPage />} />
           <Route path="/expedition/:heroId/:teamIndex" element={<ExpeditionSkillPage />} />
