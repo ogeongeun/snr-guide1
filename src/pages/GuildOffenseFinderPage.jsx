@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import data from '../data/guildCounter.json';
 import equipmentData from '../data/equipmentRecommend.json';
 import EquipmentModal from '../components/EquipmentModal';
@@ -8,7 +8,7 @@ import EquipmentModal from '../components/EquipmentModal';
 const heroImg = (src) => (src?.startsWith('/images/') ? src : `/images/heroes/${src || ''}`);
 
 export default function GuildOffenseFinderPage() {
-  const navigate = useNavigate();
+
   const [selectedHeroKey, setSelectedHeroKey] = useState(null);
   const [presetTag, setPresetTag] = useState(null);
   const [openLabel, setOpenLabel] = useState(null); // 🔹 아코디언 열림 상태
