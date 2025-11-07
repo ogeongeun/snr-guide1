@@ -87,14 +87,14 @@
              "pet": ["Yeonji.png","ru.png"],
             "skillOrders": {
               
-              "속공덱": [
-                "rachel1.png",
+              "내실덱": [
+                "amelia2.png",
                 "colt1.png",
                 "colt2.png"
               ]
              
             },
-            "note": "1티어/레이첼속공1등 중요/속공220이상"
+            "note": "1티어/속공 애매하게 150정도맞추는게 나을듯 "
           },
           {
             "teamId": 0,
@@ -234,7 +234,7 @@
               ]
               
             },
-            "note": "1티어/속공250이상"
+            "note": "op티어/속공250이상"
           }
           
         
