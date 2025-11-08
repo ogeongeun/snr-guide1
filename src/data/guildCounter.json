@@ -5117,7 +5117,7 @@
                 
                 "skillOrders": [
                   {
-                    "label": "속공 질 때",
+                    "label": "속공 질 초때",
                     "skills": [
                       "luri2.png",
                       "luri1.png"
@@ -5368,7 +5368,7 @@
            
                 "skillOrders": [
                   {
-                    "label": "속공 질 때",
+                    "label": "속공 이길 때",
                     "skills": [
                       "amelia2.png",
                       "colt1.png",
