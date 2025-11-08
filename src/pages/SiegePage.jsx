@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import siegeTeamsData from '../data/siege-teams.json';
-import siegeSkills from '../data/siege-skills.json';
+
 import equipmentData from '../data/equipmentRecommend.json';
 import EquipmentModal from '../components/EquipmentModal';
 
