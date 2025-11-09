@@ -48,10 +48,18 @@
                          "pet": ["irin.png","rechel.png"],
             "skillOrders": {
               
-              "속공덱": [
+              "속공덱1": [
                 "cagura2.png",
                 "kyle2.png",
 
+              
+
+                "kyle1.png"
+              ],
+                 "속공덱2": [
+            
+                "kyle2.png",
+                  "cagura2.png",
               
 
                 "kyle1.png"
