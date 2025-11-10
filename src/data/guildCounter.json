@@ -272,6 +272,47 @@
               "kyle2.png"
             ],
             "counters": [
+               {
+                "recommendation": 2,
+                  "pet": ["ru.png"],
+                "team": [
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋2(속공)"
+                   
+                
+                  },
+                  {
+                    "name": "실베스타",
+                    "image": "/images/heroes/silvesta.png",
+                    "preset":"프리셋2(속공)",
+                    "note":""
+                   
+                   
+                  },
+                  {
+                    "name": "쥬리",
+                    "image": "/images/heroes/juri.png",
+                     "preset":"프리셋1(속공)",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"룩 패시브 제외 막기100은 맞춰야함",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길때",
+                    "skills": [
+                      "vanessa1.png",
+                      "juri2.png",
+                      "silvesta1.png"
+                    ]
+                  }
+                ]
+              },
                  {
                 "recommendation": 3,
                   "pet": ["irin.png"],
@@ -303,7 +344,7 @@
                      
                   }
                 ],
-                "note":"강자주시 카구라가 받아야함",
+                "note":"강자주시 카구라가 받아야함/상대도 강자주시 카구라일땐 짐(속공따고 가는게 나음)",
                 "skillOrders": [
                   {
                     "label": "속공 질 때",
@@ -609,6 +650,48 @@
               "kyle2.png"
             ],
             "counters": [
+              {
+                "recommendation": 2,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "preset":"프리셋1(속공)/5불사"
+              
+                   
+                
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                    "preset":"프리셋3(카일상대)",
+                    "note":"5부활"
+                   
+                   
+                  },
+                  {
+                    "name": "발리스타",
+                    "image": "/images/heroes/ballista.png",
+                    "preset":"프리셋1(내실)",
+                    "note":"4성권능/확실한건 5성권능"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"상대 카일 내실이면 빡셈 극 속공 세팅일때 사용가능",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "colt1.png",
+                      "colt2.png",
+                      "ballista1.png"
+                    ]
+                  }
+                ]
+              },
                 {
                 "recommendation": 3,
                   "pet": ["irin.png"],
@@ -640,7 +723,7 @@
                      
                   }
                 ],
-                "note":"강자주시 카구라가 받아야함",
+                "note":"강자주시 카구라가 받아야함/상대도 강자주시 카구라일땐 짐(속공따고 가는게 나음)",
                 "skillOrders": [
                   {
                     "label": "속공 질 때",
@@ -909,6 +992,48 @@
               "kyle2.png"
             ],
             "counters": [  
+              {
+                "recommendation": 3,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "preset":"프리셋1(속공)/5불사"
+              
+                   
+                
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                    "preset":"프리셋3(카일상대)",
+                    "note":"5부활"
+                   
+                   
+                  },
+                  {
+                    "name": "발리스타",
+                    "image": "/images/heroes/ballista.png",
+                    "preset":"프리셋1(내실)",
+                    "note":"4성권능/확실한건 5성권능"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"상대 카일 내실이면 빡셈 극 속공 세팅일때 사용가능",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "colt1.png",
+                      "colt2.png",
+                      "ballista1.png"
+                    ]
+                  }
+                ]
+              },
                {
                 "recommendation": 3,
                   "pet": ["irin.png"],
@@ -940,7 +1065,7 @@
                      
                   }
                 ],
-                "note":"강자주시 카구라가 받아야함",
+                "note":"강자주시 카구라가 받아야함/상대도 강자주시 카구라일땐 짐(속공따고 가는게 나음)",
                 "skillOrders": [
                   {
                     "label": "속공 질 때",
