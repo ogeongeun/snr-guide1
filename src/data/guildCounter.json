@@ -5936,6 +5936,94 @@
       },
       {
         "id": "team4",
+        "label": "스파이크 방덱",
+        "defenseTeam": [
+          {
+            "name": "첸슬러",
+            "image": "/images/heroes/chancellor.png"
+          },
+          {
+            "name": "스파이크",
+            "image": "/images/heroes/spike.png"
+          },
+          {
+            "name": "엘리스",
+            "image": "/images/heroes/elise.png",
+            "note":"엘리스 대체가능"
+          }
+        ],
+        "defenseVariants": [
+          {
+            "defenseSkills": ["spike2.png","chancellor2.png","elise1.png"],
+            "counters": [
+              {
+                "recommendation": 2,
+                "team": [
+                   {
+            "name": "풍연",
+            "image": "/images/heroes/poongyeon.png",
+            "note":"수문장/방생막받"
+          },
+          {
+            "name": "루리",
+            "image": "/images/heroes/luri.png",
+            "preset":"프리셋1(길드전)"
+          },
+          {
+            "name": "리나",
+            "image": "/images/heroes/lina.png",
+            "note":"엘리스 대체가능"
+          }
+                ],
+                "note": "레이첼 위쓰고 카구라가 죽어야함",
+                "skillOrders": [
+                  {
+                    "label": "공통",
+                    "skills": [
+                      "lina2.png",
+                      "luri2.png",
+                      "luri1.png"
+                     
+                    ]
+                  }
+                ]
+              },
+              
+              {
+                "recommendation": 2,
+                "team": [
+                  {
+                    "name": "루시",
+                    "image": "/images/heroes/lucy.png"
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                     "preset":"프리셋1(탱)"
+                  },
+                  {
+                    "name": "엘리스",
+                    "image": "/images/heroes/elise.png"
+                  }
+                ],
+                
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "lucy2.png",
+                      "elise2.png",
+                      "elise1.png"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "team4",
         "label": "콜트+플라튼 방덱",
         "defenseTeam": [
           {
