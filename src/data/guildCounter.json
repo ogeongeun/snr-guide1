@@ -4209,15 +4209,15 @@
                    "preset":"프리셋2(길드전)"
                   },
                   {
-                    "name": "첸슬러",
-                    "image": "/images/heroes/chancellor.png",
-                    "preset":"프리셋2(길드전)",
-                    "note":"부활/아라곤 대체가능"
+                    "name": "아라곤",
+                    "image": "/images/heroes/aragon.png",
+                    "preset":"",
+                    "note":"부활/첸슬러 대체가능"
                   },
                   {
                     "name": "엘리스",
                     "image": "/images/heroes/elise.png",
-                    "note":"받피감 대신 막기"
+                    "note":""
                   }
                 ],
                 "note": "",
@@ -5322,7 +5322,42 @@
              
               
               {
-                "recommendation": 3,
+                "recommendation": 2,
+                "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "린",
+                    "image": "/images/heroes/rin.png",
+                    "preset":"프리셋1(속공)",
+                     "note":"권능"
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                     "preset":"프리셋2(내실)",
+                     "note":"부활"
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+      "preset":"프리셋2(속공)"
+                  }
+                ],
+                
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "vanessa1.png",
+                      "Yeonhee2.png",
+                      "Yeonhee1.png"
+                     
+                    ]
+                  }
+                ]
+              },
+               {
+                "recommendation": 2,
                 "pet": ["Yeonji.png"],
                 "team": [
                   {
