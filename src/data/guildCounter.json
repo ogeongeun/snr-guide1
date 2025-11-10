@@ -5361,31 +5361,31 @@
                 "pet": ["Yeonji.png"],
                 "team": [
                   {
-                    "name": "린",
+                    "name": "콜트",
                     "image": "/images/heroes/rin.png",
                     "preset":"프리셋1(속공)",
                      "note":"권능"
                   },
                   {
-                    "name": "연희",
+                    "name": "플라튼",
                     "image": "/images/heroes/Yeonhee.png",
                      "preset":"프리셋2(내실)",
                      "note":"부활"
                   },
                   {
-                    "name": "바네사",
-                    "image": "/images/heroes/vanessa.png",
-      "preset":"프리셋2(속공)"
+                    "name": "아멜리아",
+                    "image": "/images/heroes/amelia.png",
+      "note":"조율자 공효막막(속공)/권능"
                   }
                 ],
                 
                 "skillOrders": [
                   {
-                    "label": "속공 이길 때",
+                    "label": "공통",
                     "skills": [
-                      "vanessa1.png",
-                      "Yeonhee2.png",
-                      "Yeonhee1.png"
+                      "amelia2.png",
+                      "colt1.png",
+                      "colt2.png"
                      
                     ]
                   }
