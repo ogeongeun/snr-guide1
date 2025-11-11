@@ -301,7 +301,7 @@
                      
                   }
                 ],
-                "note":"룩 패시브 제외 막기100은 맞춰야함",
+                "note":"",
                 "skillOrders": [
                   {
                     "label": "속공 이길때",
@@ -358,7 +358,7 @@
                 ]
               },
               {
-                "recommendation": 3,
+                "recommendation": 2,
                   "pet": ["Yeonji.png"],
                 "team": [
                   {
@@ -406,6 +406,50 @@
                   "pet": ["Yeonji.png"],
                 "team": [
                   {
+                    "name": "쥬리",
+                    "image": "/images/heroes/juri.png",
+                    "preset":"프리셋5(조율자)",
+                    "note":"cc반지"
+                    
+                   
+                
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋6(조율자)",
+                    "note":"바네사 뒤배치(연희랑 공차이 600~800일때 뒤배치 쥬리보다도 높게)/권능필수"
+                   
+                   
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋4(조율자)",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"바네사 혼자 뒤배치 매우중요(카일 강자 바네사로 빼는법)/바네사 속공 마지막이면 좋음",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "vanessa1.png",
+            
+                      "juri2.png",
+                      "Yeonhee2.png"
+                    ]
+                  }
+                ]
+              },
+              {
+                "recommendation": 2,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                  {
                     "name": "콜트",
                     "image": "/images/heroes/colt.png",
                     "preset":"프리셋1(속공)"
@@ -445,7 +489,7 @@
               },
               
                {
-                "recommendation": 3,
+                "recommendation": 2,
                   "pet": ["Yeonji.png"],
                 "team": [
                   {
@@ -490,7 +534,7 @@
               }
               ,
                {
-                "recommendation": 3,
+                "recommendation": 2,
                   "pet": ["Yeonji.png"],
                 "team": [
                   {
@@ -531,7 +575,7 @@
                   }
                 ]
               },  {
-                "recommendation": 3,
+                "recommendation": 2,
                   "pet": ["ru.png"],
                 "team": [
                   {
@@ -553,7 +597,8 @@
                   {
                     "name": "콜트",
                     "image": "/images/heroes/colt.png",
-                    "note":"불사"
+                    "preset":"프리셋2(내실)",
+                    "note":"불사/첸슬러보다 속공 낮게"
                  
                  
                      
@@ -650,6 +695,50 @@
               "kyle2.png"
             ],
             "counters": [
+              {
+                "recommendation": 3,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "쥬리",
+                    "image": "/images/heroes/juri.png",
+                    "preset":"프리셋5(조율자)",
+                    "note":"cc반지"
+                    
+                   
+                
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋6(조율자)",
+                    "note":"바네사 뒤배치(연희랑 공차이 600~800일때 뒤배치 쥬리보다도 높게)/권능필수"
+                   
+                   
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋4(조율자)",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"바네사 혼자 뒤배치 매우중요(카일 강자 바네사로 빼는법)/바네사 속공 마지막이면 좋음",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "vanessa1.png",
+            
+                      "juri2.png",
+                      "Yeonhee2.png"
+                    ]
+                  }
+                ]
+              },
               {
                 "recommendation": 2,
                   "pet": ["Yeonji.png"],
@@ -997,6 +1086,50 @@
                   "pet": ["Yeonji.png"],
                 "team": [
                   {
+                    "name": "쥬리",
+                    "image": "/images/heroes/juri.png",
+                    "preset":"프리셋5(조율자)",
+                    "note":"cc반지"
+                    
+                   
+                
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋6(조율자)",
+                    "note":"바네사 뒤배치(연희랑 공차이 600~800일때 뒤배치 쥬리보다도 높게)/권능필수"
+                   
+                   
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                    "preset":"프리셋4(조율자)",
+                    "note":"불사"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"바네사 혼자 뒤배치 매우중요(카일 강자 바네사로 빼는법)/바네사 속공 마지막이면 좋음",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "vanessa1.png",
+            
+                      "juri2.png",
+                      "Yeonhee2.png"
+                    ]
+                  }
+                ]
+              },
+              {
+                "recommendation": 2,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                  {
                     "name": "콜트",
                     "image": "/images/heroes/colt.png",
                     "preset":"프리셋1(속공)/5불사"
@@ -1123,7 +1256,7 @@
               },
               
                {
-                "recommendation": 3,
+                "recommendation": 2,
                   "pet": ["Yeonji.png"],
                 "team": [
                   {
@@ -5322,20 +5455,20 @@
              
               
               {
-                "recommendation": 2,
+                "recommendation": 3,
                 "pet": ["Yeonji.png"],
                 "team": [
                   {
-                    "name": "린",
-                    "image": "/images/heroes/rin.png",
+                    "name": "키리엘",
+                    "image": "/images/heroes/kiriel.png",
                     "preset":"프리셋1(속공)",
-                     "note":"권능"
+                     "note":"부활/2초월이여도됨"
                   },
                   {
                     "name": "연희",
                     "image": "/images/heroes/Yeonhee.png",
                      "preset":"프리셋2(내실)",
-                     "note":"부활"
+                     "note":"부활이 불사보다 좋음"
                   },
                   {
                     "name": "바네사",
@@ -5351,6 +5484,51 @@
                       "vanessa1.png",
                       "Yeonhee2.png",
                       "Yeonhee1.png"
+                     
+                    ]
+                  }
+                ]
+              },
+               {
+                "recommendation": 1,
+                "pet": ["ru.png","chri.png"],
+                "team": [
+                  {
+                    "name": "아킬라",
+                    "image": "/images/heroes/akilra.png",
+                    "preset":"길드전",
+                     "note":"6초 추천/2초월이여도 가능/로지 대체가능"
+                  },
+                  {
+                    "name": "녹스",
+                    "image": "/images/heroes/nox.png",
+                     "preset":"길드전",
+                     "note":"부활"
+                  },
+                  {
+                    "name": "크리스",
+                    "image": "/images/heroes/chris.png",
+      "preset":"길드전(조율자)"
+                  }
+                ],
+                "note":"정보없는곳 갈때 덱풀 부족할때 도전해볼만함",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때1",
+                    "skills": [
+                      "akilra2.png",
+                      "chris2.png",
+                      "chris1.png"
+                     
+                    ]
+                  },
+                   {
+                    "label": "속공 질 때2",
+                    "skills": [
+                     
+                      "chris1.png",
+                       "akilra2.png",
+                      "chris2.png"
                      
                     ]
                   }
