@@ -1664,6 +1664,169 @@
           
         ]
       },
+        {
+        "id": "team1",
+        "label": "태오 공덱",
+        "defenseTeam": [
+          {
+            "name": "콜트",
+            "image": "/images/heroes/colt.png"
+          },
+          {
+            "name": "태오",
+            "image": "/images/heroes/teo.png"
+          },
+          {
+            "name": "델론즈",
+            "image": "/images/heroes/dellons.png"
+          }
+        ],
+        "defenseNotes": [
+          "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+        ],
+        "defenseVariants": [
+          {
+            "defenseSkills": [
+              "colt2.png",
+              "teo2.png",
+              "teo1.png"
+            ],
+            "counters": [
+              {
+                "recommendation": 2,
+                  "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+                    "preset":"프리셋2(속공)"
+                   
+                
+                  },
+                  {
+                    "name": "오를리",
+                    "image": "/images/heroes/orly.png",
+                     "preset":"프리셋2(속공)",
+                     "note":"부활반지"
+                   
+                   
+                  },
+                  {
+                    "name": "린",
+                    "image": "/images/heroes/rin.png",
+                     "preset":"프리셋1(속공)"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "vanessa1.png",
+                      "orly2.png",
+                      "rin2.png"
+                    ]
+                  }
+                ]
+              }
+              
+               
+               
+            ]
+          }, {
+                  "recommendation": 3,
+                    "pet": ["ru.png", "pike.png"],
+                  "team": [
+                    {
+                      "name": "루디",
+                      "image": "/images/heroes/rudy.png",
+                          "preset":"프리셋2"
+                    
+                  
+                    },
+                    {
+                      "name": "제이브",
+                      "image": "/images/heroes/jave.png",
+                          "preset":"프리셋2(길드전)",
+                  "note":"부활반지 필수"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "룩",
+                      "image": "/images/heroes/look.png",
+                       "preset":"프리셋2(길드전)",
+                      "note":""
+                    
+                  
+                  
+                      
+                    }
+                  ],
+            "note":"제이브만 반지 끼면됨",
+                  "skillOrders": [
+                    {
+                      "label": "속공 질때",
+                      "skills": [
+                        "jave2.png",
+                        "rudy2.png",
+                        "look2.png"
+                      ]
+                    }
+                  ]
+                }, {
+                  "recommendation": 3,
+                    "pet": ["ru.png", "pike.png"],
+                  "team": [
+                    {
+                      "name": "루디",
+                      "image": "/images/heroes/rudy.png",
+                          "preset":"프리셋2"
+                    
+                  
+                    },
+                    {
+                      "name": "제이브",
+                      "image": "/images/heroes/jave.png",
+                          "preset":"프리셋2(길드전)",
+                  "note":"부활반지 필수/막막으로 챙겨줘야함 받막 말고"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "리나",
+                      "image": "/images/heroes/lina.png",
+                       "preset":"힐러",
+                      "note":"막막으로 장비 교체체"
+                    
+                  
+                  
+                      
+                    }
+                  ],
+            "note":"제이브만 반지 끼면됨",
+                  "skillOrders": [
+                    {
+                      "label": "속공 질때",
+                      "skills": [
+                        "jave2.png",
+                        "rudy2.png",
+                        "lina1.png"
+                      ]
+                    }
+                  ]
+                }
+              
+                
+         
+          
+        ]
+      },
       {
         "id": "team1",
         "label": "아멜리아 공덱",
