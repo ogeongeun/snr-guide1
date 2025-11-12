@@ -1731,12 +1731,11 @@
                     ]
                   }
                 ]
-              }
+              },
               
                
                
-            ]
-          }, {
+            {
                   "recommendation": 3,
                     "pet": ["ru.png", "pike.png"],
                   "team": [
