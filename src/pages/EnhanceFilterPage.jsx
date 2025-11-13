@@ -112,7 +112,7 @@ export default function EnhanceFilterPage() {
 
           {/* ---------------- 서브옵션 (1개만 선택) ---------------- */}
           <p className="text-sm font-semibold text-gray-700 mb-2">
-            서브 옵션 (약공·치확·치피 각각 누르고 나온 장비 3강씩 강화)
+            서브 옵션 (약공·치확·치피 각각 누르고 나온 장비 3강씩 강화)!!한번에누르는게아니라 각각 하나씩눌러서 나온장비강화
           </p>
 
           <div className="grid grid-cols-3 gap-3 mb-8">
