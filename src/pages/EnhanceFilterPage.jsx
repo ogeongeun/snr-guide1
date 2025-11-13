@@ -52,8 +52,8 @@ export default function EnhanceFilterPage() {
 
   // ---------------- 기타 ----------------
   const miscOptions = [
-    { key: "hideEquipped", label: "착용 장비 숨김" },
-    { key: "hideUnequipped", label: "미착용 장비 숨김" },
+    { key: "hideEquipped", label: "Max 강화 장비 숨김" },
+    { key: "hideUnequipped", label: "강화한 장비 숨김" },
   ];
 
   return (
