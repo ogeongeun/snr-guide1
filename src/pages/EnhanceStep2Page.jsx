@@ -1,9 +1,9 @@
 // src/pages/EnhanceStep2Page.jsx
-import { useNavigate, useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import { useState } from "react";
 
 export default function EnhanceStep2Page() {
-  const navigate = useNavigate();
+
   const location = useLocation();
 
   // Step1에서 넘어온 값들
