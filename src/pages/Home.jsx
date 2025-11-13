@@ -21,6 +21,18 @@ const Home = () => {
       emoji: '🔥'
     },
     {
+  title: '장비 강화 가이드',
+  path: '/enhance-guide',
+  description: '무기/방어구 선택 후 강화 우선순위 안내',
+  emoji: '⚙️'
+},
+ {
+      title: '장비 추천',
+      path: '/equipment',
+      description: '영웅들의 장비 추천',
+      emoji: '🛠'
+    },
+    {
       title: '총력전',
       path: '/grand-battle',
       description: '총력전 전용 팀 구성 및 공략 정보',
@@ -44,12 +56,7 @@ const Home = () => {
       description: '모험 콘텐츠용 클리어 덱',
       emoji: '🗺️'
     },
-    {
-      title: '장비 추천',
-      path: '/equipment',
-      description: '영웅들의 장비 추천',
-      emoji: '🛠'
-    },
+   
     {
       title: '장신구 세공법',
       path: '/accessory-custom',

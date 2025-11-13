@@ -27,8 +27,11 @@ import EquipmentRecommendationPage from './pages/EquipmentRecommendationPage';
 import GuildOffenseCounterPage from './pages/GuildOffenseCounterPage';
 import GuildOffenseDetailPage from './pages/GuildOffenseDetailPage';
 import AccessoryCustomPage from './pages/AccessoryCustomPage';
+import WeaponArmorSelectPage from "./pages/WeaponArmorSelectPage";
+import EnhanceFilterPage from "./pages/EnhanceFilterPage"; // 다음 단계 페이지
 import GrandBattlePage from './pages/GrandBattlePage';
 import VoodooPage from './pages/VoodooPage';
+import EnhanceStep2Page from "./pages/EnhanceStep2Page";
 const App = () => {
   return (
     <Router>
@@ -44,6 +47,8 @@ const App = () => {
         <Route path="/skill-order" element={<SkillOrderPage />} />
         <Route path="/raid-guide" element={<RaidGuidePage/>} />
         <Route path="/adventure" element={<Adventure/>} />
+          <Route path="/enhance-guide" element={<WeaponArmorSelectPage />} />
+  <Route path="/enhance-guide/:type" element={<EnhanceFilterPage />} />
         <Route path="/guild-offense-finder" element={<GuildOffenseFinderPage />} />
         <Route path="/adventure/:stage" element={<AdventureDetailPage />} />
         <Route path="/expedition/:heroId" element={<ExpeditionTeamPage />} />
@@ -53,6 +58,7 @@ const App = () => {
        <Route path="/infinity-tower/:floor" element={<InfinityTowerDetailPage />} />
         <Route path="/infinity-skill/:floor/:teamIndex" element={<InfinitySkillDetailPage />} />
         <Route path="/trial-tower" element={<TrialTowerPage />} />
+        <Route path="/enhance-guide/:type/step2" element={<EnhanceStep2Page />} />
 <Route path="/trial-tower/:floor" element={<TrialTowerDetailPage />} />
  <Route path="/expedition" element={<ExpeditionPage />} /> {/* ✅ 추가 */}
       <Route path="/expedition/:heroId" element={<ExpeditionTeamPage />} />
