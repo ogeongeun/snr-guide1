@@ -125,6 +125,7 @@ export default function GuildOffenseDetailPage() {
     ? entry.defenseVariants
     : [];
 
+  // 🔥 핵심: 첫공격 카드가 반드시 빨간색 테두리
   const renderCounterCard = (recommended, j) => {
     const grouped = Array.isArray(recommended.skillOrders)
       ? recommended.skillOrders
@@ -133,10 +134,13 @@ export default function GuildOffenseDetailPage() {
       ? recommended.skillOrder
       : null;
 
+    const isFirstAttack = recommended.firstAttack === true;
+
     return (
       <div
         key={j}
-        className="mb-6 border border-gray-300 rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition"
+        className={`mb-6 rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition
+        ${isFirstAttack ? 'border-2 border-red-500' : 'border border-gray-300'}`}
       >
         {/* 추천도 */}
         {recommended.recommendation && (
@@ -199,21 +203,24 @@ export default function GuildOffenseDetailPage() {
     );
   };
 
-  // ✅ variant 렌더러 (추천도 높은 순으로 정렬)
+  // 🔥 variant 박스의 border가 첫공 카드를 가리는 문제 해결
   const renderVariant = (variant, index) => {
-    // 🔹 정렬 로직 추가
     const sortedCounters = Array.isArray(variant.counters)
       ? [...variant.counters].sort((a, b) => {
           const ra = Number(a.recommendation) || 0;
           const rb = Number(b.recommendation) || 0;
-          return rb - ra; // 높은 값이 위로
+          return rb - ra;
         })
       : [];
+
+    const hasFirstAttackCard =
+      sortedCounters.some((c) => c.firstAttack === true);
 
     return (
       <div
         key={`variant-${index}`}
-        className="mb-2 border border-gray-300 rounded-xl p-4 bg-white shadow-sm"
+        className={`mb-2 rounded-xl p-4 bg-white shadow-sm
+        ${hasFirstAttackCard ? 'border-0' : 'border border-gray-300'}`}
       >
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-semibold">패턴 #{index + 1}</h3>
