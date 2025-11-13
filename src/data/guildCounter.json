@@ -156,6 +156,7 @@
               },
               {
                 "recommendation": 3,
+                  "firstAttack": true,
                   "pet": ["ru.png"],
                 "team": [
                   {
@@ -357,8 +358,55 @@
                   }
                 ]
               },
+               {
+                "recommendation": 3,
+                "firstAttack":true,
+                  "pet": ["irin.png"],
+                "team": [
+                  {
+                    "name": "카구라",
+                    "image": "/images/heroes/cagura.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"불사*강자주시)"
+                  
+                   
+                
+                  },
+                  {
+                    "name": "카일",
+                    "image": "/images/heroes/kyle.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"뒤배치(권능)"
+                   
+                   
+                  },
+                  {
+                    "name": "파이",
+                    "image": "/images/heroes/pie.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"4권능"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"속공최소 250이상 세팅후 공격필수",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                     
+            
+                      "kyle1.png",
+                      "kyle2.png",
+                       "pie2.png"
+                    ]
+                  }
+                ]
+              },
               {
-                "recommendation": 2,
+                "recommendation": 3,
+                "firstAttack":true,
                   "pet": ["Yeonji.png"],
                 "team": [
                   {
@@ -575,7 +623,8 @@
                   }
                 ]
               },  {
-                "recommendation": 2,
+                "recommendation": 3,
+                  "firstAttack": true,
                   "pet": ["ru.png"],
                 "team": [
                   {
@@ -695,8 +744,55 @@
               "kyle2.png"
             ],
             "counters": [
-              {
+               {
                 "recommendation": 3,
+                "firstAttack":true,
+                  "pet": ["irin.png"],
+                "team": [
+                  {
+                    "name": "카구라",
+                    "image": "/images/heroes/cagura.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"불사*강자주시)"
+                  
+                   
+                
+                  },
+                  {
+                    "name": "카일",
+                    "image": "/images/heroes/kyle.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"뒤배치(권능)"
+                   
+                   
+                  },
+                  {
+                    "name": "파이",
+                    "image": "/images/heroes/pie.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"4권능"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"속공최소 250이상 세팅후 공격필수",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                     
+            
+                      "kyle1.png",
+                      "kyle2.png",
+                       "pie2.png"
+                    ]
+                  }
+                ]
+              },
+              {
+                "recommendation": 2,
+             
                   "pet": ["Yeonji.png"],
                 "team": [
                   {
@@ -739,48 +835,7 @@
                   }
                 ]
               },
-              {
-                "recommendation": 2,
-                  "pet": ["Yeonji.png"],
-                "team": [
-                  {
-                    "name": "콜트",
-                    "image": "/images/heroes/colt.png",
-                    "preset":"프리셋1(속공)/5불사"
-              
-                   
-                
-                  },
-                  {
-                    "name": "플라튼",
-                    "image": "/images/heroes/platon.png",
-                    "preset":"프리셋3(카일상대)",
-                    "note":"5부활"
-                   
-                   
-                  },
-                  {
-                    "name": "발리스타",
-                    "image": "/images/heroes/ballista.png",
-                    "preset":"프리셋1(내실)",
-                    "note":"4성권능/확실한건 5성권능"
-                 
-                 
-                     
-                  }
-                ],
-                "note":"상대 카일 내실이면 빡셈 극 속공 세팅일때 사용가능",
-                "skillOrders": [
-                  {
-                    "label": "속공 질 때",
-                    "skills": [
-                      "colt1.png",
-                      "colt2.png",
-                      "ballista1.png"
-                    ]
-                  }
-                ]
-              },
+             
                 {
                 "recommendation": 3,
                   "pet": ["irin.png"],
@@ -910,49 +965,7 @@
                   }
                 ]
               },
-               {
-                "recommendation": 2,
-                  "pet": ["Yeonji.png"],
-                "team": [
-                 
-                  {
-                    "name": "바네사",
-                    "image": "/images/heroes/vanessa.png",
-                    "preset":"프리셋2(속공)",
-                    "note":"권능"
-                   
-                   
-                  },
-                   {
-                    "name": "실베스타",
-                    "image": "/images/heroes/silvesta.png",
-                    "preset":"프리셋2(속공)",
-                    "note":"부활이나 불사/뒤배치"
-                   
-                
-                  },
-                  {
-                    "name": "린",
-                    "image": "/images/heroes/rin.png",
-                    "preset":"프리셋1(속공)",
-                    "note":"불사"
-                 
-                 
-                     
-                  }
-                ],
-                "note":"",
-                "skillOrders": [
-                  {
-                    "label": "속공 이길 때",
-                    "skills": [
-                      "vanessa1.png",
-                      "rin2.png",
-                      "silvesta1.png"
-                    ]
-                  }
-                ]
-              },
+             
               {
                 "recommendation": 3,
                   "pet": ["Yeonji.png"],
@@ -1081,6 +1094,52 @@
               "kyle2.png"
             ],
             "counters": [  
+               {
+                "recommendation": 3,
+                "firstAttack":true,
+                  "pet": ["irin.png"],
+                "team": [
+                  {
+                    "name": "카구라",
+                    "image": "/images/heroes/cagura.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"불사*강자주시)"
+                  
+                   
+                
+                  },
+                  {
+                    "name": "카일",
+                    "image": "/images/heroes/kyle.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"뒤배치(권능)"
+                   
+                   
+                  },
+                  {
+                    "name": "파이",
+                    "image": "/images/heroes/pie.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"4권능"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"속공최소 250이상 세팅후 공격필수",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                     
+            
+                      "kyle1.png",
+                      "kyle2.png",
+                       "pie2.png"
+                    ]
+                  }
+                ]
+              },
               {
                 "recommendation": 3,
                   "pet": ["Yeonji.png"],
@@ -1213,6 +1272,7 @@
               },
               {
                 "recommendation": 3,
+                "firstAttack":true,
                   "pet": ["Yeonji.png"],
                 "team": [
                   {
@@ -1421,6 +1481,7 @@
                 },
                 {
                   "recommendation": 3,
+                  "firstAttack":true,
                     "pet": ["ru.png", "pike.png"],
                   "team": [
                     {
@@ -1737,6 +1798,7 @@
                
             {
                   "recommendation": 3,
+                    "firstAttack":true,
                     "pet": ["ru.png", "pike.png"],
                   "team": [
                     {
@@ -1779,6 +1841,7 @@
                   ]
                 }, {
                   "recommendation": 3,
+                    "firstAttack":true,
                     "pet": ["ru.png", "pike.png"],
                   "team": [
                     {
@@ -3713,6 +3776,7 @@
             "counters": [
               {
                 "recommendation": 3,
+                  "firstAttack":true,
                    "pet": ["irin.png","rechel.png"],
                 "team": [
                   {
@@ -3943,6 +4007,7 @@
             "counters": [
               {
                 "recommendation": 3,
+                  "firstAttack":true,
                    "pet": ["irin.png","rechel.png"],
                 "team": [
                   {
@@ -4044,6 +4109,7 @@
             "counters": [
                {
                 "recommendation": 3,
+                  "firstAttack":true,
                 "team": [
                   {
                     "name": "리나",
@@ -4437,7 +4503,41 @@
           {
             "defenseSkills": ["vanessa1.png","Yeonhee2.png","juri2.png"],
             "counters": [
-              
+              {
+                "recommendation": 3,
+                "firstAttack":true,
+                "team": [
+                  {
+                    "name": "니아",
+                    "image": "/images/heroes/nia.png"
+            
+                    
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/rin.png",
+                    "preset":"프리셋1(속공)"
+                    
+                  },
+                  {
+                    "name": "로지",
+                    "image": "/images/heroes/lozy.png",
+                    "preset":"프리셋2(속공)"
+                  }
+                ],
+                "note":"속공최소 220이상 세팅후 공격필수",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길때",
+                    "skills": [
+                      "nia2.png",
+                      "Yeonhee2.png",
+                      "nia1.png"
+                   
+                    ]
+                  }
+                ]
+              },
               {
                 "recommendation": 3,
                 "team": [
@@ -4466,6 +4566,40 @@
                       "chancellor2.png",
                       "look2.png",
                       "aragon1.png"
+                    ]
+                  }
+                ]
+              },
+              {
+                "recommendation": 3,
+                "firstAttack": true,
+                "team": [
+                  {
+                    "name": "스파이크",
+                    "image": "/images/heroes/spike.png",
+                   "preset":"프리셋2(길드전)"
+                  },
+                  {
+                    "name": "아라곤",
+                    "image": "/images/heroes/aragon.png",
+                    "preset":"",
+                    "note":"부활/첸슬러 대체가능"
+                  },
+                  {
+                    "name": "엘리스",
+                    "image": "/images/heroes/elise.png",
+                    "note":""
+                  }
+                ],
+                "note": "",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "spike2.png",
+                      "chancellor2.png",
+                      "elise1.png"
+                   
                     ]
                   }
                 ]
@@ -4498,6 +4632,7 @@
             "counters": [
                {
                 "recommendation": 3,
+                "firstAttack": true,
                 "team": [
                   {
                     "name": "스파이크",
@@ -4592,7 +4727,8 @@
               },
               
               {
-                "recommendation": 2,
+                "recommendation": 3,
+                "firstAttack":true,
                 "team": [
                   {
                     "name": "니아",
@@ -4612,7 +4748,7 @@
                     "preset":"프리셋2(속공)"
                   }
                 ],
-                
+                "note":"속공최소 220이상 세팅후 공격필수",
                 "skillOrders": [
                   {
                     "label": "속공 이길때",
@@ -5619,6 +5755,7 @@
               
               {
                 "recommendation": 3,
+                "firstAttack":true,
                 "pet": ["Yeonji.png"],
                 "team": [
                   {
@@ -5654,6 +5791,7 @@
               },
                {
                 "recommendation": 1,
+                   "firstAttack":true,
                 "pet": ["ru.png","chri.png"],
                 "team": [
                   {
@@ -5760,6 +5898,7 @@
             "counters": [
                {
                 "recommendation": 3,
+                   "firstAttack":true,
                 "team": [
                   
                   {
@@ -5801,6 +5940,7 @@
               },
                {
                 "recommendation": 3,
+                   "firstAttack":true,
                 "team": [
                   
                   {
@@ -5842,6 +5982,7 @@
               },
                {
                 "recommendation": 3,
+                   "firstAttack":true,
                 "team": [
                   
                   {

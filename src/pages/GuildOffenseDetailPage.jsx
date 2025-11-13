@@ -61,6 +61,7 @@ export default function GuildOffenseDetailPage() {
           className="w-14 h-14 object-contain"
         />
       </div>
+
       {hero.note ? (
         <p className="text-[9px] text-red-500 italic mt-0.5 text-center">
           {hero.note}
@@ -68,7 +69,9 @@ export default function GuildOffenseDetailPage() {
       ) : (
         <div className="h-[14px]" />
       )}
+
       <p className="text-[10px] mt-1 text-center">{hero.name}</p>
+
       {(hero.preset || (hero.note && hero.note.includes('프리셋'))) && (
         <span className="mt-1 text-[9px] px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
           {hero.preset || hero.note}
@@ -125,11 +128,14 @@ export default function GuildOffenseDetailPage() {
     ? entry.defenseVariants
     : [];
 
-  // 🔥 핵심: 첫공격 카드가 반드시 빨간색 테두리
+  // -----------------------------------------------------------
+  // 🔥 ① 첫공격 라벨 + 빨간 테두리
+  // -----------------------------------------------------------
   const renderCounterCard = (recommended, j) => {
     const grouped = Array.isArray(recommended.skillOrders)
       ? recommended.skillOrders
       : null;
+
     const legacy = Array.isArray(recommended.skillOrder)
       ? recommended.skillOrder
       : null;
@@ -139,9 +145,16 @@ export default function GuildOffenseDetailPage() {
     return (
       <div
         key={j}
-        className={`mb-6 rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition
+        className={`relative mb-6 rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition 
         ${isFirstAttack ? 'border-2 border-red-500' : 'border border-gray-300'}`}
       >
+        {/* 🔥 첫공격 라벨 */}
+        {isFirstAttack && (
+          <div className="absolute -top-3 left-3 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">
+            첫공격
+          </div>
+        )}
+
         {/* 추천도 */}
         {recommended.recommendation && (
           <div className="text-center mb-2">
@@ -203,24 +216,27 @@ export default function GuildOffenseDetailPage() {
     );
   };
 
-  // 🔥 variant 박스의 border가 첫공 카드를 가리는 문제 해결
+  // -----------------------------------------------------------
+  // 🔥 ② 첫공격 카운터를 항상 최상단으로 정렬
+  // -----------------------------------------------------------
   const renderVariant = (variant, index) => {
     const sortedCounters = Array.isArray(variant.counters)
       ? [...variant.counters].sort((a, b) => {
+          // 1) 첫공격 우선
+          if (a.firstAttack === true && b.firstAttack !== true) return -1;
+          if (b.firstAttack === true && a.firstAttack !== true) return 1;
+
+          // 2) 추천도 높은 순
           const ra = Number(a.recommendation) || 0;
           const rb = Number(b.recommendation) || 0;
           return rb - ra;
         })
       : [];
 
-    const hasFirstAttackCard =
-      sortedCounters.some((c) => c.firstAttack === true);
-
     return (
       <div
         key={`variant-${index}`}
-        className={`mb-2 rounded-xl p-4 bg-white shadow-sm
-        ${hasFirstAttackCard ? 'border-0' : 'border border-gray-300'}`}
+        className="mb-2 border border-gray-300 rounded-xl p-4 bg-white shadow-sm"
       >
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-semibold">패턴 #{index + 1}</h3>
@@ -259,6 +275,7 @@ export default function GuildOffenseDetailPage() {
           <p className="text-xs font-semibold text-gray-700 mb-2">
             상대 방어팀 (요약)
           </p>
+
           <div className="grid grid-cols-3 gap-2 mb-3">
             {entry.defenseTeam.map(renderHeroCard)}
           </div>
@@ -299,7 +316,9 @@ export default function GuildOffenseDetailPage() {
           variants.map((v, vIdx) => renderVariant(v, vIdx))
         )
       ) : (
-        <p className="text-sm text-gray-500">등록된 defenseVariants가 없습니다.</p>
+        <p className="text-sm text-gray-500">
+          등록된 defenseVariants가 없습니다.
+        </p>
       )}
 
       {selectedHeroKey && (
