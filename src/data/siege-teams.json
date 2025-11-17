@@ -122,17 +122,20 @@
           },
           {
             "name": "루리",
-            "image": "luri.png"
+            "image": "luri.png",
+            "preset":"프리셋2(공성전)"
             ,"note": "뒤배치"
           },
           {
             "name": "리나",
-            "image": "lina.png"
+            "image": "lina.png",
+            "preset":"힐러"
           },
           {
             "name": "미호",
             "image": "miho.png",
-            "note":"2초월부터 가능"
+            "preset":"프리셋1(월요일 공성)",
+            "note":"뒤배치/권능반지"
           }
         ],
          "tags": [

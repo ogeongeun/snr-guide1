@@ -147,11 +147,11 @@
           "skills": [
             {
               "stageTitle": "1스테이지",
-              "images": ["miho1.png"]
+              "images": ["bisket2.png"]
             },
             {
               "stageTitle": "2스테이지",
-              "images": ["bisket2.png"]
+              "images": ["chloe2.png","miho1.png"]
             },
             {
               "stageTitle": "3스테이지",
