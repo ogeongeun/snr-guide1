@@ -5749,6 +5749,153 @@
         ],
         "defenseVariants": [
           {
+            "defenseSkills": ["amelia2.png","silvesta2.png","silvesta1.png"],
+            "counters": [
+             
+              
+              {
+                "recommendation": 3,
+                "firstAttack":true,
+                "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "키리엘",
+                    "image": "/images/heroes/kiriel.png",
+                    "preset":"프리셋1(속공)",
+                     "note":"부활/2초월이여도됨"
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                     "preset":"프리셋2(내실)",
+                     "note":"부활이 불사보다 좋음"
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+      "preset":"프리셋2(속공)"
+                  }
+                ],
+                
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "vanessa1.png",
+                      "Yeonhee2.png",
+                      "Yeonhee1.png"
+                     
+                    ]
+                  }
+                ]
+              },
+               {
+                "recommendation": 1,
+                   "firstAttack":true,
+                "pet": ["ru.png","chri.png"],
+                "team": [
+                  {
+                    "name": "로지",
+                    "image": "/images/heroes/lozy.png",
+                    "preset":"길드전(방덱)",
+                     "note":"아킬라 대체가능"
+                  },
+                  {
+                    "name": "녹스",
+                    "image": "/images/heroes/nox.png",
+                     "preset":"길드전(방덱)",
+                     "note":"부활"
+                  },
+                  {
+                    "name": "크리스",
+                    "image": "/images/heroes/chris.png",
+      "preset":"길드전(방덱)"
+                  }
+                ],
+                "note":"정보없는곳 갈때 덱풀 부족할때 도전해볼만함",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때1",
+                    "skills": [
+                    
+                    
+                      "chris1.png",
+                        "chris2.png",
+                      "nox2.png
+                     
+                    ]
+                  },
+                   {
+                    "label": "속공 질 때2",
+                    "skills": [
+                     
+                      "chris1.png",
+                       "akilra2.png",
+                      "chris2.png"
+                     
+                    ]
+                  }
+                ]
+              },
+               {
+                "recommendation": 2,
+                "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/rin.png",
+                    "preset":"프리셋1(속공)",
+                     "note":"권능"
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/Yeonhee.png",
+                     "preset":"프리셋2(내실)",
+                     "note":"부활"
+                  },
+                  {
+                    "name": "아멜리아",
+                    "image": "/images/heroes/amelia.png",
+      "note":"조율자 공효막막(속공)/권능"
+                  }
+                ],
+                
+                "skillOrders": [
+                  {
+                    "label": "공통",
+                    "skills": [
+                      "amelia2.png",
+                      "colt1.png",
+                      "colt2.png"
+                     
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+         
+        ]
+      },
+       {
+        "id": "team4",
+        "label": "플라튼+실베스타 방덱",
+        "defenseTeam": [
+          {
+            "name": "아멜리아",
+            "image": "/images/heroes/amelia.png"
+          },
+          {
+            "name": "실베스타",
+            "image": "/images/heroes/silvesta.png"
+          },
+          {
+            "name": "플라튼",
+            "image": "/images/heroes/platon.png"
+          }
+        ],
+        "defenseVariants": [
+          {
             "defenseSkills": ["amelia1.png","amelia2.png","silvesta1.png"],
             "counters": [
              
