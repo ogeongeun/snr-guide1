@@ -27,7 +27,7 @@
                 "name": "파이",
                 "image": "pie.png",
                 "preset":"프리셋5(카일방덱)",
-                "note": "추적자/복수자 다상관x 속공만 높으면됨/권능"
+                "note": "추적자/속공만 높으면됨/권능"
               },
               {
                 "name": "카일",
@@ -41,7 +41,7 @@
                 "name": "카구라",
                 "image": "cagura.png",
                 "preset":"프리셋1(속공)",
-                  "note":"카구라 강자주시 받게하는게 가장좋음/안되면 속공 짬통/불사 필수"
+                  "note":"카구라 강자주시 받게하는게 가장좋음/안되면 속공 짬통/1순위:기합의반지,2순위 불사반지"
               
               }
             ],
@@ -49,20 +49,18 @@
             "skillOrders": {
               
               "속공덱1": [
-                "cagura2.png",
-                "kyle2.png",
-
+             
+                "kyle1.png",
+                  "klye2.png",
               
 
-                "kyle1.png"
+                "pie1.png"
               ],
                  "속공덱2": [
-            
-                "kyle2.png",
-                  "cagura2.png",
+            "cagura2.png",
+                     "kyle1.png",
+                  "klye2.png"
               
-
-                "kyle1.png"
               ]
              
             },
