@@ -98,7 +98,7 @@ const Home = () => {
             본 콘텐츠는 천우회 길드 전용이며, 무단 사용 및 복제를 금합니다.
           </p>
         </h1>
-        <p className="text-center text-sm text-gray-500 mb-2 italic">made by 건근본</p>
+        <p className="text-center text-sm text-gray-500 mb-2 italic">made by 천우회</p>
         {/* 추가 부분 */}
         <p className="text-center text-xs text-blue-500 mb-6 italic">
           <a 
