@@ -4732,7 +4732,8 @@
                 "team": [
                   {
                     "name": "니아",
-                    "image": "/images/heroes/nia.png"
+                    "image": "/images/heroes/nia.png",
+                    "note":"니아 2스강 필수"
             
                     
                   },
