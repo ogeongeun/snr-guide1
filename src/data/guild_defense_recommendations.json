@@ -131,7 +131,7 @@
           },
           {
             "teamId": 0,
-            "name": "플라튼+콜트 방덱",
+            "name": "플라튼+실베스타 방덱",
             "heroes": [
               {
                 "name": "실베스타",
@@ -143,23 +143,33 @@
                 "name": "플라튼",
                 "image": "platon.png",
               "preset":"프리셋1(탱)",
-              "note":"앞배치/부활"
+              "note":"앞배치/부활/효저50이상"
               },
               {
                 "name": "아멜리아",
                 "image": "amelia.png",
                "preset":"플실아",
-                "note":"불사/방어력 실베보다 높게"
+                "note":"불사/방어력 실베보다 높게/앞배치"
               
               }
             ],
              "pet": ["Yeonji.png","ru.png"],
             "skillOrders": {
               
-              "내실덱": [
+              "내실덱1": [
                 "amelia2.png",
-                "silvesta1.png",
+                "amelia1.png",
                 "silvesta2.png"
+              ],
+               "내실덱2": [
+                "amelia1.png",
+                "amelia2.png",
+                "silvesta2.png"
+              ],
+               "내실덱3": [
+                "platon2.png",
+                "amelia1.png",
+                "silvesta1.png"
               ]
              
              
