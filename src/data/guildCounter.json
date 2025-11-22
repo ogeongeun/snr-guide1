@@ -881,7 +881,8 @@
                   }
                 ]
               },{
-                "recommendation": 2,
+                "recommendation": 3,
+                "firstattack":true,
                   "pet": ["Yeonji.png"],
                 "team": [
                  
@@ -916,8 +917,9 @@
                   {
                     "label": "속공 이길 때",
                     "skills": [
-                      "silvesta1.png",
+                   
                       "vanessa1.png",
+                         "silvesta1.png",
                       "Yeonhee2.png"
                     ]
                   }
@@ -1408,23 +1410,25 @@
               ,
                {
                 "recommendation": 3,
+                "firstattack":true,
                   "pet": ["Yeonji.png"],
                 "team": [
-                  {
-                    "name": "실베스타",
-                    "image": "/images/heroes/silvesta.png",
-                    "preset":"프리셋2(속공)"
-                   
-                   
-                
-                  },
+                 
                   {
                     "name": "바네사",
                     "image": "/images/heroes/vanessa.png",
                     "preset":"프리셋2(속공)",
-                       "note":"바네사 뒤배치(연희랑 공차이 600~800일때 뒤배치 안되면 연희 뒤배치)/권능필수"
+                    "note":"권능"
                    
                    
+                  },
+                   {
+                    "name": "실베스타",
+                    "image": "/images/heroes/silvesta.png",
+                    "preset":"프리셋2(속공)",
+                    "note":"부활이나 불사/뒤배치"
+                   
+                
                   },
                   {
                     "name": "연희",
@@ -1436,26 +1440,19 @@
                      
                   }
                 ],
-                "note":"바네사 혼자 뒤배치 매우중요(카일 강자 바네사로 빼는법)/바네사 속공 마지막이면 좋음",
+                "note":"아멜이나 카구라 둘중 하나라도 권능없을떄/실베 아래로 둘중 한명은 죽일 딜 나와야함",
                 "skillOrders": [
                   {
                     "label": "속공 이길 때",
                     "skills": [
+                   
                       "vanessa1.png",
-                      "Yeonhee2.png",
-                      "silvesta1.png"
+                         "silvesta1.png",
+                      "Yeonhee2.png"
                     ]
                   }
                 ]
-              }
-               
-            ]
-            
-          }
-          
-          
-        ]
-      },
+              },
           {
           "id": "team1",
           "label": "태오 공덱",
