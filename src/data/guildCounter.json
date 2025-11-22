@@ -178,7 +178,7 @@
                   {
                     "name": "콜트",
                     "image": "/images/heroes/colt.png",
-                    "note":"불사"
+                    "note":"불사/콜트가 첸슬러보다 속공낮게"
                  
                  
                      
@@ -1095,6 +1095,50 @@
               "kyle2.png"
             ],
             "counters": [  
+              {
+                "recommendation": 3,
+                  "firstAttack": true,
+                  "pet": ["ru.png"],
+                "team": [
+                  {
+                    "name": "첸슬러",
+                    "image": "/images/heroes/chancellor.png",
+                    "preset":"프리셋3(카일대응)",
+                    "note":"부활반지"
+                   
+                
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                    "preset":"프리셋3(카일상대)",
+                    "note":"막기100%"
+                   
+                   
+                  },
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "preset":"프리셋2(내실)",
+                    "note":"불사/첸슬러보다 속공 낮게"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"콜트속공 2순위/펫차이 많이 나면 못일때도있음",
+                "skillOrders": [
+                  {
+                    "label": "속공 질때",
+                    "skills": [
+                      "chancellor2.png",
+                      "colt1.png",
+                      "colt2.png"
+                    ]
+                  }
+                ]
+              },
+              
                {
                 "recommendation": 3,
                 "firstAttack":true,
