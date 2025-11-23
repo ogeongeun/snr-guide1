@@ -10,8 +10,7 @@ export default function ExpeditionPage() {
       role: '딜러',
       image: 'darkteo.png',
       attackers: [
-        '함북이', '법원', '밤초',
-        '하이퍼울트라깹짱', '신주노입니다', '병살', '나쁜남자서동연'
+        '빈빈빈','법원','신주노입니다','하이퍼울트라캡짱','나쁜남자서동연','밤초','이젠다신안함','4591'
       ]
     },
     {
@@ -20,8 +19,7 @@ export default function ExpeditionPage() {
       role: '딜러',
       image: 'darkkile.png',
       attackers: [
-        '사랑이차차차', 'purplesky', '시기1',
-        '막창추적자', 'Killsick', '건근본','밀리엔','파이','파뚱이','버터1203호','오리시기'
+     '아도어','두렌','Purplesky','버터1230호','코요테','파뚱이','6전반없찐','막창추적자','시기1'
       ]
     },
     {
@@ -29,7 +27,7 @@ export default function ExpeditionPage() {
       name: '연희',
       role: '버퍼',
       image: 'darkYeonhee.png',
-      attackers: ['CryingStop', '렝차', '이향', '연바리','쥬지로지1초']
+      attackers: ['연발이','떡초','ㅆㅂ(쌘벽)','렝차','이향']
     },
     {
       id: 'darkcarma',
@@ -37,8 +35,7 @@ export default function ExpeditionPage() {
       role: '탱커',
       image: 'darkcarma.png',
       attackers: [
-        '아도어', '염신', '당당이', '때오',
-        '겁많아요', '빈빈빈', '종아리'
+       '백경훈','영민','종아리','cryingstop','때오','천우회','건근본','염신'
       ]
     },
     {
