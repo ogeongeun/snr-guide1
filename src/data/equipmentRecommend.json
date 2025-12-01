@@ -228,6 +228,46 @@
     }
     
   },
+  "elisia": {
+    "name": "엘리시아",
+    "image": "/images/heroes/elisia.png",
+    "roles": {
+      "ring": "부활 반지",
+       "프리셋1(속공)": {
+       
+        "전체": [
+             {
+            "set": "조율자",
+            "mainOption": "효%/공%/받%/받%",
+            "note": "속공 최대치"
+          }
+          
+        ]
+      }
+     
+    }
+    
+  },
+   "trude": {
+    "name": "트루드",
+    "image": "/images/heroes/trude.png",
+    "roles": {
+      "ring": "권능 반지",
+       "프리셋1(내실)": {
+       
+        "전체": [
+             {
+            "set": "추적자",
+            "mainOption": "치피%/치피or약%/받%/받%",
+            "note": "치피최대치,약공100%"
+          }
+          
+        ]
+      }
+     
+    }
+    
+  },
   "kiriel": {
     "name": "키리엘",
     "image": "/images/heroes/kiriel.png",
