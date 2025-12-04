@@ -47,7 +47,7 @@
             { "name": "아멜리아", "image": "amelia.png","preset":"총력전"},
               { "name": "플라튼", "image": "platon.png","preset":"프리셋1(탱)"},
             { "name": "린", "image": "rin.png","preset":"총력전" },
-            { "name": "멜키르", "image": "melkir.png","preset":"총력전" }
+            { "name": "멜키르", "image": "Melkir.png","preset":"총력전" }
           ],
           "skillOrders": [
   {
@@ -67,7 +67,7 @@
             { "name": "아멜리아", "image": "amelia.png","preset":"총력전"},
               { "name": "플라튼", "image": "platon.png","preset":"프리셋1(탱)"},
             { "name": "트루드", "image": "trude.png","preset":"총력전" },
-            { "name": "멜키르", "image": "melkir.png","preset":"총력전" }
+            { "name": "멜키르", "image": "Melkir.png","preset":"총력전" }
           ],
           "skillOrders": [
   {
