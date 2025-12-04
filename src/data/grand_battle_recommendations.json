@@ -7,20 +7,28 @@
           "teamId": 1,
           "name": "파이 공덱",
           "heroes": [
-            { "name": "파이", "image": "pie.png","preset":"프리셋1(속공)"},
-            { "name": "카구라", "image": "cagura.png","preset":"프리셋2(속공)" },
-              { "name": "카일", "image": "kyle.png","preset":"프리셋1(속공)" },
-            { "name": "콜트", "image": "colt.png","preset":"","note":"에이스 대체" },
-           { "name": "태오", "image": "teo.png","preset":"프리셋2(속공)" }
+            { "name": "엘리시아", "image": "elisia.png","preset":"총력전","note":"2초부터 사용가능"},
+            { "name": "카구라", "image": "cagura.png","preset":"총력전" },
+              { "name": "카일", "image": "kyle.png","preset":"총력전","note":"권불세공>불>권" },
+            { "name": "콜트", "image": "colt.png","preset":"총력전" },
+           { "name": "파이", "image": "pie.png","preset":"총력전" }
           ],
         "skillOrders": [
   {
     "title": "보편적",
-    "sequence": ["cagura2.png", "pie1.png", "kyle2.png"]
+    "sequence": ["colt2.png", "kyle2.png", "elisia2.png"]
+  },
+  {
+    "title": "보편적",
+    "sequence": ["kyle2.png", "elisia2.png", "colt2.png"]
+  },
+  {
+    "title": "보편적",
+    "sequence": ["kyle2.png", "kyle1.png", "elisia2.png"]
   }
   
 ],
-"note":"스킬순서는 승률 더 잘나온느걸로"
+"note":"속공460"
           
         }
         
@@ -37,7 +45,7 @@
              { "name": "쥬리", "image": "juri.png","preset":"프리셋1(속공)"},
            
             { "name": "아멜리아", "image": "amelia.png","preset":""},
-              { "name": "플라튼", "image": "platon.png","preset":"프리셋2(속공)"},
+              { "name": "플라튼", "image": "platon.png","preset":"프리셋1(탱)"},
             { "name": "린", "image": "rin.png","preset":"프리셋1(속공)" },
             { "name": "멜키르", "image": "melkir.png","preset":"프리셋2(속공)" }
           ],
