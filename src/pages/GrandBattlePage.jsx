@@ -29,6 +29,7 @@ export default function GrandBattlePage() {
 
   // 🔹 영웅 카드 렌더링
   const renderHeroes = (heroes) => (
+    
     <div
       className={`grid gap-2 mt-2 ${
         heroes.length === 3 ? 'grid-cols-3' : 'grid-cols-5'
@@ -116,9 +117,15 @@ export default function GrandBattlePage() {
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-8">
       <div className="max-w-5xl mx-auto bg-white shadow-md rounded-2xl p-6">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
-          ⚔️ 총력전 팀 추천
-        </h1>
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-2">
+  ⚔️ 총력전 팀 추천
+</h1>
+
+<p className="text-[13px] text-center text-gray-600 leading-relaxed mb-6">
+  🔹 트루드는 공덱·방덱·플마덱 중 <span className="font-semibold text-gray-700">승률이 낮은 덱에 배치하는 것을 추천</span>합니다.<br/>
+  도움을 주신 <span className="font-semibold text-blue-600">머선님</span> 감사합니다.
+</p>
+
 
         {/* 🔹 카테고리 탭 */}
         <div className="flex gap-2 mb-4 justify-center flex-wrap">
