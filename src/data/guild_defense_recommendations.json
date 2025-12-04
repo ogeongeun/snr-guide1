@@ -237,6 +237,7 @@
               {
                 "name": "멜키르",
                 "image": "Melkir.png",
+                "preset":"프리셋3(길드전)",
                "note":""
          
               },
@@ -248,7 +249,7 @@
               {
                 "name": "쥬리",
                 "image": "juri.png",
-              "preset": "프리셋2(속공)",
+              "preset": "프리셋6(린방덱)",
               "note":"즉반"
               }
             ],
@@ -257,7 +258,7 @@
               "속공덱": [
                 "rin2.png",
                 "melkir1.png",
-                "amelia2.png"
+                "melkir2.png"
               ]
               
             },
