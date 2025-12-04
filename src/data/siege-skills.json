@@ -726,13 +726,13 @@
             },
             {
               "stageTitle": "2스테이지",
-              "images": ["jin2.png"]
+              "images": ["rachel1.png"]
             },
             {
               "stageTitle": "3스테이지",
               "images": [
-                 "bisket1.png","lion1.png", "rachel2.png","taka2.png", "lion2.png",
-                "taka1.png", "lion1.png", "taka2.png","rachel2.png","bisket1.png","lion2.png","taka1.png","lion1.png","taka2.png","rachel1.png","rachel2.png","lion2.png","lion1.png"
+                 "rachel2.png","lion1.png", "bisket1.png","lion2.png", "takt2.png",
+                "taka1.png", "lion1.png", "rachel2.png","rachel1.png","taka2.png","lion2.png","bisket1.png","lion1.png","taka2.png","rachel2.png","taka1.png","lion2.png","taka2.png"
                 
               ]
               
