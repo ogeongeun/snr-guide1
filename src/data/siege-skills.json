@@ -424,6 +424,36 @@
 
 
   "불멸의 성 (수요일)": [
+     {
+     
+      "skillOrders": [
+        {
+          "orderTitle": "라이언 사용 최고점",
+          "skills": [
+            {
+              "stageTitle": "1스테이지",
+              "images": ["bisket2.png"]
+            },
+            {
+              "stageTitle": "2스테이지",
+              "images": ["luri1.png"]
+            },
+            {
+              "stageTitle": "3스테이지",
+              "images": [
+              "orly1.png", "bisket1.png", "miho1.png","luri2.png",
+                "miho2.png", "luri1.png","orly1.png","luri2.png","miho1.png", "luri1.png","miho2.png","bisket1.png","orly1.png","luri2.png","miho1.png","luri1.png","miho2.png","luri2.png"
+                
+              ]
+              
+               
+            }
+          ]
+        }
+       
+        
+      ]
+    },
     {
      
       "skillOrders": [
@@ -684,6 +714,38 @@
     }
   ],
   "죽음의 성 (목요일)": [
+    {
+     
+      "skillOrders": [
+        {
+          "orderTitle": "라이언 사용최고점 (델론즈 즉격 운빨덱) ",
+          "skills": [
+            {
+              "stageTitle": "1스테이지",
+              "images": ["jin1.png"]
+            },
+            {
+              "stageTitle": "2스테이지",
+              "images": ["jin2.png"]
+            },
+            {
+              "stageTitle": "3스테이지",
+              "images": [
+                 "bisket1.png","lion1.png", "rachel2.png","taka2.png", "lion2.png",
+                "taka1.png", "lion1.png", "taka2.png","rachel2.png","bisket1.png","lion2.png","taka1.png","lion1.png","taka2.png","rachel1.png","rachel2.png","lion2.png","lion1.png"
+                
+              ]
+              
+               
+            }
+          ]
+        }
+        
+      
+     
+       
+      ]
+    },
     {
      
       "skillOrders": [
@@ -1037,6 +1099,34 @@
    
   ],
   "고대용의 성 (금요일)": [
+    {
+     
+      "skillOrders": [
+        {
+          "orderTitle": "레이첼 6초",
+          "skills": [
+            {
+              "stageTitle": "1스테이지",
+              "images": ["taka1.png"]
+            },
+            {
+              "stageTitle": "2스테이지",
+              "images": ["rachel1.png"]
+            },
+            {
+              "stageTitle": "3스테이지",
+              "images": [
+               "rachel2.png","lion1.png","bisket1.png","taka2.png","lion2.png","taka1.png","lion1.png","taka2.png","rachel2.png","lion2.png","bisket1.png","taka2.png","zick2.png","lion1.png","taka1.png","taka2.png","rachel2.png","lion2.png"
+                
+              ]
+              
+               
+            }
+          ]
+        }
+        
+      ]
+    },
     {
      
       "skillOrders": [
@@ -1581,7 +1671,7 @@
             {
               "stageTitle": "3스테이지",
               "images": [
-                "rachel2.png","bisket1.png","sein1.png","zick2.png","leo1.png","sein1.png","zick1.png","rachel2.png","sein1.png","zick2.png","bisket1.png","sein1.png","leo1.png","rachel2.png","sein1.png","zick2.png","zick1.png","sein1.png"
+                "rachel2.png","bisket1.png","sein1.png","leo1.png","zick2.png","sein1.png","zick1.png","rachel2.png","sein1.png","zick2.png","bisket1.png","sein1.png","leo1.png","rachel2.png","sein1.png","zick2.png","zick1.png","sein1.png"
                 
               ]
               

@@ -299,6 +299,45 @@
 
     ],
     "불멸의 성 (수요일)": [
+       {
+        "team": [
+          {
+            "name": "오를리",
+            "image": "orly.png",
+            "preset":"프리셋4(수요일)",
+            "note":"부활반지"
+          },
+          {
+            "name": "라이언",
+            "image": "lion.png",
+             "preset":"프리셋1(수요일)",
+            "note":"라이언 치확안터지면 빌드꼬임"
+          },
+          {
+            "name": "루리",
+            "image": "luri.png",
+            "preset":"프리셋5(수요일)"
+               ,"note": "뒤배치(밸진5번째자리)"
+          },
+            {
+            "name": "미호",
+            "image": "miho.png",
+             "preset":"프리셋3(수요일)"
+             ,"note": "뒤배치(밸진4번째자리)"
+            
+          },
+          {
+            "name": "비스킷",
+            "image": "bisket.png",
+             "preset":"프리셋4(공성전)",
+            "note":"딜 세팅"
+          }
+        
+        ],
+        "tags": [
+          "속공 순서 오를리-라이언-비스킷/미호,루리 속공29"
+        ]
+      },
       {
         "team": [
           {
@@ -529,6 +568,40 @@
       }
     ],
     "죽음의 성 (목요일)": [
+      {
+        "team": [
+          {
+            "name": "비스킷",
+            "image": "bisket.png",
+            "preset":"프리셋1(탱)",
+            "note": "2초이상"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png",
+            "preset": "프리셋4(목요일)"
+          },
+          {
+            "name": "라이언",
+            "image": "lion.png",
+            "preset": "프리셋2(목요일)"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png",
+            "preset": "프리셋1(목요일 공성)",
+            "note":"팀내 모공1순위"
+          },
+          {
+            "name": "진",
+            "image": "jin.png",
+            "preset": "프리셋1(목요일)",
+            "note": "카일,타카보다 공500낮춰야함"
+          }
+        ],
+        "tags": ["타카,라이언 속공29 고정"]
+        
+      },
          {
         "team": [
           {
@@ -863,6 +936,43 @@
           {
             "name": "지크",
             "image": "zick.png",
+            "preset":"레이드",
+            "note":"권능 "
+          },
+          {
+            "name": "라이언",
+            "image": "lion.png",
+            "preset":"프리셋2(목요일)"
+          },
+          {
+            "name": "타카",
+            "image": "taka.png",
+            "preset":"프리셋1(목요일 공성)",
+            "note": "뒤배치(모공1순위)"
+          },
+          {
+            "name": "레이첼",
+            "image": "rachel.png",
+              "preset":"프리셋5(금요일)",
+           "note":"권능"
+          },
+          {
+            "name": "비스킷",
+            "image": "bisket.png",
+            "preset":"프리셋1(탱)",
+            "note":"실명 반지"
+          }
+        ],
+        "tags": [
+          "속공순서:비스킷-지크-레이첼-라이언(4번쨰자리)-타카(5번쨰자리)"
+        ],
+        "note": ""
+      },
+      {
+        "team": [
+          {
+            "name": "지크",
+            "image": "zick.png",
             "preset":"프리셋3(금요일)"
           },
           {
@@ -1127,32 +1237,38 @@
           {
             "name": "비스킷",
             "image": "bisket.png",
-            "note":"약공70%"
+            "preset":"프리셋5(일요일)"
+           
+           
           },
           {
             "name": "레이첼",
             "image": "rachel.png",
-            "note":"암살자 치확100,약공70%(6초월)"
+             "preset":"프리셋6(일요일)"
+           
           },
           {
             "name": "세인",
-            "image": "sein.png"
-            ,"note": "뒤배치(약공15%)"
+            "image": "sein.png",
+            "preset":"프리셋3(일요일)",
+            "note": "뒤배치"
           },
           
           {
             "name": "지크",
             "image": "zick.png",
-            "note":"뒤배치(약공46%%/비스킷6초시 15%)"
+            "preset":"레이드",
+            "note":"뒤배치"
           },
           {
             "name": "레오",
             "image": "leo.png",
-            "note":"암살자(약공70%)%"
+            "preset":"프리셋1(일요일)"
+            
           }
         ],
         "tags": [
-          "세인 기용"
+          "전부 속공 25이상"
         ]
         
       },
