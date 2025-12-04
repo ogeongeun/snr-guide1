@@ -42,12 +42,12 @@
           "teamId": 1,
           "name": "플라튼 마덱",
           "heroes": [
-             { "name": "쥬리", "image": "juri.png","preset":"프리셋1(속공)"},
+             { "name": "쥬리", "image": "juri.png","preset":"총력전"},
            
-            { "name": "아멜리아", "image": "amelia.png","preset":""},
+            { "name": "아멜리아", "image": "amelia.png","preset":"총력전"},
               { "name": "플라튼", "image": "platon.png","preset":"프리셋1(탱)"},
-            { "name": "린", "image": "rin.png","preset":"프리셋1(속공)" },
-            { "name": "멜키르", "image": "melkir.png","preset":"프리셋2(속공)" }
+            { "name": "린", "image": "rin.png","preset":"총력전" },
+            { "name": "멜키르", "image": "melkir.png","preset":"총력전" }
           ],
           "skillOrders": [
   {
@@ -59,15 +59,35 @@
 "note":"스킬순서는 승률 더 잘나온느걸로"
         },
         {
+          "teamId": 1,
+          "name": "플라튼 마덱",
+          "heroes": [
+             { "name": "쥬리", "image": "juri.png","preset":"총력전"},
+           
+            { "name": "아멜리아", "image": "amelia.png","preset":"총력전"},
+              { "name": "플라튼", "image": "platon.png","preset":"프리셋1(탱)"},
+            { "name": "트루드", "image": "trude.png","preset":"총력전" },
+            { "name": "멜키르", "image": "melkir.png","preset":"총력전" }
+          ],
+          "skillOrders": [
+  {
+    "title": "보편적",
+    "sequence": ["melkir1.png", "melkir2.png", "trude2.png"]
+  }
+ 
+],
+"note":"스킬순서는 승률 더 잘나온느걸로"
+        },
+        {
           "teamId": 2,
           "name": "오를리 마덱",
           "heroes": [
-            { "name": "유신", "image": "Yushin.png","preset":"" },
-            { "name": "바네사", "image": "vanessa.png" ,"preset":"프리셋2(속공)"},
-               { "name": "오를리", "image": "orly.png","preset":"프리셋2(속공)" },
-            { "name": "연희", "image": "Yeonhee.png","preset":"프리셋2(내실)" },
+            { "name": "키리엘", "image": "kiriel.png","preset":"프리셋1(속공)" },
+            { "name": "바네사", "image": "vanessa.png" ,"preset":"총력전"},
+               { "name": "오를리", "image": "orly.png","preset":"총력전" },
+            { "name": "연희", "image": "Yeonhee.png","preset":"총력전" },
           
-              { "name": "실베스타", "image": "silvesta.png","preset":"프리셋1(내실)" }
+              { "name": "실베스타", "image": "silvesta.png","preset":"총력전" }
           ],
           "skillOrder": ["Yeonhee2.png", "orly2.png", "silvesta2.png"],
           "note":"오를리 치확20%만큼 연희,실베스타 속공 챙겨주기"
@@ -82,11 +102,12 @@
           "teamId": 1,
           "name": "카르마 방덱",
           "heroes": [
-             { "name": "엘리스", "image": "elise.png","preset":""},
+             { "name": "엘리스", "image": "elise.png","preset":"총력전"},
              { "name": "루디", "image": "rudy.png","preset":"프리셋1(범용)"},
+              { "name": "제이브", "image": "jave.png" ,"preset":"총력전"},
             { "name": "카르마", "image": "carma.png","preset":"프리셋1(범용)"},
-            { "name": "제이브", "image": "jave.png" ,"preset":"프리셋1(범용)"},
-            { "name": "리나", "image": "lina.png","preset":"" }
+           
+            { "name": "리나", "image": "lina.png","preset":"총력전" }
           ],
           "skillOrders": [
   {
@@ -96,24 +117,45 @@
  
    
 ],
-"note":"스킬순서는 승률 더 잘나온느걸로"
+"note":"방어력1루디,2리나 순"
+        },
+         {
+          "teamId": 1,
+          "name": "카르마 방덱",
+          "heroes": [
+             { "name": "엘리스", "image": "elise.png","preset":"총력전"},
+             { "name": "루디", "image": "rudy.png","preset":"프리셋1(범용)"},
+              { "name": "트루드", "image": "trude.png" ,"preset":"총력전"},
+            { "name": "카르마", "image": "carma.png","preset":"프리셋1(범용)"},
+           
+            { "name": "리나", "image": "lina.png","preset":"총력전" }
+          ],
+          "skillOrders": [
+  {
+    "title": "보편적1",
+    "sequence": ["rudy2.png", "carma2.png", "trude2.png"]
+  }
+ 
+   
+],
+"note":"방어력1루디,2리나 순"
         }
         
         
       ]
     },
      "즉사덱": {
-      "desc": "체급 중요(속공x)",
+      "desc": "속공(423)",
       "teams": [
         {
           "teamId": 1,
           "name": "즉사 방덱",
           "heroes": [
-             { "name": "로지", "image": "lozy.png","preset":""},
-             { "name": "크리스", "image": "chris.png","preset":""},
-            { "name": "니아", "image": "nia.png","preset":""},
-            { "name": "녹스", "image": "nox.png","preset":"" },
-            { "name": "카린", "image": "carin.png","preset":"","note":"아킬라 대체가능" }
+             { "name": "로지", "image": "lozy.png","preset":"총력전"},
+             { "name": "크리스", "image": "chris.png","preset":"총력전"},
+            { "name": "니아", "image": "nia.png","preset":"총력전"},
+            { "name": "녹스", "image": "nox.png","preset":"총력전" },
+            { "name": "아킬라", "image": "akilra.png","preset":"총력전" }
           ],
           "skillOrders": [
   {
