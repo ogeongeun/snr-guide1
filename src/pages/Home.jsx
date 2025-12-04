@@ -20,6 +20,12 @@ const Home = () => {
       description: '보스별 공략 및 추천 영웅 세팅',
       emoji: '🔥'
     },
+     {
+      title: '총력전',
+      path: '/grand-battle',
+      description: '총력전 전용 팀 구성 및 공략 정보',
+      emoji: '⚔️'
+    },
     {
   title: '장비 강화 가이드',
   path: '/enhance-guide',
@@ -32,12 +38,7 @@ const Home = () => {
       description: '영웅들의 장비 추천',
       emoji: '🛠'
     },
-    {
-      title: '총력전',
-      path: '/grand-battle',
-      description: '총력전 전용 팀 구성 및 공략 정보',
-      emoji: '⚔️'
-    },
+   
     {
       title: '무한의 탑',
       path: '/infinity-tower',
