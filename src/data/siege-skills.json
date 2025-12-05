@@ -1103,7 +1103,7 @@
      
       "skillOrders": [
         {
-          "orderTitle": "레이첼 6초",
+          "orderTitle": "10번째스킬에 라이언윗스킬 돌때",
           "skills": [
             {
               "stageTitle": "1스테이지",
@@ -1117,6 +1117,28 @@
               "stageTitle": "3스테이지",
               "images": [
                "rachel2.png","lion1.png","bisket1.png","taka2.png","lion2.png","taka1.png","lion1.png","taka2.png","rachel2.png","lion2.png","bisket1.png","taka2.png","zick2.png","lion1.png","taka1.png","taka2.png","rachel2.png","lion2.png"
+                
+              ]
+              
+               
+            }
+          ]
+        },
+        {
+          "orderTitle": "10번째스킬에 라이언윗스킬 안돌때",
+          "skills": [
+            {
+              "stageTitle": "1스테이지",
+              "images": ["taka1.png"]
+            },
+            {
+              "stageTitle": "2스테이지",
+              "images": ["rachel1.png"]
+            },
+            {
+              "stageTitle": "3스테이지",
+              "images": [
+               "rachel2.png","lion1.png","bisket1.png","taka2.png","lion2.png","taka1.png","lion1.png","taka2.png","rachel2.png","rachel1.png","lion2.png","bisket1.png","taka2.png","zick2.png","lion1.png","taka1.png","taka2.png","lion2.png"
                 
               ]
               

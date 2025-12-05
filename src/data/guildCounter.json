@@ -1618,6 +1618,87 @@
             
           ]
         },
+         {
+          "id": "team1",
+          "label": "트루드 공덱",
+          "defenseTeam": [
+            {
+              "name": "엘리시아",
+              "image": "/images/heroes/elisia.png"
+            },
+            {
+              "name": "트루드",
+              "image": "/images/heroes/trude.png"
+            },
+            {
+              "name": "콜트",
+              "image": "/images/heroes/colt.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "elisia2.png",
+                "colt1.png",
+                "colt2.png"
+              ],
+              "counters": [
+                 
+               
+                 {
+                  "firstAttack":true,
+                  "recommendation": 3,
+                    "pet": ["karam.png", "ru.png"],
+                  "team": [
+                    {
+                      "name": "루디",
+                      "image": "/images/heroes/rudy.png",
+                       "preset":"프리셋1(범용)",
+                        "note":""
+                    
+                  
+                    },
+                    {
+                      "name": "카르마",
+                      "image": "/images/heroes/carma.png",
+                          "preset":"프리셋1(범용)",
+                  "note":"부활"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "리나",
+                      "image": "/images/heroes/lina.png",
+                      "preset":"힐러"
+                    
+                  
+                  
+                      
+                    }
+                  ],
+            "note":"",
+                  "skillOrders": [
+                    {
+                      "label": "속공 질때",
+                      "skills": [
+                        "rudy2.png",
+                        "carma2.png",
+                        "carma1.png"
+                      ]
+                    }
+                  ]
+                }
+                
+               ]
+          }  
+            
+            
+          ]
+        },
         
        {
         "id": "team1",
@@ -6064,6 +6145,117 @@
                   }
                 ]
               }
+            ]
+          }
+         
+        ]
+      },
+       {
+        "id": "team4",
+        "label": "플라튼+키리엘 방덱",
+        "defenseTeam": [
+          {
+            "name": "콜트",
+            "image": "/images/heroes/colt.png"
+          },
+          {
+            "name": "키리엘",
+            "image": "/images/heroes/kiriel.png"
+          },
+          {
+            "name": "플라튼",
+            "image": "/images/heroes/platon.png"
+          }
+        ],
+        "defenseVariants": [
+          {
+            "defenseSkills": ["kiriel2.png","colt1.png","colt2.png"],
+            "counters": [
+             
+              
+              {
+                "recommendation": 3,
+                "firstAttack":true,
+                "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "키리엘",
+                    "image": "/images/heroes/kiriel.png",
+                    "preset":"프리셋1(속공)",
+                     "note":"부활,불사"
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                     "preset":"프리셋2(내실)",
+                     "note":"연희가 셋중 속공 제일 낮아야함"
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+      "preset":"프리셋2(속공)"
+                  }
+                ],
+                
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "vanessa1.png",
+                      "kiriel1.png",
+                      "Yeonhee1.png"
+                     
+                    ]
+                  }
+                ]
+              },
+               {
+                "recommendation": 1,
+                   "firstAttack":true,
+                "pet": ["ru.png","chri.png"],
+                "team": [
+                  {
+                    "name": "아킬라",
+                    "image": "/images/heroes/akilra.png",
+                    "preset":"길드전",
+                     "note":"6초 추천/2초월이여도 가능/로지 대체가능"
+                  },
+                  {
+                    "name": "녹스",
+                    "image": "/images/heroes/nox.png",
+                     "preset":"길드전",
+                     "note":"부활"
+                  },
+                  {
+                    "name": "크리스",
+                    "image": "/images/heroes/chris.png",
+      "preset":"길드전(조율자)"
+                  }
+                ],
+                "note":"정보없는곳 갈때 덱풀 부족할때 도전해볼만함",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때1",
+                    "skills": [
+                      "akilra2.png",
+                      "chris2.png",
+                      "chris1.png"
+                     
+                    ]
+                  },
+                   {
+                    "label": "속공 질 때2",
+                    "skills": [
+                     
+                      "chris1.png",
+                       "akilra2.png",
+                      "chris2.png"
+                     
+                    ]
+                  }
+                ]
+              }
+               
             ]
           }
          
