@@ -1641,7 +1641,7 @@
           "defenseVariants": [
             {
               "defenseSkills": [
-                "elisia2.png",
+                "trude2.png",
                 "colt1.png",
                 "colt2.png"
               ],
@@ -1685,9 +1685,9 @@
                     {
                       "label": "속공 질때",
                       "skills": [
+                        "lina1.png",
                         "rudy2.png",
-                        "carma2.png",
-                        "carma1.png"
+                        "carma2.png"
                       ]
                     }
                   ]
