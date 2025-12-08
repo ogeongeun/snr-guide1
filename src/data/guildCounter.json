@@ -6005,6 +6005,142 @@
          
         ]
       },
+      {
+        "id": "team4",
+        "label": "플라튼+트루드 방덱",
+        "defenseTeam": [
+          {
+            "name": "아멜리아",
+            "image": "/images/heroes/amelia.png"
+          },
+          {
+            "name": "트루드",
+            "image": "/images/heroes/trude.png"
+          },
+          {
+            "name": "플라튼",
+            "image": "/images/heroes/platon.png"
+          }
+        ],
+        "defenseVariants": [
+          {
+            "defenseSkills": ["amelia1.png","amelia2.png","trude2.png"],
+            "counters": [
+             
+              
+              {
+                "recommendation": 3,
+                "firstAttack":true,
+                "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "키리엘",
+                    "image": "/images/heroes/kiriel.png",
+                    "preset":"프리셋1(속공)",
+                     "note":"부활/2초월이여도됨"
+                  },
+                  {
+                    "name": "연희",
+                    "image": "/images/heroes/Yeonhee.png",
+                     "preset":"프리셋2(내실)",
+                     "note":"부활이 불사보다 좋음"
+                  },
+                  {
+                    "name": "바네사",
+                    "image": "/images/heroes/vanessa.png",
+      "preset":"프리셋2(속공)"
+                  }
+                ],
+                
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "vanessa1.png",
+                      "Yeonhee2.png",
+                      "Yeonhee1.png"
+                     
+                    ]
+                  }
+                ]
+              },
+               {
+                "recommendation": 1,
+                   "firstAttack":true,
+                "pet": ["ru.png","chri.png"],
+                "team": [
+                  {
+                    "name": "로지",
+                    "image": "/images/heroes/lozy.png",
+                    "preset":"프리셋3(조율자)",
+                     "note":""
+                  },
+                  {
+                    "name": "키리엘",
+                    "image": "/images/heroes/kiriel.png",
+                     "preset":"프리셋1(속공)",
+                     "note":"부활"
+                  },
+                  {
+                    "name": "크리스",
+                    "image": "/images/heroes/chris.png",
+      "preset":"길드전(조율자)"
+                  }
+                ],
+                "note":"정보없는곳 갈때 덱풀 부족할때 도전해볼만함",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때1",
+                    "skills": [
+                      "kiriel1.png",
+                      "chris2.png",
+                      "lozy1.png"
+                     
+                    ]
+                  }
+                 
+                ]
+              },
+               {
+                "recommendation": 2,
+                "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "트루드",
+                    "image": "/images/heroes/trude.png",
+                    "preset":"총력전",
+                     "note":"권능"
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                     "preset":"프리셋2(내실)",
+                     "note":"부활"
+                  },
+                  {
+                    "name": "아멜리아",
+                    "image": "/images/heroes/amelia.png",
+      "note":"조율자 공효막막(속공)방어력2순위/불사"
+                  }
+                ],
+                
+                "skillOrders": [
+                  {
+                    "label": "속공 이길때",
+                    "skills": [
+                      "amelia2.png",
+                      "trude2.png",
+                      "platon2.png"
+                     
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+         
+        ]
+      },
        {
         "id": "team4",
         "label": "플라튼+실베스타 방덱",
