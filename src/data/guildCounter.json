@@ -3663,41 +3663,7 @@
                   }
                 ]
               },
-              {
-                "recommendation": 2,
-                   "pet": ["pike.png","ru.png"],
-                "team": [
-                  {
-                    "name": "루디",
-                    "image": "/images/heroes/rudy.png",
-                      "preset":"프리셋1(범용)"
-              
-                    
-                  },
-                  {
-                    "name": "카르마",
-                    "image": "/images/heroes/carma.png",
-                      "preset":"프리셋2(길드전)",
-                    "note":"권능"
-                  },
-                  {
-                    "name": "리나",
-                    "image": "/images/heroes/lina.png"
-               
-                  }
-                ],
-                
-                "skillOrders": [
-                  {
-                    "label": "속공 질 때",
-                    "skills": [
-                      "rudy2.png",
-                      "lina1.png",
-                      "carma2.png"
-                    ]
-                  }
-                ]
-              },
+             
               {
                 "recommendation": 3,
                    "pet": ["irin.png","chri.png"],
