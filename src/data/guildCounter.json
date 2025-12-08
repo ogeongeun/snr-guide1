@@ -5994,42 +5994,7 @@
             "counters": [
              
               
-              {
-                "recommendation": 3,
-                "firstAttack":true,
-                "pet": ["Yeonji.png"],
-                "team": [
-                  {
-                    "name": "키리엘",
-                    "image": "/images/heroes/kiriel.png",
-                    "preset":"프리셋1(속공)",
-                     "note":"부활/2초월이여도됨"
-                  },
-                  {
-                    "name": "연희",
-                    "image": "/images/heroes/Yeonhee.png",
-                     "preset":"프리셋2(내실)",
-                     "note":"부활이 불사보다 좋음"
-                  },
-                  {
-                    "name": "바네사",
-                    "image": "/images/heroes/vanessa.png",
-      "preset":"프리셋2(속공)"
-                  }
-                ],
-                
-                "skillOrders": [
-                  {
-                    "label": "속공 이길 때",
-                    "skills": [
-                      "vanessa1.png",
-                      "Yeonhee2.png",
-                      "Yeonhee1.png"
-                     
-                    ]
-                  }
-                ]
-              },
+             
                {
                 "recommendation": 1,
                    "firstAttack":true,
@@ -6096,7 +6061,7 @@
                     "skills": [
                       "amelia2.png",
                       "trude2.png",
-                      "platon2.png"
+                      "trude1.png"
                      
                     ]
                   }
