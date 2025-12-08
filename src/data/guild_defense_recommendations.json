@@ -89,8 +89,8 @@
               {
                 "name": "아멜리아",
                 "image": "amelia.png",
-               "preset":"플트아",
-                "note":"불사/공격력1순위/트루드 보다 방어력높게/앞배치"
+               "preset":"플트아"
+                
               
               }
             ],
@@ -218,10 +218,10 @@
             "name": "콜트덱",
             "heroes": [
               {
-                "name": "실베스타",
-                "image": "silvesta.png",
-                "preset":"프리셋1(내실)",
-                "note":"속공좀챙겨도됨"
+                "name": "엘리시아",
+                "image": "elisia.png",
+                "preset":"프리셋2(내실)",
+                "note":"부옵그대로에 조율자가 나아보임"
                 
               
 
@@ -235,20 +235,20 @@
               {
                 "name": "콜트",
                 "image": "colt.png",
-                "preset":"버퍼"
+                "preset":"프리셋2(내실)"
                 
               }
             ],
-         "pet": ["Yeonji.png","chri.png"],
+         "pet": ["yu.png","chri.png"],
             "skillOrders": {
               
             
               "내실덱": [
-                "kiriel2.png",
+                "kiriel.png",
               
             
-                "silvesta2.png",
-                    "kiriel1.png"
+                "colt1.png",
+                    "colt2.png"
                 
               ]
              
