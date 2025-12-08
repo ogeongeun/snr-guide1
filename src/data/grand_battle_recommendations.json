@@ -58,22 +58,7 @@
 ],
 "note":"방어력 아멜,플라튼이 팀중 제일 높게"
         },
-        {
-          "teamId": 1,
-          "name": "플라튼 마덱",
-          "heroes": [
-             { "name": "쥬리", "image": "juri.png","preset":"총력전"},
-           
-            { "name": "아멜리아", "image": "amelia.png","preset":"총력전"},
-              { "name": "플라튼", "image": "platon.png","preset":"프리셋1(탱)"},
-            { "name": "트루드", "image": "trude.png","preset":"총력전" },
-            { "name": "멜키르", "image": "Melkir.png","preset":"총력전" }
-          ],
-          "skillOrders": [
-  {
-    "title": "보편적",
-    "sequence": ["melkir1.png", "melkir2.png", "trude2.png"]
-  }
+        
  
 ],
 "note":"방어력 아멜,플라튼이 팀중 제일 높게"
