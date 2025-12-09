@@ -6032,27 +6032,27 @@
                  
                 ]
               },
-               {
+                {
                 "recommendation": 1,
                    "firstAttack":true,
-                "pet": ["ru.png","chri.png"],
+                "pet": ["meparo.png","chri.png"],
                 "team": [
                   {
                     "name": "로지",
                     "image": "/images/heroes/lozy.png",
-                    "preset":"프리셋3(조율자)",
-                     "note":""
+                    "preset":"길드전(방덱)",
+                     "note":"아킬라 대체가능"
                   },
                   {
-                    "name": "키리엘",
-                    "image": "/images/heroes/kiriel.png",
-                     "preset":"프리셋1(속공)",
+                    "name": "녹스",
+                    "image": "/images/heroes/nox.png",
+                     "preset":"길드전(방덱)",
                      "note":"부활"
                   },
                   {
                     "name": "크리스",
                     "image": "/images/heroes/chris.png",
-      "preset":"길드전(조율자)"
+      "preset":"길드전(방덱)"
                   }
                 ],
                 "note":"정보없는곳 갈때 덱풀 부족할때 도전해볼만함",
@@ -6060,13 +6060,24 @@
                   {
                     "label": "속공 질 때1",
                     "skills": [
-                      "kiriel1.png",
-                      "chris2.png",
-                      "lozy1.png"
+                    
+                    
+                      "chris1.png",
+                        "chris2.png",
+                      "nox2.png"
+                     
+                    ]
+                  },
+                   {
+                    "label": "속공 질 때2",
+                    "skills": [
+                     
+                      "chris1.png",
+                       "akilra2.png",
+                      "chris2.png"
                      
                     ]
                   }
-                 
                 ]
               },
                {
