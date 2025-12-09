@@ -5990,11 +5990,48 @@
         ],
         "defenseVariants": [
           {
-            "defenseSkills": ["amelia1.png","amelia2.png","trude2.png"],
+            "defenseSkills": ["platon2.png","amelia2.png","trude2.png"],
             "counters": [
              
               
-             
+              {
+                "recommendation": 2,
+                   "firstAttack":true,
+                "pet": ["yu.png","irin.png"],
+                "team": [
+                  {
+                    "name": "파이",
+                    "image": "/images/heroes/pie.png",
+                    "preset":"프리셋4(카일상대)",
+                     "note":""
+                  },
+                  {
+                    "name": "카일",
+                    "image": "/images/heroes/kyle.png",
+                     "preset":"프리셋2(내실)",
+                     "note":"권능"
+                  },
+                  {
+                    "name": "카구라",
+                    "image": "/images/heroes/cagura.png",
+      "preset":"프리셋1(속공)",
+      "note":"기합"
+                  }
+                ],
+                "note":"정보없는곳 갈때 덱풀 부족할때 도전해볼만함",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길때",
+                    "skills": [
+                      "kyle1.png",
+                      "cagura1.png",
+                      "kyle2.png"
+                     
+                    ]
+                  }
+                 
+                ]
+              },
                {
                 "recommendation": 1,
                    "firstAttack":true,
