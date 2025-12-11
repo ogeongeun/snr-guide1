@@ -105,6 +105,41 @@
              
             },
             "note": "op티어"
+          },{
+            "teamId": 0,
+            "name": "플라튼 방덱",
+            "heroes": [
+              {
+                "name": "트루드",
+                "image": "trude.png",
+               "preset":"총력전",
+               "note":"권능"
+              },
+              {
+                "name": "플라튼",
+                "image": "platon.png",
+              "preset":"프리셋1(탱)",
+              "note":"앞배치/5부활이상/효저50이상챙겨도되고 안챙겨도됨(즉사대응용)"
+              },
+              {
+                "name": "아멜리아",
+                "image": "amelia.png",
+               "preset":"플트아"
+                
+              
+              }
+            ],
+             "pet": ["pike.png","ru.png"],
+            "skillOrders": {
+              
+              "내실덱": [
+                "platon2.png",
+                "amelia1.png",
+                "trude2.png"
+              ]
+             
+            },
+            "note": "op티어"
           },
           {
             "teamId": 0,
