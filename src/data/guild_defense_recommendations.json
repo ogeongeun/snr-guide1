@@ -215,48 +215,6 @@
               
             },
             "note": "1티어/속공280 이상적"
-          }, {
-            "teamId": 1,
-            "name": "콜트덱",
-            "heroes": [
-              {
-                "name": "엘리시아",
-                "image": "elisia.png",
-                "preset":"프리셋2(내실)",
-                "note":"주옵그대로에 조율자가 나아보임"
-                
-              
-
-              },
-              {
-                "name": "키리엘",
-                "image": "kiriel.png",
-                "preset":"프리셋1(속공)",
-                "note":"뒤배치/6초필수"
-              },
-              {
-                "name": "콜트",
-                "image": "colt.png",
-                "preset":"프리셋2(내실)"
-                
-              }
-            ],
-         "pet": ["yu.png","chri.png"],
-            "skillOrders": {
-              
-            
-              "내실덱": [
-                "kiriel2.png",
-              
-            
-                "colt1.png",
-                    "colt2.png"
-                
-              ]
-             
-              
-            },
-            "note": "1.5티어 "
           }
           ,
           {
