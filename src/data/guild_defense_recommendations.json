@@ -239,7 +239,7 @@
                 "note":""
               }
             ],
-              "pet": ["Yeonji.png","yu.png","meparo"],
+              "pet": ["Yeonji.png","yu.png","meparo.png"],
             "skillOrders": {
               
                "속공덱": [
@@ -258,35 +258,36 @@
               {
                 "name": "바네사",
                 "image": "vanessa.png",
-                  "preset": "프리셋7(연바키)",
-                  "note":"권능/불사"
-              },
-              {
-                "name": "연희",
-                "image": "Yeonhee.png",
-                "preset":"프리셋1(속공)",
-                "note":"불사"
+                  "preset": "프리셋2(속공)",
+                  "note":"권능"
               },
               {
                 "name": "키리엘",
                 "image": "kiriel.png",
-                "preset": "프리셋2(속공)",
-                "note":"부활반지/6초일때만 사용 키리엘 6초면 연바로 보다 좋은거같기도함"
+                "preset":"프리셋1(속공)",
+                "note":"불사,부활"
+              },
+              {
+                "name": "프레이아",
+                "image": "praya.png",
+                "preset": "프리셋1(속공)",
+                "note":""
               }
             ],
-              "pet": ["Yeonji.png","chri.png"],
+              "pet": ["Yeonji.png","yu.png","meparo.png"],
             "skillOrders": {
               
                "속공덱": [
                 "vanessa1.png",
-                "Yeonhee2.png",
-                "Yeonhee1.png"
+                "praya2.png",
+                "kiriel2.png"
               ]
               
             },
-            "note": "1티어/속공280 이상적"
-          }
-          ,
+            "note": "op티어/속공270이상"
+          },
+         
+          
           {
             "teamId": 0,
             "name": "린 마덱",
