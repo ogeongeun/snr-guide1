@@ -1139,7 +1139,49 @@
                   }
                 ]
               },
-              
+              {
+                "recommendation": 3,
+                  "firstAttack": true,
+                  "pet": ["ru.png"],
+                "team": [
+                  {
+                    "name": 트루드",
+                    "image": "/images/heroes/trude.png",
+                    "preset":"총력전",
+                    "note":"권능"
+                   
+                
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                    "preset":"프리셋3(카일상대)",
+                    "note":"막기100%"
+                   
+                   
+                  },
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "preset":"프리셋2(내실)",
+                    "note":"불사/첸슬러보다 속공 낮게"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"콜트속공 2순위/첸슬러보다 트루드가 승률더좋지만 트루드가 아까움",
+                "skillOrders": [
+                  {
+                    "label": "속공 질때",
+                    "skills": [
+                      
+                      "colt1.png",
+                      "colt2.png"
+                    ]
+                  }
+                ]
+              },
                {
                 "recommendation": 3,
                 "firstAttack":true,
