@@ -1690,24 +1690,106 @@
               "counters": [
                  
                
+                
                  {
                   "firstAttack":true,
                   "recommendation": 3,
                     "pet": ["karam.png", "ru.png"],
                   "team": [
                     {
-                      "name": "루디",
-                      "image": "/images/heroes/rudy.png",
-                       "preset":"프리셋1(범용)",
+                      "name": "엘리시아",
+                      "image": "/images/heroes/elisia.png",
+                       "preset":"프리셋2(내실)",
                         "note":""
                     
                   
                     },
                     {
-                      "name": "카르마",
-                      "image": "/images/heroes/carma.png",
-                          "preset":"프리셋3(루디방덱)",
+                      "name": "트루드",
+                      "image": "/images/heroes/trude.png",
+                          "preset":"총력전",
                   "note":"부활"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "스파이크",
+                      "image": "/images/heroes/spike.png",
+                      "preset":"프리셋3(콜트상대)"
+                    
+                  
+                  
+                      
+                    }
+                  ],
+            "note":"",
+                  "skillOrders": [
+                    {
+                      "label": "속공 질때",
+                      "skills": [
+                        "trude2.png",
+                        "elisia1.png",
+                        "spike2.png"
+                      ]
+                    }
+                  ]
+                }
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+        {
+          "id": "team1",
+          "label": "트루드 공덱",
+          "defenseTeam": [
+            {
+              "name": "크리스",
+              "image": "/images/heroes/chris.png"
+            },
+            {
+              "name": "트루드",
+              "image": "/images/heroes/trude.png"
+            },
+            {
+              "name": "콜트",
+              "image": "/images/heroes/colt.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "chris1.png",
+                "trude2.png",
+                "colt2.png"
+              ],
+              "counters": [
+                 
+               
+                 {
+                  "firstAttack":true,
+                  "recommendation": 3,
+                    "pet": ["karam.png", "ru.png"],
+                  "team": [
+                    {
+                      "name": "레오",
+                      "image": "/images/heroes/leo.png",
+                       "preset":"프리셋2(길드전)",
+                        "note":""
+                    
+                  
+                    },
+                    {
+                      "name": "플라튼",
+                      "image": "/images/heroes/platon.png",
+                          "preset":"프리셋1(탱)",
+                  "note":"소랄"
                     
                     
                     
@@ -1715,7 +1797,7 @@
                     {
                       "name": "리나",
                       "image": "/images/heroes/lina.png",
-                      "preset":"힐러"
+                      "preset":"프리셋3(조율자)"
                     
                   
                   
@@ -4765,6 +4847,42 @@
           {
             "defenseSkills": ["vanessa1.png","Yeonhee2.png","Yeonhee1.png"],
             "counters": [
+              {
+                "recommendation": 3,
+                "firstAttack": true,
+                "team": [
+                  {
+                    "name": "엘리시아",
+                    "image": "/images/heroes/elisia.png",
+                   "preset":"프리셋2(내실)",
+                   "note":"부활"
+                  },
+                  {
+                    "name": "트루드",
+                    "image": "/images/heroes/trude.png",
+                    "preset":"총력전",
+                    "note":"권능"
+                  },
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "note":"프리셋2(내실)"
+                  }
+                ],
+                "note": "콜트 속공2번째",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "elisia1.png",
+                    "colt1.png",
+                    "colt2.png"
+                      
+                   
+                    ]
+                  }
+                ]
+              },
                {
                 "recommendation": 3,
                 "firstAttack": true,
@@ -4964,6 +5082,68 @@
                   }
                 ]
               }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "team2",
+        "label": "프레이아 마덱",
+        "defenseTeam": [
+          {
+            "name": "프레이아",
+            "image": "/images/heroes/praya.png"
+          },
+          {
+            "name": "연희",
+            "image": "/images/heroes/Yeonhee.png"
+          },
+          {
+            "name": "바네사",
+            "image": "/images/heroes/vanessa.png"
+          }
+        ],
+        "defenseVariants": [
+          {
+            "defenseSkills": ["vanessa1.png","praya2.png","Yeonhee2.png"],
+            "counters": [
+              {
+                "recommendation": 3,
+                "firstAttack": true,
+                "team": [
+                  {
+                    "name": "엘리시아",
+                    "image": "/images/heroes/elisia.png",
+                   "preset":"프리셋2(내실)",
+                   "note":"부활"
+                  },
+                  {
+                    "name": "트루드",
+                    "image": "/images/heroes/trude.png",
+                    "preset":"총력전",
+                    "note":"권능"
+                  },
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "note":"프리셋2(내실)"
+                  }
+                ],
+                "note": "콜트 속공2번째",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "elisia1.png",
+                    "colt1.png",
+                    "colt2.png"
+                      
+                   
+                    ]
+                  }
+                ]
+              }
+               
             ]
           }
         ]
