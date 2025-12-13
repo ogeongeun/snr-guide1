@@ -1145,7 +1145,7 @@
                   "pet": ["ru.png"],
                 "team": [
                   {
-                    "name": 트루드",
+                    "name": "트루드",
                     "image": "/images/heroes/trude.png",
                     "preset":"총력전",
                     "note":"권능"
