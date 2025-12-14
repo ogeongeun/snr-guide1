@@ -214,7 +214,43 @@
             },
             "note": "2티어"
           },
-         
+         {
+            "teamId": 0,
+            "name": "트루드 방덱",
+            "heroes": [
+              
+              {
+                "name": "크리스",
+                "image": "chris.png",
+              "preset":"토템",
+              "note":"부활/6초이상부터 사용"
+              },
+              {
+                "name": "트루드",
+                "image": "trude.png",
+               "preset":"총력전",
+               "note":"5권이상+즉사세공"
+              },
+              {
+                "name": "콜트",
+                "image": "colt.png",
+               "preset":"프리셋2(내실)",
+                "note":"불사"
+              
+              }
+            ],
+             "pet": ["melparo.png","ru.png"],
+            "skillOrders": {
+              
+              "내실덱": [
+                "chris1.png",
+                "trude2.png",
+                "colt2.png"
+              ]
+             
+            },
+            "note": "1티어"
+          },
          
           {
             "teamId": 0,
