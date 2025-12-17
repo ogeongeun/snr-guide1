@@ -6656,43 +6656,7 @@
             "defenseSkills": ["kiriel2.png","colt1.png","colt2.png"],
             "counters": [
              
-              {
-                "recommendation": 3,
-               
-                "pet": ["ru.png"],
-                "team": [
-                  
-                  {
-                    "name": "헬레니아",
-                    "image": "/images/heroes/helenia.png",
-                     "preset":"탱커",
-                     "note":""
-                  },
-                  {
-                    "name": "카론",
-                    "image": "/images/heroes/Caron.png",
-                    "preset":"플콜키 상대",
-                     "note":""
-                  },
-                  {
-                    "name": "빅토리아",
-                    "image": "/images/heroes/victoria.png",
-      "preset":"탱커"
-                  }
-                ],
-                 "note":"상대 스킬순서에 맞춰서 유동적으로 꼬아서 가기",
-                "skillOrders": [
-                  {
-                    "label": "속공 때",
-                    "skills": [
-                      "Caron2.png",
-                      "helenia1.png",
-                      "helenia2.png"
-                     
-                    ]
-                  }
-                ]
-              },
+              
               {
                 "recommendation": 3,
                 "firstAttack":true,
@@ -6755,24 +6719,15 @@
                 "note":"정보없는곳 갈때 덱풀 부족할때 도전해볼만함",
                 "skillOrders": [
                   {
-                    "label": "속공 질 때1",
+                    "label": "속공 질 때",
                     "skills": [
-                      "akilra2.png",
-                      "chris2.png",
-                      "chris1.png"
-                     
-                    ]
-                  },
-                   {
-                    "label": "속공 질 때2",
-                    "skills": [
-                     
                       "chris1.png",
-                       "akilra2.png",
-                      "chris2.png"
+                      "chris2.png",
+                      "nox1.png"
                      
                     ]
                   }
+                   
                 ]
               }
                
