@@ -6699,10 +6699,10 @@
                 "pet": ["ru.png","chri.png"],
                 "team": [
                   {
-                    "name": "아킬라",
-                    "image": "/images/heroes/akilra.png",
-                    "preset":"길드전",
-                     "note":"6초 추천/2초월이여도 가능/로지 대체가능"
+                    "name": "로지",
+                    "image": "/images/heroes/lozy.png",
+                    "preset":"프리셋4(수문장)",
+                     "note":"부활"
                   },
                   {
                     "name": "녹스",
