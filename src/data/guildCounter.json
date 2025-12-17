@@ -5142,6 +5142,42 @@
                     ]
                   }
                 ]
+              },
+              {
+                "recommendation": 3,
+                "firstAttack": true,
+                "team": [
+                  {
+                    "name": "유신",
+                    "image": "/images/heroes/Yushin.png",
+                   "preset":"길드전",
+                   "note":"권능"
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                    "preset":"프리셋1(탱)",
+                    "note":"부활"
+                  },
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "note":"프리셋2(내실)"
+                  }
+                ],
+                "note": "콜트 속공2번째",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "Yushin1.png",
+                    "colt1.png",
+                    "colt2.png"
+                      
+                   
+                    ]
+                  }
+                ]
               }
                
             ]
