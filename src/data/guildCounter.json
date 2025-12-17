@@ -6670,7 +6670,7 @@
                   },
                   {
                     "name": "카론",
-                    "image": "/images/heroes/caron.png",
+                    "image": "/images/heroes/Caron.png",
                     "preset":"플콜키 상대",
                      "note":""
                   },
@@ -6685,7 +6685,7 @@
                   {
                     "label": "속공 때",
                     "skills": [
-                      "caron2.png",
+                      "Caron2.png",
                       "helenia1.png",
                       "helenia2.png"
                      
@@ -7101,7 +7101,7 @@
                   },
                   {
                     "name": "카론",
-                    "image": "/images/heroes/caron.png",
+                    "image": "/images/heroes/Caron.png",
                     "note":"뒤배치/부활반지"
                   },
                   {
@@ -7115,7 +7115,7 @@
                   {
                     "label": "속공 질때",
                     "skills": [
-                      "caron1.png"
+                      "Caron1.png"
                       
                       
                      
@@ -7169,7 +7169,7 @@
                   },
                   {
                     "name": "카론",
-                    "image": "/images/heroes/caron.png",
+                    "image": "/images/heroes/Caron.png",
                     "note":"권능 반지 필수"
                   },
                   {
@@ -7182,9 +7182,9 @@
                   {
                     "label": "속공 질때",
                     "skills": [
-                      "caron1.png",
+                      "Caron1.png",
                       "lucy2.png",
-                      "caron2.png"
+                      "Caron2.png"
                      
                     ]
                   }
@@ -8052,7 +8052,7 @@
                   },
                   {
                     "name": "카론",
-                    "image": "/images/heroes/caron.png"
+                    "image": "/images/heroes/Caron.png"
                   }
                 ],
                 "note": "",
