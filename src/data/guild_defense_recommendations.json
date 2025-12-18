@@ -48,7 +48,7 @@
                          "pet": ["irin.png","yu.png"],
             "skillOrders": {
               
-              "속공덱": [
+              "속공덱1": [
                 "cagura2.png",
                 "kyle2.png",
 
@@ -56,7 +56,7 @@
 
                 "kyle1.png"
               ],
-                 "내실덱": [
+                 "속공덱2": [
             
                 "kyle2.png",
                   
@@ -67,17 +67,59 @@
               ]
              
             },
-            "note": "op티어/속공240~270(카규라 강자주시)/내실덱은 반지가 좋으면 내실덱(속공200~)"
+            "note": "1티어/속공240~270(카규라 강자주시)"
           },
-           
+            {
+            "teamId": 0,
+            "name": "트루드 방덱",
+            "heroes": [
+              
+              {
+                "name": "아멜리아",
+                "image": "amelia.png",
+              "preset":"스트아",
+              "note":"5권/안되면 4권"
+              },
+              {
+                "name": "트루드",
+                "image": "trude.png",
+               "preset":"총력전",
+               "note":"5권이상+즉사세공"
+              },
+              {
+                "name": "스파이크",
+                "image": "spike.png",
+               "preset":"프리셋4(수문장)",
+                "note":"6성부활(5성부활대체가능)"
+              
+              }
+            ],
+             "pet": ["karam.png","pike.png"],
+            "skillOrders": {
+              
+              "내실덱1": [
+                "amelia1.png",
+                "trude2.png",
+                "spike2.png"
+              ],
+              "내실덱2": [
+                "amelia2.png",
+                "trude2.png",
+                "spike2.png"
+              ]
+             
+            },
+            "note": "op티어/1순위:카람,2순위:파이크"
+          },
+         
           {
             "teamId": 0,
             "name": "플라튼 방덱",
             "heroes": [
               {
-                "name": "실베스타",
-                "image": "silvesta.png",
-               "preset":"총력전",
+                "name": "콜트",
+                "image": "colt.png",
+               "preset":"프리셋2(내실)",
                "note":""
               },
               {
@@ -87,9 +129,9 @@
               "note":"앞배치/5부활이상/효저50이상챙겨도되고 안챙겨도됨(즉사대응용)"
               },
               {
-                "name": "아멜리아",
-                "image": "amelia.png",
-               "preset":"플트아"
+                "name": "프레이아",
+                "image": "praya.png",
+               "preset":"프리셋1(속공)"
                 
               
               }
@@ -97,22 +139,27 @@
              "pet": ["pike.png","ru.png"],
             "skillOrders": {
               
-              "내실덱": [
-                "platon2.png",
-                "amelia1.png",
-                "silvesta2.png"
+              "내실덱1": [
+                "praya2.png",
+                "colt2.png",
+                "praya1.png"
+              ],
+              "내실덱2": [
+                "praya2.png",
+                "colt1.png",
+                "colt2.png"
               ]
              
             },
-            "note": "op티어"
+            "note": "1티어"
           },{
             "teamId": 0,
             "name": "플라튼 방덱",
             "heroes": [
               {
-                "name": "트루드",
-                "image": "trude.png",
-               "preset":"총력전",
+                "name": "실베스타",
+                "image": "silvesta.png",
+               "preset":"프리셋1(내실)",
                "note":"권능"
               },
               {
@@ -122,139 +169,69 @@
               "note":"앞배치/5부활이상/효저50이상챙겨도되고 안챙겨도됨(즉사대응용)"
               },
               {
-                "name": "아멜리아",
-                "image": "amelia.png",
-               "preset":"플트아"
-                
+                "name": "콜트",
+                "image": "colt.png",
+               "preset":"프리셋2(내실)"
+              
               
               }
             ],
              "pet": ["pike.png","ru.png"],
             "skillOrders": {
               
-              "내실덱": [
+              "내실덱1": [
                 "platon2.png",
-                "amelia1.png",
-                "trude2.png"
-              ]
-             
-            },
-            "note": "op티어"
-          },
-          {
-            "teamId": 0,
-            "name": "트루드 방덱",
-            "heroes": [
-              
-              {
-                "name": "에이스",
-                "image": "ace.png",
-              "preset":"토템",
-              "note":"부활/6초이상부터 사용"
-              },
-              {
-                "name": "트루드",
-                "image": "trude.png",
-               "preset":"총력전",
-               "note":"5권이상+즉사세공"
-              },
-              {
-                "name": "콜트",
-                "image": "colt.png",
-               "preset":"프리셋2(내실)",
-                "note":"불사"
-              
-              }
-            ],
-             "pet": ["yu.png","irin.png"],
-            "skillOrders": {
-              
-              "내실덱": [
-                "ace2.png",
                 "colt1.png",
                 "colt2.png"
-              ]
-             
-            },
-            "note": "1티어"
-          },{
-            "teamId": 0,
-            "name": "트루드 방덱",
-            "heroes": [
-              
-              {
-                "name": "엘리시아",
-                "image": "elisia.png",
-              "preset":"프리셋2(내실)",
-              "note":"부활/6초이상부터 사용"
-              },
-              {
-                "name": "트루드",
-                "image": "trude.png",
-               "preset":"총력전",
-               "note":"5권이상+즉사세공"
-              },
-              {
-                "name": "콜트",
-                "image": "colt.png",
-               "preset":"프리셋2(내실)",
-                "note":"불사"
-              
-              }
-            ],
-             "pet": ["yu.png","irin.png"],
-            "skillOrders": {
-              
-              "내실덱": [
-                "trude2.png",
-                "colt1.png",
-                "colt2.png"
+              ],
+               "내실덱2": [
+                "platon2.png",
+                "colt2.png",
+                "silvesta2.png"
               ]
              
             },
             "note": "2티어"
           },
-         {
-            "teamId": 0,
-            "name": "트루드 방덱",
-            "heroes": [
-              
-              {
-                "name": "크리스",
-                "image": "chris.png",
-              "preset":"길드전(방덱)",
-              "note":"부활/6초이상부터 사용"
-              },
-              {
-                "name": "트루드",
-                "image": "trude.png",
-               "preset":"총력전",
-               "note":"5권이상+즉사세공"
-              },
-              {
-                "name": "콜트",
-                "image": "colt.png",
-               "preset":"프리셋2(내실)",
-                "note":"불사"
-              
-              }
-            ],
-             "pet": ["melparo.png","ru.png"],
-            "skillOrders": {
-              
-              "내실덱": [
-                "chris1.png",
-                "trude2.png",
-                "colt2.png"
-              ]
-             
-            },
-            "note": "1티어"
-          },
          
           {
             "teamId": 0,
-            "name": "프레이아 마덱",
+            "name": "연희 마덱",
+            "heroes": [
+              {
+                "name": "바네사",
+                "image": "vanessa.png",
+                  "preset": "프리셋2(속공)",
+                  "note":"권능"
+              },
+              {
+                "name": "연희",
+                "image": "Yeonhee.png",
+                "preset":"프리셋1(속공)",
+                "note":"불사"
+              },
+              {
+                "name": "키리엘",
+                "image": "kiriel.png",
+                "preset": "프리셋1(속공)",
+                "note":""
+              }
+            ],
+              "pet": ["Yeonji.png","yu.png","meparo.png"],
+            "skillOrders": {
+              
+               "속공덱": [
+                "vanessa1.png",
+                "Yeonhee2.png",
+                "Yeonhee1.png"
+              ]
+              
+            },
+            "note": "1티어/속공270이상"
+          },
+          {
+            "teamId": 0,
+            "name": "연희 마덱",
             "heroes": [
               {
                 "name": "바네사",
@@ -281,46 +258,11 @@
                "속공덱": [
                 "vanessa1.png",
                 "praya2.png",
-                "Yeonhee2.png"
-              ]
-              
-            },
-            "note": "op티어/속공270이상"
-          },
-          {
-            "teamId": 0,
-            "name": "프레이아 마덱",
-            "heroes": [
-              {
-                "name": "바네사",
-                "image": "vanessa.png",
-                  "preset": "프리셋2(속공)",
-                  "note":"권능"
-              },
-              {
-                "name": "키리엘",
-                "image": "kiriel.png",
-                "preset":"프리셋1(속공)",
-                "note":"불사,부활"
-              },
-              {
-                "name": "프레이아",
-                "image": "praya.png",
-                "preset": "프리셋1(속공)",
-                "note":""
-              }
-            ],
-              "pet": ["Yeonji.png","yu.png","meparo.png"],
-            "skillOrders": {
-              
-               "속공덱": [
-                "vanessa1.png",
-                "praya2.png",
                 "kiriel2.png"
               ]
               
             },
-            "note": "op티어/속공270이상"
+            "note": "1티어/속공270이상"
           },
          
           
