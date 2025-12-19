@@ -100,13 +100,15 @@
               
               "내실덱1": [
                 "amelia1.png",
-                "trude2.png",
-                "spike2.png"
+                 "spike2.png",
+                "trude2.png"
+               
               ],
               "내실덱2": [
                 "amelia2.png",
-                "trude2.png",
-                "spike2.png"
+                "spike2.png",
+                "trude2.png"
+                
               ]
              
             },
