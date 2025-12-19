@@ -91,12 +91,13 @@
         "setName": "종결세팅(500만)",
         "teams": [
           {
-            "teamName": "1팀(32턴)",
+            "teamName": "1팀(24턴)",
         "skills": {
                "sequence": [
               "poongyeon1.png",
               "taka2.png",
               "ace2.png",
+              { "image": "pie1.png", "label": "딜 부족시" },
               "taka1.png",
               "poongyeon2.png",
               
