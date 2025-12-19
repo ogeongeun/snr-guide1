@@ -87,6 +87,43 @@
       }
     ],
      "darkcarma": [
+       {
+        "setName": "종결세팅(500만)",
+        "teams": [
+          {
+            "teamName": "1팀(32턴)",
+        "skills": {
+               "sequence": [
+              "poongyeon1.png",
+              "taka2.png",
+              "ace2.png",
+              "taka2.png",
+              "poongyeon2.png",
+              
+              "poongyeon1.png",
+               
+                  "taka2.png"
+                    
+      
+            ]}
+          },
+          {
+            "teamName": "2팀",
+         "skills": {
+               "sequence": [
+              "bisket1.png",
+              "rachel2.png",
+              "lion2.png",
+              "bidam1.png",
+                 "bidam2.png",
+              "lion1.png",
+              "rachel1.png",
+           
+              "rachel2.png","bisket1.png","lion2.png","bidam1.png","bidam2.png"
+            ]}
+          }
+        ]
+      },
       {
         "setName": "종결세팅",
         "teams": [

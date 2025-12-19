@@ -90,6 +90,46 @@
             "id": 1,
             "teamName": "1팀",
             "heroes": [
+              { "name": "에이스", "image": "ace.png","preset": "프리셋3(파괴신)"},
+              { "name": "풍연", "image": "poongyeon.png", "preset": "프리셋1(강림)" ,"note":"뒤배치"},
+              { "name": "타카", "image": "taka.png", "preset": "프리셋2(강림)","note":"뒤배치(6초)" },
+              { "name": "지크", "image": "zick.png", "preset": "범용" },
+              { "name": "파이", "image": "pie.png","preset": "프리셋2(강림)" }
+            ],
+            "recommendedGear": {
+              "pet": "windy.png"
+            },
+            "note":"펫은 윈디또는 리첼"
+            
+          },
+          {
+            "id": 2,
+            "teamName": "2팀",
+            "heroes": [
+             
+              { "name": "레이첼", "image": "rachel.png", "preset": "프리셋3(강림)"  ,"note":"6초" },
+               { "name": "라이언", "image": "lion.png","preset": "프리셋3(강림)","note":"뒤배치"  },
+              { "name": "비담", "image": "bidam.png", "preset": "프리셋1(강림)","note":"뒤배치/제일 좋은템주기(6초)" },
+              { "name": "비스킷", "image": "bisket.png","preset": "프리셋1(탱)" ,"note":"6초"  },
+              { "name": "아일린", "image": "eileene.png", "preset": "프리셋3(강림)" }
+            ],
+            "recommendedGear": {
+        
+              "pet": "irin.png"
+            },
+            "note":"펫은 이린"
+          }
+        ],
+      
+        "note": "미흡한 스펙은 반지로 충족/스펙이 된다면 피해량 반지"
+      },
+      {
+        "setName": "종결세팅",
+        "teams": [
+          {
+            "id": 1,
+            "teamName": "1팀",
+            "heroes": [
               { "name": "에이스", "image": "ace.png"},
               { "name": "풍연", "image": "poongyeon.png", "preset": "프리셋1(강림)" ,"note":"뒤배치"},
               { "name": "타카", "image": "taka.png", "preset": "프리셋2(강림)","note":"뒤배치(6초)" },
