@@ -120,10 +120,10 @@
             "name": "플라튼 방덱",
             "heroes": [
               {
-                "name": "콜트",
-                "image": "colt.png",
-               "preset":"프리셋2(내실)",
-               "note":""
+                "name": "실베스타",
+                "image": "silvesta.png",
+               "preset":"프리셋1(내실)",
+               "note":"부활"
               },
               {
                 "name": "플라튼",
@@ -134,7 +134,8 @@
               {
                 "name": "프레이아",
                 "image": "praya.png",
-               "preset":"프리셋1(속공)"
+               "preset":"프리셋2(내실)",
+               "note":"부조건 부활"
                 
               
               }
@@ -144,13 +145,13 @@
               
               "내실덱1": [
                 "praya2.png",
-                "colt2.png",
+                "platon2.png",
                 "praya1.png"
               ],
               "내실덱2": [
+                "platon2.png",
                 "praya2.png",
-                "colt1.png",
-                "colt2.png"
+                "praya1.png"
               ]
              
             },
