@@ -6399,10 +6399,10 @@
                   }
                 
                 ],
-                "note":"속공 이기고 시작하면 많이 유리함",
+                "note":"",
                 "skillOrders": [
                   {
-                    "label": "속공 이길 때",
+                    "label": "속공 질 때",
                     "skills": [
                     
                     
@@ -6543,10 +6543,10 @@
                   }
                 
                 ],
-                "note":"속공 이기고 시작하면 많이 유리함",
+                "note":"",
                 "skillOrders": [
                   {
-                    "label": "속공 이길 때",
+                    "label": "속공 질 때",
                     "skills": [
                     
                     
@@ -6897,7 +6897,7 @@
                 "note":"장비 빡셀떄만",
                 "skillOrders": [
                   {
-                    "label": "속공 이길 때",
+                    "label": "속공 질 때",
                     "skills": [
                       "chris1.png",
                       "nox2.png",
