@@ -5383,6 +5383,54 @@
                     ]
                   }
                 ]
+              },
+              {
+                "recommendation": 2,
+                "firstAttack":true,
+                "pet": ["Yeonji.png"],
+                "team": [
+                  {
+                    "name": "첸슬러",
+                    "image": "/images/heroes/chancellor.png",
+                    "preset":"프리셋5(스트아상대)",
+                     "note":"제일 좋은장비/5부활"
+                  },
+                   {
+                    "name": "카론",
+                    "image": "/images/heroes/caron.png",
+      "preset":"프리셋3(조율자)",
+      "note":"뒤배치"
+                  },
+                  {
+                    "name": "스파이크",
+                    "image": "/images/heroes/spike.png",
+                     "preset":"프리셋5(조율자)",
+                     "note":"2번쨰로 좋은부활반지/속공 순서 신경쓰기"
+                  }
+                 
+                ],
+                "note":"카론 보호진영/속공 이기면 좀더 유리하긴함",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "chancellor2.png",
+                      "spike2.png",
+                      "caron1.png"
+                     
+                    ]
+                  },
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                     
+                      "spike2.png",
+                       "chancellor2.png",
+                      "caron1.png"
+                     
+                    ]
+                  }
+                ]
               }
               
                
