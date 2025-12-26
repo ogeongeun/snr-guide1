@@ -1,5 +1,9 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import data from '../data/essential-heroes.json';
+import equipmentData from '../data/equipmentRecommend.json';
+import EquipmentModal from '../components/EquipmentModal';
 
 /**
  * siegeTeams JSON 기준 원소 목록
@@ -15,7 +19,26 @@ const elementOrder = [
 const EssentialHeroesPage = () => {
   const [selectedElement, setSelectedElement] = useState(elementOrder[0]);
 
+  // 장비 모달 상태
+  const [selectedHeroKey, setSelectedHeroKey] = useState(null);
+  const [presetTag, setPresetTag] = useState(null);
+
+  // ✅ siegeTeams 반드시 거친다
   const teams = data?.siegeTeams?.[selectedElement.key] || [];
+
+  /**
+   * 영웅 클릭 → 장비 모달
+   */
+  const handleHeroClick = (hero) => {
+    const heroKey = Object.keys(equipmentData).find(
+      (key) => equipmentData[key].name === hero.name
+    );
+
+    if (heroKey) {
+      setSelectedHeroKey(heroKey);
+      setPresetTag(hero.preset || null);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-8">
@@ -30,12 +53,9 @@ const EssentialHeroesPage = () => {
             <button
               key={el.key}
               onClick={() => setSelectedElement(el)}
-              className={`text-sm px-3 py-2 rounded border bg-white hover:bg-gray-100 transition
-                ${
-                  selectedElement.key === el.key
-                    ? 'ring-2 ring-blue-400'
-                    : ''
-                }`}
+              className={`text-sm px-3 py-2 rounded border bg-white hover:bg-gray-100 transition ${
+                selectedElement.key === el.key ? 'ring-2 ring-blue-400' : ''
+              }`}
             >
               {el.label}
             </button>
@@ -53,12 +73,13 @@ const EssentialHeroesPage = () => {
                 추천 조합 {idx + 1}
               </p>
 
-              {/* 영웅들 */}
+              {/* 영웅 목록 */}
               <div className="grid grid-cols-5 gap-2">
                 {teamData.team.map((hero, i) => (
-                  <div
+                  <button
                     key={i}
-                    className="flex flex-col items-center bg-white border rounded-md p-1"
+                    onClick={() => handleHeroClick(hero)}
+                    className="flex flex-col items-center bg-white border rounded-md p-1 hover:scale-105 transition"
                   >
                     <img
                       src={
@@ -78,12 +99,12 @@ const EssentialHeroesPage = () => {
                         {hero.note}
                       </p>
                     )}
-                  </div>
+                  </button>
                 ))}
               </div>
 
               {/* 태그 */}
-              {teamData.tags && (
+              {teamData.tags && teamData.tags.length > 0 && (
                 <p className="mt-2 text-[11px] text-gray-600">
                   💡 {teamData.tags.join(', ')}
                 </p>
@@ -95,10 +116,34 @@ const EssentialHeroesPage = () => {
                   ※ {teamData.note}
                 </p>
               )}
+
+              {/* ✅ 스킬 순서 이동 (정답 링크) */}
+              <div className="mt-3 flex justify-center">
+                <Link
+                  to={`/essential-skill/${encodeURIComponent(
+                    selectedElement.key
+                  )}/${idx}`}
+                  className="px-3 py-1.5 text-sm rounded-md border border-blue-600 text-blue-600 hover:bg-blue-50"
+                >
+                  ⚔️ 스킬 순서 보러가기
+                </Link>
+              </div>
             </li>
           ))}
         </ul>
       </div>
+
+      {/* 장비 모달 */}
+      {selectedHeroKey && (
+        <EquipmentModal
+          heroKey={selectedHeroKey}
+          presetTag={presetTag}
+          onClose={() => {
+            setSelectedHeroKey(null);
+            setPresetTag(null);
+          }}
+        />
+      )}
     </div>
   );
 };

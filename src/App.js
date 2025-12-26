@@ -33,12 +33,16 @@ import EnhanceFilterPage from "./pages/EnhanceFilterPage"; // 다음 단계 페�
 import GrandBattlePage from './pages/GrandBattlePage';
 import VoodooPage from './pages/VoodooPage';
 import EnhanceStep2Page from "./pages/EnhanceStep2Page";
+import EssentialSkillDetailPage from './pages/EssentialSkillDetailPage';
 const App = () => {
   return (
     <Router>
        <GlobalBackButton />
       <Routes>
-          
+          <Route
+  path="/essential-skill/:element/:teamIndex"
+  element={<EssentialSkillDetailPage />}
+/>
         <Route path="/" element={<Home />} />
         <Route path="/farming" element={<FarmingEfficiency />} />
         <Route path="/essential-heroes" element={<EssentialHeroesPage />} />

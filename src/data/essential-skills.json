@@ -1,0 +1,77 @@
+{
+  "불의원소": [
+    {
+      "skillOrders": [
+        {
+          "orderTitle": "자동",
+          "skills": [
+            {
+              "stageTitle": "1라운드",
+              "images": ["bisket1.png","hebnia1.png","spike1.png","spike2.png"]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+   "물의원소": [
+    {
+      "skillOrders": [
+        {
+          "orderTitle": "자동",
+          "skills": [
+            {
+              "stageTitle": "1라운드",
+              "images": ["bisket1.png","chloe1.png","jane1.png","jane2.png","lina2.png"]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+   "땅의원소": [
+    {
+      "skillOrders": [
+        {
+          "orderTitle": "자동",
+          "skills": [
+            {
+              "stageTitle": "1라운드",
+              "images": ["bisket1.png","pie2.png","rachel1.png","pie1.png","jave2.png"]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+   "빛의원소": [
+    {
+      "skillOrders": [
+        {
+          "orderTitle": "자동",
+          "skills": [
+            {
+              "stageTitle": "1라운드",
+              "images": ["joker1.png","ogong2.png","ogong1.png","joker2.png","pie2.png"]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+   "암흑원소": [
+    {
+      "skillOrders": [
+        {
+          "orderTitle": "자동",
+          "skills": [
+            {
+              "stageTitle": "1라운드",
+              "images": ["bisket1.png","rudy2.png","bidam1.png","bidam2.png","lina2.png","leo1.png","bidam1.png","lina1.png","bidam2.png"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
