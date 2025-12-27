@@ -189,6 +189,41 @@
               
             },
             "note": "1티어/속공270이상"
+          },
+          {
+            "teamId": 0,
+            "name": "밀리아 마덱",
+            "heroes": [
+              {
+                "name": "멜키르",
+                "image": "Melkir.png",
+                  "preset": "프리셋4(효저100)",
+                  "note":"불사/권능"
+              },
+              {
+                "name": "밀리아",
+                "image": "milia.png",
+                "preset":"프리셋1(속공)",
+                "note":"권능/불사/즉반/밀리아 공진"
+              },
+              {
+                "name": "프레이아",
+                "image": "praya.png",
+                "preset": "프리셋1(속공)",
+                "note":"불사/권능"
+              }
+            ],
+              "pet": ["meparo.png","Yeonji.png"],
+            "skillOrders": {
+              
+               "속공덱": [
+                "milia2.png",
+                "melkir1.png",
+                "praya2.png"
+              ]
+              
+            },
+            "note": "1티어/속공270이상"
           }
          
          

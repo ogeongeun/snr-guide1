@@ -270,7 +270,7 @@
     }
   },
   "galidus": {
-    "name": "카일",
+    "name": "갤리두스",
     "image": "/images/heroes/galidus.png",
     "roles": {
         "프리셋1(길드전)": {
@@ -282,6 +282,28 @@
             "mainOption": "방%/방%/받%/받%",
             "subOption": "막기70%%",  
             "note": "부활반지"
+          }
+          
+        ]
+      }
+     
+     
+      
+    }
+  },
+   "milia": {
+    "name": "밀리아",
+    "image": "/images/heroes/milia.png",
+    "roles": {
+        "프리셋1(속공)": {
+       
+        "전체": [
+            
+          {
+            "set": "수호자",
+            "mainOption": "방%/방%/받%/받%",
+            "subOption": "속공최대치",  
+            "note": "권능"
           }
           
         ]
@@ -1743,6 +1765,19 @@
             "set": "주술사/복수자",
             "mainOption": "효적/효적or모공%/받피감%/받피감%",
              "subOption": "효적 800%이상", 
+            "note": "속공80~90"
+          }
+          
+        ]
+        
+      },
+      "프리셋4(효저100)": {
+       
+        "전체": [
+              {
+            "set": "조율자",
+            "mainOption": "효적%/방%/효저%/받피감%",
+             "subOption": "효적 95%이상", 
             "note": "속공80~90"
           }
           
