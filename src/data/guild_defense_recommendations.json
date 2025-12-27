@@ -72,49 +72,44 @@
           },
             {
             "teamId": 0,
-            "name": "트루드+프레이아 방덱",
+            "name": "오공 방덱",
             "heroes": [
               
              
               {
-                "name": "트루드",
-                "image": "trude.png",
-               "preset":"총력전",
-               "note":"5권이상+즉사세공"
+                "name": "엘리시아",
+                "image": "elisia.png",
+               "preset":"프리셋2(내실)",
+               "note":"5부활"
               },
                {
-                "name": "프레이아",
-                "image": "praya.png",
-              "preset":"프리셋1(속공)",
-              "note":"부활/뒤배치/내실줘도될듯"
+                "name": "오공",
+                "image": "ogong.png",
+              "preset":"프리셋2(내실)",
+              "note":"부활/뒤배치"
               },
               {
-                "name": "스파이크",
-                "image": "spike.png",
-               "preset":"프리셋4(수문장)",
-                "note":"부활"
+                "name": "갤리두스",
+                "image": "galidus.png",
+                "preset":"프리셋1(길드전)",
+                "note":"5부활"
               
               }
             ],
              "pet": ["yu.png"],
+             
             "skillOrders": {
               
-              "내실덱1": [
-                "spike2.png",
-                 "praya2.png",
-                "trude2.png"
-               
-              ],  "내실덱2": [
-               
-                 "praya2.png",
-                  "spike2.png",
-                "trude2.png"
+              "내실덱": [
+                "elisia1.png",
+                 "ogong2.png",
+                "galidus1.png"
                
               ]
               
              
             },
-            "note": "op티어/1순위:카람,2순위:파이크/스파이크 속공1등"
+            "note": "1티어/유 없으면 쓰기 애매함"
           },
          
           {
@@ -134,22 +129,27 @@
               "note":"앞배치/5부활이상"
               },
               {
-                "name": "오공",
-                "image": "ogong.png",
-               "preset":"프리셋1(길드전)",
-               "note":"플라튼보다 좋은반지(6부활)"
+                "name": "트루드",
+                "image": "trude.png",
+               "preset":"총력전",
+               "note":"권능"
                 
               
               }
             ],
-             "pet": ["karam.png","ru.png","pike.png"],
+             "pet": ["pike.png","karam.png","ru.png"],
             "skillOrders": {
               
             
-              "내실덱": [
+              "내실덱1": [
                 "amelia1.png",
-                "ogong2.png",
-                "amelia2.png"
+                "platon2.png",
+                "trude2.png"
+              ],
+              "내실덱2": [
+                "amelia2.png",
+                "amelia1.png",
+                "trude2.png"
               ]
              
             },

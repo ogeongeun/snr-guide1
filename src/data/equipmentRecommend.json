@@ -269,6 +269,28 @@
       
     }
   },
+  "galidus": {
+    "name": "카일",
+    "image": "/images/heroes/galidus.png",
+    "roles": {
+        "프리셋1(길드전)": {
+       
+        "전체": [
+            
+          {
+            "set": "수문장/수호자",
+            "mainOption": "방%/방%/받%/받%",
+            "subOption": "막기70%%",  
+            "note": "부활반지"
+          }
+          
+        ]
+      }
+     
+     
+      
+    }
+  },
    "lozy": {
     "name": "로지",
     "image": "/images/heroes/lozy.png",
@@ -370,7 +392,7 @@
              {
             "set": "수문장",
             "mainOption": "효%/공or방%/막or받%/막%",
-            "subOption":"막기 최대한 100",
+            "subOption":"막기 최대한 100/효적최대한",
             "note": "모공%/막기%/방%"
           }
           
@@ -740,6 +762,18 @@
             "set": "수문장",
             "mainOption": "모공%/모공%/막%/받%",
              "subOption": "막기100/약공챙길수있으면 약공",  
+            "note": "6부활반지"
+          }
+          
+        ]
+      },
+       "프리셋2(내실)": {
+       
+        "전체": [
+             {
+            "set": "추적자",
+            "mainOption": "모공%/모공%/받%/받%",
+             "subOption": "모공3500이상/약공70%/가능하면 막기까지",  
             "note": "6부활반지"
           }
           
