@@ -175,7 +175,7 @@
               {
                 "name": "에이스",
                 "image": "ace.png",
-               "preset":"프리셋4(갤오엘)",
+               "preset":"프리셋4(갤오에)",
                "note":"5부활"
               },
                {
@@ -192,7 +192,7 @@
               
               }
             ],
-             "pet": ["pike.png","caram.png","ru.png"],
+             "pet": ["pike.png","karam.png","ru.png"],
              
             "skillOrders": {
               
