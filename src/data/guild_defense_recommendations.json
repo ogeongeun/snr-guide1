@@ -210,6 +210,50 @@
             },
             "note": "op티어"
           },
+            {
+            "teamId": 0,
+            "name": "플라튼 방덱",
+            "heroes": [
+              {
+                "name": "아멜리아",
+                "image": "amelia.png",
+               "preset":"프리셋3(효저100)",
+               "note":"불사"
+              },
+               {
+                "name": "트루드",
+                "image": "trude.png",
+               "preset":"총력전",
+               "note":"권능"
+                
+              
+              },
+              {
+                "name": "플라튼",
+                "image": "platon.png",
+              "preset":"프리셋3(효저100)",
+              "note":"앞배치/5부활이상"
+              }
+             
+            ],
+             "pet": ["pike.png"],
+            "skillOrders": {
+              
+            
+              "내실덱1": [
+                "amelia1.png",
+                "platon2.png",
+                "trude2.png"
+              ],
+              "내실덱2": [
+                "amelia2.png",
+                "amelia1.png",
+                "trude2.png"
+              ]
+             
+            },
+            "note": "op티어/효저100%덱"
+          },
           {
             "teamId": 0,
             "name": "연희 마덱",
