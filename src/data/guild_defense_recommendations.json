@@ -100,16 +100,71 @@
              
             "skillOrders": {
               
-              "내실덱": [
+              "내실덱1": [
                 "elisia1.png",
                  "ogong2.png",
+                "galidus1.png"
+               
+              ],
+              "내실덱2": [
+                
+                 "ogong2.png",
+                 "elisia1.png",
+                "galidus1.png"
+               
+              ]
+            
+              
+             
+            },
+            "note": "1티어/유 없으면 쓰기 애매함"
+          },  {
+            "teamId": 0,
+            "name": "오공 방덱",
+            "heroes": [
+              
+             
+              {
+                "name": "엘리시아",
+                "image": "elisia.png",
+               "preset":"프리셋5(주술사)",
+               "note":"5부활"
+              },
+               {
+                "name": "오공",
+                "image": "ogong.png",
+              "preset":"프리셋3(주술사)",
+              "note":"부활/뒤배치"
+              },
+              {
+                "name": "갤리두스",
+                "image": "galidus.png",
+                "preset":"프리셋3(주술사)",
+                "note":"5부활"
+              
+              }
+            ],
+             "pet": ["meparo.png"],
+             
+            "skillOrders": {
+              
+            "내실덱1": [
+                "elisia1.png",
+                 "ogong2.png",
+                "galidus1.png"
+               
+              ],
+              "내실덱2": [
+                
+                 "ogong2.png",
+                 "elisia1.png",
                 "galidus1.png"
                
               ]
               
              
             },
-            "note": "1티어/유 없으면 쓰기 애매함"
+            "note": "1티어"
           },
          
           {
