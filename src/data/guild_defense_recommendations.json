@@ -166,6 +166,54 @@
             },
             "note": "1티어"
           },
+          {
+            "teamId": 0,
+            "name": "오공 방덱(2중 1택)",
+            "heroes": [
+              
+             
+              {
+                "name": "에이스",
+                "image": "ace.png",
+               "preset":"프리셋4(갤오엘)",
+               "note":"5부활"
+              },
+               {
+                "name": "오공",
+                "image": "ogong.png",
+              "preset":"프리셋3(주술사)",
+              "note":"부활/뒤배치"
+              },
+               {
+                "name": "갤리두스",
+                "image": "galidus.png",
+                "preset":"프리셋1(길드전)",
+                "note":"5부활"
+              
+              }
+            ],
+             "pet": ["pike.png","caram.png","ru.png"],
+             
+            "skillOrders": {
+              
+            "내실덱1": [
+               "ace2.png",
+                 "ogong2.png",
+                "galidus1.png"
+               
+              ],
+              "내실덱2": [
+                
+                 "ogong2.png",
+                 "ace2.png",
+                "galidus1.png"
+               
+              ]
+              
+             
+            },
+            "note": "1티어"
+          },
          
           {
             "teamId": 0,
