@@ -7757,43 +7757,7 @@
             "counters": [
              
               
-              {
-                "recommendation": 2,
-                "firstAttack":true,
-                "pet": ["pike.png"],
-                "team": [
-                  {
-                    "name": "엘리스",
-                    "image": "/images/heroes/elise.png",
-                    "preset":"프리셋2(효저)",
-                     "note":"부활"
-                  },
-                  {
-                    "name": "플라튼",
-                    "image": "/images/heroes/platon.png",
-                     "preset":"프리셋1(탱)",
-                     "note":""
-                  },
-                  {
-                    "name": "카론",
-                    "image": "/images/heroes/Caron.png",
-      "preset":"프리셋2(성기사)",
-      "note":"부활"
-                  }
-                ],
-                "note":"장비 빡셀떄만",
-                "skillOrders": [
-                  {
-                    "label": "속공 질 때",
-                    "skills": [
-                      "Caron1.png",
-                      "platon2.png"
-                      
-                     
-                    ]
-                  }
-                ]
-              },
+              
               {
                 "recommendation": 3,
          
@@ -7826,6 +7790,44 @@
                       "amelia2.png",
                       "dellons2.png",
                       "trude2.png"
+                      
+                     
+                    ]
+                  }
+                ]
+              },
+               {
+                "recommendation": 2,
+         "firstAttack":true,
+                "pet": ["ru.png","karam.png","pike.png"],
+                "team": [
+                  {
+                    "name": "루디",
+                    "image": "/images/heroes/rudy.png",
+                    "preset":"프리셋1(범용)",
+                     "note":"4부활"
+                  },
+                  {
+                    "name": "카르마",
+                    "image": "/images/heroes/carma.png",
+                     "preset":"프리셋1(범용)",
+                     "note":"뒤배치/5권또는 부활이 확실"
+                  },
+                  {
+                    "name": "엘리스",
+                    "image": "/images/heroes/elise.png",
+      "preset":"프리셋3(플프콜상대)",
+      "note":"부활"
+                  }
+                ],
+                "note":"",
+                "skillOrders": [
+                  {
+                    "label": "속공 질 때",
+                    "skills": [
+                      "elise2.png",
+                      "rudy2.png",
+                      "carma2.png"
                       
                      
                     ]
