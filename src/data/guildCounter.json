@@ -1583,6 +1583,7 @@
               }
               ]
               },
+              
           {
           "id": "team1",
           "label": "태오 공덱",
@@ -1739,6 +1740,83 @@
                     }
                   ]
                 }
+                
+               ]
+          }  
+            
+            
+          ]
+        }, {
+          "id": "team1",
+          "label": "밀리아 마덱",
+          "defenseTeam": [
+            {
+              "name": "프레이아",
+              "image": "/images/heroes/praya.png"
+            },
+            {
+              "name": "밀리아",
+              "image": "/images/heroes/milia.png"
+            },
+            {
+              "name": "멜키르",
+              "image": "/images/heroes/Melkir.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "milia2.png",
+                "praya2.png",
+                "melkir2.png"
+              ],
+              "counters": [
+                 
+                {
+                  "recommendation": 2,
+                  "pet": ["Yeonji.png"],
+                  "team": [
+                    {
+                      "name": "니아",
+                      "image": "/images/heroes/nia.png",
+                      "preset":"총력전"
+                    
+                  
+                    },
+                    {
+                      "name": "프레이아",
+                      "image": "/images/heroes/praya.png",
+                      "preset":"프리셋1(속공)/뒤배치"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "밀리아",
+                      "image": "/images/heroes/milia.png",
+                      "preset":"프리셋2(내실)"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때(260~270",
+                      "skills": [
+                        "nia1.png",
+                        "praya2.png",
+                        "praya1.png"
+                      ]
+                    }
+                  ]
+                }
+                
                 
                ]
           }  
