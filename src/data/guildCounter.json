@@ -2069,7 +2069,7 @@
                     },
                     {
                       "name": "카론",
-                      "image": "/images/heroes/caron.png",
+                      "image": "/images/heroes/Caron.png",
                       "preset":"프리셋4(효저)/뒤배치",
                       "note":"부활"
                     
@@ -6014,7 +6014,7 @@
                   },
                    {
                     "name": "카론",
-                    "image": "/images/heroes/caron.png",
+                    "image": "/images/heroes/Caron.png",
       "preset":"프리셋3(조율자)",
       "note":"뒤배치"
                   },
@@ -7492,7 +7492,7 @@
                   },
                   {
                     "name": "카론",
-                    "image": "/images/heroes/caron.png",
+                    "image": "/images/heroes/Caron.png",
       "preset":"프리셋2(성기사)",
       "note":"부활"
                   }
@@ -7502,7 +7502,7 @@
                   {
                     "label": "속공 질 때",
                     "skills": [
-                      "caron1.png",
+                      "Caron1.png",
                       "platon2.png"
                       
                      
@@ -7636,7 +7636,7 @@
           },
           {
             "name": "엘리시아",
-            "image": "/images/heroes/silvesta.png"
+            "image": "/images/heroes/elise.png"
           }
          
         ],
@@ -7733,7 +7733,7 @@
                   },
                   {
                     "name": "카론",
-                    "image": "/images/heroes/caron.png",
+                    "image": "/images/heroes/Caron.png",
       "preset":"프리셋2(성기사)",
       "note":"부활"
                   }
@@ -7743,7 +7743,7 @@
                   {
                     "label": "속공 질 때",
                     "skills": [
-                      "caron1.png",
+                      "Caron1.png",
                       "platon2.png"
                       
                      
