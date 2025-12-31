@@ -1139,6 +1139,49 @@
                   }
                 ]
               },
+               {
+                "recommendation": 2,
+                  "firstAttack": true,
+                  "pet": ["ru.png"],
+                "team": [
+                  {
+                    "name": "유신",
+                    "image": "/images/heroes/Yushin.png",
+                    "preset":"프리셋1(조율자)",
+                    "note":"권능"
+                   
+                
+                  },
+                  {
+                    "name": "트루드",
+                    "image": "/images/heroes/trude.png",
+                    "preset":"프리셋2(조율자)",
+                    "note":"권능"
+                   
+                   
+                  },
+                  {
+                    "name": "쥬리",
+                    "image": "/images/heroes/juri.png",
+                    "preset":"프리셋7(조율자)",
+                    "note":"권능"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"",
+                "skillOrders": [
+                  {
+                    "label": "속공 질때",
+                    "skills": [
+                      "juri2.png",
+                      "trude2.png",
+                      "Yushin1.png"
+                    ]
+                  }
+                ]
+              },
               {
                 "recommendation": 2,
             
@@ -1696,6 +1739,460 @@
                     }
                   ]
                 }
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+         {
+          "id": "team1",
+          "label": "오공 방덱",
+          "defenseTeam": [
+            {
+              "name": "겔리두스",
+              "image": "/images/heroes/galidus.png"
+            },
+            {
+              "name": "오공",
+              "image": "/images/heroes/ogong.png"
+            },
+            {
+              "name": "엘리시아",
+              "image": "/images/heroes/elisia.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+          "pet":"yu.png",
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "ogong1.png",
+                "ogong2.png",
+                "galidus1.png"
+              ],
+              "counters": [
+                 
+                {
+                  "recommendation": 2,
+                  "pet": ["irin.png", "yu.png"],
+                  "team": [
+                    {
+                      "name": "파이",
+                      "image": "/images/heroes/pie.png",
+                       "preset":"프리셋7(약공100)"
+                    
+                  
+                    },
+                    {
+                      "name": "카일",
+                      "image": "/images/heroes/kyle.png",
+                      "preset":"프리셋2(내실)"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "아멜리아",
+                      "image": "/images/heroes/amelia.png",
+                      "preset":"플트아"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공150~160",
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "amelia2.png",
+                        "kyle1.png",
+                        "kyle2.png"
+                      ]
+                    }
+                  ]
+                }
+               
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+         {
+          "id": "team1",
+          "label": "오공 방덱",
+          "defenseTeam": [
+            {
+              "name": "겔리두스",
+              "image": "/images/heroes/galidus.png"
+            },
+            {
+              "name": "오공",
+              "image": "/images/heroes/ogong.png"
+            },
+            {
+              "name": "엘리시아",
+              "image": "/images/heroes/elisia.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+          "pet":"meparo.png",
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "ogong1.png",
+                "ogong2.png",
+                "galidus1.png"
+              ],
+              "counters": [
+                 
+                {
+                  "recommendation": 2,
+                  "pet": ["pike.png"],
+                  "team": [
+                    {
+                      "name": "루디",
+                      "image": "/images/heroes/rudy.png",
+                       "preset":"프리셋3(효저100)"
+                    
+                  
+                    },
+                    {
+                      "name": "오공",
+                      "image": "/images/heroes/ogong.png",
+                      "preset":"프리셋4(조율자)/뒤배치"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "엘리스",
+                      "image": "/images/heroes/elise.png",
+                      "preset":"프리셋2(효저)"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "skillOrders": [
+                    {
+                      "label": "속공 질 때",
+                      "skills": [
+                        "rudy2.png",
+                        "ogong2.png",
+                        "elise1.png"
+                      ]
+                    }
+                  ]
+                }
+               
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+         {
+          "id": "team1",
+          "label": "오공 방덱",
+          "defenseTeam": [
+            {
+              "name": "겔리두스",
+              "image": "/images/heroes/galidus.png"
+            },
+            {
+              "name": "오공",
+              "image": "/images/heroes/ogong.png"
+            },
+            {
+              "name": "엘리시아",
+              "image": "/images/heroes/elisia.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+          "pet":["pike.png","ru.png","karam.png"],
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "ogong1.png",
+                "ogong2.png",
+                "galidus1.png"
+              ],
+              "counters": [
+                 {
+                  "recommendation": 3,
+                  "pet": ["pike.png"],
+                  "team": [
+                    {
+                      "name": "노호",
+                      "image": "/images/heroes/noho.png",
+                       "preset":"프리셋1(효저)",
+                       "note":"부활"
+                    
+                  
+                    },
+                    {
+                      "name": "엘리스",
+                      "image": "/images/heroes/elise.png",
+                      "preset":"프리셋2(효저)",
+                      "note":"즉반"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "리나",
+                      "image": "/images/heroes/lina.png",
+                      "preset":"프리셋4(효저)",
+                      "note":"안죽으니 즉반"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "skillOrders": [
+                    {
+                      "label": "속공 질 때",
+                      "skills": [
+                        "elise1.png",
+                        "noho1.png"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "recommendation": 2,
+                  "pet": ["pike.png"],
+                  "team": [
+                    {
+                      "name": "노호",
+                      "image": "/images/heroes/noho.png",
+                       "preset":"프리셋1(효저)",
+                       "note":"부활"
+                    
+                  
+                    },
+                    {
+                      "name": "카론",
+                      "image": "/images/heroes/caron.png",
+                      "preset":"프리셋4(효저)/뒤배치",
+                      "note":"부활"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "리나",
+                      "image": "/images/heroes/lina.png",
+                      "preset":"프리셋4(효저)",
+                      "note":"안죽으니 즉반"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"엘리스 아까워서 카론해도됨",
+                  "skillOrders": [
+                    {
+                      "label": "속공 질 때",
+                      "skills": [
+                        "noho1.png",
+                        "caron1.png"
+                      ]
+                    }
+                  ]
+                }
+               
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+         {
+          "id": "team1",
+          "label": "오공 방덱",
+          "defenseTeam": [
+            {
+              "name": "겔리두스",
+              "image": "/images/heroes/galidus.png"
+            },
+            {
+              "name": "오공",
+              "image": "/images/heroes/ogong.png"
+            },
+            {
+              "name": "에이스",
+              "image": "/images/heroes/ace.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+         
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "ogong1.png",
+                "ogong2.png",
+                "galidus1.png"
+              ],
+              "counters": [
+                 {
+                  "recommendation": 2,
+                  "pet": ["irin.png", "yu.png"],
+                  "team": [
+                    {
+                      "name": "파이",
+                      "image": "/images/heroes/pie.png",
+                       "preset":"프리셋7(약공100)"
+                    
+                  
+                    },
+                    {
+                      "name": "카일",
+                      "image": "/images/heroes/kyle.png",
+                      "preset":"프리셋2(내실)"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "아멜리아",
+                      "image": "/images/heroes/amelia.png",
+                      "preset":"플트아"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공150~160",
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "amelia2.png",
+                        "kyle1.png",
+                        "kyle2.png"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "recommendation": 2,
+                      "firstAttack":true,
+                  "pet": ["meparo.png"],
+                  "team": [
+                    {
+                      "name": "녹스",
+                      "image": "/images/heroes/nox.png",
+                       "preset":"프리셋1(효저)",
+                       "note":"부활"
+                    
+                  
+                    },
+                    {
+                      "name": "크리스",
+                      "image": "/images/heroes/chris.png",
+                      "preset":"길드전(효저)/뒤배치",
+                      "note":"즉반"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "아킬라",
+                      "image": "/images/heroes/akilra.png",
+                      "preset":"프리셋1(효저)",
+                      "note":"부활"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"",
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "chris1.png",
+                        "akilra2.png",
+                        "akilra1.png"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "recommendation": 1,
+                  "firstAttack":true,
+                  "pet": ["meparo.png"],
+                  "team": [
+                    {
+                      "name": "녹스",
+                      "image": "/images/heroes/nox.png",
+                       "preset":"프리셋1(효저)",
+                       "note":"부활"
+                    
+                  
+                    },
+                    {
+                      "name": "크리스",
+                      "image": "/images/heroes/chris.png",
+                      "preset":"길드전(효저)/뒤배치",
+                      "note":"즉반"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "로지",
+                      "image": "/images/heroes/lozy.png",
+                      "preset":"프리셋5(조율자)",
+                      "note":"부활"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"",
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "chris1.png",
+                        "nox2.png",
+                        "chris2.png"
+                      ]
+                    }
+                  ]
+                }
+               
                 
                ]
           }  
@@ -5349,6 +5846,48 @@
             "counters": [
               {
                 "recommendation": 2,
+                
+                "pet": ["Yeonji.png"],
+                "team": [
+                 
+                    {
+                    "name": "프레이아",
+                    "image": "/images/heroes/praya.png",
+      "preset":"프리셋2(내실)",
+      "note":"뒤배치/속공40~50"
+                  },
+                   {
+                    "name": "밀리아",
+                    "image": "/images/heroes/milia.png",
+                    "preset":"프리셋1(속공)",
+                     "note":"부활반지/속공60"
+                  },
+                  {
+                    "name": "멜키르",
+                    "image": "/images/heroes/Melkir.png",
+                     "preset":"프리셋5(속공x)",
+                     "note":"권능"
+                  }
+                
+                ],
+                "note":"딜부족할거같으면 프레이아 보호진형/아니라면 밀리아 공진",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때(150~160)",
+                    "skills": [
+                    
+                    
+                      "praya2.png",
+                        "Melkir2.png",
+                      "Melkir1.png"
+                     
+                    ]
+                  }
+                  
+                ]
+              },
+              {
+                "recommendation": 2,
                 "firstAttack":true,
                 "pet": ["Yeonji.png"],
                 "team": [
@@ -6410,11 +6949,11 @@
           },
           {
             "name": "트루드",
-            "image": "/images/heroes/silvesta.png"
+            "image": "/images/heroes/trude.png"
           },
           {
             "name": "플라튼",
-            "image": "/images/heroes/trude.png"
+            "image": "/images/heroes/platon.png"
           }
         ],
         "defenseVariants": [
@@ -6457,6 +6996,48 @@
                       "chris1.png",
                         "nox2.png",
                       "chris2.png"
+                     
+                    ]
+                  }
+                  
+                ]
+              },
+               {
+                "recommendation": 2,
+                
+                "pet": ["Yeonji.png"],
+                "team": [
+                 
+                    {
+                    "name": "프레이아",
+                    "image": "/images/heroes/praya.png",
+      "preset":"프리셋2(내실)",
+      "note":"뒤배치/속공40~50"
+                  },
+                   {
+                    "name": "밀리아",
+                    "image": "/images/heroes/milia.png",
+                    "preset":"프리셋1(속공)",
+                     "note":"부활반지/속공60"
+                  },
+                  {
+                    "name": "멜키르",
+                    "image": "/images/heroes/Melkir.png",
+                     "preset":"프리셋5(속공x)",
+                     "note":"권능"
+                  }
+                
+                ],
+                "note":"딜부족할거같으면 프레이아 보호진형/아니라면 밀리아 공진",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                    
+                    
+                      "praya2.png",
+                        "Melkir2.png",
+                      "Melkir1.png"
                      
                     ]
                   }

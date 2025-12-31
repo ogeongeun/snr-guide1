@@ -89,7 +89,7 @@
               "note":"부활/뒤배치"
               },
               {
-                "name": "갤리두스",
+                "name": "겔리두스",
                 "image": "galidus.png",
                 "preset":"프리셋1(길드전)",
                 "note":"5부활"
@@ -137,7 +137,7 @@
               "note":"부활/뒤배치"
               },
               {
-                "name": "갤리두스",
+                "name": "겔리두스",
                 "image": "galidus.png",
                 "preset":"프리셋3(주술사)",
                 "note":"5부활"
@@ -185,7 +185,7 @@
               "note":"부활/뒤배치"
               },
                {
-                "name": "갤리두스",
+                "name": "겔리두스",
                 "image": "galidus.png",
                 "preset":"프리셋1(길드전)",
                 "note":"5부활"

@@ -68,11 +68,17 @@ export default function GuildOffenseListPage() {
   }, [filteredEntries]);
 
   // =========================
-  // 공통 렌더러
+  // 공통 렌더 유틸
   // =========================
   const heroImg = (src) =>
     src?.startsWith('/images/') ? src : `/images/heroes/${src || ''}`;
 
+  const petImg = (src) =>
+    src?.startsWith('/images/') ? src : `/images/pet/${src || ''}`;
+
+  // =========================
+  // 컴포넌트들
+  // =========================
   const SkillStrip = ({ skills, size = 'w-9 h-9' }) => {
     if (!Array.isArray(skills) || skills.length === 0) return null;
     return (
@@ -83,6 +89,24 @@ export default function GuildOffenseListPage() {
             src={`/images/skills/${img}`}
             alt={`Skill ${i + 1}`}
             className={`${size} border rounded`}
+          />
+        ))}
+      </div>
+    );
+  };
+
+  const PetStrip = ({ pets }) => {
+    if (!pets) return null;
+    const list = Array.isArray(pets) ? pets : [pets];
+
+    return (
+      <div className="flex gap-2 items-center">
+        {list.map((p, i) => (
+          <img
+            key={`${p}-${i}`}
+            src={petImg(p)}
+            alt="pet"
+            className="w-8 h-8 object-contain border rounded"
           />
         ))}
       </div>
@@ -103,6 +127,9 @@ export default function GuildOffenseListPage() {
     </div>
   );
 
+  // =========================
+  // 렌더
+  // =========================
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold text-center mb-8">공격팀 추천</h1>
@@ -165,10 +192,22 @@ export default function GuildOffenseListPage() {
                       [{category}] #{idx + 1} {entry.label}
                     </h2>
 
-                    <div className="grid grid-cols-3 gap-2 mb-3">
+                    {/* 방덱 영웅 */}
+                    <div className="grid grid-cols-3 gap-2 mb-2">
                       {entry.defenseTeam?.map(renderHeroCard)}
                     </div>
 
+                    {/* ✅ pet JSON 있으면 자동 표시 */}
+                    {entry.pet && (
+                      <div className="mb-3">
+                        <p className="text-xs font-semibold text-gray-600 mb-1">
+                          펫
+                        </p>
+                        <PetStrip pets={entry.pet} />
+                      </div>
+                    )}
+
+                    {/* 패턴 */}
                     {entry.defenseVariants?.map((v, vIdx) => (
                       <div
                         key={vIdx}
