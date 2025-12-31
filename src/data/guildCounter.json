@@ -7793,6 +7793,44 @@
                     ]
                   }
                 ]
+              },
+              {
+                "recommendation": 3,
+         
+                "pet": ["irin.png"],
+                "team": [
+                  {
+                    "name": "아멜리아",
+                    "image": "/images/heroes/amelia.png",
+                    "preset":"플트아",
+                     "note":"권능"
+                  },
+                  {
+                    "name": "델론즈",
+                    "image": "/images/heroes/dellons.png",
+                     "preset":"프리셋1(내실)",
+                     "note":"뒤배치"
+                  },
+                  {
+                    "name": "트루드",
+                    "image": "/images/heroes/trude.png",
+      "preset":"총력전",
+      "note":"뒤배치/권능"
+                  }
+                ],
+                "note":"반지 안빡세게 줘도됨",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                      "amelia2.png",
+                      "dellons2.png",
+                      "trude2.png"
+                      
+                     
+                    ]
+                  }
+                ]
               }
                
             ]
