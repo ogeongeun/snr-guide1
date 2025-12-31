@@ -5964,6 +5964,7 @@
                   
                 ]
               },
+              
               {
                 "recommendation": 2,
                 "firstAttack":true,
@@ -5999,6 +6000,48 @@
                      
                     ]
                   }
+                ]
+              },
+               {
+                "recommendation": 2,
+                "firstAttack":true,
+                "pet": ["irin.png"],
+                "team": [
+                 
+                    {
+                    "name": "파이",
+                    "image": "/images/heroes/pie.png",
+      "preset":"프리셋5(카일 방덱)",
+      "note":"속공50~60/권능"
+                  },
+                   {
+                    "name": "카일",
+                    "image": "/images/heroes/kyle.png",
+                    "preset":"프리셋2(내실)",
+                     "note":"뒤배치"
+                  },
+                  {
+                    "name": "카구라",
+                    "image": "/images/heroes/cagura.png",
+                     "preset":"총력전",
+                     "note":"4불사/파이보다 생명력 적게 세팅"
+                  }
+                
+                ],
+                "note":"",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때(160~180)",
+                    "skills": [
+                    
+                    
+                      "kyle1.png",
+                        "pie2.png",
+                      "kyle2.png"
+                     
+                    ]
+                  }
+                  
                 ]
               },
               {
