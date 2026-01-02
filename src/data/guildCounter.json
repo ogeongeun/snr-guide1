@@ -1096,6 +1096,50 @@
               "kyle2.png"
             ],
             "counters": [  
+               {
+                "recommendation": 3,
+                
+                  "pet": ["ru.png","karam.png"],
+                "team": [
+                  {
+                    "name": "유신",
+                    "image": "/images/heroes/Yushin.png",
+                    "preset":"프리셋2(주술사강자주시)",
+                    "note":"권능"
+                   
+                
+                  },
+                  {
+                    "name": "오공",
+                    "image": "/images/heroes/ogong.png",
+                    "preset":"프리셋4(조율자)",
+                    "note":"부활"
+                   
+                   
+                  },
+                  {
+                    "name": "겔리두스",
+                    "image": "/images/heroes/galidus.png",
+                    "preset":"프리셋4(조율자)",
+                    "note":""
+                 
+                 
+                     
+                  }
+                ],
+                "note":"거의 필승임/상대 방어횟수높은곳에 사용(오공 아까움)",
+                "skillOrders": [
+                  {
+                    "label": "속공 질때",
+                    "skills": [
+                      
+                      "galidus2.png",
+                      "ogong2.png",
+                      "ogong1.png"
+                    ]
+                  }
+                ]
+              },
               {
                 "recommendation": 3,
                   "firstAttack": true,
@@ -1182,49 +1226,7 @@
                   }
                 ]
               },
-              {
-                "recommendation": 2,
-            
-                  "pet": ["ru.png","karam.png"],
-                "team": [
-                  {
-                    "name": "첸슬러",
-                    "image": "/images/heroes/chancellor.png",
-                    "preset":"프리셋4(카카파상대)",
-                    "note":"부활반지/아라곤대체가능"
-                   
-                
-                  },
-                  {
-                    "name": "트루드",
-                    "image": "/images/heroes/trude.png",
-                    "preset":"총력전",
-                    "note":""
-                   
-                   
-                  },
-                  {
-                    "name": "엘리시아",
-                    "image": "/images/heroes/elisia.png",
-                    "preset":"프리셋3(조율자)",
-                    "note":"부활"
-                 
-                 
-                     
-                  }
-                ],
-                "note":"불리함/상대속공 높고 펫이 비슷할때 들어가기",
-                "skillOrders": [
-                  {
-                    "label": "속공 질때",
-                    "skills": [
-                      "chancellor2.png",
-                      "trude2.png",
-                      "elisia1.png"
-                    ]
-                  }
-                ]
-              },
+              
               {
                 "recommendation": 3,
                   "firstAttack": true,
@@ -1268,183 +1270,10 @@
                   }
                 ]
               },
-               {
-                "recommendation": 3,
-                "firstAttack":true,
-                  "pet": ["irin.png"],
-                "team": [
-                  {
-                    "name": "카구라",
-                    "image": "/images/heroes/cagura.png",
-                    "preset":"프리셋1(속공)",
-                    "note":"불사*강자주시)"
-                  
-                   
-                
-                  },
-                  {
-                    "name": "카일",
-                    "image": "/images/heroes/kyle.png",
-                    "preset":"프리셋1(속공)",
-                    "note":"뒤배치(권능)"
-                   
-                   
-                  },
-                  {
-                    "name": "파이",
-                    "image": "/images/heroes/pie.png",
-                    "preset":"프리셋1(속공)",
-                    "note":"4권능"
-                 
-                 
-                     
-                  }
-                ],
-                "note":"속공최소 250이상 세팅후 공격필수",
-                "skillOrders": [
-                  {
-                    "label": "속공 이길 때",
-                    "skills": [
-                     
-            
-                      "kyle1.png",
-                      "kyle2.png",
-                       "pie2.png"
-                    ]
-                  }
-                ]
-              },
-              {
-                "recommendation": 3,
-                  "pet": ["Yeonji.png"],
-                "team": [
-                  {
-                    "name": "쥬리",
-                    "image": "/images/heroes/juri.png",
-                    "preset":"프리셋5(조율자)",
-                    "note":"cc반지"
-                    
-                   
-                
-                  },
-                  {
-                    "name": "바네사",
-                    "image": "/images/heroes/vanessa.png",
-                    "preset":"프리셋6(조율자)",
-                    "note":"바네사 뒤배치(뒤배치하면 연희보다 공 300정도는 낮아도됨)/권능필수"
-                   
-                   
-                  },
-                  {
-                    "name": "연희",
-                    "image": "/images/heroes/Yeonhee.png",
-                    "preset":"프리셋4(조율자)",
-                    "note":"불사"
-                 
-                 
-                     
-                  }
-                ],
-                "note":"바네사 혼자 뒤배치 매우중요(카일 강자 바네사로 빼는법)/바네사 속공 마지막이면 좋음",
-                "skillOrders": [
-                  {
-                    "label": "속공 질 때",
-                    "skills": [
-                      "vanessa1.png",
-            
-                      "juri2.png",
-                      "Yeonhee2.png"
-                    ]
-                  }
-                ]
-              },
-              {
-                "recommendation": 2,
-                  "pet": ["Yeonji.png"],
-                "team": [
-                  {
-                    "name": "콜트",
-                    "image": "/images/heroes/colt.png",
-                    "preset":"프리셋1(속공)/5불사"
               
-                   
-                
-                  },
-                  {
-                    "name": "플라튼",
-                    "image": "/images/heroes/platon.png",
-                    "preset":"프리셋3(카일상대)",
-                    "note":"5부활"
-                   
-                   
-                  },
-                  {
-                    "name": "발리스타",
-                    "image": "/images/heroes/ballista.png",
-                    "preset":"프리셋1(내실)",
-                    "note":"4성권능/확실한건 5성권능"
-                 
-                 
-                     
-                  }
-                ],
-                "note":"상대 카일 내실이면 빡셈 극 속공 세팅일때 사용가능",
-                "skillOrders": [
-                  {
-                    "label": "속공 질 때",
-                    "skills": [
-                      "colt1.png",
-                      "colt2.png",
-                      "ballista1.png"
-                    ]
-                  }
-                ]
-              },
-               {
-                "recommendation": 3,
-                  "pet": ["irin.png"],
-                "team": [
-                  {
-                    "name": "카구라",
-                    "image": "/images/heroes/cagura.png",
-                    "preset":"프리셋4(카일 상대)",
-                    "note":"불사"
-                  
-                   
-                
-                  },
-                  {
-                    "name": "카일",
-                    "image": "/images/heroes/kyle.png",
-                    "preset":"프리셋2(내실)",
-                    "note":"뒤배치"
-                   
-                   
-                  },
-                  {
-                    "name": "파이",
-                    "image": "/images/heroes/pie.png",
-                    "preset":"프리셋4(카일상대)",
-                    "note":"4권능"
-                 
-                 
-                     
-                  }
-                ],
-                "note":"강자주시 카구라가 받아야함/상대도 강자주시 카구라일땐 짐(속공따고 가는게 나음)",
-                "skillOrders": [
-                  {
-                    "label": "속공 질 때",
-                    "skills": [
-                  
-            
-                      "kyle1.png",
-                      "kyle2.png",
-                      "pie2.png"
-                    ]
-                  }
-                ]
-              },
+              
+             
+              
               {
                 "recommendation": 3,
                 "firstAttack":true,
@@ -1489,54 +1318,12 @@
                 ]
               },
               
+              
+              
+              
                {
                 "recommendation": 2,
-                  "pet": ["Yeonji.png"],
-                "team": [
-                  {
-                    "name": "린",
-                    "image": "/images/heroes/rin.png",
-                    "preset":"프리셋1(속공)"
-                   
-                   
-                
-                  },
-                  {
-                    "name": "바네사",
-                    "image": "/images/heroes/vanessa.png",
-                    "preset":"프리셋2(속공)",
-                     "note":"바네사 뒤배치(연희랑 공차이 600~800일때 뒤배치 안되면 연희 뒤배치)/권능필수"
-                   
-                   
-                  },
-                  {
-                    "name": "연희",
-                    "image": "/images/heroes/Yeonhee.png",
-                    "preset":"프리셋1(속공)",
-                    "note":"불사"
-                 
-                 
-                     
-                  }
-                ],
-                "note":"바네사 혼자 뒤배치 매우중요(카일 강자 바네사로 빼는법)/바네사 속공 마지막이면 좋음",
-                "skillOrders": [
-                  {
-                    "label": "속공 이길 때",
-                    "skills": [
-                       "vanessa1.png",
-                           "Yeonhee2.png",
-                      "rin2.png"
-              
-                    ]
-                  }
-                ]
-              },
-              
-              
-               {
-                "recommendation": 3,
-                "firstAttack":true,
+               
                   "pet": ["Yeonji.png"],
                 "team": [
                  
@@ -1856,27 +1643,30 @@
                  
                 {
                   "recommendation": 2,
-                  "pet": ["irin.png", "yu.png"],
+                  "firstAttack":true,
+                  "pet": ["Yeonji.png"],
                   "team": [
                     {
-                      "name": "파이",
-                      "image": "/images/heroes/pie.png",
-                       "preset":"프리셋7(약공100)"
+                      "name": "키리엘",
+                      "image": "/images/heroes/kiriel.png",
+                       "preset":"프리셋1(속공)"
                     
                   
                     },
                     {
-                      "name": "카일",
-                      "image": "/images/heroes/kyle.png",
-                      "preset":"프리셋2(내실)"
+                      "name": "프레이아",
+                      "image": "/images/heroes/praya.png",
+                      "preset":"프리셋2(내실)",
+                      "note":"뒤배치/5권능 또는 5부활"
                     
                     
                     
                     },
                     {
-                      "name": "아멜리아",
-                      "image": "/images/heroes/amelia.png",
-                      "preset":"플트아"
+                      "name": "바네사",
+                      "image": "/images/heroes/vanessa.png",
+                      "preset":"프리셋8(조율자 딜)",
+                      "note":"속공 팀내 제일 낮게/권능"
                     
                   
                   
@@ -1884,14 +1674,14 @@
                     }
                    
                   ],
-                  "note":"속공150~160",
+                  "note":"속공120~130",
                   "skillOrders": [
                     {
                       "label": "속공 이길 때",
                       "skills": [
-                        "amelia2.png",
-                        "kyle1.png",
-                        "kyle2.png"
+                        "praya2.png",
+                        "vanessa1.png",
+                        "kiriel1.png"
                       ]
                     }
                   ]
@@ -1933,9 +1723,55 @@
                 "galidus1.png"
               ],
               "counters": [
-                 
+                   
                 {
                   "recommendation": 2,
+              
+                  "pet": ["Yeonji.png"],
+                  "team": [
+                    {
+                      "name": "키리엘",
+                      "image": "/images/heroes/kiriel.png",
+                       "preset":"프리셋1(속공)"
+                    
+                  
+                    },
+                    {
+                      "name": "프레이아",
+                      "image": "/images/heroes/praya.png",
+                      "preset":"프리셋2(내실)",
+                      "note":"뒤배치/5권능 또는 5부활"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "바네사",
+                      "image": "/images/heroes/vanessa.png",
+                      "preset":"프리셋8(조율자 딜)",
+                      "note":"속공 팀내 제일 낮게/권능"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공120~130",
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "praya2.png",
+                        "vanessa1.png",
+                        "kiriel1.png"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "recommendation": 2,
+                  "firstAttack":true,
                   "pet": ["pike.png"],
                   "team": [
                     {
@@ -2012,8 +1848,10 @@
                 "galidus1.png"
               ],
               "counters": [
+                
                  {
                   "recommendation": 3,
+                  "firstAttack":true,
                   "pet": ["pike.png"],
                   "team": [
                     {
@@ -2098,6 +1936,52 @@
                       ]
                     }
                   ]
+                },
+                 {
+                  "recommendation": 1,
+                 
+                  "pet": ["Yeonji.png"],
+                  "team": [
+                    {
+                      "name": "키리엘",
+                      "image": "/images/heroes/kiriel.png",
+                       "preset":"프리셋1(속공)"
+                    
+                    
+                  
+                    },
+                    {
+                      "name": "프레이아",
+                      "image": "/images/heroes/praya.png",
+                      "preset":"프리셋2(내실)",
+                      "note":"뒤배치/5권능 또는 5부활"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "바네사",
+                      "image": "/images/heroes/vanessa.png",
+                      "preset":"프리셋8(조율자 딜)",
+                      "note":"속공 팀내 제일 낮게/권능"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공120~130/상대 빡 탱 세팅이면 힘들수도있음",
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "praya2.png",
+                        "vanessa1.png",
+                        "kiriel1.png"
+                      ]
+                    }
+                  ]
                 }
                
                 
@@ -2138,19 +2022,68 @@
               "counters": [
                  {
                   "recommendation": 2,
-                  "pet": ["irin.png", "yu.png"],
+                  "firstAttack":true,
+                  "pet": ["Yeonji.png"],
+                  "team": [
+                    {
+                      "name": "키리엘",
+                      "image": "/images/heroes/kiriel.png",
+                       "preset":"프리셋1(속공)",
+                       "note":"불사"
+                    
+                  
+                    },
+                    {
+                      "name": "프레이아",
+                      "image": "/images/heroes/praya.png",
+                      "preset":"프리셋2(내실)",
+                      "note":"뒤배치/5권능 또는 부활"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "바네사",
+                      "image": "/images/heroes/vanessa.png",
+                      "preset":"프리셋8(조율자 딜)",
+                      "note":"속공 팀내 제일 낮게/권능"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공120~130",
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "praya2.png",
+                        "vanessa1.png",
+                        "kiriel1.png"
+                      ]
+                    }
+                  ]
+                },
+                 {
+                  "recommendation": 3,
+                  "firstAttack":true,
+                  "pet": ["irin.png"],
                   "team": [
                     {
                       "name": "파이",
                       "image": "/images/heroes/pie.png",
-                       "preset":"프리셋7(약공100)"
+                       "preset":"프리셋7(약공100)",
+                       "note":"팀내 속공 마지막(중요)"
                     
                   
                     },
                     {
                       "name": "카일",
                       "image": "/images/heroes/kyle.png",
-                      "preset":"프리셋2(내실)"
+                      "preset":"프리셋2(내실)",
+                      "note":"카일 속공40~50정도(속공첫번째)"
                     
                     
                     
@@ -2158,7 +2091,8 @@
                     {
                       "name": "아멜리아",
                       "image": "/images/heroes/amelia.png",
-                      "preset":"플트아"
+                      "preset":"프리셋4(빡셈)",
+                      "note":"속공2번째/불사"
                     
                   
                   
@@ -2166,110 +2100,19 @@
                     }
                    
                   ],
-                  "note":"속공150~160/상대 공격펫일때 추천(방어펫이면 즉사로)",
+                  "note":"속공120~130/팀내 속공순서:카일-아멜-파이(매우중요)",
                   "skillOrders": [
                     {
                       "label": "속공 이길 때",
                       "skills": [
                         "amelia2.png",
-                        "kyle1.png",
-                        "kyle2.png"
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "recommendation": 2,
-                      "firstAttack":true,
-                  "pet": ["meparo.png"],
-                  "team": [
-                    {
-                      "name": "녹스",
-                      "image": "/images/heroes/nox.png",
-                       "preset":"프리셋1(효저)",
-                       "note":"부활"
-                    
-                  
-                    },
-                    {
-                      "name": "크리스",
-                      "image": "/images/heroes/chris.png",
-                      "preset":"길드전(효저)/뒤배치",
-                      "note":"즉반"
-                    
-                    
-                    
-                    },
-                    {
-                      "name": "아킬라",
-                      "image": "/images/heroes/akilra.png",
-                      "preset":"프리셋1(효저)",
-                      "note":"부활"
-                    
-                  
-                  
-                      
-                    }
-                   
-                  ],
-                  "note":"",
-                  "skillOrders": [
-                    {
-                      "label": "속공 이길 때",
-                      "skills": [
-                        "chris1.png",
-                        "akilra2.png",
-                        "akilra1.png"
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "recommendation": 1,
-                  "firstAttack":true,
-                  "pet": ["meparo.png"],
-                  "team": [
-                    {
-                      "name": "녹스",
-                      "image": "/images/heroes/nox.png",
-                       "preset":"프리셋1(효저)",
-                       "note":"부활"
-                    
-                  
-                    },
-                    {
-                      "name": "크리스",
-                      "image": "/images/heroes/chris.png",
-                      "preset":"길드전(효저)/뒤배치",
-                      "note":"즉반"
-                    
-                    
-                    
-                    },
-                    {
-                      "name": "로지",
-                      "image": "/images/heroes/lozy.png",
-                      "preset":"프리셋5(조율자)",
-                      "note":"부활"
-                    
-                  
-                  
-                      
-                    }
-                   
-                  ],
-                  "note":"",
-                  "skillOrders": [
-                    {
-                      "label": "속공 이길 때",
-                      "skills": [
-                        "chris1.png",
-                        "nox2.png",
-                        "chris2.png"
+                        "pie2.png",
+                        "kyle1.png"
                       ]
                     }
                   ]
                 }
+                
                
                 
                ]
