@@ -193,7 +193,7 @@
               }
             ],
              "pet": ["pike.png","karam.png","ru.png","yu.png"],
-             
+             "note":"위기대응 에이스랑 오공 받도록 세팅",
             "skillOrders": {
               
             "내실덱1": [
@@ -240,8 +240,7 @@
               
               }
             ],
-             "pet": ["yu.png"],
-             
+             "pet": ["yu."note":"위기대응 에이스랑 오공 받도록 세팅",
             "skillOrders": {
               
             "내실덱1": [
