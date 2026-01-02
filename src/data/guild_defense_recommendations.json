@@ -72,14 +72,14 @@
           },
             {
             "teamId": 0,
-            "name": "오공 방덱(3중 1택)",
+            "name": "오공 방덱(4중 1택)",
             "heroes": [
               
              
               {
                 "name": "엘리시아",
                 "image": "elisia.png",
-               "preset":"프리셋2(내실)",
+               "preset":"프리셋6(강자주시)",
                "note":"5부활"
               },
                {
@@ -120,7 +120,7 @@
             "note": "1티어/유 없으면 쓰기 애매함"
           },  {
             "teamId": 0,
-            "name": "오공 방덱(3중 1택)",
+            "name": "오공 방덱(4중 1택)",
             "heroes": [
               
              
@@ -168,7 +168,7 @@
           },
           {
             "teamId": 0,
-            "name": "오공 방덱(3중 1택)",
+            "name": "오공 방덱(4중 1택)",
             "heroes": [
               
              
@@ -192,14 +192,14 @@
               
               }
             ],
-             "pet": ["pike.png","karam.png","ru.png"],
+             "pet": ["pike.png","karam.png","ru.png","yu.png"],
              
             "skillOrders": {
               
             "내실덱1": [
-               "ace2.png",
+               "galidus2.png",
                  "ogong2.png",
-                "galidus1.png"
+                "ogong1.png"
                
               ],
               "내실덱2": [
@@ -214,7 +214,54 @@
             },
             "note": "1티어"
           },
-         
+         {
+            "teamId": 0,
+            "name": "오공 방덱(4중 1택)",
+            "heroes": [
+              
+             
+              {
+                "name": "에이스",
+                "image": "ace.png",
+               "preset":"프리셋4(갤오에)",
+               "note":"5부활"
+              },
+               {
+                "name": "오공",
+                "image": "ogong.png",
+              "preset":"프리셋1(길드전)",
+              "note":"부활/뒤배치"
+              },
+               {
+                "name": "겔리두스",
+                "image": "galidus.png",
+                "preset":"프리셋1(길드전)",
+                "note":"5부활"
+              
+              }
+            ],
+             "pet": ["yu.png"],
+             
+            "skillOrders": {
+              
+            "내실덱1": [
+               "galidus2.png",
+                 "ogong2.png",
+                "ogong1.png"
+               
+              ],
+              "내실덱2": [
+                
+                 "ogong2.png",
+                 "ace2.png",
+                "galidus1.png"
+               
+              ]
+              
+             
+            },
+            "note": "1티어"
+          },
           {
             "teamId": 0,
             "name": "플라튼 방덱(2중 1택)",
