@@ -2305,7 +2305,7 @@
           "defenseTeam": [
             {
               "name": "바네사",
-              "image": "/images/heroes/kiriel.png"
+              "image": "/images/heroes/vanessa.png"
             },
             {
               "name": "밀리아",
@@ -2451,7 +2451,7 @@
                     }
                    
                   ],
-                  "note":"속공250~280",
+                  "note":"",
                   "detail":"겔리두스 패시브로 바네사 쿨증이70% -> 56%로 줄어들기떄문에 한명만 피해도 이길만함",
                   "skillOrders": [
                     {
