@@ -5766,8 +5766,8 @@
             "defenseSkills": ["amelia1.png","spike2.png","trude2.png"],
             "counters": [
               {
-                "recommendation": 2,
-                
+                "recommendation": 3,
+                "firstAttack":true,
                 "pet": ["Yeonji.png"],
                 "team": [
                  
@@ -5786,8 +5786,8 @@
                   {
                     "name": "멜키르",
                     "image": "/images/heroes/Melkir.png",
-                     "preset":"프리셋5(속공x)",
-                     "note":"권능"
+                     "preset":"프리셋5(팀속공꼴등)",
+                     "note":"권능/속공 제일 마지막순서"
                   }
                 
                 ],
@@ -5810,7 +5810,7 @@
               
               {
                 "recommendation": 2,
-                "firstAttack":true,
+                
                 "pet": ["Yeonji.png"],
                 "team": [
                   {
@@ -5847,7 +5847,7 @@
               },
                {
                 "recommendation": 2,
-                "firstAttack":true,
+                
                 "pet": ["irin.png"],
                 "team": [
                  

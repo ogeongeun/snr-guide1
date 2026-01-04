@@ -26,7 +26,8 @@
                {
                 "name": "파이",
                 "image": "pie.png",
-                "preset":"프리셋5(카일방덱)"
+                "preset":"프리셋5(카일방덱)",
+                "note":"무조건 권능"
                
               },
               {
@@ -70,106 +71,11 @@
             },
             "note": "1티어/속공240~270(카규라 강자주시)"
           },
-            {
-            "teamId": 0,
-            "name": "오공 방덱(3중 1택)",
-            "heroes": [
-              
-             
-              {
-                "name": "엘리시아",
-                "image": "elisia.png",
-               "preset":"프리셋6(강자주시)",
-               "note":"5부활"
-              },
-               {
-                "name": "오공",
-                "image": "ogong.png",
-              "preset":"프리셋2(내실)",
-              "note":"부활/뒤배치"
-              },
-              {
-                "name": "겔리두스",
-                "image": "galidus.png",
-                "preset":"프리셋1(길드전)",
-                "note":"5부활"
-              
-              }
-            ],
-             "pet": ["yu.png"],
-             
-            "skillOrders": {
-              
-              "내실덱1": [
-                "elisia1.png",
-                 "ogong2.png",
-                "galidus1.png"
-               
-              ],
-              "내실덱2": [
-                
-                 "ogong2.png",
-                 "elisia1.png",
-                "galidus1.png"
-               
-              ]
-            
-              
-             
-            },
-            "note": "1티어/유 없으면 쓰기 애매함"
-          }, 
-          {
-            "teamId": 0,
-            "name": "오공 방덱(3중 1택)",
-            "heroes": [
-              
-             
-              {
-                "name": "에이스",
-                "image": "ace.png",
-               "preset":"프리셋4(갤오에)",
-               "note":"5부활"
-              },
-               {
-                "name": "오공",
-                "image": "ogong.png",
-              "preset":"프리셋2(내실)",
-              "note":"부활/뒤배치"
-              },
-               {
-                "name": "겔리두스",
-                "image": "galidus.png",
-                "preset":"프리셋1(길드전)",
-                "note":"5부활"
-              
-              }
-            ],
-             "pet": ["pike.png","karam.png","ru.png","yu.png"],
+           
           
-            "skillOrders": {
-              
-            "내실덱1": [
-               "galidus2.png",
-                 "ogong2.png",
-                "ogong1.png"
-               
-              ],
-              "내실덱2": [
-                
-                 "ogong2.png",
-                 "ace2.png",
-                "galidus1.png"
-               
-              ]
-              
-             
-            },
-             "note":"위기대응 에이스랑 오공 받도록 세팅"
-          },
          {
             "teamId": 0,
-            "name": "오공 방덱(3중 1택)",
+            "name": "오공 방덱(2중 1택)",
             "heroes": [
               
              
@@ -177,7 +83,7 @@
                 "name": "에이스",
                 "image": "ace.png",
                "preset":"프리셋4(갤오에)",
-               "note":"5부활"
+               "note":"불사 또는 부활"
               },
                {
                 "name": "오공",
@@ -189,11 +95,105 @@
                 "name": "겔리두스",
                 "image": "galidus.png",
                 "preset":"프리셋1(길드전)",
-                "note":"5부활"
+                "note":"5부활/뒤배치"
               
               }
             ],
              "pet": ["yu.png"],
+            "skillOrders": {
+              
+            "내실덱1": [
+               "galidus2.png",
+                 "ogong2.png",
+                "ogong1.png"
+               
+              ],
+              "내실덱2": [
+                
+                 "ogong2.png",
+                "galidus1.png",
+                "ogong1.png"
+               
+              ]
+              
+             
+            },
+              "note":"위기대응 에이스랑 오공 받도록 세팅/강자주시는 에이스가 맞도록 세팅/밸런스진형"
+          },
+          {
+            "teamId": 0,
+            "name": "오공 방덱(2중 1택)",
+            "heroes": [
+              
+             
+              {
+                "name": "에이스",
+                "image": "ace.png",
+               "preset":"프리셋4(갤오에)",
+               "note":"불사 또는 부활"
+              },
+               {
+                "name": "오공",
+                "image": "ogong.png",
+              "preset":"프리셋2(내실)",
+              "note":"부활/뒤배치"
+              },
+               {
+                "name": "겔리두스",
+                "image": "galidus.png",
+                "preset":"프리셋1(길드전)",
+                "note":"5부활/뒤배치"
+              
+              }
+            ],
+             "pet": ["ru.png","karam.png","yu.png"],
+            "skillOrders": {
+              
+            "내실덱1": [
+               "galidus2.png",
+                 "ogong2.png",
+                "ogong1.png"
+               
+              ],
+              "내실덱2": [
+                
+                 "ogong2.png",
+                "galidus1.png",
+                "ogong1.png"
+               
+              ]
+              
+             
+            },
+              "note":"위기대응 에이스랑 오공 받도록 세팅/강자주시는 에이스가 맞도록 세팅/밸런스진형"
+          },
+           {
+            "teamId": 0,
+            "name": "오공 방덱(2중 1택)",
+            "heroes": [
+              
+             
+              {
+                "name": "에이스",
+                "image": "ace.png",
+               "preset":"프리셋5(수문장)",
+               "note":"5부활"
+              },
+               {
+                "name": "오공",
+                "image": "ogong.png",
+              "preset":"프리셋2(내실)",
+              "note":"부활/뒤배치"
+              },
+               {
+                "name": "프레이아",
+                "image": "praya.png",
+                "preset":"프리셋2(내실)",
+                "note":"불사/강자주시/뒤배치"
+              
+              }
+            ],
+             "pet": ["yu.png","ru.png","karam.png"],
             "skillOrders": {
               
             "내실덱1": [
@@ -212,17 +212,60 @@
               
              
             },
-              "note":"위기대응 에이스랑 오공 받도록 세팅"
+              "note":"위기대응 에이스랑 오공 받도록 세팅/프레이아강자주시"
           },
           {
             "teamId": 0,
-            "name": "플라튼 방덱(2중 1택)",
+            "name": "플라튼 방덱",
             "heroes": [
               {
-                "name": "아멜리아",
-                "image": "amelia.png",
-               "preset":"스트아",
-               "note":"1순위:5권능/2순위:4권능"
+                "name": "키리엘",
+                "image": "kiriel.png",
+               "preset":"프리셋1(속공)",
+               "note":"1순위:부활"
+              },
+              {
+                "name": "플라튼",
+                "image": "platon.png",
+              "preset":"프리셋2(속공)",
+              "note":"앞배치/5부활이상"
+              },
+              {
+                "name": "프레이아",
+                "image": "praya.png",
+               "preset":"프리셋1(속공)",
+               "note":"불사또는 부활"
+                
+              
+              }
+            ],
+             "pet": ["pike.png","karam.png","ru.png"],
+            "skillOrders": {
+              
+            
+              "속공덱1": [
+                "kiriel2.png",
+                "praya2.png",
+                "kiriel1.png"
+              ],
+              "속공덱2": [
+                "praya2.png",
+                "kiriel2.png",
+               "kiriel1.png"
+              ]
+             
+            },
+            "note": "1티어/속공230안되면 내실로"
+          },
+          {
+            "teamId": 0,
+            "name": "플라튼 방덱",
+            "heroes": [
+              {
+                "name": "키리엘",
+                "image": "kiriel.png",
+               "preset":"프리셋1(속공)",
+               "note":"1순위:부활"
               },
               {
                 "name": "플라튼",
@@ -231,10 +274,10 @@
               "note":"앞배치/5부활이상"
               },
               {
-                "name": "트루드",
-                "image": "trude.png",
-               "preset":"총력전",
-               "note":"권능"
+                "name": "프레이아",
+                "image": "praya.png",
+               "preset":"프리셋2(내실)",
+               "note":"불사또는 부활"
                 
               
               }
@@ -244,133 +287,65 @@
               
             
               "내실덱1": [
-                "amelia1.png",
-                "platon2.png",
-                "trude2.png"
+                "kiriel2.png",
+                "praya2.png",
+                "kiriel1.png"
               ],
               "내실덱2": [
-                "amelia2.png",
-                "amelia1.png",
-                "trude2.png"
+                "praya2.png",
+                "kiriel2.png",
+                 "kiriel1.png"
               ]
              
             },
-            "note": "op티어"
+            "note": "1티어/속공130"
           },
-            {
+          {
             "teamId": 0,
-            "name": "플라튼 방덱(2중 1택)",
+            "name": "스트아 방덱",
             "heroes": [
+              {
+                "name": "스파이크",
+                "image": "spike.png",
+               "preset":"프리셋4(수문장)",
+               "note":"1순위:부활"
+              },
+              {
+                "name": "트루드",
+                "image": "trude.png",
+              "preset":"프리셋1(내실)",
+              "note":"뒷배치"
+              },
               {
                 "name": "아멜리아",
                 "image": "amelia.png",
-               "preset":"프리셋3(효저100)",
-               "note":"불사"
-              },
-               {
-                "name": "트루드",
-                "image": "trude.png",
-               "preset":"총력전",
-               "note":"권능"
+               "preset":"프리셋5(효적100)",
+               "note":"권능또는 불사"
                 
               
-              },
-              {
-                "name": "플라튼",
-                "image": "platon.png",
-              "preset":"프리셋4(효저100)",
-              "note":"앞배치/5부활이상"
               }
-             
             ],
-             "pet": ["pike.png"],
+             "pet": ["pike.png","karam.png","ru.png"],
             "skillOrders": {
               
             
               "내실덱1": [
+                "amelia2.png",
                 "amelia1.png",
-                "platon2.png",
                 "trude2.png"
               ],
               "내실덱2": [
-                "amelia2.png",
-                "amelia1.png",
+              "amelia2.png",
+                "spike2.png",
                 "trude2.png"
               ]
              
             },
-            "note": "op티어/효저100%덱"
-          },
-          {
-            "teamId": 0,
-            "name": "연희 마덱",
-            "heroes": [
-              {
-                "name": "바네사",
-                "image": "vanessa.png",
-                  "preset": "프리셋2(속공)",
-                  "note":"권능"
-              },
-              {
-                "name": "연희",
-                "image": "Yeonhee.png",
-                "preset":"프리셋1(속공)",
-                "note":"불사"
-              },
-              {
-                "name": "키리엘",
-                "image": "kiriel.png",
-                "preset": "프리셋1(속공)",
-                "note":""
-              }
-            ],
-              "pet": ["Yeonji.png","yu.png","meparo.png"],
-            "skillOrders": {
-              
-               "속공덱": [
-                "vanessa1.png",
-                "Yeonhee2.png",
-                "kiriel1.png"
-              ]
-              
-            },
-            "note": "1티어/속공270이상"
-          },
-          {
-            "teamId": 0,
-            "name": "밀리아 마덱",
-            "heroes": [
-              {
-                "name": "멜키르",
-                "image": "Melkir.png",
-                  "preset": "프리셋4(효저100)",
-                  "note":"불사/권능"
-              },
-              {
-                "name": "밀리아",
-                "image": "milia.png",
-                "preset":"프리셋1(속공)",
-                "note":"권능/불사/즉반/밀리아 공진"
-              },
-              {
-                "name": "프레이아",
-                "image": "praya.png",
-                "preset": "프리셋1(속공)",
-                "note":"불사/권능"
-              }
-            ],
-              "pet": ["meparo.png","Yeonji.png"],
-            "skillOrders": {
-              
-               "속공덱": [
-                "milia2.png",
-                "melkir1.png",
-                "praya2.png"
-              ]
-              
-            },
-            "note": "1티어/속공270이상"
+            "note": "1티어"
           }
+           
+        
+          
          
          
           
