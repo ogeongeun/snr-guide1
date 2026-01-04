@@ -71,6 +71,51 @@
             },
             "note": "1티어/속공240~270(카규라 강자주시)"
           },
+           {
+            "teamId": 0,
+            "name": "카일 덱",
+            "heroes": [
+               {
+                "name": "파이",
+                "image": "pie.png",
+                "preset":"프리셋8(수문장내실)",
+                "note":"무조건 권능"
+               
+              },
+              {
+                "name": "카일",
+                "image": "kyle.png",
+                "preset":"프리셋2(내실)",
+                 "note":"권능+불사 세공 베스트"
+              
+              },
+             
+              {
+                "name": "카구라",
+                "image": "cagura.png",
+                "preset":"프리셋1(속공)",
+                 "note":"기합반지(전반절대주지말것)"
+                  
+              
+              }
+            ],
+                         "pet": ["irin.png","yu.png"],
+            "skillOrders": {
+              
+             
+                 "내실덱": [
+            
+                "cagura2.png",
+                  
+              
+
+                "kyle1.png",
+                "kyle2.png"
+              ]
+             
+            },
+            "note": "1티어/속공안되면 내실"
+          },
            
           
          {
