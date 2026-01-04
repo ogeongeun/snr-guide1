@@ -347,6 +347,46 @@
           },
           {
             "teamId": 0,
+            "name": "플라튼 방덱",
+            "heroes": [
+              {
+                "name": "키리엘",
+                "image": "kiriel.png",
+               "preset":"프리셋1(속공)",
+               "note":"1순위:부활"
+              },
+              {
+                "name": "플라튼",
+                "image": "platon.png",
+              "preset":"프리셋2(속공)",
+              "note":"앞배치/5부활이상"
+              },
+              {
+                "name": "바네사",
+                "image": "vanessa.png",
+               "preset":"프리셋9(속짬추적자)",
+               "note":"권능"
+                
+              
+              }
+            ],
+             "pet": ["Yeonji.png","meparo.png","pike.png","karam.png","ru.png"],
+            "skillOrders": {
+              
+            
+              "속공덱1": [
+                "vanassa1.png",
+                "kiriel2.png",
+                "kiriel1.png"
+              ]
+             
+             
+            },
+            "note": "1티어/속공230안되면 내실로"
+          },
+          
+          {
+            "teamId": 0,
             "name": "스트아 방덱",
             "heroes": [
               {
