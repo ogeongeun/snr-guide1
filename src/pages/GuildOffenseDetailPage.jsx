@@ -12,6 +12,9 @@ export default function GuildOffenseDetailPage() {
   const [selectedHeroKey, setSelectedHeroKey] = useState(null);
   const [presetTag, setPresetTag] = useState(null);
 
+  // ✅ 추가된 디테일 토글 상태
+  const [openDetailKey, setOpenDetailKey] = useState(null);
+
   const decodedCategory = decodeURIComponent(category || '');
   const idx = Number.parseInt(teamIndex, 10);
   const entry = data?.categories?.[decodedCategory]?.[idx];
@@ -129,7 +132,7 @@ export default function GuildOffenseDetailPage() {
     : [];
 
   // -----------------------------------------------------------
-  // 🔥 ① 첫공격 라벨 + 빨간 테두리
+  // 카운터 카드
   // -----------------------------------------------------------
   const renderCounterCard = (recommended, j) => {
     const grouped = Array.isArray(recommended.skillOrders)
@@ -141,6 +144,7 @@ export default function GuildOffenseDetailPage() {
       : null;
 
     const isFirstAttack = recommended.firstAttack === true;
+    const detailKey = `${j}`;
 
     return (
       <div
@@ -148,14 +152,12 @@ export default function GuildOffenseDetailPage() {
         className={`relative mb-6 rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition 
         ${isFirstAttack ? 'border-2 border-red-500' : 'border border-gray-300'}`}
       >
-        {/* 🔥 첫공격 라벨 */}
         {isFirstAttack && (
           <div className="absolute -top-3 left-3 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">
             첫공격
           </div>
         )}
 
-        {/* 추천도 */}
         {recommended.recommendation && (
           <div className="text-center mb-2">
             <span className="text-yellow-500 text-sm font-bold">
@@ -170,7 +172,6 @@ export default function GuildOffenseDetailPage() {
           </div>
         )}
 
-        {/* 팀 + 펫 */}
         <div className="flex justify-center items-start">
           <div
             className={`grid gap-2 ${
@@ -179,7 +180,6 @@ export default function GuildOffenseDetailPage() {
           >
             {recommended.team.map(renderHeroCard)}
           </div>
-
           {renderPetIcons(recommended.pet)}
         </div>
 
@@ -187,6 +187,31 @@ export default function GuildOffenseDetailPage() {
           <p className="text-sm text-gray-600 mt-2 italic">
             ※ {recommended.note}
           </p>
+        )}
+
+        {recommended.detail && (
+          <div className="mt-2 text-center">
+            <button
+              onClick={() =>
+                setOpenDetailKey(
+                  openDetailKey === detailKey ? null : detailKey
+                )
+              }
+              className="text-xs px-3 py-1 rounded-full border border-blue-400 text-blue-600 hover:bg-blue-50"
+            >
+              {openDetailKey === detailKey
+                ? '디테일 닫기 ▲'
+                : '공격 디테일 보기 ▼'}
+            </button>
+          </div>
+        )}
+
+        {openDetailKey === detailKey && recommended.detail && (
+          <div className="mt-3 p-3 rounded-lg bg-blue-50 border border-blue-200">
+            <p className="text-sm text-gray-700 leading-relaxed">
+              {recommended.detail}
+            </p>
+          </div>
         )}
 
         {grouped && grouped.length > 0 ? (
@@ -216,20 +241,12 @@ export default function GuildOffenseDetailPage() {
     );
   };
 
-  // -----------------------------------------------------------
-  // 🔥 ② 첫공격 카운터를 항상 최상단으로 정렬
-  // -----------------------------------------------------------
   const renderVariant = (variant, index) => {
     const sortedCounters = Array.isArray(variant.counters)
       ? [...variant.counters].sort((a, b) => {
-          // 1) 첫공격 우선
           if (a.firstAttack === true && b.firstAttack !== true) return -1;
           if (b.firstAttack === true && a.firstAttack !== true) return 1;
-
-          // 2) 추천도 높은 순
-          const ra = Number(a.recommendation) || 0;
-          const rb = Number(b.recommendation) || 0;
-          return rb - ra;
+          return (Number(b.recommendation) || 0) - (Number(a.recommendation) || 0);
         })
       : [];
 
@@ -245,13 +262,7 @@ export default function GuildOffenseDetailPage() {
           </span>
         </div>
 
-        <div className="mt-2">
-          {sortedCounters.length > 0 ? (
-            sortedCounters.map((rc, j) => renderCounterCard(rc, j))
-          ) : (
-            <p className="text-sm text-gray-500">등록된 카운터덱이 없습니다.</p>
-          )}
-        </div>
+        {sortedCounters.map(renderCounterCard)}
       </div>
     );
   };
@@ -270,12 +281,12 @@ export default function GuildOffenseDetailPage() {
         </span>
       </div>
 
+      {/* ✅ 여기 안 사라짐 */}
       {Array.isArray(entry.defenseTeam) && entry.defenseTeam.length > 0 && (
         <div className="mb-6 border border-blue-200 rounded-xl p-4 bg-blue-50/40">
           <p className="text-xs font-semibold text-gray-700 mb-2">
             상대 방어팀 (요약)
           </p>
-
           <div className="grid grid-cols-3 gap-2 mb-3">
             {entry.defenseTeam.map(renderHeroCard)}
           </div>
@@ -306,20 +317,7 @@ export default function GuildOffenseDetailPage() {
         </div>
       )}
 
-      {variants.length > 0 ? (
-        typeof variantIdx === 'number' &&
-        !Number.isNaN(variantIdx) &&
-        variantIdx >= 0 &&
-        variantIdx < variants.length ? (
-          renderVariant(variants[variantIdx], variantIdx)
-        ) : (
-          variants.map((v, vIdx) => renderVariant(v, vIdx))
-        )
-      ) : (
-        <p className="text-sm text-gray-500">
-          등록된 defenseVariants가 없습니다.
-        </p>
-      )}
+      {variants.map(renderVariant)}
 
       {selectedHeroKey && (
         <EquipmentModal

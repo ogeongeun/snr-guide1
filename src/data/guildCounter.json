@@ -1991,6 +1991,574 @@
             
           ]
         },
+        {
+          "id": "team1",
+          "label": "밀리아 마덱",
+          "defenseTeam": [
+            {
+              "name": "바네사",
+              "image": "/images/heroes/vanessa.png"
+            },
+            {
+              "name": "밀리아",
+              "image": "/images/heroes/milia.png"
+            },
+            {
+              "name": "프레이아",
+              "image": "/images/heroes/praya.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+          "pet":"Yeonji.png",
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "vanessa1.png",
+                "praya2.png",
+                "praya1.png"
+              ],
+              "counters": [
+                 
+                {
+                  "recommendation": 2,
+                  "firstAttack":true,
+                  "pet": ["Yeonji.png"],
+                  "team": [
+                   
+                   
+                     {
+                      "name": "밀리아",
+                      "image": "/images/heroes/milia.png",
+                       "preset":"프리셋1(속공)"
+                    
+                  
+                    },
+                     {
+                      "name": "프레이아",
+                      "image": "/images/heroes/praya.png",
+                      "preset":"프리셋1(속공)",
+                      "note":"뒤배치/5권능 또는 5부활"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "니아",
+                      "image": "/images/heroes/nia.png",
+                      "preset":"총력전",
+                      "note":"주술사 속짬줘도됨"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공250~280",
+                  "detail":"쿨증걸고 패기",
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "nia2.png",
+                        "praya2.png",
+                        "praya1.png"
+                      ]
+                    }
+                  ]
+                },
+                 {
+                  "recommendation": 2,
+                  "firstAttack":true,
+                  "pet": ["ru.png","karam.png"],
+                  "team": [
+                   
+                   
+                     {
+                      "name": "콜트",
+                      "image": "/images/heroes/colt.png",
+                       "preset":"프리셋2(내실)",
+                       "note":"콜트 속공 순서 마지막"
+                    
+                  
+                    },
+                     {
+                      "name": "플라튼",
+                      "image": "/images/heroes/platon.png",
+                      "preset":"프리셋1(탱)",
+                      "note":"뒤배치/5부활"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "스파이크",
+                      "image": "/images/heroes/spike.png",
+                      "preset":"프리셋6(수문장장)",
+                      "note":"부활"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"",
+                  
+                  "detail":"콜트 속공이 팀 마지막인 이유는 운없으면 프레이아 아래맞고 연쇄가 터질수있기때문에 은신상태일때 프레이아 아래를 맡는게 제일 베스트",
+                  "skillOrders": [
+                    {
+                      "label": "속공 질 때",
+                      "skills": [
+                        "platon2.png",
+                        "colt1.png",
+                        "colt2.png"
+                      ]
+                    }
+                  ]
+                }
+               
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+          {
+          "id": "team1",
+          "label": "밀리아 마덱",
+          "defenseTeam": [
+            {
+              "name": "키리엘",
+              "image": "/images/heroes/kiriel.png"
+            },
+            {
+              "name": "밀리아",
+              "image": "/images/heroes/milia.png"
+            },
+            {
+              "name": "프레이아",
+              "image": "/images/heroes/praya.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+          "pet":"Yeonji.png",
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "vanessa1.png",
+                "praya2.png",
+                "praya1.png"
+              ],
+              "counters": [
+                 
+                {
+                  "recommendation": 2,
+                  "firstAttack":true,
+                  "pet": ["Yeonji.png"],
+                  "team": [
+                   
+                   
+                     {
+                      "name": "밀리아",
+                      "image": "/images/heroes/milia.png",
+                       "preset":"프리셋1(속공)"
+                    
+                  
+                    },
+                     {
+                      "name": "연희",
+                      "image": "/images/heroes/Yeonhee.png",
+                      "preset":"프리셋1(속공)",
+                      "note":"뒤배치/불사"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "니아",
+                      "image": "/images/heroes/nia.png",
+                      "preset":"총력전",
+                      "note":"주술사 속짬줘도됨"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공250~280",
+                  
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "nia2.png",
+                        "Yeonhee2.png",
+                        "Yeonhee1.png"
+                      ]
+                    }
+                  ]
+                }
+               
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+         {
+          "id": "team1",
+          "label": "밀리아 마덱",
+          "defenseTeam": [
+            {
+              "name": "키리엘",
+              "image": "/images/heroes/kiriel.png"
+            },
+            {
+              "name": "밀리아",
+              "image": "/images/heroes/milia.png"
+            },
+            {
+              "name": "연희",
+              "image": "/images/heroes/Yeonhee.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+          "pet":"Yeonji.png",
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "kiriel2.png",
+                "Yeonhee2.png",
+                "Yeonhee1.png"
+              ],
+              "counters": [
+                 
+                {
+                  "recommendation": 2,
+                  "firstAttack":true,
+                  "pet": ["Yeonji.png"],
+                  "team": [
+                   
+                   
+                     {
+                      "name": "키리엘",
+                      "image": "/images/heroes/kiriel.png",
+                       "preset":"프리셋1(속공)"
+                    
+                  
+                    },
+                     {
+                      "name": "연희",
+                      "image": "/images/heroes/Yeonhee.png",
+                      "preset":"프리셋1(속공)",
+                      "note":"뒤배치/불사"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "바네사",
+                      "image": "/images/heroes/vanessa.png",
+                      "preset":"프리셋2(속공)",
+                      "note":"주술사 속짬줘도됨"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공250~280",
+                  
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "vanessa1.png",
+                        "Yeonhee2.png",
+                        "Yeonhee1.png"
+                      ]
+                    }
+                  ]
+                }
+               
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+         {
+          "id": "team1",
+          "label": "밀리아 마덱",
+          "defenseTeam": [
+            {
+              "name": "바네사",
+              "image": "/images/heroes/kiriel.png"
+            },
+            {
+              "name": "밀리아",
+              "image": "/images/heroes/milia.png"
+            },
+            {
+              "name": "연희",
+              "image": "/images/heroes/Yeonhee.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+          "pet":"Yeonji.png",
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "vanessa1.png",
+                "Yeonhee2.png",
+                "Yeonhee1.png"
+              ],
+              "counters": [
+                 
+                {
+                  "recommendation": 2,
+                  "firstAttack":true,
+                  "pet": ["Yeonji.png"],
+                  "team": [
+                   
+                   
+                     {
+                      "name": "밀리아",
+                      "image": "/images/heroes/milia.png",
+                       "preset":"프리셋1(속공)"
+                    
+                  
+                    },
+                     {
+                      "name": "연희",
+                      "image": "/images/heroes/Yeonhee.png",
+                      "preset":"프리셋1(속공)",
+                      "note":"뒤배치/불사"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "니아",
+                      "image": "/images/heroes/nia.png",
+                      "preset":"총력전",
+                      "note":"주술사 속짬줘도됨"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공250~280",
+                  
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "nia2.png",
+                        "Yeonhee2.png",
+                        "Yeonhee1.png"
+                      ]
+                    }
+                  ]
+                }
+               
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+        {
+          "id": "team1",
+          "label": "오공 방덱",
+          "defenseTeam": [
+            {
+              "name": "바네사",
+              "image": "/images/heroes/vanessa.png"
+            },
+            {
+              "name": "오공",
+              "image": "/images/heroes/ogong.png"
+            },
+            {
+              "name": "프레이아",
+              "image": "/images/heroes/praya.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+          "pet":"Yeonji.png",
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "vanessa1.png",
+                "praya2.png",
+                "ogong2.png"
+              ],
+              "counters": [
+                 
+                {
+                  "recommendation": 2,
+                  "firstAttack":true,
+                  "pet": ["ru.png","karam.png","yu.png"],
+                  "team": [
+                   
+                   
+                     {
+                      "name": "겔리두스",
+                      "image": "/images/heroes/galidus.png",
+                       "preset":"프리셋1(길드전)",
+                       "note":"부활"
+                    
+                  
+                    },
+                     {
+                      "name": "오공",
+                      "image": "/images/heroes/ogong.png",
+                      "preset":"프리셋2(내실)",
+                      "note":"뒤배치/5부활"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "엘리시아",
+                      "image": "/images/heroes/elisia.png",
+                      "preset":"프리셋2(내실)",
+                      "note":"부활"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공250~280",
+                  "detail":"겔리두스 패시브로 바네사 쿨증이70% -> 56%로 줄어들기떄문에 한명만 피해도 이길만함",
+                  "skillOrders": [
+                    {
+                      "label": "속공 질 때",
+                      "skills": [
+                        "galidus2.png",
+                        "elisia1.png",
+                        "ogong2.png"
+                      ]
+                    }
+                  ]
+                }
+               
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+         {
+          "id": "team1",
+          "label": "오공 방덱",
+          "defenseTeam": [
+            {
+              "name": "아멜리아",
+              "image": "/images/heroes/amelia.png"
+            },
+            {
+              "name": "오공",
+              "image": "/images/heroes/ogong.png"
+            },
+            {
+              "name": "프레이아",
+              "image": "/images/heroes/praya.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+  
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "ogong2.png",
+                "praya2.png",
+                "ogong2.png"
+              ],
+              "counters": [
+                 
+                {
+                  "recommendation": 1,
+                  "firstAttack":true,
+                  "pet": ["ru.png","karam.png","pike.png"],
+                  "team": [
+                   
+                   
+                     {
+                      "name": "스파이크",
+                      "image": "/images/heroes/spike.png",
+                       "preset":"프리셋7(효저문장)",
+                       "note":"부활"
+                    
+                  
+                    },
+                     {
+                      "name": "오공",
+                      "image": "/images/heroes/ogong.png",
+                      "preset":"프리셋4(조율자)",
+                      "note":"뒤배치/5부활"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "엘리스",
+                      "image": "/images/heroes/elise.png",
+                      "preset":"프리셋3(플프콜상대)",
+                      "note":"부활"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"",
+                  "detail":"아멜위나 아멜 아래시작이면 불리함/상대 약공평타를 스파이크가 맞아야 엘리스가 오래살기때문에 최대생명력이 엘리스가 더 높아야함",
+                  "skillOrders": [
+                    {
+                      "label": "속공 질 때",
+                      "skills": [
+                        "ogong2.png",
+                        "elise2.png",
+                        "ogong1.png"
+                      ]
+                    }
+                  ]
+                }
+               
+                
+               ]
+          }  
+            
+            
+          ]
+        },
          {
           "id": "team1",
           "label": "오공 방덱",
@@ -2112,6 +2680,224 @@
                     }
                   ]
                 }
+                
+               
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+        {
+          "id": "team1",
+          "label": "오공 방덱",
+          "defenseTeam": [
+            {
+              "name": "프레이아",
+              "image": "/images/heroes/praya.png"
+            },
+            {
+              "name": "오공",
+              "image": "/images/heroes/ogong.png"
+            },
+            {
+              "name": "에이스",
+              "image": "/images/heroes/ace.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+         
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "ogong2.png",
+                "praya2.png",
+                "ogong1.png"
+              ],
+              "counters": [
+                 {
+                  "recommendation": 2,
+                  "firstAttack":true,
+                  "pet": ["yu.png","ru.png"],
+                  "team": [
+                    {
+                      "name": "엘리시아",
+                      "image": "/images/heroes/elisia.png",
+                       "preset":"프리셋7(방속공)",
+                       "note":"부활"
+                    
+                  
+                    },
+                    {
+                      "name": "오공",
+                      "image": "/images/heroes/ogong.png",
+                      "preset":"프리셋2(내실)",
+                      "note":"뒤배치/5부활"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "겔리두스",
+                      "image": "/images/heroes/galidus.png",
+                      "preset":"프리셋1(길드전)",
+                      "note":"부활/팀속공2번째(속공조금 챙길것)"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공150~170",
+                  "detail":"겔리두스 위로 상대 빙결걸고 침묵걸고 패는느낌(피차이승이 많음)",
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "galidus2.png",
+                        "elise1.png",
+                        "ogong2.png"
+                      ]
+                    }
+                  ]
+                },
+                 {
+                  "recommendation": 2,
+                  
+                  "pet": ["Yeonji.png"],
+                  "team": [
+                    {
+                      "name": "에이스",
+                      "image": "/images/heroes/ace.png",
+                       "preset":"프리셋6(방속공)",
+                       "note":""
+                    
+                  
+                    },
+                    {
+                      "name": "프레이아",
+                      "image": "/images/heroes/praya.png",
+                      "preset":"프리셋3(조율자)",
+                      "note":"5권능"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "오공",
+                      "image": "/images/heroes/ogong.png",
+                      "preset":"프리셋1(길드전)",
+                      "note":"5부활/속공 조금챙겨주기"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공150~170/팀내 프레이아 속공 마지막/상대방덱펫일떄는 안될수도있음/오공위 시작일때만 가능",
+                  "detail":"에이스 아래로 힐벤먹이고, 프레이아위로 에이스또는 오공 권능터뜨린상태로, 프레이아 아래스킬로 권능버프해제하면서 연쇄터뜨려서 오공 부활빠지게하기",
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "ace1.png",
+                        "praya2.png",
+                        "praya1.png"
+                      ]
+                    }
+                  ]
+                }
+                
+               
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+         {
+          "id": "team1",
+          "label": "오공 방덱",
+          "defenseTeam": [
+            {
+              "name": "프레이아",
+              "image": "/images/heroes/praya.png"
+            },
+            {
+              "name": "오공",
+              "image": "/images/heroes/ogong.png"
+            },
+            {
+              "name": "키리엘",
+              "image": "/images/heroes/kiriel.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
+         
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "ogong2.png",
+                "praya2.png",
+                "ogong1.png"
+              ],
+              "counters": [
+                 {
+                  "recommendation": 2,
+                  "firstAttack":true,
+                  "pet": ["karam.png","ru.png"],
+                  "team": [
+                    {
+                      "name": "엘리시아",
+                      "image": "/images/heroes/elisia.png",
+                       "preset":"프리셋3(조율자)",
+                       "note":"부활/받받에 부옵막기 줘도됨"
+                    
+                  
+                    },
+                    {
+                      "name": "오공",
+                      "image": "/images/heroes/ogong.png",
+                      "preset":"프리셋2(내실)",
+                      "note":"뒤배치/5부활"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "겔리두스",
+                      "image": "/images/heroes/galidus.png",
+                      "preset":"프리셋4(조율자)",
+                      "note":"부활/팀속공2번째(속공조금 챙길것)"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"",
+                  "detail":"엘리시아로 키리엘 행동제어면역 턴감후, 키리엘까지 빙결걸리게하는방법",
+                  "skillOrders": [
+                    {
+                      "label": "속공 질 때",
+                      "skills": [
+                        "elisia2.png",
+                        "galidus2.png",
+                        "ogong2.png"
+                      ]
+                    }
+                  ]
+                }
+              
                 
                
                 
