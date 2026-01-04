@@ -203,7 +203,7 @@ export default function GuildDefenseBuildPage() {
                       className="bg-white border border-gray-200 rounded-lg p-3"
                     >
                       {team.note && (
-                        <p className="text-[11px] text-red-500 mb-2 italic">※ {team.note}</p>
+                        <p className="text-[15px] text-red-500 mb-2 italic">※ {team.note}</p>
                       )}
 
                       {/* ✅ 영웅 + 펫 */}
