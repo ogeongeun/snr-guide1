@@ -7710,7 +7710,7 @@
               },
                {
                 "recommendation": 2,
-                
+                "firstAttack":true,
                 "pet": ["Yeonji.png"],
                 "team": [
                  
@@ -7729,21 +7729,21 @@
                   {
                     "name": "멜키르",
                     "image": "/images/heroes/Melkir.png",
-                     "preset":"프리셋5(속공x)",
-                     "note":"권능"
+                     "preset":"프리셋5(팀속공꼴등)",
+                     "note":"무조건 6기합/속공 제일 마지막순서"
                   }
                 
                 ],
                 "note":"딜부족할거같으면 프레이아 보호진형/아니라면 밀리아 공진",
                 "skillOrders": [
                   {
-                    "label": "속공 이길 때",
+                    "label": "속공 이길 때(150~160)",
                     "skills": [
                     
                     
                       "praya2.png",
-                        "Melkir2.png",
-                      "Melkir1.png"
+                        "melkir2.png",
+                      "melkir1.png"
                      
                     ]
                   }
