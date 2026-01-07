@@ -1184,9 +1184,9 @@
                 ]
               },
                {
-                "recommendation": 2,
+                "recommendation": 3,
                   "firstAttack": true,
-                  "pet": ["ru.png"],
+                  "pet": ["meparo.png","chri.png"],
                 "team": [
                   {
                     "name": "엘리시아",
@@ -1215,6 +1215,7 @@
                   }
                 ],
                 "note":"",
+                 "detail":"걍 쥬리 영멸만 걸면 이김",
                 "skillOrders": [
                   {
                     "label": "속공 질때",
