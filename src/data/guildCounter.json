@@ -1189,10 +1189,10 @@
                   "pet": ["ru.png"],
                 "team": [
                   {
-                    "name": "유신",
-                    "image": "/images/heroes/Yushin.png",
-                    "preset":"프리셋1(조율자)",
-                    "note":"권능"
+                    "name": "엘리시아",
+                    "image": "/images/heroes/elisia.png",
+                    "preset":"프리셋8(조율자강자주시)",
+                    "note":"부활"
                    
                 
                   },
@@ -1220,9 +1220,8 @@
                     "label": "속공 질때",
                     "skills": [
                       "juri2.png",
-                      "trude2.png",
-                      "yushin1.png"
-                    ]
+                   "trude2.png",
+                          "elisia2.png"                 ]
                   }
                 ]
               },
