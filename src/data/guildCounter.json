@@ -6652,10 +6652,10 @@
                      "note":"뒤배치"
                   },
                   {
-                    "name": "카구라",
-                    "image": "/images/heroes/cagura.png",
+                    "name": "아멜리아",
+                    "image": "/images/heroes/amelia.png",
                      "preset":"총력전",
-                     "note":"4불사/파이보다 생명력 적게 세팅"
+                     "note":"4불사"
                   }
                 
                 ],
@@ -6666,9 +6666,10 @@
                     "skills": [
                     
                     
-                      "kyle1.png",
-                        "pie2.png",
-                      "kyle2.png"
+                      "amelia2.png",
+                 
+                      "kyle2.png",
+                      "kyle1.png
                      
                     ]
                   }
