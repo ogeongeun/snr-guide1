@@ -1140,6 +1140,7 @@
                   }
                 ]
               },
+<<<<<<< HEAD
               {
                 "recommendation": 2,
                   "firstAttack": true,
@@ -1183,6 +1184,9 @@
                   }
                 ]
               },
+=======
+              
+>>>>>>> 4ad7d24 (Feat: ....)
                {
                 "recommendation": 3,
                   "firstAttack": true,
@@ -1227,7 +1231,53 @@
                 ]
               },
               
+<<<<<<< HEAD
              
+=======
+              {
+                "recommendation": 3,
+                  "firstAttack": true,
+                  "pet": ["ru.png"],
+                "team": [
+                  {
+                    "name": "트루드",
+                    "image": "/images/heroes/trude.png",
+                    "preset":"총력전",
+                    "note":"권능"
+                   
+                
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                    "preset":"프리셋3(카일상대)",
+                    "note":"막기100%"
+                   
+                   
+                  },
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "preset":"프리셋2(내실)",
+                    "note":"불사/첸슬러보다 속공 낮게"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"콜트속공 2순위/첸슬러보다 트루드가 승률더좋지만 트루드가 아까움",
+                "skillOrders": [
+                  {
+                    "label": "속공 질때",
+                    "skills": [
+                      "platon2.png",
+                      "colt1.png",
+                      "colt2.png"
+                    ]
+                  }
+                ]
+              },
+>>>>>>> 4ad7d24 (Feat: ....)
               
               
              
@@ -1320,6 +1370,136 @@
                       "vanessa1.png",
                          "silvesta1.png",
                       "Yeonhee2.png"
+                    ]
+                  }
+                ]
+              }
+              ]
+              }
+              ]
+              },
+              {
+        "id": "team1",
+        "label": "카일 공덱",
+        "defenseTeam": [
+          {
+            "name": "브브",
+            "image": "/images/heroes/vv.png"
+          
+          },
+          {
+            "name": "카일",
+            "image": "/images/heroes/kyle.png"
+          },
+          {
+            "name": "카구라",
+            "image": "/images/heroes/cagura.png"
+          }
+        ],
+        "defenseNotes": [
+          "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+        ],
+        "defenseVariants": [
+           
+          {
+            "defenseSkills": [
+              
+              "kyle2.png",
+              "kyle1.png",
+              "vv2.png"
+            ],
+            "counters": [  
+              
+              {
+                "recommendation": 2,
+                  "firstAttack": true,
+                  "pet": ["ru.png"],
+                "team": [
+                  {
+                    "name": "트루드",
+                    "image": "/images/heroes/trude.png",
+                    "preset":"총력전",
+                    "note":"권능"
+                   
+                
+                  },
+                  {
+                    "name": "플라튼",
+                    "image": "/images/heroes/platon.png",
+                    "preset":"프리셋3(카일상대)",
+                    "note":"막기100%"
+                   
+                   
+                  },
+                  {
+                    "name": "콜트",
+                    "image": "/images/heroes/colt.png",
+                    "preset":"프리셋2(내실)",
+                    "note":"불사/트루드 속공 낮게"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"콜트속공 2순위/첸슬러보다 트루드가 승률더좋지만 트루드가 아까움",
+                "skillOrders": [
+                  {
+                    "label": "속공 질때",
+                    "skills": [
+                      "platon2.png",
+                      "colt1.png",
+                      "colt2.png"
+                    ]
+                  }
+                ]
+              },
+              
+              
+             
+              
+             
+               {
+                "recommendation": 3,
+               
+                  "pet": ["irin.png","yu.png"],
+                "team": [
+                 
+                  {
+                    "name": "파이",
+                    "image": "/images/heroes/pie.png",
+                    "preset":"프리셋5(카일방덱)",
+                    "note":"혼자 앞배치"
+                   
+                   
+                  },
+                   {
+                    "name": "카일",
+                    "image": "/images/heroes/kyle.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"부활이나 불사/뒤배치"
+                   
+                
+                  },
+                  {
+                    "name": "브브",
+                    "image": "/images/heroes/vv.png",
+                    "preset":"프리셋1(속공)",
+                    "note":"불사또는 부활/강자주시 받도록 카일보다 공 높게"
+                 
+                 
+                     
+                  }
+                ],
+                "note":"",
+                "detail":"상대 카구라 위시작이면 질확률 높음/카일위로 상대 브브 권능빼고 브브아래로 관통으로 상대 브브 죽이고 브브위로 상대 카일 마무리",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때",
+                    "skills": [
+                   
+                      "kyle2.png",
+                         "vv1.png",
+                      "vv2.png"
                     ]
                   }
                 ]
@@ -6511,9 +6691,52 @@
           {
             "defenseSkills": ["amelia1.png","spike2.png","trude2.png"],
             "counters": [
-              {
+               {
                 "recommendation": 3,
                 "firstAttack":true,
+                "pet": ["Yeonji.png"],
+                "team": [
+                 
+                    {
+                    "name": "린",
+                    "image": "/images/heroes/rin.png",
+      "preset":"프리셋4(스트아 상대)",
+      "note":"뒤배치/방어력멜키르보다 높게"
+                  },
+                   {
+                    "name": "밀리아",
+                    "image": "/images/heroes/milia.png",
+                    "preset":"프리셋2(주술사)",
+                     "note":"부활반지"
+                  },
+                  {
+                    "name": "멜키르",
+                    "image": "/images/heroes/Melkir.png",
+                     "preset":"프리셋6(스트아상대)",
+                     "note":"5불사또는 6기합/뒤배치"
+                  }
+                
+                ],
+                "note":"밀리아 공진",
+                "detail":"상대 아멜리아가 약공없을떄 가능한 날먹/위기대응 린과 밀리아가 맞고,상대 트루드 평타를 린이 맞도록 해서 멜키르가 오래 살아남도록",
+                "skillOrders": [
+                  {
+                    "label": "속공 이길 때(150~160)",
+                    "skills": [
+                    
+                    
+                      "rin2.png",
+                        "melkir2.png",
+                      "Melkir1.png"
+                     
+                    ]
+                  }
+                  
+                ]
+              },
+              {
+                "recommendation": 3,
+                
                 "pet": ["Yeonji.png"],
                 "team": [
                  
