@@ -1657,9 +1657,9 @@
                   "pet": ["Yeonji.png"],
                   "team": [
                     {
-                      "name": "니아",
-                      "image": "/images/heroes/nia.png",
-                      "preset":"총력전"
+                      "name": "바네사",
+                      "image": "/images/heroes/vanessa.png",
+                      "preset":"프리셋2(속공)"
                     
                   
                     },
@@ -1686,7 +1686,7 @@
                     {
                       "label": "속공 이길 때(260~270",
                       "skills": [
-                        "nia1.png",
+                        "vanessa1.png",
                         "praya2.png",
                         "praya1.png"
                       ]
