@@ -1775,6 +1775,53 @@
                       ]
                     }
                   ]
+                },
+                 {
+                  "recommendation": 3,
+                  "firstAttack":true,
+                  "pet": ["irin.png"],
+                  "team": [
+                    {
+                      "name": "파이",
+                      "image": "/images/heroes/pie.png",
+                       "preset":"프리셋7(약공100)",
+                       "note":"팀내 속공 마지막(중요)"
+                    
+                  
+                    },
+                    {
+                      "name": "카일",
+                      "image": "/images/heroes/kyle.png",
+                      "preset":"프리셋2(내실)",
+                      "note":"카일 속공40~50정도(속공첫번째)"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "아멜리아",
+                      "image": "/images/heroes/amelia.png",
+                      "preset":"프리셋4(빡셈)",
+                      "note":"속공2번째/불사"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공120~130/팀내 속공순서:카일-아멜-파이(매우중요)",
+                  "detail":"강자주시가 오공일경우만 가능/위기대응쓰고 카일평타와 아멜 평타로 오공이 에이스보다 체력적게만들고,조율자파이(팀내 속공 제일 마지막순서면 상대cc하나씹을수있음)처형으로 오공 죽이고 시작/파이 받받인 이유는 마지막 겔리두스 파이 1대1구도나오는데 그때 이기려고",
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "amelia2.png",
+                        "pie2.png",
+                        "kyle1.png"
+                      ]
+                    }
+                  ]
                 }
                
                 
