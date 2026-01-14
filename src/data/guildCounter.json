@@ -6778,7 +6778,7 @@
                {
                 "recommendation": 3,
                 "firstAttack":true,
-                "pet": ["Yeonji.png","meparo.png"],
+                "pet": ["karam.png"],
                 "team": [
                  
                     {
@@ -6797,7 +6797,7 @@
                     "name": "멜키르",
                     "image": "/images/heroes/Melkir.png",
                      "preset":"프리셋6(스트아상대)",
-                     "note":"5불사또는 6기합/뒤배치"
+                     "note":"1순위:5불사,2순위:6기합/뒤배치"
                   }
                 
                 ],
