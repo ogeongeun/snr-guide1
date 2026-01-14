@@ -2241,7 +2241,7 @@
           "defenseVariants": [
             {
               "defenseSkills": [
-                "vanessa1.png",
+                "kiriel2.png",
                 "praya2.png",
                 "praya1.png"
               ],
@@ -2262,8 +2262,8 @@
                   
                     },
                      {
-                      "name": "연희",
-                      "image": "/images/heroes/Yeonhee.png",
+                      "name": "프레이아",
+                      "image": "/images/heroes/praya.png",
                       "preset":"프리셋1(속공)",
                       "note":"뒤배치/불사"
                     
@@ -2271,9 +2271,9 @@
                     
                     },
                     {
-                      "name": "니아",
-                      "image": "/images/heroes/nia.png",
-                      "preset":"총력전",
+                      "name": "바네사",
+                      "image": "/images/heroes/vanessa.png",
+                      "preset":"프리셋2(속공)",
                       "note":"주술사 속짬줘도됨"
                     
                   
@@ -2288,9 +2288,9 @@
                     {
                       "label": "속공 이길 때",
                       "skills": [
-                        "nia2.png",
-                        "Yeonhee2.png",
-                        "Yeonhee1.png"
+                        "vanessa1.png",
+                        "praya2.png",
+                        "praya1.png"
                       ]
                     }
                   ]
