@@ -1804,6 +1804,90 @@
           "defenseNotes": [
             "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
           ],
+          "pet":"yu.png",
+          "defenseVariants": [
+            {
+              "defenseSkills": [
+                "galidus2.png",
+                "ogong2.png",
+                "galidus1.png"
+              ],
+              "counters": [
+                 
+                {
+                  "recommendation": 3,
+               
+                  "pet": ["irin.png"],
+                  "team": [
+                    {
+                      "name": "브브",
+                      "image": "/images/heroes/vv.png",
+                       "preset":"프리셋2(내실)",
+                      "note":"부활또는 불사"
+                    
+                  
+                    },
+                    {
+                      "name": "카일",
+                      "image": "/images/heroes/kyle.png",
+                      "preset":"프리셋2(내실)",
+                      "note":"뒤배치/5권능 또는 5부활또는 권불"
+                    
+                    
+                    
+                    },
+                    {
+                      "name": "풍연",
+                      "image": "/images/heroes/poongyeon.png",
+                      "preset":"길드전",
+                      "note":"속공1등/부활"
+                    
+                  
+                  
+                      
+                    }
+                   
+                  ],
+                  "note":"속공150~",
+                  "skillOrders": [
+                    {
+                      "label": "속공 이길 때",
+                      "skills": [
+                        "kyle1.png",
+                        "vv2.png",
+                        "kyle2.png"
+                      ]
+                    }
+                  ]
+                }
+               
+                
+               ]
+          }  
+            
+            
+          ]
+        },
+         {
+          "id": "team1",
+          "label": "오공 방덱",
+          "defenseTeam": [
+            {
+              "name": "겔리두스",
+              "image": "/images/heroes/galidus.png"
+            },
+            {
+              "name": "오공",
+              "image": "/images/heroes/ogong.png"
+            },
+            {
+              "name": "엘리시아",
+              "image": "/images/heroes/elisia.png"
+            }
+          ],
+          "defenseNotes": [
+            "패턴(스킬순서)에 따라 카운터 구성이 달라짐"
+          ],
           "pet":"meparo.png",
           "defenseVariants": [
             {
