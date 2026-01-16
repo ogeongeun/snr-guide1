@@ -3,15 +3,14 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
 
-console.log("SUPABASE ENV CHECK", {
-  url: supabaseUrl,
-  anonKeyExists: !!supabaseAnonKey,
-});
+export const supabase =
+  supabaseUrl && supabaseAnonKey
+    ? createClient(supabaseUrl, supabaseAnonKey)
+    : null;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error(
-    "❌ Supabase 환경변수 누락 (.env.local 확인 필요)"
-  );
+  console.error("❌ Supabase ENV 누락", {
+    hasUrl: !!supabaseUrl,
+    hasAnonKey: !!supabaseAnonKey,
+  });
 }
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
