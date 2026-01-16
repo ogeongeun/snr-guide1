@@ -7,7 +7,12 @@ import RaidGuidePage from './pages/RaidGuidePage';
 import GlobalBackButton from './pages/GlobalBackButton';
 import SiegePage from './pages/SiegePage';
 import SiegeSkillDetailPage from './pages/SiegeSkillDetailPage';
-
+import LoginPage from './pages/LoginPage';
+import RequireAuth from './components/RequireAuth';
+import ProfileSetupPage from './pages/ProfileSetupPage';
+import CommunityListPage from "./pages/community/CommunityListPage";
+import CommunityWritePage from "./pages/community/CommunityWritePage";
+import CommunityPostPage from "./pages/community/CommunityPostPage";
 import SkillOrderPage from './pages/SkillOrderPage';
 import RaidSkillDetailPage from './pages/RaidSkillDetailPage';
 import AdventureDetailPage from './pages/AdventureDetailPage';
@@ -43,7 +48,21 @@ const App = () => {
   path="/essential-skill/:element/:teamIndex"
   element={<EssentialSkillDetailPage />}
 />
-        <Route path="/" element={<Home />} />
+<Route path="/login" element={<LoginPage />} />
+<Route path="/profile-setup" element={<ProfileSetupPage />} />
+
+      <Route path="/community" element={<CommunityListPage />} />
+<Route path="/community/write" element={<CommunityWritePage />} />
+<Route path="/community/post/:id" element={<CommunityPostPage />} />
+      <Route
+  path="/"
+  element={
+    <RequireAuth>
+      <Home />
+    </RequireAuth>
+  }
+/>
+
         <Route path="/farming" element={<FarmingEfficiency />} />
         <Route path="/essential-heroes" element={<EssentialHeroesPage />} />
         <Route path="/raid-skill/:bossKey/:teamIndex" element={<RaidSkillDetailPage />} />
