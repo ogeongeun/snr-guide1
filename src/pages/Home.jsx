@@ -187,20 +187,8 @@ const Home = () => {
               />
             </div>
 
-            <div className="mt-3">
-              <a
-                href="https://www.youtube.com/live/c5_GUQaME_c?si=_Y_Bfh_MdIQ9rHdN"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-center text-[13px] font-semibold text-blue-600 hover:underline underline-offset-4"
-              >
-                클릭—우울할 때 보는 영상
-              </a>
-            </div>
-
-            <Link to="/voodoo" className="block mt-4">
-              <GradientBanner left="🧙‍♂️" title="1급 비밀 부두술" subtitle="" />
-            </Link>
+           
+            
 
             <div className="mt-6">
               <SectionTitle icon="📣" title="커뮤니티" />
@@ -311,21 +299,9 @@ const Home = () => {
               />
             </div>
 
-            <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-4">
-              <p className="text-sm font-extrabold text-slate-900">오늘의 링크</p>
-              <a
-                href="https://www.youtube.com/live/c5_GUQaME_c?si=_Y_Bfh_MdIQ9rHdN"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 inline-block text-[14px] font-semibold text-blue-600 hover:underline underline-offset-4"
-              >
-                클릭—우울할 때 보는 영상 →
-              </a>
-            </div>
+            
 
-            <Link to="/voodoo" className="block">
-              <GradientBanner left="🧙‍♂️" title="1급 비밀 부두술" subtitle="(길드원만 보는 비밀 메뉴)" />
-            </Link>
+        
 
             <div className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
               <div className="px-4 py-3 flex items-center gap-2 border-b border-slate-100">
@@ -437,27 +413,7 @@ function StatCard({ icon, label, value }) {
   );
 }
 
-function GradientBanner({ left, title, subtitle }) {
-  return (
-    <div className="rounded-2xl overflow-hidden shadow-sm border border-slate-200">
-      <div
-        className="px-4 py-5 text-center"
-        style={{
-          background:
-            "linear-gradient(90deg, rgba(30,64,175,0.85), rgba(124,58,237,0.85), rgba(245,158,11,0.80))",
-        }}
-      >
-        <div className="text-white text-[20px] font-black flex items-center justify-center gap-2">
-          <span className="text-2xl">{left}</span>
-          <span>{title}</span>
-        </div>
-        {subtitle ? (
-          <div className="mt-1 text-white/90 text-[13px] font-semibold">{subtitle}</div>
-        ) : null}
-      </div>
-    </div>
-  );
-}
+
 
 function FeatureCard({ feature }) {
   return (
