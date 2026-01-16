@@ -35,7 +35,7 @@ export default function CommunityPostPage() {
         await supabase.rpc("community_inc_view", { p_post_id: postId });
       } catch {}
 
-      // 게시글 + 작성자 닉네임
+      // ✅ 게시글 + 작성자 닉네임 (FK 강제 조인)
       const { data: p, error: pe } = await supabase
         .from("community_posts")
         .select(
@@ -48,7 +48,7 @@ export default function CommunityPostPage() {
           created_at,
           view_count,
           author_id,
-          profiles (
+          profiles!community_posts_author_id_fkey (
             nickname
           )
         `
@@ -66,7 +66,7 @@ export default function CommunityPostPage() {
 
       setPost(p);
 
-      // 댓글 + 작성자 닉네임
+      // ✅ 댓글 + 작성자 닉네임 (FK 강제 조인)
       const { data: c, error: ce } = await supabase
         .from("community_comments")
         .select(
@@ -75,7 +75,7 @@ export default function CommunityPostPage() {
           created_at,
           content,
           author_id,
-          profiles (
+          profiles!community_comments_author_id_fkey (
             nickname
           )
         `
@@ -110,6 +110,7 @@ export default function CommunityPostPage() {
         return;
       }
 
+      // ✅ 댓글 등록 + 작성자 닉네임 (FK 강제 조인)
       const { data, error } = await supabase
         .from("community_comments")
         .insert({ post_id: postId, content: text })
@@ -119,7 +120,7 @@ export default function CommunityPostPage() {
           created_at,
           content,
           author_id,
-          profiles (
+          profiles!community_comments_author_id_fkey (
             nickname
           )
         `
@@ -189,9 +190,7 @@ export default function CommunityPostPage() {
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-2 min-w-0">
                 <Tag category={post.category} pinned={post.pinned} />
-                <div className="text-[16px] font-black text-slate-900 truncate">
-                  {post.title}
-                </div>
+                <div className="text-[16px] font-black text-slate-900 truncate">{post.title}</div>
               </div>
 
               {isMine && (
@@ -250,9 +249,7 @@ export default function CommunityPostPage() {
               })}
 
               {comments.length === 0 && (
-                <div className="px-4 py-6 text-sm font-semibold text-slate-600">
-                  첫 댓글을 남겨봐.
-                </div>
+                <div className="px-4 py-6 text-sm font-semibold text-slate-600">첫 댓글을 남겨봐.</div>
               )}
             </div>
 
