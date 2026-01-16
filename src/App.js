@@ -38,7 +38,7 @@ import EnhanceFilterPage from "./pages/EnhanceFilterPage"; // 다음 단계 페�
 import GrandBattlePage from './pages/GrandBattlePage';
 import VoodooPage from './pages/VoodooPage';
 import MyProfilePage from "./pages/MyProfilePage";
-
+import AdminUsersPage from "./pages/admin/AdminUsersPage";
 import EnhanceStep2Page from "./pages/EnhanceStep2Page";
 import EssentialSkillDetailPage from './pages/EssentialSkillDetailPage';
 const App = () => {
@@ -52,7 +52,7 @@ const App = () => {
 />
 <Route path="/login" element={<LoginPage />} />
 <Route path="/profile-setup" element={<ProfileSetupPage />} />
-
+<Route path="/admin/users" element={<AdminUsersPage />} />
       <Route path="/community" element={<CommunityListPage />} />
 <Route path="/community/write" element={<CommunityWritePage />} />
 <Route path="/community/post/:id" element={<CommunityPostPage />} />

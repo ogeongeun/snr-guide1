@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Shield, Sword, Zap, Target } from "lucide-react";
+import { Shield, Sword, Zap} from "lucide-react";
 
 export default function GuildDefensePage() {
   const navigate = useNavigate();
@@ -15,15 +15,7 @@ export default function GuildDefensePage() {
       badge: "방어",
       tone: "indigo",
     },
-    {
-      label: "카운터덱 추천",
-      path: "/guild-offense-finder",
-      icon: Target,
-      description: "내 6초월 영웅으로 가능한 카운터덱 추천",
-      category: "공격 관련",
-      badge: "추천",
-      tone: "rose",
-    },
+    
     {
       label: "카운터덱 편성",
       path: "/guild-offense",

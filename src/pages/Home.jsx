@@ -7,6 +7,9 @@ const Home = () => {
   const navigate = useNavigate();
   const [logoutLoading, setLogoutLoading] = useState(false);
 
+  // ✅ 관리자 여부
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const [todayVisitors, setTodayVisitors] = useState(null);
   const [totalVisitors, setTotalVisitors] = useState(null);
 
@@ -97,7 +100,6 @@ const Home = () => {
     const run = async () => {
       setCommunityLoading(true);
       try {
-        // pinned(공지) 먼저, 그 다음 최신순
         const { data, error } = await supabase
           .from("community_posts")
           .select("id, title, category, pinned, created_at")
@@ -110,7 +112,7 @@ const Home = () => {
         const rows = (data || []).map((p) => ({
           id: p.id,
           tag: p.pinned ? "공지" : "새",
-          type: p.pinned ? "공지" : (p.category || "자유"),
+          type: p.pinned ? "공지" : p.category || "자유",
           title: p.title || "(제목 없음)",
         }));
 
@@ -124,6 +126,39 @@ const Home = () => {
     };
 
     run();
+  }, []);
+
+  // ✅ 관리자 체크 (admins 테이블에 본인 row 있으면 관리자)
+  useEffect(() => {
+    const runAdmin = async () => {
+      try {
+        const { data: userRes } = await supabase.auth.getUser();
+        const uid = userRes?.user?.id;
+        if (!uid) {
+          setIsAdmin(false);
+          return;
+        }
+
+        const { data: adminRow, error } = await supabase
+          .from("admins")
+          .select("user_id")
+          .eq("user_id", uid)
+          .maybeSingle();
+
+        if (error) {
+          console.error("admin check error:", error.message);
+          setIsAdmin(false);
+          return;
+        }
+
+        setIsAdmin(!!adminRow);
+      } catch (e) {
+        console.error("admin check error:", e?.message || e);
+        setIsAdmin(false);
+      }
+    };
+
+    runAdmin();
   }, []);
 
   return (
@@ -155,40 +190,54 @@ const Home = () => {
         {/* 모바일 */}
         <div className="lg:hidden">
           <div className="mx-auto w-full max-w-[430px] relative pb-10">
+            {/* ✅ 버튼줄(내프로필 왼쪽에 관리자 버튼, 오른쪽은 로그아웃) */}
             <div className="mt-4 flex justify-end gap-2">
-  <Link
-    to="/me"
-    className="rounded-xl px-3 py-2 text-sm font-extrabold bg-indigo-600 text-white hover:bg-indigo-500"
-  >
-    내 프로필
-  </Link>
+              {isAdmin && (
+                <Link
+                  to="/admin/users"
+                  className="rounded-xl px-3 py-2 text-sm font-extrabold bg-emerald-600 text-white hover:bg-emerald-500"
+                >
+                  로그인계정들
+                </Link>
+              )}
 
-  <button
-    type="button"
-    onClick={handleLogout}
-    disabled={logoutLoading}
-    className="rounded-xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
-  >
-    {logoutLoading ? "로그아웃중..." : "로그아웃"}
-  </button>
-</div>
+              <Link
+                to="/me"
+                className="rounded-xl px-3 py-2 text-sm font-extrabold bg-indigo-600 text-white hover:bg-indigo-500"
+              >
+                내 프로필
+              </Link>
 
+              <button
+                type="button"
+                onClick={handleLogout}
+                disabled={logoutLoading}
+                className="rounded-xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {logoutLoading ? "로그아웃중..." : "로그아웃"}
+              </button>
+            </div>
 
             <div className="mt-3 grid grid-cols-2 gap-3">
               <StatCard
                 icon="👀"
                 label="오늘 방문자"
-                value={todayVisitors === null ? "불러오는중..." : `${todayVisitors.toLocaleString()}명`}
+                value={
+                  todayVisitors === null
+                    ? "불러오는중..."
+                    : `${todayVisitors.toLocaleString()}명`
+                }
               />
               <StatCard
                 icon="📈"
                 label="누적 방문자"
-                value={totalVisitors === null ? "불러오는중..." : `${totalVisitors.toLocaleString()}명`}
+                value={
+                  totalVisitors === null
+                    ? "불러오는중..."
+                    : `${totalVisitors.toLocaleString()}명`
+                }
               />
             </div>
-
-           
-            
 
             <div className="mt-6">
               <SectionTitle icon="📣" title="커뮤니티" />
@@ -224,7 +273,9 @@ const Home = () => {
                         <span
                           className={[
                             "shrink-0 text-[12px] font-extrabold",
-                            item.type === "공지" ? "text-rose-600" : "text-slate-700",
+                            item.type === "공지"
+                              ? "text-rose-600"
+                              : "text-slate-700",
                           ].join(" ")}
                         >
                           [{item.type}]
@@ -245,8 +296,6 @@ const Home = () => {
                   [ 전체 커뮤니티 보기 → ]
                 </Link>
               </div>
-
-             
             </div>
 
             <div className="mt-7">
@@ -267,46 +316,61 @@ const Home = () => {
         {/* PC */}
         <div className="hidden lg:grid lg:grid-cols-12 lg:gap-6 lg:mt-6">
           <div className="lg:col-span-4 space-y-4">
-           <div className="mt-4 flex justify-end gap-2">
-  <Link
-    to="/me"
-    className="rounded-xl px-3 py-2 text-sm font-extrabold bg-indigo-600 text-white hover:bg-indigo-500"
-  >
-    내 프로필
-  </Link>
+            {/* ✅ PC도 동일하게 */}
+            <div className="mt-4 flex justify-end gap-2">
+              {isAdmin && (
+                <Link
+                  to="/admin/users"
+                  className="rounded-xl px-3 py-2 text-sm font-extrabold bg-emerald-600 text-white hover:bg-emerald-500"
+                >
+                  로그인계정들
+                </Link>
+              )}
 
-  <button
-    type="button"
-    onClick={handleLogout}
-    disabled={logoutLoading}
-    className="rounded-xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
-  >
-    {logoutLoading ? "로그아웃중..." : "로그아웃"}
-  </button>
-</div>
+              <Link
+                to="/me"
+                className="rounded-xl px-3 py-2 text-sm font-extrabold bg-indigo-600 text-white hover:bg-indigo-500"
+              >
+                내 프로필
+              </Link>
 
+              <button
+                type="button"
+                onClick={handleLogout}
+                disabled={logoutLoading}
+                className="rounded-xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {logoutLoading ? "로그아웃중..." : "로그아웃"}
+              </button>
+            </div>
 
             <div className="grid grid-cols-2 gap-3">
               <StatCard
                 icon="👀"
                 label="오늘 방문자"
-                value={todayVisitors === null ? "불러오는중..." : `${todayVisitors.toLocaleString()}명`}
+                value={
+                  todayVisitors === null
+                    ? "불러오는중..."
+                    : `${todayVisitors.toLocaleString()}명`
+                }
               />
               <StatCard
                 icon="📈"
                 label="누적 방문자"
-                value={totalVisitors === null ? "불러오는중..." : `${totalVisitors.toLocaleString()}명`}
+                value={
+                  totalVisitors === null
+                    ? "불러오는중..."
+                    : `${totalVisitors.toLocaleString()}명`
+                }
               />
             </div>
-
-            
-
-        
 
             <div className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
               <div className="px-4 py-3 flex items-center gap-2 border-b border-slate-100">
                 <span className="text-lg">📣</span>
-                <span className="text-[15px] font-black text-slate-900">커뮤니티</span>
+                <span className="text-[15px] font-black text-slate-900">
+                  커뮤니티
+                </span>
               </div>
 
               <div className="divide-y divide-slate-100">
@@ -363,7 +427,9 @@ const Home = () => {
           <div className="lg:col-span-8">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-xl">🎮</span>
-              <h2 className="text-[18px] font-black text-slate-900">콘텐츠 공략</h2>
+              <h2 className="text-[18px] font-black text-slate-900">
+                콘텐츠 공략
+              </h2>
               <div className="flex-1 h-px bg-slate-200 ml-2" />
               <div className="text-xs text-slate-400 font-semibold">sj</div>
             </div>
@@ -376,14 +442,17 @@ const Home = () => {
                   className="rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition transform hover:-translate-y-[1px] p-5"
                 >
                   <div className="text-4xl">{feature.emoji}</div>
-                  <h3 className="mt-2 text-[16px] font-extrabold text-slate-900">{feature.title}</h3>
-                  <p className="mt-1 text-[13px] font-semibold text-slate-600">{feature.description}</p>
+                  <h3 className="mt-2 text-[16px] font-extrabold text-slate-900">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-1 text-[13px] font-semibold text-slate-600">
+                    {feature.description}
+                  </p>
                 </Link>
               ))}
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
@@ -412,8 +481,6 @@ function StatCard({ icon, label, value }) {
     </div>
   );
 }
-
-
 
 function FeatureCard({ feature }) {
   return (
