@@ -46,6 +46,9 @@ export default function LoginPage() {
               처음이시라면 사용하고 싶은 이메일 형식 아이디와 비밀번호를 입력한 뒤
               <b> 「회원가입」 버튼</b>을 눌러주세요.
             </li>
+             <li>
+              인게임닉네임과 사이트사용 닉네임이 다른경우 임의로 계정이 삭제될수있습니다.
+            </li>
           </ul>
           <p className="mt-2 text-xs text-blue-700">
             예시: test123@gmail.com / abc12345

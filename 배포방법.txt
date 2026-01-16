@@ -6,3 +6,4 @@ git commit -m "Feat: ...."
 git push origin main
 git pull origin main --rebase
 https://vercel.com/geongeuns-projects/geongeun011
+https://supabase.com/dashboard/org/fdcaunkmuwrcxvluprmn
