@@ -37,6 +37,8 @@ import WeaponArmorSelectPage from "./pages/WeaponArmorSelectPage";
 import EnhanceFilterPage from "./pages/EnhanceFilterPage"; // 다음 단계 페이지
 import GrandBattlePage from './pages/GrandBattlePage';
 import VoodooPage from './pages/VoodooPage';
+import MyProfilePage from "./pages/MyProfilePage";
+
 import EnhanceStep2Page from "./pages/EnhanceStep2Page";
 import EssentialSkillDetailPage from './pages/EssentialSkillDetailPage';
 const App = () => {
@@ -62,6 +64,7 @@ const App = () => {
     </RequireAuth>
   }
 />
+<Route path="/me" element={<MyProfilePage />} />
 
         <Route path="/farming" element={<FarmingEfficiency />} />
         <Route path="/essential-heroes" element={<EssentialHeroesPage />} />
