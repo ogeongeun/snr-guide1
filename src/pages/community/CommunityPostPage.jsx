@@ -55,7 +55,7 @@ export default function CommunityPostPage() {
         await supabase.rpc("community_inc_view", { p_post_id: postId });
       } catch {}
 
-      // 게시글 + 작성자 닉네임
+      // ✅ 게시글 + 작성자 닉네임/길드
       const { data: p, error: pe } = await supabase
         .from("community_posts")
         .select(
@@ -69,7 +69,8 @@ export default function CommunityPostPage() {
           view_count,
           author_id,
           profiles!community_posts_author_id_fkey (
-            nickname
+            nickname,
+            guild
           )
         `
         )
@@ -86,7 +87,7 @@ export default function CommunityPostPage() {
 
       setPost(p);
 
-      // 댓글 + 작성자 닉네임
+      // ✅ 댓글 + 작성자 닉네임/길드
       const { data: c, error: ce } = await supabase
         .from("community_comments")
         .select(
@@ -96,7 +97,8 @@ export default function CommunityPostPage() {
           content,
           author_id,
           profiles!community_comments_author_id_fkey (
-            nickname
+            nickname,
+            guild
           )
         `
         )
@@ -140,7 +142,8 @@ export default function CommunityPostPage() {
           content,
           author_id,
           profiles!community_comments_author_id_fkey (
-            nickname
+            nickname,
+            guild
           )
         `
         )
@@ -231,7 +234,7 @@ export default function CommunityPostPage() {
 
             <div className="mt-2 flex items-center justify-between text-xs font-semibold text-slate-500">
               <span>
-                {post.profiles?.nickname ?? "익명"} · {formatTime(post.created_at)}
+                {formatDisplayName(post.profiles)} · {formatTime(post.created_at)}
               </span>
               <span>조회 {Number(post.view_count || 0).toLocaleString()}</span>
             </div>
@@ -256,7 +259,7 @@ export default function CommunityPostPage() {
                   <div key={c.id} className="px-4 py-3">
                     <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
                       <span>
-                        {c.profiles?.nickname ?? "익명"} · {formatTime(c.created_at)}
+                        {formatDisplayName(c.profiles)} · {formatTime(c.created_at)}
                       </span>
 
                       {canDelete && (
@@ -315,6 +318,15 @@ function Tag({ category, pinned }) {
   if (category === "질문") return <span className={`${base} bg-amber-50 text-amber-700 border-amber-200`}>질문</span>;
   if (category === "자유") return <span className={`${base} bg-slate-50 text-slate-700 border-slate-200`}>자유</span>;
   return <span className={`${base} bg-slate-50 text-slate-700 border-slate-200`}>{category}</span>;
+}
+
+function formatDisplayName(profile) {
+  const nick = profile?.nickname?.trim();
+  const guild = profile?.guild?.trim();
+
+  if (nick && guild) return `${nick}(${guild})`;
+  if (nick) return nick;
+  return "익명";
 }
 
 function formatTime(iso) {
