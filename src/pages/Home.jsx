@@ -147,7 +147,7 @@ const Home = () => {
             </p>
 
             <p className="mt-2 text-xs lg:text-sm font-semibold text-slate-700/70 italic">
-              made by 천우회
+              made by 건근본
             </p>
           </div>
         </div>
