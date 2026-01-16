@@ -9,6 +9,8 @@ export default function CommunityPostPage() {
   const navigate = useNavigate();
 
   const [me, setMe] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const [loading, setLoading] = useState(true);
   const [post, setPost] = useState(null);
 
@@ -21,21 +23,39 @@ export default function CommunityPostPage() {
     return post.author_id === me.id;
   }, [me, post]);
 
+  const canDeletePost = useMemo(() => {
+    return isMine || isAdmin;
+  }, [isMine, isAdmin]);
+
   useEffect(() => {
     if (!supabase || !Number.isFinite(postId)) return;
 
     const run = async () => {
       setLoading(true);
 
-      const { data: user } = await supabase.auth.getUser();
-      setMe(user?.user ?? null);
+      const { data: userRes } = await supabase.auth.getUser();
+      const user = userRes?.user ?? null;
+      setMe(user);
+
+      // ✅ 관리자 여부 조회 (admins 테이블에서 본인 row 있으면 admin)
+      if (user?.id) {
+        const { data: adminRow } = await supabase
+          .from("admins")
+          .select("user_id")
+          .eq("user_id", user.id)
+          .maybeSingle();
+
+        setIsAdmin(!!adminRow);
+      } else {
+        setIsAdmin(false);
+      }
 
       // 조회수 증가 (실패해도 무시)
       try {
         await supabase.rpc("community_inc_view", { p_post_id: postId });
       } catch {}
 
-      // ✅ 게시글 + 작성자 닉네임 (FK 강제 조인)
+      // 게시글 + 작성자 닉네임
       const { data: p, error: pe } = await supabase
         .from("community_posts")
         .select(
@@ -56,10 +76,6 @@ export default function CommunityPostPage() {
         .eq("id", postId)
         .single();
 
-      // ✅ 디버깅: 실제로 profiles가 내려오는지 확인
-      console.log("POST RAW:", p);
-      console.log("POST NICK:", p?.profiles?.nickname);
-
       if (pe) {
         console.error(pe);
         setPost(null);
@@ -70,7 +86,7 @@ export default function CommunityPostPage() {
 
       setPost(p);
 
-      // ✅ 댓글 + 작성자 닉네임 (FK 강제 조인)
+      // 댓글 + 작성자 닉네임
       const { data: c, error: ce } = await supabase
         .from("community_comments")
         .select(
@@ -86,9 +102,6 @@ export default function CommunityPostPage() {
         )
         .eq("post_id", postId)
         .order("created_at", { ascending: true });
-
-      // ✅ 디버깅: 댓글에서도 profiles가 내려오는지 확인
-      console.log("COMMENTS RAW:", c);
 
       if (ce) {
         console.error(ce);
@@ -110,14 +123,13 @@ export default function CommunityPostPage() {
     try {
       setPostingComment(true);
 
-      const { data: user } = await supabase.auth.getUser();
-      if (!user?.user?.id) {
+      const { data: userRes } = await supabase.auth.getUser();
+      if (!userRes?.user?.id) {
         alert("로그인이 필요합니다.");
         navigate("/login", { replace: true });
         return;
       }
 
-      // ✅ 댓글 등록 + 작성자 닉네임 (FK 강제 조인)
       const { data, error } = await supabase
         .from("community_comments")
         .insert({ post_id: postId, content: text })
@@ -133,9 +145,6 @@ export default function CommunityPostPage() {
         `
         )
         .single();
-
-      // ✅ 디버깅
-      console.log("COMMENT INSERT RAW:", data);
 
       if (error) {
         alert(`댓글 등록 실패: ${error.message}`);
@@ -201,9 +210,15 @@ export default function CommunityPostPage() {
               <div className="flex items-center gap-2 min-w-0">
                 <Tag category={post.category} pinned={post.pinned} />
                 <div className="text-[16px] font-black text-slate-900 truncate">{post.title}</div>
+
+                {isAdmin && (
+                  <span className="shrink-0 ml-2 rounded-md px-2 py-1 text-[11px] font-extrabold border bg-emerald-50 text-emerald-700 border-emerald-200">
+                    관리자
+                  </span>
+                )}
               </div>
 
-              {isMine && (
+              {canDeletePost && (
                 <button
                   type="button"
                   onClick={deletePost}
@@ -235,13 +250,16 @@ export default function CommunityPostPage() {
             <div className="divide-y divide-slate-100">
               {comments.map((c) => {
                 const mine = me?.id && c.author_id === me.id;
+                const canDelete = mine || isAdmin;
+
                 return (
                   <div key={c.id} className="px-4 py-3">
                     <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
                       <span>
                         {c.profiles?.nickname ?? "익명"} · {formatTime(c.created_at)}
                       </span>
-                      {mine && (
+
+                      {canDelete && (
                         <button
                           type="button"
                           onClick={() => deleteComment(c.id)}
@@ -251,6 +269,7 @@ export default function CommunityPostPage() {
                         </button>
                       )}
                     </div>
+
                     <div className="mt-2 text-sm font-semibold text-slate-800 whitespace-pre-wrap">
                       {c.content}
                     </div>
