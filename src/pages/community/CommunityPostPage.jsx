@@ -56,6 +56,10 @@ export default function CommunityPostPage() {
         .eq("id", postId)
         .single();
 
+      // ✅ 디버깅: 실제로 profiles가 내려오는지 확인
+      console.log("POST RAW:", p);
+      console.log("POST NICK:", p?.profiles?.nickname);
+
       if (pe) {
         console.error(pe);
         setPost(null);
@@ -82,6 +86,9 @@ export default function CommunityPostPage() {
         )
         .eq("post_id", postId)
         .order("created_at", { ascending: true });
+
+      // ✅ 디버깅: 댓글에서도 profiles가 내려오는지 확인
+      console.log("COMMENTS RAW:", c);
 
       if (ce) {
         console.error(ce);
@@ -126,6 +133,9 @@ export default function CommunityPostPage() {
         `
         )
         .single();
+
+      // ✅ 디버깅
+      console.log("COMMENT INSERT RAW:", data);
 
       if (error) {
         alert(`댓글 등록 실패: ${error.message}`);
