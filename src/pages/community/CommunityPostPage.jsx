@@ -22,24 +22,37 @@ export default function CommunityPostPage() {
   }, [me, post]);
 
   useEffect(() => {
+    if (!supabase || !Number.isFinite(postId)) return;
+
     const run = async () => {
       setLoading(true);
 
       const { data: user } = await supabase.auth.getUser();
       setMe(user?.user ?? null);
 
-      // ✅ rpc는 .catch() 쓰지 말고 try/catch
-      if (Number.isFinite(postId)) {
-        try {
-          await supabase.rpc("community_inc_view", { p_post_id: postId });
-        } catch {
-          // 조회수 실패는 무시
-        }
-      }
+      // 조회수 증가 (실패해도 무시)
+      try {
+        await supabase.rpc("community_inc_view", { p_post_id: postId });
+      } catch {}
 
+      // 게시글 + 작성자 닉네임
       const { data: p, error: pe } = await supabase
         .from("community_posts")
-        .select("*")
+        .select(
+          `
+          id,
+          title,
+          content,
+          category,
+          pinned,
+          created_at,
+          view_count,
+          author_id,
+          profiles (
+            nickname
+          )
+        `
+        )
         .eq("id", postId)
         .single();
 
@@ -53,9 +66,20 @@ export default function CommunityPostPage() {
 
       setPost(p);
 
+      // 댓글 + 작성자 닉네임
       const { data: c, error: ce } = await supabase
         .from("community_comments")
-        .select("id, created_at, content, author_id")
+        .select(
+          `
+          id,
+          created_at,
+          content,
+          author_id,
+          profiles (
+            nickname
+          )
+        `
+        )
         .eq("post_id", postId)
         .order("created_at", { ascending: true });
 
@@ -74,7 +98,7 @@ export default function CommunityPostPage() {
 
   const addComment = async () => {
     const text = commentText.trim();
-    if (!text || postingComment) return;
+    if (!text || postingComment || !supabase) return;
 
     try {
       setPostingComment(true);
@@ -89,7 +113,17 @@ export default function CommunityPostPage() {
       const { data, error } = await supabase
         .from("community_comments")
         .insert({ post_id: postId, content: text })
-        .select("id, created_at, content, author_id")
+        .select(
+          `
+          id,
+          created_at,
+          content,
+          author_id,
+          profiles (
+            nickname
+          )
+        `
+        )
         .single();
 
       if (error) {
@@ -105,7 +139,7 @@ export default function CommunityPostPage() {
   };
 
   const deletePost = async () => {
-    if (!post) return;
+    if (!post || !supabase) return;
     if (!window.confirm("정말 삭제할까?")) return;
 
     const { error } = await supabase.from("community_posts").delete().eq("id", postId);
@@ -117,6 +151,7 @@ export default function CommunityPostPage() {
   };
 
   const deleteComment = async (commentId) => {
+    if (!supabase) return;
     if (!window.confirm("댓글 삭제할까?")) return;
 
     const { error } = await supabase.from("community_comments").delete().eq("id", commentId);
@@ -149,6 +184,7 @@ export default function CommunityPostPage() {
         </div>
       ) : (
         <>
+          {/* 게시글 */}
           <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-4">
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-2 min-w-0">
@@ -158,7 +194,7 @@ export default function CommunityPostPage() {
                 </div>
               </div>
 
-              {isMine ? (
+              {isMine && (
                 <button
                   type="button"
                   onClick={deletePost}
@@ -166,11 +202,13 @@ export default function CommunityPostPage() {
                 >
                   삭제
                 </button>
-              ) : null}
+              )}
             </div>
 
             <div className="mt-2 flex items-center justify-between text-xs font-semibold text-slate-500">
-              <span>{formatTime(post.created_at)}</span>
+              <span>
+                {post.profiles?.nickname ?? "익명"} · {formatTime(post.created_at)}
+              </span>
               <span>조회 {Number(post.view_count || 0).toLocaleString()}</span>
             </div>
 
@@ -179,6 +217,7 @@ export default function CommunityPostPage() {
             </div>
           </div>
 
+          {/* 댓글 */}
           <div className="mt-4 rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
             <div className="px-4 py-3 border-b border-slate-100 text-sm font-black text-slate-900">
               댓글 {comments.length.toLocaleString()}개
@@ -190,8 +229,10 @@ export default function CommunityPostPage() {
                 return (
                   <div key={c.id} className="px-4 py-3">
                     <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
-                      <span>{formatTime(c.created_at)}</span>
-                      {mine ? (
+                      <span>
+                        {c.profiles?.nickname ?? "익명"} · {formatTime(c.created_at)}
+                      </span>
+                      {mine && (
                         <button
                           type="button"
                           onClick={() => deleteComment(c.id)}
@@ -199,7 +240,7 @@ export default function CommunityPostPage() {
                         >
                           삭제
                         </button>
-                      ) : null}
+                      )}
                     </div>
                     <div className="mt-2 text-sm font-semibold text-slate-800 whitespace-pre-wrap">
                       {c.content}
@@ -208,11 +249,11 @@ export default function CommunityPostPage() {
                 );
               })}
 
-              {comments.length === 0 ? (
+              {comments.length === 0 && (
                 <div className="px-4 py-6 text-sm font-semibold text-slate-600">
                   첫 댓글을 남겨봐.
                 </div>
-              ) : null}
+              )}
             </div>
 
             <div className="p-4 border-t border-slate-100 bg-slate-50">
@@ -243,9 +284,7 @@ export default function CommunityPostPage() {
 
 function Tag({ category, pinned }) {
   const base = "shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold border";
-  if (pinned) {
-    return <span className={`${base} bg-rose-50 text-rose-600 border-rose-200`}>공지</span>;
-  }
+  if (pinned) return <span className={`${base} bg-rose-50 text-rose-600 border-rose-200`}>공지</span>;
   if (category === "공략") return <span className={`${base} bg-blue-50 text-blue-600 border-blue-200`}>공략</span>;
   if (category === "질문") return <span className={`${base} bg-amber-50 text-amber-700 border-amber-200`}>질문</span>;
   if (category === "자유") return <span className={`${base} bg-slate-50 text-slate-700 border-slate-200`}>자유</span>;
