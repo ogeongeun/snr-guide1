@@ -250,9 +250,7 @@ const Home = () => {
                 </Link>
               </div>
 
-              <Link to="/community" className="block mt-4">
-                <GradientBanner left="💬" title="커뮤니티 바로가기" subtitle="공략 공유 · 질문 · 길드 공지" />
-              </Link>
+             
             </div>
 
             <div className="mt-7">
