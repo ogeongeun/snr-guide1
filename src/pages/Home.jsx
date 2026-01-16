@@ -155,16 +155,24 @@ const Home = () => {
         {/* 모바일 */}
         <div className="lg:hidden">
           <div className="mx-auto w-full max-w-[430px] relative pb-10">
-            <div className="mt-4 flex justify-end">
-              <button
-                type="button"
-                onClick={handleLogout}
-                disabled={logoutLoading}
-                className="rounded-xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {logoutLoading ? "로그아웃중..." : "로그아웃"}
-              </button>
-            </div>
+            <div className="mt-4 flex justify-end gap-2">
+  <Link
+    to="/me"
+    className="rounded-xl px-3 py-2 text-sm font-extrabold bg-indigo-600 text-white hover:bg-indigo-500"
+  >
+    내 프로필
+  </Link>
+
+  <button
+    type="button"
+    onClick={handleLogout}
+    disabled={logoutLoading}
+    className="rounded-xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
+  >
+    {logoutLoading ? "로그아웃중..." : "로그아웃"}
+  </button>
+</div>
+
 
             <div className="mt-3 grid grid-cols-2 gap-3">
               <StatCard
@@ -271,16 +279,24 @@ const Home = () => {
         {/* PC */}
         <div className="hidden lg:grid lg:grid-cols-12 lg:gap-6 lg:mt-6">
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex justify-end">
-              <button
-                type="button"
-                onClick={handleLogout}
-                disabled={logoutLoading}
-                className="rounded-xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {logoutLoading ? "로그아웃중..." : "로그아웃"}
-              </button>
-            </div>
+           <div className="mt-4 flex justify-end gap-2">
+  <Link
+    to="/me"
+    className="rounded-xl px-3 py-2 text-sm font-extrabold bg-indigo-600 text-white hover:bg-indigo-500"
+  >
+    내 프로필
+  </Link>
+
+  <button
+    type="button"
+    onClick={handleLogout}
+    disabled={logoutLoading}
+    className="rounded-xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
+  >
+    {logoutLoading ? "로그아웃중..." : "로그아웃"}
+  </button>
+</div>
+
 
             <div className="grid grid-cols-2 gap-3">
               <StatCard
