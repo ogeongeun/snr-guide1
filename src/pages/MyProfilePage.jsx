@@ -16,6 +16,10 @@ export default function MyProfilePage() {
   const [nicknameInput, setNicknameInput] = useState("");
   const [savingNickname, setSavingNickname] = useState(false);
 
+  const [guild, setGuild] = useState("");
+  const [guildInput, setGuildInput] = useState("");
+  const [savingGuild, setSavingGuild] = useState(false);
+
   const [myPosts, setMyPosts] = useState([]);
   const [myComments, setMyComments] = useState([]);
 
@@ -27,6 +31,11 @@ export default function MyProfilePage() {
     const v = nicknameInput.trim();
     return v.length >= 2 && v.length <= 12 && v !== nickname;
   }, [nicknameInput, nickname]);
+
+  const canSaveGuild = useMemo(() => {
+    const v = guildInput.trim();
+    return v !== (guild || "");
+  }, [guildInput, guild]);
 
   useEffect(() => {
     const run = async () => {
@@ -43,19 +52,47 @@ export default function MyProfilePage() {
       }
       setMe(user);
 
-      // 1) 내 프로필(닉네임)
-      const { data: prof, error: pe } = await supabase
+      // 1) 내 프로필(닉네임/길드)
+      let prof = null;
+
+      const { data: p1, error: pe1 } = await supabase
         .from("profiles")
-        .select("user_id,nickname,created_at")
+        .select("user_id,nickname,guild,created_at")
         .eq("user_id", user.id)
         .maybeSingle();
 
-      // profiles row가 없으면(드물게) 기본값으로 만들어둠
-      if (pe) console.error(pe);
+      if (pe1) console.error(pe1);
+      prof = p1;
+
+      // ✅ profiles row가 없으면 무조건 만들어둠 (nickname NOT NULL 방지)
+      if (!prof) {
+        const { data: created, error: ce } = await supabase
+          .from("profiles")
+          .insert({ user_id: user.id, nickname: "익명" })
+          .select("user_id,nickname,guild,created_at")
+          .single();
+
+        if (ce) {
+          console.error(ce);
+          // 여기서 실패하면 이후 저장 버튼 눌러도 계속 터질 수 있으니 안전하게 막음
+          alert(`프로필 생성 실패: ${ce.message}`);
+          setProfileLoading(false);
+          setLoading(false);
+          return;
+        }
+
+        prof = created;
+      }
 
       const currentNick = prof?.nickname ?? "익명";
+      const currentGuild = prof?.guild ?? "";
+
       setNickname(currentNick);
       setNicknameInput(currentNick);
+
+      setGuild(currentGuild);
+      setGuildInput(currentGuild);
+
       setProfileLoading(false);
 
       // 2) 내가 쓴 글
@@ -86,7 +123,7 @@ export default function MyProfilePage() {
         setMyPosts(posts || []);
       }
 
-      // 3) 내가 쓴 댓글 (post_id 같이 가져오고, 글 제목은 별도 조회 없이 링크만)
+      // 3) 내가 쓴 댓글
       const { data: comments, error: cErr } = await supabase
         .from("community_comments")
         .select(
@@ -121,15 +158,18 @@ export default function MyProfilePage() {
 
   const saveNickname = async () => {
     if (!me?.id) return;
+    if (profileLoading) return;
     if (!canSaveNickname || savingNickname) return;
 
     try {
       setSavingNickname(true);
       const nextNick = nicknameInput.trim();
 
+      // ✅ row는 이미 만들어져있으니 update로 저장 (더 안전)
       const { error } = await supabase
         .from("profiles")
-        .upsert({ user_id: me.id, nickname: nextNick }, { onConflict: "user_id" });
+        .update({ nickname: nextNick })
+        .eq("user_id", me.id);
 
       if (error) {
         alert(error.message);
@@ -140,6 +180,33 @@ export default function MyProfilePage() {
       alert("닉네임 저장 완료");
     } finally {
       setSavingNickname(false);
+    }
+  };
+
+  const saveGuild = async () => {
+    if (!me?.id) return;
+    if (profileLoading) return;
+    if (!canSaveGuild || savingGuild) return;
+
+    try {
+      setSavingGuild(true);
+      const nextGuild = guildInput.trim();
+
+      // ✅ row가 이미 존재하므로 update가 정답 (nickname NOT NULL 문제 완전 차단)
+      const { error } = await supabase
+        .from("profiles")
+        .update({ guild: nextGuild.length ? nextGuild : null })
+        .eq("user_id", me.id);
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
+
+      setGuild(nextGuild);
+      alert("길드 저장 완료");
+    } finally {
+      setSavingGuild(false);
     }
   };
 
@@ -201,10 +268,46 @@ export default function MyProfilePage() {
               <button
                 type="button"
                 onClick={saveNickname}
-                disabled={!canSaveNickname || savingNickname}
+                disabled={profileLoading || !canSaveNickname || savingNickname}
                 className="shrink-0 rounded-xl px-4 py-2 text-sm font-extrabold bg-indigo-600 text-white hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {savingNickname ? "저장중..." : "저장"}
+              </button>
+            </div>
+          </div>
+
+          {/* 길드 */}
+          <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-4">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <div className="text-sm font-extrabold text-slate-900">길드</div>
+                <div className="text-xs font-semibold text-slate-500 mt-1">
+                  방어팀 제출/권한에 사용할 예정
+                </div>
+              </div>
+              {profileLoading ? (
+                <span className="text-xs font-semibold text-slate-500">로딩...</span>
+              ) : (
+                <span className="text-xs font-extrabold text-slate-700">
+                  현재: {guild ? guild : "미지정"}
+                </span>
+              )}
+            </div>
+
+            <div className="mt-3 flex items-center gap-2">
+              <input
+                value={guildInput}
+                onChange={(e) => setGuildInput(e.target.value)}
+                placeholder="예: 천우회 / 백우회 / 매드데이 (비워도 됨)"
+                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold outline-none focus:ring-2 focus:ring-slate-200"
+              />
+              <button
+                type="button"
+                onClick={saveGuild}
+                disabled={profileLoading || !canSaveGuild || savingGuild}
+                className="shrink-0 rounded-xl px-4 py-2 text-sm font-extrabold bg-emerald-600 text-white hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {savingGuild ? "저장중..." : "저장"}
               </button>
             </div>
           </div>
@@ -257,7 +360,10 @@ export default function MyProfilePage() {
                   <div key={c.id} className="px-4 py-3">
                     <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
                       <span>{formatTime(c.created_at)}</span>
-                      <Link to={`/community/posts/${c.post_id}`} className="font-extrabold text-indigo-600 hover:underline">
+                      <Link
+                        to={`/community/posts/${c.post_id}`}
+                        className="font-extrabold text-indigo-600 hover:underline"
+                      >
                         원문 이동
                       </Link>
                     </div>
