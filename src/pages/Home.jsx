@@ -178,7 +178,7 @@ const Home = () => {
             </h1>
 
             <p className="mt-2 rounded-full bg-white/85 px-3 py-1 text-[11px] lg:text-[13px] font-semibold text-rose-600 shadow-sm">
-              본 콘텐츠는 천우회,백우회,매드데이 길드 전용이며, 무단 사용 및 복제를 금합니다.
+              본 콘텐츠는 천우회,백우회,매드데이,조림 길드 전용이며, 무단 사용 및 복제를 금합니다.
             </p>
 
             <p className="mt-2 text-xs lg:text-sm font-semibold text-slate-700/70 italic">
