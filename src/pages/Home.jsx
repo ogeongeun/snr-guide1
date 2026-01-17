@@ -9,17 +9,29 @@ const Home = () => {
 
   // ✅ 관리자 여부
   const [isAdmin, setIsAdmin] = useState(false);
+  // ✅ 길드마스터 여부
+  const [isGuildMaster, setIsGuildMaster] = useState(false);
 
   const [todayVisitors, setTodayVisitors] = useState(null);
   const [totalVisitors, setTotalVisitors] = useState(null);
 
-  // ✅ 커뮤니티 최신글(실데이터)
+  // ✅ 커뮤니티 최신글
   const [communityLoading, setCommunityLoading] = useState(true);
-  const [communityItems, setCommunityItems] = useState([]); // [{id, tag, type, title}]
+  const [communityItems, setCommunityItems] = useState([]);
+
+  // ✅ 새글 표시
+  const [hasNewCommunity, setHasNewCommunity] = useState(false);
+  const [latestCommunityAt, setLatestCommunityAt] = useState(null);
+
+  const markCommunitySeen = () => {
+    if (latestCommunityAt) {
+      localStorage.setItem("community_last_seen_at", latestCommunityAt);
+    }
+    setHasNewCommunity(false);
+  };
 
   const handleLogout = async () => {
     if (logoutLoading) return;
-
     try {
       setLogoutLoading(true);
       const { error } = await supabase.auth.signOut();
@@ -50,64 +62,43 @@ const Home = () => {
     { title: "쫄작 효율 비교", path: "/farming", description: "경험치/루비 손익 기준 효율 계산", emoji: "🔍" },
   ];
 
-  // ✅ 방문자 카운트: 하루 1번만 증가 + 값 표시
+  // 방문자 카운트
   useEffect(() => {
     const run = async () => {
-      const todayKey = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+      const todayKey = new Date().toISOString().slice(0, 10);
       const storageKey = `visit_logged_${todayKey}`;
-
       try {
         if (!localStorage.getItem(storageKey)) {
-          const { data, error } = await supabase.rpc("log_visit");
-          if (error) throw error;
-
+          const { data } = await supabase.rpc("log_visit");
           const row = Array.isArray(data) ? data[0] : data;
           setTodayVisitors(Number(row?.today_count ?? 0));
           setTotalVisitors(Number(row?.total_count ?? 0));
-
           localStorage.setItem(storageKey, "1");
           return;
         }
-
-        const { data: d1, error: e1 } = await supabase
-          .from("visit_daily")
-          .select("count")
-          .eq("day", todayKey)
-          .maybeSingle();
-        if (e1) throw e1;
-
-        const { data: d2, error: e2 } = await supabase
-          .from("visit_total")
-          .select("count")
-          .eq("id", 1)
-          .single();
-        if (e2) throw e2;
-
+        const { data: d1 } = await supabase.from("visit_daily").select("count").eq("day", todayKey).maybeSingle();
+        const { data: d2 } = await supabase.from("visit_total").select("count").eq("id", 1).single();
         setTodayVisitors(Number(d1?.count ?? 0));
         setTotalVisitors(Number(d2?.count ?? 0));
-      } catch (err) {
-        console.error("visit counter error:", err?.message || err);
+      } catch {
         setTodayVisitors(0);
         setTotalVisitors(0);
       }
     };
-
     run();
   }, []);
 
-  // ✅ 커뮤니티 최신글 3개 로드 (실데이터)
+  // 커뮤니티 미리보기
   useEffect(() => {
     const run = async () => {
       setCommunityLoading(true);
       try {
-        const { data, error } = await supabase
+        const { data } = await supabase
           .from("community_posts")
           .select("id, title, category, pinned, created_at")
           .order("pinned", { ascending: false })
           .order("created_at", { ascending: false })
           .limit(3);
-
-        if (error) throw error;
 
         const rows = (data || []).map((p) => ({
           id: p.id,
@@ -115,55 +106,47 @@ const Home = () => {
           type: p.pinned ? "공지" : p.category || "자유",
           title: p.title || "(제목 없음)",
         }));
-
         setCommunityItems(rows);
-      } catch (e) {
-        console.error("community preview error:", e?.message || e);
-        setCommunityItems([]);
+
+        const latest = data?.[0]?.created_at ?? null;
+        setLatestCommunityAt(latest);
+        const lastSeen = localStorage.getItem("community_last_seen_at");
+        setHasNewCommunity(!lastSeen || (latest && new Date(latest) > new Date(lastSeen)));
       } finally {
         setCommunityLoading(false);
       }
     };
-
     run();
   }, []);
 
-  // ✅ 관리자 체크 (admins 테이블에 본인 row 있으면 관리자)
+  // 관리자 체크
   useEffect(() => {
-    const runAdmin = async () => {
-      try {
-        const { data: userRes } = await supabase.auth.getUser();
-        const uid = userRes?.user?.id;
-        if (!uid) {
-          setIsAdmin(false);
-          return;
-        }
-
-        const { data: adminRow, error } = await supabase
-          .from("admins")
-          .select("user_id")
-          .eq("user_id", uid)
-          .maybeSingle();
-
-        if (error) {
-          console.error("admin check error:", error.message);
-          setIsAdmin(false);
-          return;
-        }
-
-        setIsAdmin(!!adminRow);
-      } catch (e) {
-        console.error("admin check error:", e?.message || e);
-        setIsAdmin(false);
-      }
+    const run = async () => {
+      const { data } = await supabase.auth.getUser();
+      const uid = data?.user?.id;
+      if (!uid) return setIsAdmin(false);
+      const { data: adminRow } = await supabase.from("admins").select("user_id").eq("user_id", uid).maybeSingle();
+      setIsAdmin(!!adminRow);
     };
+    run();
+  }, []);
 
-    runAdmin();
+  // 길드마스터 체크
+  useEffect(() => {
+    const run = async () => {
+      const { data } = await supabase.auth.getUser();
+      const uid = data?.user?.id;
+      if (!uid) return setIsGuildMaster(false);
+      const { data: rows } = await supabase.from("guilds").select("id").eq("leader_user_id", uid).limit(1);
+      setIsGuildMaster((rows?.length ?? 0) > 0);
+    };
+    run();
   }, []);
 
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="mx-auto w-full max-w-6xl px-4 py-8 lg:py-10">
+        {/* 헤더 */}
         <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
           <div
             className="h-44 lg:h-56 w-full"
@@ -173,126 +156,80 @@ const Home = () => {
             }}
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-            <h1 className="text-[26px] lg:text-[38px] font-black tracking-tight text-slate-900 drop-shadow-sm">
+            <h1 className="text-[26px] lg:text-[38px] font-black tracking-tight text-slate-900">
               세븐나이츠 리버스 공략 도우미
             </h1>
 
+
             <p className="mt-2 rounded-full bg-white/85 px-3 py-1 text-[11px] lg:text-[13px] font-semibold text-rose-600 shadow-sm">
               본 콘텐츠는 천우회,백우회,매드데이,조림 길드 전용이며, 무단 사용 및 복제를 금합니다.
-            </p>
 
-            <p className="mt-2 text-xs lg:text-sm font-semibold text-slate-700/70 italic">
-              made by 건근본
             </p>
+            <p className="mt-2 text-xs lg:text-sm font-semibold text-slate-700/70 italic">made by 건근본</p>
           </div>
         </div>
 
         {/* 모바일 */}
         <div className="lg:hidden">
           <div className="mx-auto w-full max-w-[430px] relative pb-10">
-            {/* ✅ 버튼줄(내프로필 왼쪽에 관리자 버튼, 오른쪽은 로그아웃) */}
-            <div className="mt-4 flex justify-end gap-2">
+            <div className="mt-4 flex justify-end gap-2 overflow-x-auto whitespace-nowrap">
               {isAdmin && (
-                <Link
-                  to="/admin/users"
-                  className="rounded-xl px-3 py-2 text-sm font-extrabold bg-emerald-600 text-white hover:bg-emerald-500"
-                >
+                <Link to="/admin/users" className="shrink-0 rounded-xl px-3 py-2 text-sm font-extrabold bg-emerald-600 text-white">
                   로그인계정들
                 </Link>
               )}
-
-              <Link
-                to="/me"
-                className="rounded-xl px-3 py-2 text-sm font-extrabold bg-indigo-600 text-white hover:bg-indigo-500"
-              >
+              {isGuildMaster && (
+                <Link to="/guild-manage" className="shrink-0 rounded-xl px-3 py-2 text-sm font-extrabold bg-amber-600 text-white">
+                  길드관리
+                </Link>
+              )}
+              <Link to="/me" className="shrink-0 rounded-xl px-3 py-2 text-sm font-extrabold bg-indigo-600 text-white">
                 내 프로필
               </Link>
-
               <button
-                type="button"
                 onClick={handleLogout}
                 disabled={logoutLoading}
-                className="rounded-xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="shrink-0 rounded-xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white"
               >
                 {logoutLoading ? "로그아웃중..." : "로그아웃"}
               </button>
             </div>
 
             <div className="mt-3 grid grid-cols-2 gap-3">
-              <StatCard
-                icon="👀"
-                label="오늘 방문자"
-                value={
-                  todayVisitors === null
-                    ? "불러오는중..."
-                    : `${todayVisitors.toLocaleString()}명`
-                }
-              />
-              <StatCard
-                icon="📈"
-                label="누적 방문자"
-                value={
-                  totalVisitors === null
-                    ? "불러오는중..."
-                    : `${totalVisitors.toLocaleString()}명`
-                }
-              />
+              <StatCard icon="👀" label="오늘 방문자" value={todayVisitors === null ? "불러오는중..." : `${todayVisitors}명`} />
+              <StatCard icon="📈" label="누적 방문자" value={totalVisitors === null ? "불러오는중..." : `${totalVisitors}명`} />
             </div>
 
+            {/* 커뮤니티 */}
             <div className="mt-6">
-              <SectionTitle icon="📣" title="커뮤니티" />
+              <div className="flex items-center gap-2">
+                <span className="text-xl">📣</span>
+                <span className="text-[16px] font-black text-slate-900">커뮤니티</span>
+                <div className="flex-1 h-px bg-slate-200 ml-2" />
+                {hasNewCommunity && <span className="w-4 h-4 rounded-full bg-rose-600 text-white text-[11px] font-black grid place-items-center">!</span>}
+              </div>
 
               <div className="mt-2 rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
                 <div className="divide-y divide-slate-100">
                   {communityLoading ? (
-                    <div className="px-4 py-6 text-sm font-semibold text-slate-600">
-                      불러오는중...
-                    </div>
+                    <div className="px-4 py-6 text-sm font-semibold text-slate-600">불러오는중...</div>
                   ) : communityItems.length === 0 ? (
-                    <div className="px-4 py-6 text-sm font-semibold text-slate-600">
-                      아직 게시글이 없습니다.
-                    </div>
+                    <div className="px-4 py-6 text-sm font-semibold text-slate-600">아직 게시글이 없습니다.</div>
                   ) : (
                     communityItems.map((item) => (
-                      <Link
-                        key={item.id}
-                        to={`/community/post/${item.id}`}
-                        className="px-4 py-3 flex items-center gap-3 hover:bg-slate-50"
-                      >
-                        <span
-                          className={[
-                            "shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold",
-                            item.tag === "공지"
-                              ? "bg-rose-50 text-rose-600"
-                              : "bg-blue-50 text-blue-600",
-                          ].join(" ")}
-                        >
+                      <Link key={item.id} to={`/community/post/${item.id}`} onClick={markCommunitySeen} className="px-4 py-3 flex items-center gap-3 hover:bg-slate-50">
+                        <span className={`shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold ${item.tag === "공지" ? "bg-rose-50 text-rose-600" : "bg-blue-50 text-blue-600"}`}>
                           {item.tag}
                         </span>
-
-                        <span
-                          className={[
-                            "shrink-0 text-[12px] font-extrabold",
-                            item.type === "공지"
-                              ? "text-rose-600"
-                              : "text-slate-700",
-                          ].join(" ")}
-                        >
+                        <span className={`shrink-0 text-[12px] font-extrabold ${item.type === "공지" ? "text-rose-600" : "text-slate-700"}`}>
                           [{item.type}]
                         </span>
-
-                        <span className="text-[13px] font-semibold text-slate-800 line-clamp-1">
-                          {item.title}
-                        </span>
+                        <span className="text-[13px] font-semibold text-slate-800 line-clamp-1">{item.title}</span>
                       </Link>
                     ))
                   )}
                 </div>
-
-                <Link
-                  to="/community"
-                  className="block px-4 py-3 text-center text-[13px] font-extrabold text-indigo-600 bg-slate-50 hover:bg-slate-100"
-                >
+                <Link to="/community" onClick={markCommunitySeen} className="block px-4 py-3 text-center text-[13px] font-extrabold text-indigo-600 bg-slate-50">
                   [ 전체 커뮤니티 보기 → ]
                 </Link>
               </div>
@@ -306,119 +243,81 @@ const Home = () => {
                 ))}
               </div>
             </div>
-
-            <div className="absolute bottom-3 right-5 text-xs text-slate-400 font-semibold">
-              sj
-            </div>
           </div>
         </div>
 
         {/* PC */}
         <div className="hidden lg:grid lg:grid-cols-12 lg:gap-6 lg:mt-6">
           <div className="lg:col-span-4 space-y-4">
-            {/* ✅ PC도 동일하게 */}
-            <div className="mt-4 flex justify-end gap-2">
+            {/* PC 버튼 영역: 로그인계정들만 위로 */}
+            <div className="mt-4 space-y-2">
               {isAdmin && (
-                <Link
-                  to="/admin/users"
-                  className="rounded-xl px-3 py-2 text-sm font-extrabold bg-emerald-600 text-white hover:bg-emerald-500"
-                >
-                  로그인계정들
-                </Link>
+                <div className="flex justify-end">
+                  <Link
+                    to="/admin/users"
+                    className="whitespace-nowrap rounded-xl px-3 py-2 text-sm font-extrabold bg-emerald-600 text-white hover:bg-emerald-500"
+                  >
+                    로그인계정들
+                  </Link>
+                </div>
               )}
-
-              <Link
-                to="/me"
-                className="rounded-xl px-3 py-2 text-sm font-extrabold bg-indigo-600 text-white hover:bg-indigo-500"
-              >
-                내 프로필
-              </Link>
-
-              <button
-                type="button"
-                onClick={handleLogout}
-                disabled={logoutLoading}
-                className="rounded-xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {logoutLoading ? "로그아웃중..." : "로그아웃"}
-              </button>
+              <div className="flex justify-end gap-2">
+                {isGuildMaster && (
+                  <Link
+                    to="/guild-manage"
+                    className="whitespace-nowrap rounded-xl px-3 py-2 text-sm font-extrabold bg-amber-600 text-white hover:bg-amber-500"
+                  >
+                    길드관리
+                  </Link>
+                )}
+                <Link
+                  to="/me"
+                  className="whitespace-nowrap rounded-xl px-3 py-2 text-sm font-extrabold bg-indigo-600 text-white hover:bg-indigo-500"
+                >
+                  내 프로필
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  disabled={logoutLoading}
+                  className="whitespace-nowrap rounded-xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800"
+                >
+                  {logoutLoading ? "로그아웃중..." : "로그아웃"}
+                </button>
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <StatCard
-                icon="👀"
-                label="오늘 방문자"
-                value={
-                  todayVisitors === null
-                    ? "불러오는중..."
-                    : `${todayVisitors.toLocaleString()}명`
-                }
-              />
-              <StatCard
-                icon="📈"
-                label="누적 방문자"
-                value={
-                  totalVisitors === null
-                    ? "불러오는중..."
-                    : `${totalVisitors.toLocaleString()}명`
-                }
-              />
+              <StatCard icon="👀" label="오늘 방문자" value={todayVisitors === null ? "불러오는중..." : `${todayVisitors}명`} />
+              <StatCard icon="📈" label="누적 방문자" value={totalVisitors === null ? "불러오는중..." : `${totalVisitors}명`} />
             </div>
 
+            {/* 커뮤니티 */}
             <div className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
               <div className="px-4 py-3 flex items-center gap-2 border-b border-slate-100">
                 <span className="text-lg">📣</span>
-                <span className="text-[15px] font-black text-slate-900">
-                  커뮤니티
-                </span>
+                <span className="text-[15px] font-black text-slate-900">커뮤니티</span>
+                {hasNewCommunity && <span className="ml-2 w-4 h-4 rounded-full bg-rose-600 text-white text-[11px] font-black grid place-items-center">!</span>}
               </div>
-
               <div className="divide-y divide-slate-100">
                 {communityLoading ? (
-                  <div className="px-4 py-6 text-sm font-semibold text-slate-600">
-                    불러오는중...
-                  </div>
+                  <div className="px-4 py-6 text-sm font-semibold text-slate-600">불러오는중...</div>
                 ) : communityItems.length === 0 ? (
-                  <div className="px-4 py-6 text-sm font-semibold text-slate-600">
-                    아직 게시글이 없습니다.
-                  </div>
+                  <div className="px-4 py-6 text-sm font-semibold text-slate-600">아직 게시글이 없습니다.</div>
                 ) : (
                   communityItems.map((item) => (
-                    <Link
-                      key={item.id}
-                      to={`/community/post/${item.id}`}
-                      className="px-4 py-3 flex items-center gap-3 hover:bg-slate-50"
-                    >
-                      <span
-                        className={[
-                          "shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold",
-                          item.tag === "공지"
-                            ? "bg-rose-50 text-rose-600"
-                            : "bg-blue-50 text-blue-600",
-                        ].join(" ")}
-                      >
+                    <Link key={item.id} to={`/community/post/${item.id}`} onClick={markCommunitySeen} className="px-4 py-3 flex items-center gap-3 hover:bg-slate-50">
+                      <span className={`shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold ${item.tag === "공지" ? "bg-rose-50 text-rose-600" : "bg-blue-50 text-blue-600"}`}>
                         {item.tag}
                       </span>
-                      <span
-                        className={[
-                          "shrink-0 text-[12px] font-extrabold",
-                          item.type === "공지" ? "text-rose-600" : "text-slate-700",
-                        ].join(" ")}
-                      >
+                      <span className={`shrink-0 text-[12px] font-extrabold ${item.type === "공지" ? "text-rose-600" : "text-slate-700"}`}>
                         [{item.type}]
                       </span>
-                      <span className="text-[13px] font-semibold text-slate-800 line-clamp-1">
-                        {item.title}
-                      </span>
+                      <span className="text-[13px] font-semibold text-slate-800 line-clamp-1">{item.title}</span>
                     </Link>
                   ))
                 )}
               </div>
-
-              <Link
-                to="/community"
-                className="block px-4 py-3 text-center text-[13px] font-extrabold text-indigo-600 bg-slate-50 hover:bg-slate-100"
-              >
+              <Link to="/community" onClick={markCommunitySeen} className="block px-4 py-3 text-center text-[13px] font-extrabold text-indigo-600 bg-slate-50">
                 전체 커뮤니티 보기 →
               </Link>
             </div>
@@ -427,27 +326,17 @@ const Home = () => {
           <div className="lg:col-span-8">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-xl">🎮</span>
-              <h2 className="text-[18px] font-black text-slate-900">
-                콘텐츠 공략
-              </h2>
+              <h2 className="text-[18px] font-black text-slate-900">콘텐츠 공략</h2>
               <div className="flex-1 h-px bg-slate-200 ml-2" />
               <div className="text-xs text-slate-400 font-semibold">sj</div>
             </div>
 
             <div className="grid grid-cols-3 gap-4 xl:grid-cols-4">
               {features.map((feature, index) => (
-                <Link
-                  to={feature.path}
-                  key={index}
-                  className="rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition transform hover:-translate-y-[1px] p-5"
-                >
+                <Link key={index} to={feature.path} className="rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md p-5">
                   <div className="text-4xl">{feature.emoji}</div>
-                  <h3 className="mt-2 text-[16px] font-extrabold text-slate-900">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-1 text-[13px] font-semibold text-slate-600">
-                    {feature.description}
-                  </p>
+                  <h3 className="mt-2 text-[16px] font-extrabold text-slate-900">{feature.title}</h3>
+                  <p className="mt-1 text-[13px] font-semibold text-slate-600">{feature.description}</p>
                 </Link>
               ))}
             </div>
@@ -484,17 +373,12 @@ function StatCard({ icon, label, value }) {
 
 function FeatureCard({ feature }) {
   return (
-    <Link
-      to={feature.path}
-      className="rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition transform hover:-translate-y-[1px] p-4"
-    >
+    <Link to={feature.path} className="rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md p-4">
       <div className="flex items-start gap-3">
         <div className="text-3xl">{feature.emoji}</div>
         <div className="min-w-0">
           <h2 className="text-[15px] font-extrabold text-slate-900">{feature.title}</h2>
-          <p className="mt-1 text-[12px] font-semibold text-slate-600 line-clamp-2">
-            {feature.description}
-          </p>
+          <p className="mt-1 text-[12px] font-semibold text-slate-600 line-clamp-2">{feature.description}</p>
         </div>
       </div>
     </Link>

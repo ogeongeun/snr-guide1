@@ -157,12 +157,20 @@ export default function CommunityListPage() {
 function Tag({ category, pinned }) {
   const base =
     "shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold border";
-  if (pinned) return <span className={`${base} bg-rose-50 text-rose-600 border-rose-200`}>공지</span>;
+if (category === "공지")
+  return (
+    <span className={`${base} bg-red-50 text-red-600 border-red-200`}>
+      공지
+    </span>
+  );
+
+
   if (category === "공략") return <span className={`${base} bg-blue-50 text-blue-600 border-blue-200`}>공략</span>;
   if (category === "질문") return <span className={`${base} bg-amber-50 text-amber-700 border-amber-200`}>질문</span>;
   if (category === "자유") return <span className={`${base} bg-slate-50 text-slate-700 border-slate-200`}>자유</span>;
   return <span className={`${base} bg-slate-50 text-slate-700 border-slate-200`}>{category}</span>;
 }
+
 
 function formatTime(iso) {
   try {

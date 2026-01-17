@@ -1,37 +1,51 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 export default function RequireAuth({ children }) {
-  const [status, setStatus] = useState("checking"); 
-  // checking | authed | need_profile | unauth | error
-  const [err, setErr] = useState("");
-  const navigate = useNavigate();
   const location = useLocation();
+  const [status, setStatus] = useState("checking");
+  const [err, setErr] = useState("");
 
   useEffect(() => {
+    let mounted = true;
+
     const run = async () => {
       try {
         const { data: { session }, error } = await supabase.auth.getSession();
         if (error) throw error;
+
         if (!session) {
+          if (!mounted) return;
           setStatus("unauth");
           return;
         }
 
-        // 닉네임 있는지 확인
-        const { data, error: pErr } = await supabase
+        const { data: prof, error: pErr } = await supabase
           .from("profiles")
           .select("nickname")
           .eq("user_id", session.user.id)
-          .single();
+          .maybeSingle(); // ✅ single 금지
 
-        if (!pErr && data?.nickname) {
-          setStatus("authed");
-        } else {
+        if (pErr) {
+          if (!mounted) return;
           setStatus("need_profile");
+          return;
         }
+
+        const nick = (prof?.nickname ?? "").trim();
+
+        // ✅ 핵심: 공백/익명은 "없음"으로 처리
+        if (!nick || nick === "익명") {
+          if (!mounted) return;
+          setStatus("need_profile");
+          return;
+        }
+
+        if (!mounted) return;
+        setStatus("authed");
       } catch (e) {
+        if (!mounted) return;
         setErr(e?.message || String(e));
         setStatus("error");
       }
@@ -40,26 +54,27 @@ export default function RequireAuth({ children }) {
     run();
 
     const { data: sub } = supabase.auth.onAuthStateChange(() => {
-      // 로그인/로그아웃 시 재검사
+      if (!mounted) return;
       setStatus("checking");
       run();
     });
 
-    return () => sub.subscription.unsubscribe();
+    return () => {
+      mounted = false;
+      sub.subscription.unsubscribe();
+    };
   }, []);
-
-  useEffect(() => {
-    if (status === "unauth") {
-      navigate("/login", { replace: true, state: { from: location.pathname } });
-    }
-    if (status === "need_profile") {
-      navigate("/profile-setup", { replace: true });
-    }
-  }, [status, navigate, location.pathname]);
 
   if (status === "checking") return <div style={{ padding: 16 }}>세션 확인중...</div>;
   if (status === "error") return <div style={{ padding: 16 }}>에러: {err}</div>;
-  if (status !== "authed") return <div style={{ padding: 16 }}>이동중...</div>;
+
+  if (status === "unauth") {
+    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
+  }
+
+  if (status === "need_profile") {
+    return <Navigate to="/profile-setup" replace state={{ from: location.pathname }} />;
+  }
 
   return children;
 }

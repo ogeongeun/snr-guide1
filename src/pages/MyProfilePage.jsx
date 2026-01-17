@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import PageShell from "../components/PageShell";
 import { supabase } from "../lib/supabaseClient";
 
+const GUILD_PRESETS = ["천우회", "백우회", "Madday", "조림", "Platinum"];
+
 export default function MyProfilePage() {
   const navigate = useNavigate();
 
@@ -16,8 +18,11 @@ export default function MyProfilePage() {
   const [nicknameInput, setNicknameInput] = useState("");
   const [savingNickname, setSavingNickname] = useState(false);
 
+  // ✅ 길드: 프리셋 선택 OR 직접 입력(추가)
   const [guild, setGuild] = useState("");
-  const [guildInput, setGuildInput] = useState("");
+  const [guildMode, setGuildMode] = useState("preset"); // "preset" | "custom"
+  const [guildPreset, setGuildPreset] = useState(""); // 드롭다운
+  const [guildCustom, setGuildCustom] = useState(""); // 직접 입력
   const [savingGuild, setSavingGuild] = useState(false);
 
   const [myPosts, setMyPosts] = useState([]);
@@ -32,10 +37,15 @@ export default function MyProfilePage() {
     return v.length >= 2 && v.length <= 12 && v !== nickname;
   }, [nicknameInput, nickname]);
 
+  // ✅ 최종 길드값: preset 모드면 preset, custom 모드면 custom
+  const composedGuild = useMemo(() => {
+    if (guildMode === "custom") return (guildCustom || "").trim();
+    return (guildPreset || "").trim();
+  }, [guildMode, guildPreset, guildCustom]);
+
   const canSaveGuild = useMemo(() => {
-    const v = guildInput.trim();
-    return v !== (guild || "");
-  }, [guildInput, guild]);
+    return composedGuild !== (guild || "");
+  }, [composedGuild, guild]);
 
   useEffect(() => {
     const run = async () => {
@@ -74,7 +84,6 @@ export default function MyProfilePage() {
 
         if (ce) {
           console.error(ce);
-          // 여기서 실패하면 이후 저장 버튼 눌러도 계속 터질 수 있으니 안전하게 막음
           alert(`프로필 생성 실패: ${ce.message}`);
           setProfileLoading(false);
           setLoading(false);
@@ -91,7 +100,17 @@ export default function MyProfilePage() {
       setNicknameInput(currentNick);
 
       setGuild(currentGuild);
-      setGuildInput(currentGuild);
+
+      // ✅ 현재 길드가 프리셋이면 preset 모드, 아니면 custom 모드로 자동 세팅
+      if (GUILD_PRESETS.includes(currentGuild)) {
+        setGuildMode("preset");
+        setGuildPreset(currentGuild);
+        setGuildCustom("");
+      } else {
+        setGuildMode("custom");
+        setGuildPreset("");
+        setGuildCustom(currentGuild);
+      }
 
       setProfileLoading(false);
 
@@ -165,7 +184,6 @@ export default function MyProfilePage() {
       setSavingNickname(true);
       const nextNick = nicknameInput.trim();
 
-      // ✅ row는 이미 만들어져있으니 update로 저장 (더 안전)
       const { error } = await supabase
         .from("profiles")
         .update({ nickname: nextNick })
@@ -190,9 +208,8 @@ export default function MyProfilePage() {
 
     try {
       setSavingGuild(true);
-      const nextGuild = guildInput.trim();
+      const nextGuild = composedGuild;
 
-      // ✅ row가 이미 존재하므로 update가 정답 (nickname NOT NULL 문제 완전 차단)
       const { error } = await supabase
         .from("profiles")
         .update({ guild: nextGuild.length ? nextGuild : null })
@@ -294,21 +311,84 @@ export default function MyProfilePage() {
               )}
             </div>
 
-            <div className="mt-3 flex items-center gap-2">
-              <input
-                value={guildInput}
-                onChange={(e) => setGuildInput(e.target.value)}
-                placeholder="예: 천우회 / 백우회 / 매드데이 (비워도 됨)"
-                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold outline-none focus:ring-2 focus:ring-slate-200"
-              />
-              <button
-                type="button"
-                onClick={saveGuild}
-                disabled={profileLoading || !canSaveGuild || savingGuild}
-                className="shrink-0 rounded-xl px-4 py-2 text-sm font-extrabold bg-emerald-600 text-white hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {savingGuild ? "저장중..." : "저장"}
-              </button>
+            <div className="mt-3 grid gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setGuildMode("preset")}
+                  className={`rounded-xl px-3 py-2 text-sm font-extrabold border ${
+                    guildMode === "preset"
+                      ? "bg-slate-900 text-white border-slate-900"
+                      : "bg-white text-slate-900 border-slate-200 hover:bg-slate-50"
+                  }`}
+                >
+                  목록에서 선택
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setGuildMode("custom")}
+                  className={`rounded-xl px-3 py-2 text-sm font-extrabold border ${
+                    guildMode === "custom"
+                      ? "bg-slate-900 text-white border-slate-900"
+                      : "bg-white text-slate-900 border-slate-200 hover:bg-slate-50"
+                  }`}
+                >
+                  직접 입력(추가)
+                </button>
+              </div>
+
+              {guildMode === "preset" ? (
+                <select
+                  value={guildPreset}
+                  onChange={(e) => setGuildPreset(e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold outline-none focus:ring-2 focus:ring-slate-200"
+                >
+                  <option value="">선택(미지정)</option>
+                  {GUILD_PRESETS.map((g) => (
+                    <option key={g} value={g}>
+                      {g}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  value={guildCustom}
+                  onChange={(e) => setGuildCustom(e.target.value)}
+                  placeholder="예: 내 길드명 입력"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold outline-none focus:ring-2 focus:ring-slate-200"
+                />
+              )}
+
+              <div className="text-xs font-semibold text-slate-500">
+                저장될 값:{" "}
+                <span className="font-extrabold text-slate-700">
+                  {composedGuild ? composedGuild : "(미지정)"}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={saveGuild}
+                  disabled={profileLoading || !canSaveGuild || savingGuild}
+                  className="shrink-0 rounded-xl px-4 py-2 text-sm font-extrabold bg-emerald-600 text-white hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {savingGuild ? "저장중..." : "저장"}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setGuildMode("preset");
+                    setGuildPreset("");
+                    setGuildCustom("");
+                  }}
+                  className="rounded-xl px-4 py-2 text-sm font-extrabold bg-slate-200 text-slate-900 hover:bg-slate-300"
+                >
+                  초기화
+                </button>
+              </div>
             </div>
           </div>
 
