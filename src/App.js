@@ -45,7 +45,8 @@ import AccessoryCustomPage from "./pages/AccessoryCustomPage";
 import WeaponArmorSelectPage from "./pages/WeaponArmorSelectPage";
 import EnhanceFilterPage from "./pages/EnhanceFilterPage";
 import EnhanceStep2Page from "./pages/EnhanceStep2Page";
-
+import SiegeTeamCreatePage from "./pages/SiegeTeamCreatePage";
+import SiegeTeamEditPage from "./pages/SiegeTeamEditPage";
 import GrandBattlePage from "./pages/GrandBattlePage";
 import VoodooPage from "./pages/VoodooPage";
 
@@ -118,6 +119,7 @@ const App = () => {
             </RequireAuth>
           }
         />
+        <Route path="/siege/edit/:id" element={<SiegeTeamEditPage />} />
 <Route path="/guild-manage/members" element={<GuildMembersPage />} />
 <Route path="/guild-manage/defense" element={<GuildDefenseSubmitPage />} />
         {/* 나머지 기능들 (원래대로) */}
@@ -136,7 +138,7 @@ const App = () => {
 
         <Route path="/raid-guide" element={<RaidGuidePage />} />
         <Route path="/raid-skill/:bossKey/:teamIndex" element={<RaidSkillDetailPage />} />
-
+<Route path="/siege/new" element={<SiegeTeamCreatePage />} />
        <Route path="/siege" element={<SiegePage />} />
 <Route path="/siege/:day" element={<SiegeDayPage />} />
 

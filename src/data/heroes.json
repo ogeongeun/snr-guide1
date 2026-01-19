@@ -1,0 +1,424 @@
+[
+  {
+    "key": "ace",
+    "name": "에이스",
+    "image": "/images/heroes/ace.png"
+  },
+  {
+    "key": "akilra",
+    "name": "아킬라",
+    "image": "/images/heroes/akilra.png"
+  },
+  {
+    "key": "amelia",
+    "name": "아멜리아",
+    "image": "/images/heroes/amelia.png"
+  },
+  {
+    "key": "aragon",
+    "name": "아라곤",
+    "image": "/images/heroes/aragon.png"
+  },
+  {
+    "key": "ariel",
+    "name": "아리엘",
+    "image": "/images/heroes/ariel.png"
+  },
+  {
+    "key": "asura",
+    "name": "아수라",
+    "image": "/images/heroes/asura.png"
+  },
+  {
+    "key": "ballista",
+    "name": "발리스타",
+    "image": "/images/heroes/ballista.png"
+  },
+  {
+    "key": "bidam",
+    "name": "비담",
+    "image": "/images/heroes/bidam.png"
+  },
+  {
+    "key": "bisket",
+    "name": "비스킷",
+    "image": "/images/heroes/bisket.png"
+  },
+  {
+    "key": "blackrose",
+    "name": "블랙로즈",
+    "image": "/images/heroes/blackrose.png"
+  },
+ 
+  {
+    "key": "cagura",
+    "name": "카구라",
+    "image": "/images/heroes/cagura.png"
+  },
+  {
+    "key": "carin",
+    "name": "카린",
+    "image": "/images/heroes/carin.png"
+  },
+  {
+    "key": "carma",
+    "name": "카르마",
+    "image": "/images/heroes/carma.png"
+  },
+  {
+    "key": "Caron",
+    "name": "카론",
+    "image": "/images/heroes/Caron.png"
+  },
+  {
+    "key": "chancellor",
+    "name": "첸슬러",
+    "image": "/images/heroes/chancellor.png"
+  },
+  {
+    "key": "chloe",
+    "name": "클로에",
+    "image": "/images/heroes/chloe.png"
+  },
+  {
+    "key": "chris",
+    "name": "크리스",
+    "image": "/images/heroes/chris.png"
+  },
+  {
+    "key": "colt",
+    "name": "콜트",
+    "image": "/images/heroes/colt.png"
+  },
+  {
+    "key": "dage",
+    "name": "데이지",
+    "image": "/images/heroes/dage.png"
+  },
+
+  
+  {
+    "key": "dellons",
+    "name": "델론즈",
+    "image": "/images/heroes/dellons.png"
+  },
+  {
+    "key": "eileene",
+    "name": "아일린",
+    "image": "/images/heroes/eileene.png"
+  },
+  {
+    "key": "elise",
+    "name": "엘리스",
+    "image": "/images/heroes/elise.png"
+  },
+  {
+    "key": "elisia",
+    "name": "엘리시아",
+    "image": "/images/heroes/elisia.png"
+  },
+ 
+  {
+    "key": "espada",
+    "name": "에스파다",
+    "image": "/images/heroes/espada.png"
+  },
+  {
+    "key": "evan",
+    "name": "에반",
+    "image": "/images/heroes/evan.png"
+  },
+
+  {
+    "key": "galidus",
+    "name": "겔리두스",
+    "image": "/images/heroes/galidus.png"
+  },
+  {
+    "key": "hebnia",
+    "name": "헤브니아",
+    "image": "/images/heroes/hebnia.png"
+  },
+  {
+    "key": "helenia",
+    "name": "헬레니아",
+    "image": "/images/heroes/helenia.png"
+  },
+  {
+    "key": "jane",
+    "name": "제인",
+    "image": "/images/heroes/jane.png"
+  },
+  {
+    "key": "jave",
+    "name": "제이브",
+    "image": "/images/heroes/jave.png"
+  },
+  {
+    "key": "jin",
+    "name": "진",
+    "image": "/images/heroes/jin.png"
+  },
+  {
+    "key": "joker",
+    "name": "조커",
+    "image": "/images/heroes/joker.png"
+  },
+  {
+    "key": "jupi",
+    "name": "쥬피",
+    "image": "/images/heroes/jupi.png"
+  },
+  
+  {
+    "key": "juri",
+    "name": "쥬리",
+    "image": "/images/heroes/juri.png"
+  },
+  {
+    "key": "karon",
+    "name": "카론",
+    "image": "/images/heroes/karon.png"
+  },
+  {
+    "key": "kiriel",
+    "name": "키리엘",
+    "image": "/images/heroes/kiriel.png"
+  },
+  {
+    "key": "kyle",
+    "name": "카일",
+    "image": "/images/heroes/kyle.png"
+  },
+  {
+    "key": "lee",
+    "name": "리",
+    "image": "/images/heroes/lee.png"
+  },
+  {
+    "key": "leo",
+    "name": "레오",
+    "image": "/images/heroes/leo.png"
+  },
+  {
+    "key": "lina",
+    "name": "리나",
+    "image": "/images/heroes/lina.png"
+  },
+  {
+    "key": "lion",
+    "name": "라이언",
+    "image": "/images/heroes/lion.png"
+  },
+  {
+    "key": "look",
+    "name": "룩",
+    "image": "/images/heroes/look.png"
+  },
+  {
+    "key": "lozy",
+    "name": "로지",
+    "image": "/images/heroes/lozy.png"
+  },
+  {
+    "key": "lucy",
+    "name": "루시",
+    "image": "/images/heroes/lucy.png"
+  },
+  {
+    "key": "luri",
+    "name": "쥬리",
+    "image": "/images/heroes/luri.png"
+  },
+  {
+    "key": "mei",
+    "name": "메이",
+    "image": "/images/heroes/mei.png"
+  },
+  {
+    "key": "Melkir",
+    "name": "멜키르",
+    "image": "/images/heroes/Melkir.png"
+  },
+  {
+    "key": "miho",
+    "name": "미호",
+    "image": "/images/heroes/miho.png"
+  },
+  {
+    "key": "milia",
+    "name": "밀리아",
+    "image": "/images/heroes/milia.png"
+  },
+  {
+    "key": "nia",
+    "name": "니아",
+    "image": "/images/heroes/nia.png"
+  },
+  {
+    "key": "noho",
+    "name": "노호",
+    "image": "/images/heroes/noho.png"
+  },
+  {
+    "key": "nox",
+    "name": "녹스",
+    "image": "/images/heroes/nox.png"
+  },
+  {
+    "key": "ogong",
+    "name": "오공",
+    "image": "/images/heroes/ogong.png"
+  },
+  {
+    "key": "orly",
+    "name": "오를리",
+    "image": "/images/heroes/orly.png"
+  },
+  {
+    "key": "pascal",
+    "name": "파스칼",
+    "image": "/images/heroes/pascal.png"
+  },
+  {
+    "key": "pie",
+    "name": "파이",
+    "image": "/images/heroes/pie.png"
+  },
+  {
+    "key": "platon",
+    "name": "플라튼",
+    "image": "/images/heroes/platon.png"
+  },
+  {
+    "key": "poongyeon",
+    "name": "풍연",
+    "image": "/images/heroes/poongyeon.png"
+  },
+  {
+    "key": "praya",
+    "name": "프레이아",
+    "image": "/images/heroes/praya.png"
+  },
+  {
+    "key": "rachel",
+    "name": "레이첼",
+    "image": "/images/heroes/rachel.png"
+  },
+  {
+    "key": "rania",
+    "name": "라니아",
+    "image": "/images/heroes/rania.png"
+  },
+  {
+    "key": "rei",
+    "name": "레이",
+    "image": "/images/heroes/rei.png"
+  },
+  {
+    "key": "rin",
+    "name": "린",
+    "image": "/images/heroes/rin.png"
+  },
+  {
+    "key": "rudy",
+    "name": "루디",
+    "image": "/images/heroes/rudy.png"
+  },
+  {
+    "key": "sein",
+    "name": "세인",
+    "image": "/images/heroes/sein.png"
+  },
+  {
+    "key": "sera",
+    "name": "세라",
+    "image": "/images/heroes/sera.png"
+  },
+  {
+    "key": "silvesta",
+    "name": "실베스타",
+    "image": "/images/heroes/silvesta.png"
+  },
+  {
+    "key": "silvia",
+    "name": "실비아",
+    "image": "/images/heroes/silvia.png"
+  },
+  {
+    "key": "sniper",
+    "name": "스니퍼",
+    "image": "/images/heroes/sniper.png"
+  },
+  {
+    "key": "soi",
+    "name": "소이",
+    "image": "/images/heroes/soi.png"
+  },
+  {
+    "key": "spike",
+    "name": "스파이크",
+    "image": "/images/heroes/spike.png"
+  },
+
+  {
+    "key": "taka",
+    "name": "타카",
+    "image": "/images/heroes/taka.png"
+  },
+  {
+    "key": "teo",
+    "name": "태오",
+    "image": "/images/heroes/teo.png"
+  },
+  {
+    "key": "trude",
+    "name": "트루드",
+    "image": "/images/heroes/trude.png"
+  },
+  {
+    "key": "vanessa",
+    "name": "바네사",
+    "image": "/images/heroes/vanessa.png"
+  },
+  {
+    "key": "velika",
+    "name": "벨리카",
+    "image": "/images/heroes/velika.png"
+  },
+  {
+    "key": "victoria",
+    "name": "빅토리아",
+    "image": "/images/heroes/victoria.png"
+  },
+  {
+    "key": "vv",
+    "name": "브브",
+    "image": "/images/heroes/vv.png"
+  },
+  {
+    "key": "yeonhee",
+    "name": "연희",
+    "image": "/images/heroes/yeonhee.png"
+  },
+  {
+    "key": "yui",
+    "name": "유이",
+    "image": "/images/heroes/yui.png"
+  },
+  {
+    "key": "yuri",
+    "name": "유리",
+    "image": "/images/heroes/yuri.png"
+  },
+  {
+    "key": "yushin",
+    "name": "유신",
+    "image": "/images/heroes/yushin.png"
+  },
+  {
+    "key": "zick",
+    "name": "지크",
+    "image": "/images/heroes/zick.png"
+  }
+]

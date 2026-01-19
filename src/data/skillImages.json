@@ -1,0 +1,722 @@
+[
+  {
+    "key": "ace1",
+    "name": "에이스1",
+    "image": "/images/skills/ace1.png"
+  },
+  {
+    "key": "ace2",
+    "name": "에이스2",
+    "image": "/images/skills/ace2.png"
+  },
+  {
+    "key": "akilra1",
+    "name": "아킬라1",
+    "image": "/images/skills/akilra1.png"
+  },
+  {
+    "key": "akilra2",
+    "name": "아킬라2",
+    "image": "/images/skills/akilra2.png"
+  },
+  {
+    "key": "amelia1",
+    "name": "아멜리아1",
+    "image": "/images/skills/amelia1.png"
+  },
+  {
+    "key": "amelia2",
+    "name": "아멜리아2",
+    "image": "/images/skills/amelia2.png"
+  },
+  {
+    "key": "aragon1",
+    "name": "아라곤1",
+    "image": "/images/skills/aragon1.png"
+  },
+  {
+    "key": "ariel1",
+    "name": "아리엘1",
+    "image": "/images/skills/ariel1.png"
+  },
+  {
+    "key": "ariel2",
+    "name": "아리엘2",
+    "image": "/images/skills/ariel2.png"
+  },
+  {
+    "key": "asura1",
+    "name": "아수라1",
+    "image": "/images/skills/asura1.png"
+  },
+  {
+    "key": "asura2",
+    "name": "아수라2",
+    "image": "/images/skills/asura2.png"
+  },
+  {
+    "key": "ballista1",
+    "name": "발리스타1",
+    "image": "/images/skills/ballista1.png"
+  },
+  {
+    "key": "bidam1",
+    "name": "비담1",
+    "image": "/images/skills/bidam1.png"
+  },
+  {
+    "key": "bidam2",
+    "name": "비담2",
+    "image": "/images/skills/bidam2.png"
+  },
+  {
+    "key": "bisket1",
+    "name": "비스킷1",
+    "image": "/images/skills/bisket1.png"
+  },
+  {
+    "key": "bisket2",
+    "name": "비스킷2",
+    "image": "/images/skills/bisket2.png"
+  },
+  {
+    "key": "blackrose1",
+    "name": "블랙로즈1",
+    "image": "/images/skills/blackrose1.png"
+  },
+  {
+    "key": "blackrose2",
+    "name": "블랙로즈2",
+    "image": "/images/skills/blackrose2.png"
+  },
+  {
+    "key": "cagura1",
+    "name": "카구라1",
+    "image": "/images/skills/cagura1.png"
+  },
+  {
+    "key": "cagura2",
+    "name": "카구라2",
+    "image": "/images/skills/cagura2.png"
+  },
+  {
+    "key": "carma1",
+    "name": "카르마1",
+    "image": "/images/skills/carma1.png"
+  },
+  {
+    "key": "carma2",
+    "name": "카르마2",
+    "image": "/images/skills/carma2.png"
+  },
+  {
+    "key": "Caron1",
+    "name": "카론1",
+    "image": "/images/skills/Caron1.png"
+  },
+  {
+    "key": "Caron2",
+    "name": "카론2",
+    "image": "/images/skills/Caron2.png"
+  },
+  {
+    "key": "chancellor1",
+    "name": "첸슬러1",
+    "image": "/images/skills/chancellor1.png"
+  },
+  {
+    "key": "chancellor2",
+    "name": "첸슬러2",
+    "image": "/images/skills/chancellor2.png"
+  },
+  {
+    "key": "chloe1",
+    "name": "클로에1",
+    "image": "/images/skills/chloe1.png"
+  },
+  {
+    "key": "chloe2",
+    "name": "클로에2",
+    "image": "/images/skills/chloe2.png"
+  },
+  {
+    "key": "chris1",
+    "name": "크리스1",
+    "image": "/images/skills/chris1.png"
+  },
+  {
+    "key": "chris2",
+    "name": "크리스2",
+    "image": "/images/skills/chris2.png"
+  },
+  {
+    "key": "colt1",
+    "name": "콜트1",
+    "image": "/images/skills/colt1.png"
+  },
+  {
+    "key": "colt2",
+    "name": "콜트2",
+    "image": "/images/skills/colt2.png"
+  },
+  {
+    "key": "dage1",
+    "name": "데이지1",
+    "image": "/images/skills/dage1.png"
+  },
+  {
+    "key": "dage2",
+    "name": "데이지2",
+    "image": "/images/skills/dage2.png"
+  },
+  {
+    "key": "dellons1",
+    "name": "델론즈1",
+    "image": "/images/skills/dellons1.png"
+  },
+  {
+    "key": "dellons2",
+    "name": "델론즈2",
+    "image": "/images/skills/dellons2.png"
+  },
+ 
+  
+  {
+    "key": "eileene2",
+    "name": "아일린2",
+    "image": "/images/skills/eileene2.png"
+  },
+  {
+    "key": "elise1",
+    "name": "엘리스1",
+    "image": "/images/skills/elise1.png"
+  },
+  {
+    "key": "elise2",
+    "name": "엘리스2",
+    "image": "/images/skills/elise2.png"
+  },
+  {
+    "key": "elisia1",
+    "name": "엘리시아1",
+    "image": "/images/skills/elisia1.png"
+  },
+  {
+    "key": "elisia2",
+    "name": "엘리시아2",
+    "image": "/images/skills/elisia2.png"
+  },
+  {
+    "key": "espada1",
+    "name": "에스파다1",
+    "image": "/images/skills/espada1.png"
+  },
+  {
+    "key": "espada2",
+    "name": "에스파다2",
+    "image": "/images/skills/espada2.png"
+  },
+  {
+    "key": "evan1",
+    "name": "에반1",
+    "image": "/images/skills/evan1.png"
+  },
+  {
+    "key": "evan2",
+    "name": "에반2",
+    "image": "/images/skills/evan2.png"
+  },
+  {
+    "key": "galidus1",
+    "name": "겔리두스1",
+    "image": "/images/skills/galidus1.png"
+  },
+  {
+    "key": "galidus2",
+    "name": "겔리두스2",
+    "image": "/images/skills/galidus2.png"
+  },
+  {
+    "key": "hebnia1",
+    "name": "헤브니아1",
+    "image": "/images/skills/hebnia1.png"
+  },
+  {
+    "key": "helenia1",
+    "name": "헬레니아1",
+    "image": "/images/skills/helenia1.png"
+  },
+  {
+    "key": "helenia2",
+    "name": "헬레니아2",
+    "image": "/images/skills/helenia2.png"
+  },
+  {
+    "key": "jane1",
+    "name": "제인1",
+    "image": "/images/skills/jane1.png"
+  },
+  {
+    "key": "jane2",
+    "name": "제인2",
+    "image": "/images/skills/jane2.png"
+  },
+  {
+    "key": "jave1",
+    "name": "제이브1",
+    "image": "/images/skills/jave1.png"
+  },
+  {
+    "key": "jave2",
+    "name": "제이브2",
+    "image": "/images/skills/jave2.png"
+  },
+  
+  
+  {
+    "key": "jin1",
+    "name": "진1",
+    "image": "/images/skills/jin1.png"
+  },
+  {
+    "key": "jin2",
+    "name": "진2",
+    "image": "/images/skills/jin2.png"
+  },
+  {
+    "key": "joker1",
+    "name": "조커1",
+    "image": "/images/skills/joker1.png"
+  },
+  {
+    "key": "joker2",
+    "name": "조커2",
+    "image": "/images/skills/joker2.png"
+  },
+  {
+    "key": "jupi1",
+    "name": "쥬피1",
+    "image": "/images/skills/jupi1.png"
+  },
+  {
+    "key": "jupi2",
+    "name": "쥬피2",
+    "image": "/images/skills/jupi2.png"
+  },
+  {
+    "key": "juri1",
+    "name": "쥬리1",
+    "image": "/images/skills/juri1.png"
+  },
+  {
+    "key": "juri2",
+    "name": "쥬리2",
+    "image": "/images/skills/juri2.png"
+  },
+  {
+    "key": "kiriel1",
+    "name": "키리엘1",
+    "image": "/images/skills/kiriel1.png"
+  },
+  {
+    "key": "kiriel2",
+    "name": "키리엘2",
+    "image": "/images/skills/kiriel2.png"
+  },
+  {
+    "key": "kyle1",
+    "name": "카일1",
+    "image": "/images/skills/kyle1.png"
+  },
+  {
+    "key": "kyle2",
+    "name": "카일2",
+    "image": "/images/skills/kyle2.png"
+  },
+  {
+    "key": "lee1",
+    "name": "리1",
+    "image": "/images/skills/lee1.png"
+  },
+  {
+    "key": "lee2",
+    "name": "리2",
+    "image": "/images/skills/lee2.png"
+  },
+  {
+    "key": "leo1",
+    "name": "레오1",
+    "image": "/images/skills/leo1.png"
+  },
+  {
+    "key": "leo2",
+    "name": "레오2",
+    "image": "/images/skills/leo2.png"
+  },
+  {
+    "key": "lina1",
+    "name": "리나1",
+    "image": "/images/skills/lina1.png"
+  },
+  {
+    "key": "lina2",
+    "name": "리나2",
+    "image": "/images/skills/lina2.png"
+  },
+  {
+    "key": "lion1",
+    "name": "라이언1",
+    "image": "/images/skills/lion1.png"
+  },
+  {
+    "key": "lion2",
+    "name": "라이언2",
+    "image": "/images/skills/lion2.png"
+  },
+  
+  {
+    "key": "look2",
+    "name": "룩2",
+    "image": "/images/skills/look2.png"
+  },
+  {
+    "key": "lozy1",
+    "name": "로지1",
+    "image": "/images/skills/lozy1.png"
+  },
+  {
+    "key": "lucy1",
+    "name": "루시1",
+    "image": "/images/skills/lucy1.png"
+  },
+  {
+    "key": "lucy2",
+    "name": "루시2",
+    "image": "/images/skills/lucy2.png"
+  },
+  {
+    "key": "luri1",
+    "name": "쥬리1",
+    "image": "/images/skills/luri1.png"
+  },
+  {
+    "key": "luri2",
+    "name": "쥬리2",
+    "image": "/images/skills/luri2.png"
+  },
+  {
+    "key": "mei1",
+    "name": "메이1",
+    "image": "/images/skills/mei1.png"
+  },
+  {
+    "key": "mei2",
+    "name": "메이2",
+    "image": "/images/skills/mei2.png"
+  },
+  {
+    "key": "melkir1",
+    "name": "멜키르1",
+    "image": "/images/skills/melkir1.png"
+  },
+  {
+    "key": "melkir2",
+    "name": "멜키르2",
+    "image": "/images/skills/melkir2.png"
+  },
+  {
+    "key": "miho1",
+    "name": "미호1",
+    "image": "/images/skills/miho1.png"
+  },
+  {
+    "key": "miho2",
+    "name": "미호2",
+    "image": "/images/skills/miho2.png"
+  },
+  {
+    "key": "milia1",
+    "name": "밀리아1",
+    "image": "/images/skills/milia1.png"
+  },
+  {
+    "key": "milia2",
+    "name": "밀리아2",
+    "image": "/images/skills/milia2.png"
+  },
+  {
+    "key": "nia1",
+    "name": "니아1",
+    "image": "/images/skills/nia1.png"
+  },
+  {
+    "key": "nia2",
+    "name": "니아2",
+    "image": "/images/skills/nia2.png"
+  },
+  {
+    "key": "noho1",
+    "name": "노호1",
+    "image": "/images/skills/noho1.png"
+  },
+  {
+    "key": "nox1",
+    "name": "녹스1",
+    "image": "/images/skills/nox1.png"
+  },
+  {
+    "key": "nox2",
+    "name": "녹스2",
+    "image": "/images/skills/nox2.png"
+  },
+  {
+    "key": "ogong1",
+    "name": "오공1",
+    "image": "/images/skills/ogong1.png"
+  },
+  {
+    "key": "ogong2",
+    "name": "오공2",
+    "image": "/images/skills/ogong2.png"
+  },
+  {
+    "key": "orly1",
+    "name": "오를리1",
+    "image": "/images/skills/orly1.png"
+  },
+  {
+    "key": "orly2",
+    "name": "오를리2",
+    "image": "/images/skills/orly2.png"
+  },
+  {
+    "key": "pascal1",
+    "name": "파스칼1",
+    "image": "/images/skills/pascal1.png"
+  },
+  {
+    "key": "pascal2",
+    "name": "파스칼2",
+    "image": "/images/skills/pascal2.png"
+  },
+  {
+    "key": "pie1",
+    "name": "파이1",
+    "image": "/images/skills/pie1.png"
+  },
+  {
+    "key": "pie2",
+    "name": "파이2",
+    "image": "/images/skills/pie2.png"
+  },
+  {
+    "key": "platon2",
+    "name": "플라튼2",
+    "image": "/images/skills/platon2.png"
+  },
+  {
+    "key": "poongyeon1",
+    "name": "풍연1",
+    "image": "/images/skills/poongyeon1.png"
+  },
+  {
+    "key": "poongyeon2",
+    "name": "풍연2",
+    "image": "/images/skills/poongyeon2.png"
+  },
+  {
+    "key": "praya1",
+    "name": "프레이아1",
+    "image": "/images/skills/praya1.png"
+  },
+  {
+    "key": "praya2",
+    "name": "프레이아2",
+    "image": "/images/skills/praya2.png"
+  },
+  {
+    "key": "rachel1",
+    "name": "레이첼1",
+    "image": "/images/skills/rachel1.png"
+  },
+  {
+    "key": "rachel2",
+    "name": "레이첼2",
+    "image": "/images/skills/rachel2.png"
+  },
+  {
+    "key": "rei2",
+    "name": "레이2",
+    "image": "/images/skills/rei2.png"
+  },
+  {
+    "key": "rin1",
+    "name": "린1",
+    "image": "/images/skills/rin1.png"
+  },
+  {
+    "key": "rin2",
+    "name": "린2",
+    "image": "/images/skills/rin2.png"
+  },
+  {
+    "key": "rudy1",
+    "name": "루디1",
+    "image": "/images/skills/rudy1.png"
+  },
+  {
+    "key": "rudy2",
+    "name": "루디2",
+    "image": "/images/skills/rudy2.png"
+  },
+  {
+    "key": "sein1",
+    "name": "세인1",
+    "image": "/images/skills/sein1.png"
+  },
+  {
+    "key": "sera1",
+    "name": "세라1",
+    "image": "/images/skills/sera1.png"
+  },
+  {
+    "key": "sera2",
+    "name": "세라2",
+    "image": "/images/skills/sera2.png"
+  },
+  {
+    "key": "silvesta1",
+    "name": "실베스타1",
+    "image": "/images/skills/silvesta1.png"
+  },
+  {
+    "key": "silvesta2",
+    "name": "실베스타2",
+    "image": "/images/skills/silvesta2.png"
+  },
+  {
+    "key": "silvia1",
+    "name": "실비아1",
+    "image": "/images/skills/silvia1.png"
+  },
+  {
+    "key": "spike1",
+    "name": "스파이크1",
+    "image": "/images/skills/spike1.png"
+  },
+  {
+    "key": "spike2",
+    "name": "스파이크2",
+    "image": "/images/skills/spike2.png"
+  },
+  {
+    "key": "taka1",
+    "name": "타카1",
+    "image": "/images/skills/taka1.png"
+  },
+  {
+    "key": "taka2",
+    "name": "타카2",
+    "image": "/images/skills/taka2.png"
+  },
+  {
+    "key": "teo1",
+    "name": "태오1",
+    "image": "/images/skills/teo1.png"
+  },
+  {
+    "key": "teo2",
+    "name": "태오2",
+    "image": "/images/skills/teo2.png"
+  },
+  {
+    "key": "trude1",
+    "name": "트루드1",
+    "image": "/images/skills/trude1.png"
+  },
+  {
+    "key": "trude2",
+    "name": "트루드2",
+    "image": "/images/skills/trude2.png"
+  },
+  {
+    "key": "vanessa1",
+    "name": "바네사1",
+    "image": "/images/skills/vanessa1.png"
+  },
+  {
+    "key": "vanessa2",
+    "name": "바네사2",
+    "image": "/images/skills/vanessa2.png"
+  },
+  {
+    "key": "victoria1",
+    "name": "빅토리아1",
+    "image": "/images/skills/victoria1.png"
+  },
+  {
+    "key": "victoria2",
+    "name": "빅토리아2",
+    "image": "/images/skills/victoria2.png"
+  },
+  {
+    "key": "vv1",
+    "name": "브브1",
+    "image": "/images/skills/vv1.png"
+  },
+  {
+    "key": "vv2",
+    "name": "브브2",
+    "image": "/images/skills/vv2.png"
+  },
+  {
+    "key": "Yeonhee1",
+    "name": "연희1",
+    "image": "/images/skills/Yeonhee1.png"
+  },
+  {
+    "key": "Yeonhee2",
+    "name": "연희2",
+    "image": "/images/skills/Yeonhee2.png"
+  },
+  {
+    "key": "yui1",
+    "name": "유이1",
+    "image": "/images/skills/yui1.png"
+  },
+  {
+    "key": "yui2",
+    "name": "유이2",
+    "image": "/images/skills/yui2.png"
+  },
+  {
+    "key": "yuri1",
+    "name": "유리1",
+    "image": "/images/skills/yuri1.png"
+  },
+  {
+    "key": "yuri2",
+    "name": "유리2",
+    "image": "/images/skills/yuri2.png"
+  },
+  {
+    "key": "yushin1",
+    "name": "유신1",
+    "image": "/images/skills/yushin1.png"
+  },
+  {
+    "key": "yushin2",
+    "name": "유신2",
+    "image": "/images/skills/yushin2.png"
+  },
+  {
+    "key": "zick1",
+    "name": "지크1",
+    "image": "/images/skills/zick1.png"
+  },
+  {
+    "key": "zick2",
+    "name": "지크2",
+    "image": "/images/skills/zick2.png"
+  }
+]
