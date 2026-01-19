@@ -136,7 +136,7 @@ export default function ProfileSetupPage() {
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
           />
-          <div className="mt-1 text-xs text-gray-500">커뮤니티에 표시되는 이름</div>
+          <div className="mt-1 text-xs text-gray-500">인게임 닉네임(다르면 삭제될수있음)</div>
         </div>
 
         {/* 길드 */}

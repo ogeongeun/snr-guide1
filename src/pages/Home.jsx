@@ -94,11 +94,13 @@ const Home = () => {
       setCommunityLoading(true);
       try {
         const { data } = await supabase
-          .from("community_posts")
-          .select("id, title, category, pinned, created_at")
-          .order("pinned", { ascending: false })
-          .order("created_at", { ascending: false })
-          .limit(3);
+  .from("community_posts")
+  .select("id, title, category, pinned, created_at, hot_until")
+  .order("pinned", { ascending: false })
+  .order("hot_until", { ascending: false, nullsFirst: false })
+  .order("created_at", { ascending: false })
+  .limit(3);
+
 
         const rows = (data || []).map((p) => ({
           id: p.id,
