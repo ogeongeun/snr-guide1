@@ -361,7 +361,7 @@ navigate(-1);
             <input
               value={tagText}
               onChange={(e) => setTagText(e.target.value)}
-              placeholder="콤마(,)로 구분. 예) 루리,미호 속공1,2순위"
+              placeholder="미호루리 속공1,2등"
               className="mt-2 w-full rounded-2xl border border-slate-200 px-3 py-2 text-[13px] font-semibold"
             />
           </div>
