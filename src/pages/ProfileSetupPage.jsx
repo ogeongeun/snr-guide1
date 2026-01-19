@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 const GUILD_PRESETS = ["천우회", "백우회", "Madday", "조림", "Platinum", "Luckyday"];
 
+const DUP_TEXT =
+  "중복시 이전에 가입한 닉네임이있습니다 관리자에게 말해서 삭제후 가입부탁드립니다";
+
 export default function ProfileSetupPage() {
   const [loading, setLoading] = useState(true);
 
@@ -17,12 +20,15 @@ export default function ProfileSetupPage() {
   const [guildCustom, setGuildCustom] = useState("");
 
   const [saving, setSaving] = useState(false);
+  const [dupWarn, setDupWarn] = useState(""); // ✅ 중복 경고 배너
   const navigate = useNavigate();
 
   const composedGuild = useMemo(() => {
     if (guildMode === "custom") return (guildCustom || "").trim();
     return (guildPreset || "").trim();
   }, [guildMode, guildPreset, guildCustom]);
+
+  const normalize = (s) => (s ?? "").trim().toLowerCase();
 
   useEffect(() => {
     const run = async () => {
@@ -80,9 +86,34 @@ export default function ProfileSetupPage() {
     run();
   }, [navigate]);
 
+  // ✅ 닉네임 중복 체크 (내 user_id 제외)
+  const checkDuplicateNickname = async (rawNick) => {
+    const n = normalize(rawNick);
+    if (!n) return false;
+
+    // 서버에서 전체를 한번에 정규화 비교할 수 없어서,
+    // 후보를 조금 가져온 뒤 JS에서 normalize로 최종 판정
+    // (대부분 데이터가 크지 않으니 충분히 안전)
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("user_id,nickname")
+      .limit(2000);
+
+    if (error) throw error;
+
+    const myId = session?.user?.id;
+    const hit = (data ?? []).find(
+      (row) => normalize(row.nickname) === n && row.user_id !== myId
+    );
+
+    return !!hit;
+  };
+
   const save = async () => {
     const nick = nickname.trim();
     const guildValue = composedGuild.trim();
+
+    setDupWarn(""); // ✅ 저장 시도할 때 경고 초기화
 
     if (!nick) {
       alert("닉네임 입력해줘");
@@ -95,6 +126,13 @@ export default function ProfileSetupPage() {
 
     try {
       setSaving(true);
+
+      // ✅ 0) 닉네임 중복이면 저장 막고 경고 배너 띄우기
+      const isDup = await checkDuplicateNickname(nick);
+      if (isDup) {
+        setDupWarn(DUP_TEXT);
+        return;
+      }
 
       // 0) 길드 미지정이면 guild / guild_id 둘 다 null
       if (!guildValue.length) {
@@ -111,6 +149,11 @@ export default function ProfileSetupPage() {
           );
 
         if (error) {
+          // ✅ DB 유니크(닉네임)로 걸리면 동일 문구
+          if (error.code === "23505") {
+            setDupWarn(DUP_TEXT);
+            return;
+          }
           alert(error.message);
           return;
         }
@@ -173,6 +216,11 @@ export default function ProfileSetupPage() {
         );
 
       if (error) {
+        // ✅ DB 유니크(닉네임)로 걸리면 동일 문구
+        if (error.code === "23505") {
+          setDupWarn(DUP_TEXT);
+          return;
+        }
         alert(error.message);
         return;
       }
@@ -192,6 +240,13 @@ export default function ProfileSetupPage() {
       <div className="bg-white p-6 rounded-xl shadow w-full max-w-md">
         <h1 className="text-xl font-bold text-center mb-4">프로필 설정</h1>
 
+        {/* ✅ 중복 경고 배너(닉네임 입력 영역 위에) */}
+        {dupWarn ? (
+          <div className="mb-4 rounded-xl border border-red-300 bg-red-50 px-3 py-2 text-sm font-bold text-red-700">
+            {dupWarn}
+          </div>
+        ) : null}
+
         {/* 닉네임 */}
         <div className="mb-4">
           <div className="text-sm font-bold mb-2">닉네임</div>
@@ -199,7 +254,10 @@ export default function ProfileSetupPage() {
             className="w-full border rounded-xl px-3 py-2 text-sm"
             placeholder="닉네임"
             value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
+            onChange={(e) => {
+              setNickname(e.target.value);
+              if (dupWarn) setDupWarn(""); // 입력 바꾸면 경고 지우기
+            }}
           />
           <div className="mt-1 text-xs text-gray-500">
             인게임 닉네임(다르면 삭제될수있음)
