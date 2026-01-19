@@ -195,12 +195,30 @@ export function SiegeDayPanel({ selectedDay }) {
     setDbError("");
 
     try {
+      // ✅ posts: profiles 조인 제거(스키마 캐시 관계 이슈 회피) + anonymous 포함
       const { data: posts, error: postErr } = await supabase
         .from("siege_team_posts")
-        .select("id, day, tags, note, skill_orders, created_by, created_at")
+        .select("id, day, tags, note, skill_orders, created_by, created_at, anonymous")
         .eq("day", selectedDay);
 
       if (postErr) throw postErr;
+
+      // ✅ 작성자 profiles를 별도 로드해서 created_by로 매핑
+      const userIds = Array.from(
+        new Set((posts || []).map((p) => p.created_by).filter(Boolean))
+      );
+
+      let profileMap = new Map(); // user_id -> {user_id,nickname,guild}
+      if (userIds.length) {
+        const { data: profs, error: profErr } = await supabase
+          .from("profiles")
+          .select("user_id, nickname, guild")
+          .in("user_id", userIds);
+
+        if (profErr) throw profErr;
+
+        profileMap = new Map((profs || []).map((x) => [x.user_id, x]));
+      }
 
       const postIds = (posts || []).map((p) => p.id);
 
@@ -278,6 +296,11 @@ export function SiegeDayPanel({ selectedDay }) {
           id: p.id,
           created_at: p.created_at,
           created_by: p.created_by,
+
+          // ✅ 익명/작성자 프로필
+          anonymous: !!p.anonymous,
+          profiles: profileMap.get(p.created_by) || null,
+
           tags: p.tags || [],
           team,
           textBuild,
@@ -332,7 +355,6 @@ export function SiegeDayPanel({ selectedDay }) {
   };
 
   // ✅ 표 수 보정 점수(베이지안 평균)로 정렬
-  // C: 전체 기본 평균(5점제에서 3점이 무난), m: 최소 신뢰 표수(작을수록 빨리 반영)
   const bayesScore = (avg, count) => {
     const C = 3.0;
     const m = 5;
@@ -579,21 +601,30 @@ export function SiegeDayPanel({ selectedDay }) {
   return (
     <>
       <div className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
-        <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-          <div className="text-[12px] font-extrabold text-slate-500">
-            팀 {mergedTeams.length}개{" "}
-            {dbLoading ? (
-              <span className="ml-2 text-slate-400">(DB 로딩중)</span>
-            ) : null}
-          </div>
+      <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+  {/* 왼쪽: 2줄로 쌓기 */}
+  <div className="flex flex-col">
+    <div className="text-[12px] font-extrabold text-slate-500">
+      팀 {mergedTeams.length}개{" "}
+      {dbLoading ? (
+        <span className="ml-2 text-slate-400">(DB 로딩중)</span>
+      ) : null}
+    </div>
 
-          <button
-            onClick={openCreatePage}
-            className="rounded-2xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 transition"
-          >
-            + 팀 추가
-          </button>
-        </div>
+    {/* ✅ 원하는 “밑 로우” */}
+    <div className="mt-1 text-[11px] font-semibold text-slate-400">
+      영웅을 클릭하면 장비 추천이 표시됩니다
+    </div>
+  </div>
+
+  <button
+    onClick={openCreatePage}
+    className="rounded-2xl px-3 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 transition"
+  >
+    + 팀 추가
+  </button>
+</div>
+
 
         <div className="p-5">
           {dbError ? (
@@ -634,6 +665,13 @@ export function SiegeDayPanel({ selectedDay }) {
                       )}
                     </div>
                   </div>
+
+                  {/* ✅ 작성자 표시 (DB 팀만) */}
+                  {isDb ? (
+                    <div className="mt-1 text-[12px] font-extrabold text-slate-500">
+                      작성자: {team.anonymous ? "익명" : formatDisplayName(team.profiles)}
+                    </div>
+                  ) : null}
 
                   {/* ✅ 공성전 추천도(평균) + 별점 찍기(내 평가) : DB 팀만 */}
                   {isDb ? (
@@ -855,4 +893,12 @@ function DbBuildModal({ heroName, build, onClose }) {
       </div>
     </div>
   );
+}
+
+function formatDisplayName(profile) {
+  const nick = profile?.nickname?.trim();
+  const guild = profile?.guild?.trim();
+  if (nick && guild) return `${nick}(${guild})`;
+  if (nick) return nick;
+  return "익명";
 }

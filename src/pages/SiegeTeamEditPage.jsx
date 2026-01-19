@@ -112,6 +112,9 @@ export default function SiegeTeamEditPage() {
   const [tagText, setTagText] = useState("");
   const [teamNote, setTeamNote] = useState("");
 
+  // ✅ 익명 여부 (편집 가능)
+  const [anonymous, setAnonymous] = useState(false);
+
   const [activeSlot, setActiveSlot] = useState(0);
 
   const [slots, setSlots] = useState(() =>
@@ -162,7 +165,7 @@ export default function SiegeTeamEditPage() {
         // 1) post
         const { data: post, error: postErr } = await supabase
           .from("siege_team_posts")
-          .select("id, day, tags, note, skill_orders, created_by")
+          .select("id, day, tags, note, skill_orders, created_by, anonymous")
           .eq("id", postId)
           .maybeSingle();
 
@@ -181,6 +184,9 @@ export default function SiegeTeamEditPage() {
         setTagText(tagsArr.join(", "));
 
         setTeamNote(post.note || "");
+
+        // ✅ 익명 여부 로드
+        setAnonymous(!!post.anonymous);
 
         // 2) members (5명)
         const { data: members, error: memErr } = await supabase
@@ -404,6 +410,7 @@ export default function SiegeTeamEditPage() {
         .update({
           tags,
           note: teamNote || "",
+          anonymous: !!anonymous,
           // ✅ 구조 호환: 배열로 1개만 저장
           skill_orders: [skillOrder],
         })
@@ -435,8 +442,7 @@ export default function SiegeTeamEditPage() {
       if (insErr) throw insErr;
 
       // ✅ 저장 완료 후 해당 요일 페이지로 복귀
-    navigate(-1);
-
+      navigate(-1);
     } catch (e) {
       setErr(e?.message || "저장 실패");
     } finally {
@@ -507,6 +513,51 @@ export default function SiegeTeamEditPage() {
             </div>
           ) : null}
 
+          {/* ✅ 작성자 표시 옵션 (익명 / 닉네임 표시) */}
+          <div className="rounded-2xl border border-slate-200 p-4">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <div className="text-[12px] font-extrabold text-slate-600">
+                  작성자 표시
+                </div>
+                <div className="mt-1 text-[12px] font-semibold text-slate-500">
+                  익명으로 설정하면 목록/상세에서 닉네임이 숨겨집니다.
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  disabled={!isMine}
+                  onClick={() => setAnonymous(true)}
+                  className={[
+                    "rounded-2xl px-3 py-2 text-[12px] font-extrabold border transition disabled:opacity-60",
+                    anonymous
+                      ? "bg-slate-900 text-white border-slate-900"
+                      : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50",
+                  ].join(" ")}
+                  aria-pressed={anonymous}
+                >
+                  익명
+                </button>
+                <button
+                  type="button"
+                  disabled={!isMine}
+                  onClick={() => setAnonymous(false)}
+                  className={[
+                    "rounded-2xl px-3 py-2 text-[12px] font-extrabold border transition disabled:opacity-60",
+                    !anonymous
+                      ? "bg-slate-900 text-white border-slate-900"
+                      : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50",
+                  ].join(" ")}
+                  aria-pressed={!anonymous}
+                >
+                  닉네임 표시
+                </button>
+              </div>
+            </div>
+          </div>
+
           {/* tags */}
           <div className="rounded-2xl border border-slate-200 p-4">
             <div className="text-[12px] font-extrabold text-slate-600">설명(tags)</div>
@@ -518,8 +569,6 @@ export default function SiegeTeamEditPage() {
               disabled={!isMine}
             />
           </div>
-
-         
 
           {/* 스킬 순서 (오더 없음) */}
           <div className="rounded-2xl border border-slate-200 p-4">
@@ -667,7 +716,6 @@ export default function SiegeTeamEditPage() {
                 {slots.map((x, idx) => {
                   const on = idx === activeSlot;
 
-                  // ✅ 버튼 중첩 방지: 바깥은 div(role=button), 안쪽은 button
                   return (
                     <div
                       key={idx}

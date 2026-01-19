@@ -48,6 +48,8 @@ const ARMOR_MAIN_OPTIONS = [
   "생명력%",
   "효과저항",
 ];
+// ✅ 익명 업로드 선택
+
 
 const defaultBuild = () => ({
   set: "",
@@ -87,7 +89,15 @@ export default function SiegeTeamCreatePage() {
   const day = q.get("day") ? decodeURIComponent(q.get("day")) : "";
 
   const selectedDay = dayOrder.includes(day) ? day : "";
+  // ✅ 스킬순서 Undo 히스토리 (직전 상태로 되돌리기)
+const [skillUndoStack, setSkillUndoStack] = useState([]);
 
+
+// prev 저장하고 next 적용하는 공용 커밋
+
+
+
+const [anonymous, setAnonymous] = useState(false);
   const [me, setMe] = useState(null);
   const [loadingMe, setLoadingMe] = useState(true);
 
@@ -115,6 +125,37 @@ export default function SiegeTeamCreatePage() {
   const [skillOrder, setSkillOrder] = useState(() => defaultSkillOrder());
   const [activeStageIdx, setActiveStageIdx] = useState(2);
   const [skillQ, setSkillQ] = useState("");
+const commitSkillOrder = (updater) => {
+  setSkillOrder((prev) => {
+    const prevSnap = deepClone(prev || defaultSkillOrder());
+    const draft = deepClone(prevSnap);
+    const next = updater(draft);
+
+    if (!next) return prev;
+
+    // ✅ stack push를 "현재 prevSnap"으로 즉시 예약
+    setSkillUndoStack((stk) => {
+      const nextStk = [...stk, prevSnap];
+      if (nextStk.length > 50) nextStk.shift();
+      return nextStk;
+    });
+
+    return next;
+  });
+};
+
+const undoSkillOrder = () => {
+  setSkillUndoStack((stk) => {
+    if (!stk.length) return stk;
+
+    const last = stk[stk.length - 1];
+
+    // ✅ skillOrder는 여기서 "함수형 업데이트"로 last를 바로 반영
+    setSkillOrder(() => last);
+
+    return stk.slice(0, -1);
+  });
+};
 
   useEffect(() => {
     const run = async () => {
@@ -208,47 +249,38 @@ export default function SiegeTeamCreatePage() {
   };
 
   // ✅ 스킬 추가/삭제는 "단일 skillOrder"에서만 수행
-  const pushSkillImageToStage = (stageIdx, imgFilename) => {
-    if (!imgFilename) return;
-    setSkillOrder((prev) => {
-      const next = deepClone(prev || defaultSkillOrder());
-      const stage = next?.skills?.[stageIdx];
-      if (!stage) return prev;
-      stage.images = Array.isArray(stage.images) ? stage.images : [];
-      stage.images.push(imgFilename);
-      return next;
-    });
-  };
+ const pushSkillImageToStage = (stageIdx, imgFilename) => {
+  if (!imgFilename) return;
+  commitSkillOrder((draft) => {
+    const stage = draft?.skills?.[stageIdx];
+    if (!stage) return null;
+    stage.images = Array.isArray(stage.images) ? stage.images : [];
+    stage.images.push(imgFilename);
+    return draft;
+  });
+};
 
-  const undoStage = (stageIdx) => {
-    setSkillOrder((prev) => {
-      const next = deepClone(prev || defaultSkillOrder());
-      const stage = next?.skills?.[stageIdx];
-      if (!stage?.images?.length) return prev;
-      stage.images.pop();
-      return next;
-    });
-  };
 
-  const clearStage = (stageIdx) => {
-    setSkillOrder((prev) => {
-      const next = deepClone(prev || defaultSkillOrder());
-      const stage = next?.skills?.[stageIdx];
-      if (!stage) return prev;
-      stage.images = [];
-      return next;
-    });
-  };
+const clearStage = (stageIdx) => {
+  commitSkillOrder((draft) => {
+    const stage = draft?.skills?.[stageIdx];
+    if (!stage) return null;
+    stage.images = [];
+    return draft;
+  });
+};
 
-  const removeOneAt = (stageIdx, index) => {
-    setSkillOrder((prev) => {
-      const next = deepClone(prev || defaultSkillOrder());
-      const stage = next?.skills?.[stageIdx];
-      if (!stage?.images?.length) return prev;
-      stage.images.splice(index, 1);
-      return next;
-    });
-  };
+
+const removeOneAt = (stageIdx, index) => {
+  commitSkillOrder((draft) => {
+    const stage = draft?.skills?.[stageIdx];
+    if (!stage?.images?.length) return null;
+    if (index < 0 || index >= stage.images.length) return null;
+    stage.images.splice(index, 1);
+    return draft;
+  });
+};
+
 
   const save = async () => {
     setErr("");
@@ -275,7 +307,7 @@ export default function SiegeTeamCreatePage() {
             tags,
             note: teamNote || "",
             created_by: me.id,
-            // ✅ 기존 구조 호환 유지: skill_orders는 배열이어도 되고, 우리는 1개만 넣음
+          anonymous, // ✅ 추가
             skill_orders: [skillOrder],
           },
         ])
@@ -365,6 +397,49 @@ navigate(-1);
               className="mt-2 w-full rounded-2xl border border-slate-200 px-3 py-2 text-[13px] font-semibold"
             />
           </div>
+{/* 작성자 표시(닉네임 / 익명 선택) */}
+<div className="rounded-2xl border border-slate-200 p-4">
+  <div className="text-[12px] font-extrabold text-slate-600 mb-2">
+    작성자 표시
+  </div>
+
+  <div className="inline-flex rounded-2xl border border-slate-200 overflow-hidden">
+    {/* 닉네임 표시 */}
+    <button
+      type="button"
+      onClick={() => setAnonymous(false)}
+      className={[
+        "px-4 py-2 text-[12px] font-extrabold transition",
+        !anonymous
+          ? "bg-slate-900 text-white"
+          : "bg-white text-slate-700 hover:bg-slate-50",
+      ].join(" ")}
+      aria-pressed={!anonymous}
+    >
+      닉네임 표시
+    </button>
+
+    {/* 익명 */}
+    <button
+      type="button"
+      onClick={() => setAnonymous(true)}
+      className={[
+        "px-4 py-2 text-[12px] font-extrabold transition border-l border-slate-200",
+        anonymous
+          ? "bg-slate-900 text-white"
+          : "bg-white text-slate-700 hover:bg-slate-50",
+      ].join(" ")}
+      aria-pressed={anonymous}
+    >
+      익명
+    </button>
+  </div>
+
+  <div className="mt-2 text-[12px] font-semibold text-slate-500">
+    익명 선택 시 목록/상세에서 작성자 닉네임이 숨겨집니다.
+  </div>
+</div>
+
 
          
 
@@ -398,13 +473,15 @@ navigate(-1);
               })}
 
               <div className="ml-auto flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={() => undoStage(activeStageIdx)}
-                  className="px-3 py-2 rounded-2xl border border-slate-200 bg-white text-[12px] font-extrabold text-slate-700 hover:bg-slate-50"
-                >
-                  ← 되돌리기
-                </button>
+              <button
+  type="button"
+  onClick={undoSkillOrder}
+  disabled={!skillUndoStack.length}
+  className="px-3 py-2 rounded-2xl border border-slate-200 bg-white text-[12px] font-extrabold text-slate-700 hover:bg-slate-50 disabled:opacity-60"
+>
+  ← 되돌리기
+</button>
+
                 <button
                   type="button"
                   onClick={() => clearStage(activeStageIdx)}
