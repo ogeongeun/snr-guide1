@@ -1,11 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import GuildMembersPage from "./pages/GuildMembersPage";
+import GuildDefenseSubmitPage from "./pages/DefenseSubmitPage";
 import Home from "./pages/Home";
 import FarmingEfficiency from "./pages/FarmingEfficiency";
 import EssentialHeroesPage from "./pages/EssentialHeroesPage";
 import RaidGuidePage from "./pages/RaidGuidePage";
-import GlobalBackButton from "./pages/GlobalBackButton";
+
+
 import SiegePage from "./pages/SiegePage";
 import SiegeSkillDetailPage from "./pages/SiegeSkillDetailPage";
 import LoginPage from "./pages/LoginPage";
@@ -28,7 +31,7 @@ import ExpeditionTeamPage from "./pages/ExpeditionTeamPage";
 import ExpeditionPage from "./pages/ExpeditionPage";
 import TrialTowerDetailPage from "./pages/TrialTowerDetailPage";
 import TrialTowerPage from "./pages/TrialTowerPage";
-
+import GlobalBackButton from "./pages/GlobalBackButton";
 import GuildDefensePage from "./pages/GuildDefensePage";
 import GuildDefenseBuildPage from "./pages/GuildDefenseBuildPage";
 import GuildOffenseFinderPage from "./pages/GuildOffenseFinderPage";
@@ -37,7 +40,7 @@ import EquipmentRecommendationPage from "./pages/EquipmentRecommendationPage";
 import GuildOffenseCounterPage from "./pages/GuildOffenseCounterPage";
 import GuildOffenseDetailPage from "./pages/GuildOffenseDetailPage";
 import GuildManagePage from "./pages/GuildManagePage";
-
+import SiegeDayPage from "./pages/SiegeDayPage";
 import AccessoryCustomPage from "./pages/AccessoryCustomPage";
 import WeaponArmorSelectPage from "./pages/WeaponArmorSelectPage";
 import EnhanceFilterPage from "./pages/EnhanceFilterPage";
@@ -53,8 +56,8 @@ import EssentialSkillDetailPage from "./pages/EssentialSkillDetailPage";
 const App = () => {
   return (
     <Router>
-      <GlobalBackButton />
-
+     
+ <GlobalBackButton />   {/* ✅ 여기 다시 추가 */}
       <Routes>
         {/* 공개 */}
         <Route path="/login" element={<LoginPage />} />
@@ -115,7 +118,8 @@ const App = () => {
             </RequireAuth>
           }
         />
-
+<Route path="/guild-manage/members" element={<GuildMembersPage />} />
+<Route path="/guild-manage/defense" element={<GuildDefenseSubmitPage />} />
         {/* 나머지 기능들 (원래대로) */}
         <Route path="/farming" element={<FarmingEfficiency />} />
         <Route path="/essential-heroes" element={<EssentialHeroesPage />} />
@@ -133,7 +137,9 @@ const App = () => {
         <Route path="/raid-guide" element={<RaidGuidePage />} />
         <Route path="/raid-skill/:bossKey/:teamIndex" element={<RaidSkillDetailPage />} />
 
-        <Route path="/siege" element={<SiegePage />} />
+       <Route path="/siege" element={<SiegePage />} />
+<Route path="/siege/:day" element={<SiegeDayPage />} />
+
         <Route path="/siege-skill/:day/:teamIndex" element={<SiegeSkillDetailPage />} />
 
         <Route path="/skill-order" element={<SkillOrderPage />} />

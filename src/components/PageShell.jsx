@@ -1,14 +1,42 @@
-export default function PageShell({ title, right, children }) {
+import { useNavigate, useLocation } from "react-router-dom";
+
+export default function PageShell({ title, right, children, showBack = false }) {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const canShowBack = showBack && pathname !== "/";
+
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="mx-auto w-full max-w-6xl px-4 py-8 lg:py-10">
         <div className="flex items-center justify-between gap-3 mb-4">
-          <div>
-            <h1 className="text-[22px] lg:text-[28px] font-black text-slate-900">
-              {title}
-            </h1>
-            <div className="mt-1 h-1 w-16 rounded-full bg-slate-200" />
+          <div className="flex items-start gap-3">
+            {canShowBack ? (
+              <button
+                onClick={() => navigate(-1)}
+                className="
+                  mt-1
+                  w-9 h-9 rounded-full
+                  flex items-center justify-center
+                  text-slate-700
+                  hover:bg-slate-100
+                  active:scale-95
+                  transition
+                "
+                aria-label="뒤로가기"
+              >
+                <span className="text-xl leading-none">←</span>
+              </button>
+            ) : null}
+
+            <div>
+              <h1 className="text-[22px] lg:text-[28px] font-black text-slate-900">
+                {title}
+              </h1>
+              <div className="mt-1 h-1 w-16 rounded-full bg-slate-200" />
+            </div>
           </div>
+
           {right ? <div className="shrink-0">{right}</div> : null}
         </div>
 
