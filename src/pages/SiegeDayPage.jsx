@@ -459,12 +459,69 @@ export function SiegeDayPanel({ selectedDay }) {
 
   // ✅ JSON 팀 렌더
   const renderHeroesJson = (heroes = []) => (
-    <div className="mt-3 flex gap-1.5 flex-nowrap overflow-x-auto">
-      {heroes.map((hero, idx) => (
+  <div className="mt-3 grid grid-cols-5 gap-1.5">
+    {heroes.map((hero, idx) => (
+      <button
+        key={`${hero.name}-${idx}`}
+        onClick={() => openEquipmentByHero(hero)}
+        className="flex flex-col items-center bg-white border border-slate-200 rounded-xl px-1.5 py-2 shadow-sm hover:bg-slate-50 hover:shadow transition w-full"
+      >
+        <img
+          src={
+            hero.image?.startsWith("/images/")
+              ? hero.image
+              : `/images/heroes/${hero.image}`
+          }
+          alt={hero.name}
+          className="w-12 h-12 object-contain"
+          loading="lazy"
+        />
+        <div className="h-[6px]" />
+        <p className="text-[10px] mt-1 text-center text-slate-900 truncate w-full">
+          {hero.name}
+        </p>
+        {hero.preset ? (
+          <span className="mt-1 w-2 h-2 rounded-full bg-indigo-500" />
+        ) : (
+          <div className="h-2" />
+        )}
+      </button>
+    ))}
+  </div>
+);
+
+
+  // ✅ DB 팀 렌더 (build 있으면 DB 모달 우선)
+const renderHeroesDb = (heroes = [], teamRow = null) => (
+  <div className="mt-3 grid grid-cols-5 gap-1.5">
+    {heroes.map((hero, idx) => {
+      const b = hero.build || {};
+      const hasBuild =
+        b.set ||
+        b.weapon?.main1 ||
+        b.weapon?.main2 ||
+        b.armor?.main1 ||
+        b.armor?.main2 ||
+        b.subOption ||
+        Number.isFinite(b.speed) ||
+        b.note;
+
+      return (
         <button
-          key={`${hero.name}-${idx}`}
-          onClick={() => openEquipmentByHero(hero)}
-          className="flex flex-col items-center bg-white border border-slate-200 rounded-xl px-1.5 py-2 shadow-sm hover:bg-slate-50 hover:shadow transition w-[56px] shrink-0"
+          key={`${hero.hero_key || hero.name}-${idx}`}
+          onClick={() => {
+            if (hasBuild) {
+              setOpenDbBuild({
+                heroName: hero.name,
+                heroKey: hero.hero_key || "",
+                build: hero.build || {},
+              });
+              return;
+            }
+            openEquipmentByHero(hero);
+          }}
+          className="flex flex-col items-center bg-white border border-slate-200 rounded-xl px-1.5 py-2 shadow-sm w-full hover:bg-slate-50 hover:shadow transition"
+          title={hasBuild ? "DB 세팅 있음" : "기본 추천 열기"}
         >
           <img
             src={
@@ -480,72 +537,17 @@ export function SiegeDayPanel({ selectedDay }) {
           <p className="text-[10px] mt-1 text-center text-slate-900 truncate w-full">
             {hero.name}
           </p>
-          {hero.preset ? (
-            <span className="mt-1 w-2 h-2 rounded-full bg-indigo-500" />
+          {hasBuild ? (
+            <span className="mt-1 w-2 h-2 rounded-full bg-emerald-500" />
           ) : (
             <div className="h-2" />
           )}
         </button>
-      ))}
-    </div>
-  );
+      );
+    })}
+  </div>
+);
 
-  // ✅ DB 팀 렌더 (build 있으면 DB 모달 우선)
-  const renderHeroesDb = (heroes = [], teamRow = null) => (
-    <div className="mt-3 flex gap-1.5 flex-nowrap overflow-x-auto">
-      {heroes.map((hero, idx) => {
-        const b = hero.build || {};
-        const hasBuild =
-          b.set ||
-          b.weapon?.main1 ||
-          b.weapon?.main2 ||
-          b.armor?.main1 ||
-          b.armor?.main2 ||
-          b.subOption ||
-          Number.isFinite(b.speed) ||
-          b.note;
-
-        return (
-          <button
-            key={`${hero.hero_key || hero.name}-${idx}`}
-            onClick={() => {
-              if (hasBuild) {
-                setOpenDbBuild({
-                  heroName: hero.name,
-                  heroKey: hero.hero_key || "",
-                  build: hero.build || {},
-                });
-                return;
-              }
-              openEquipmentByHero(hero);
-            }}
-            className="flex flex-col items-center bg-white border border-slate-200 rounded-xl px-1.5 py-2 shadow-sm w-[56px] shrink-0 hover:bg-slate-50 hover:shadow transition"
-            title={hasBuild ? "DB 세팅 있음" : "기본 추천 열기"}
-          >
-            <img
-              src={
-                hero.image?.startsWith("/images/")
-                  ? hero.image
-                  : `/images/heroes/${hero.image}`
-              }
-              alt={hero.name}
-              className="w-12 h-12 object-contain"
-              loading="lazy"
-            />
-            <div className="h-[6px]" />
-            <p className="text-[10px] mt-1 text-center text-slate-900 truncate w-full">
-              {hero.name}
-            </p>
-            {hasBuild ? (
-              <span className="mt-1 w-2 h-2 rounded-full bg-emerald-500" />
-            ) : (
-              <div className="h-2" />
-            )}
-          </button>
-        );
-      })}
-    </div>
-  );
 
   // ✅ 팀 카드에서 보여줄 "평균 추천도" (5점제)
   const RatingSummary = ({ avg = 0, count = 0 }) => {
