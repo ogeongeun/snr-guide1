@@ -396,12 +396,12 @@
   },
   {
     "key": "luri1",
-    "name": "쥬리1",
+    "name": "루리1",
     "image": "/images/skills/luri1.png"
   },
   {
     "key": "luri2",
-    "name": "쥬리2",
+    "name": "루리2",
     "image": "/images/skills/luri2.png"
   },
   {
@@ -669,11 +669,7 @@
     "name": "브브2",
     "image": "/images/skills/vv2.png"
   },
-  {
-    "key": "Yeonhee1",
-    "name": "연희1",
-    "image": "/images/skills/Yeonhee1.png"
-  },
+  
   {
     "key": "Yeonhee2",
     "name": "연희2",
