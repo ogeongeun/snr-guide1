@@ -88,60 +88,52 @@ export function SiegeDayPanel({ selectedDay }) {
   };
 
   // ✅ 팀 하나당 영웅 "한 줄"
-  const renderHeroes = (heroes = []) => (
-    <div className="mt-3 flex gap-2 overflow-x-auto">
-      {heroes.map((hero, idx) => (
-        <button
-          key={`${hero.name}-${idx}`}
-          onClick={() => handleHeroClick(hero)}
-          className="
-            flex flex-col items-center
-            bg-white border border-slate-200 rounded-2xl
-            p-2 shadow-sm
-            hover:bg-slate-50 hover:shadow transition
-            min-w-[64px]
-          "
-        >
-          <img
-            src={
-              hero.image?.startsWith("/images/")
-                ? hero.image
-                : `/images/heroes/${hero.image}`
-            }
-            alt={hero.name}
-            className="w-14 h-14 object-contain"
-            loading="lazy"
-          />
+ const renderHeroes = (heroes = []) => (
+  <div className="mt-3 flex gap-1.5 flex-nowrap">
+    {heroes.map((hero, idx) => (
+      <button
+        key={`${hero.name}-${idx}`}
+        onClick={() => handleHeroClick(hero)}
+        className="
+          flex flex-col items-center
+          bg-white border border-slate-200 rounded-xl
+          px-1.5 py-2
+          shadow-sm
+          hover:bg-slate-50 hover:shadow transition
+          w-[56px]
+        "
+      >
+        <img
+          src={
+            hero.image?.startsWith('/images/')
+              ? hero.image
+              : `/images/heroes/${hero.image}`
+          }
+          alt={hero.name}
+          className="w-12 h-12 object-contain"
+          loading="lazy"
+        />
 
-          {hero.note ? (
-            <p className="text-[10px] text-rose-600 mt-1 text-center">
-              {hero.note}
-            </p>
-          ) : (
-            <div className="h-[16px]" />
-          )}
+        {/* ✅ note/preset은 한 줄에 5명 유지하려면 제거 or 최소화 */}
+        {/* note는 아예 숨김 */}
+        <div className="h-[6px]" />
 
-          <p className="text-[11px] mt-1 text-center text-slate-900">
-            {hero.name}
-          </p>
+        {/* ✅ 이름: 1줄 + 잘림 처리 */}
+        <p className="text-[10px] mt-1 text-center text-slate-900 truncate w-full">
+          {hero.name}
+        </p>
 
-          {hero.preset && (
-            <span
-              className="
-                mt-1 text-[10px] px-2 py-0.5 rounded-full
-                bg-slate-50 text-slate-700
-                border border-slate-200
-                whitespace-nowrap max-w-[92px] overflow-hidden text-ellipsis
-              "
-              title={hero.preset}
-            >
-              {hero.preset}
-            </span>
-          )}
-        </button>
-      ))}
-    </div>
-  );
+        {/* ✅ preset: 표시하면 폭 못 버팀 → 점 하나로만 */}
+        {hero.preset ? (
+          <span className="mt-1 w-2 h-2 rounded-full bg-indigo-500" />
+        ) : (
+          <div className="h-2" />
+        )}
+      </button>
+    ))}
+  </div>
+);
+
 
   return (
     <>
