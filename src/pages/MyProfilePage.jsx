@@ -1,9 +1,10 @@
+// src/pages/MyProfilePage.jsx
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PageShell from "../components/PageShell";
 import { supabase } from "../lib/supabaseClient";
 
-const GUILD_PRESETS = ["천우회", "백우회", "Madday", "조림", "Platinum"];
+const GUILD_PRESETS = ["천우회", "백우회", "Madday", "조림", "Platinum", "luck"];
 
 export default function MyProfilePage() {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ export default function MyProfilePage() {
 
       const { data: p1, error: pe1 } = await supabase
         .from("profiles")
-        .select("user_id,nickname,guild,created_at")
+        .select("user_id,nickname,guild,created_at,guild_id")
         .eq("user_id", user.id)
         .maybeSingle();
 
@@ -79,7 +80,7 @@ export default function MyProfilePage() {
         const { data: created, error: ce } = await supabase
           .from("profiles")
           .insert({ user_id: user.id, nickname: "익명" })
-          .select("user_id,nickname,guild,created_at")
+          .select("user_id,nickname,guild,created_at,guild_id")
           .single();
 
         if (ce) {
@@ -201,6 +202,7 @@ export default function MyProfilePage() {
     }
   };
 
+  // ✅ guild + guild_id 같이 저장
   const saveGuild = async () => {
     if (!me?.id) return;
     if (profileLoading) return;
@@ -208,15 +210,73 @@ export default function MyProfilePage() {
 
     try {
       setSavingGuild(true);
-      const nextGuild = composedGuild;
+      const nextGuild = (composedGuild || "").trim();
 
-      const { error } = await supabase
+      // 0) 미지정 처리
+      if (!nextGuild.length) {
+        const { error } = await supabase
+          .from("profiles")
+          .update({ guild: null, guild_id: null })
+          .eq("user_id", me.id);
+
+        if (error) {
+          alert(error.message);
+          return;
+        }
+
+        setGuild("");
+        alert("길드 저장 완료");
+        return;
+      }
+
+      // 1) guilds에서 id 조회
+      const { data: found, error: findErr } = await supabase
+        .from("guilds")
+        .select("id")
+        .eq("name", nextGuild)
+        .maybeSingle();
+
+      if (findErr) {
+        alert(findErr.message);
+        return;
+      }
+
+      let guildId = found?.id ?? null;
+
+      // 2) 없으면 생성 (직접입력 포함)
+      if (!guildId) {
+        const { data: created, error: createErr } = await supabase
+          .from("guilds")
+          .insert({ name: nextGuild })
+          .select("id")
+          .single();
+
+        if (createErr) {
+          // 동시 생성 레이스로 unique 충돌 가능 → 재조회
+          const { data: retry, error: retryErr } = await supabase
+            .from("guilds")
+            .select("id")
+            .eq("name", nextGuild)
+            .single();
+
+          if (retryErr) {
+            alert(createErr.message);
+            return;
+          }
+          guildId = retry.id;
+        } else {
+          guildId = created.id;
+        }
+      }
+
+      // 3) profiles에 guild + guild_id 같이 업데이트
+      const { error: upErr } = await supabase
         .from("profiles")
-        .update({ guild: nextGuild.length ? nextGuild : null })
+        .update({ guild: nextGuild, guild_id: guildId })
         .eq("user_id", me.id);
 
-      if (error) {
-        alert(error.message);
+      if (upErr) {
+        alert(upErr.message);
         return;
       }
 
@@ -412,7 +472,9 @@ export default function MyProfilePage() {
                   >
                     <div className="flex items-center gap-2 min-w-0">
                       <Tag category={p.category} pinned={p.pinned} />
-                      <div className="text-sm font-extrabold text-slate-900 truncate">{p.title}</div>
+                      <div className="text-sm font-extrabold text-slate-900 truncate">
+                        {p.title}
+                      </div>
                     </div>
                     <div className="mt-1 text-xs font-semibold text-slate-500 flex items-center justify-between">
                       <span>{formatTime(p.created_at)}</span>
@@ -433,7 +495,9 @@ export default function MyProfilePage() {
             {listLoading ? (
               <div className="px-4 py-6 text-sm font-semibold text-slate-600">불러오는중...</div>
             ) : myComments.length === 0 ? (
-              <div className="px-4 py-6 text-sm font-semibold text-slate-600">작성한 댓글이 없습니다.</div>
+              <div className="px-4 py-6 text-sm font-semibold text-slate-600">
+                작성한 댓글이 없습니다.
+              </div>
             ) : (
               <div className="divide-y divide-slate-100">
                 {myComments.map((c) => (
@@ -505,10 +569,22 @@ function Card({ children }) {
 
 function Tag({ category, pinned }) {
   const base = "shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold border";
-  if (pinned) return <span className={`${base} bg-rose-50 text-rose-600 border-rose-200`}>공지</span>;
-  if (category === "공략") return <span className={`${base} bg-blue-50 text-blue-600 border-blue-200`}>공략</span>;
-  if (category === "질문") return <span className={`${base} bg-amber-50 text-amber-700 border-amber-200`}>질문</span>;
-  if (category === "자유") return <span className={`${base} bg-slate-50 text-slate-700 border-slate-200`}>자유</span>;
+  if (pinned)
+    return (
+      <span className={`${base} bg-rose-50 text-rose-600 border-rose-200`}>공지</span>
+    );
+  if (category === "공략")
+    return (
+      <span className={`${base} bg-blue-50 text-blue-600 border-blue-200`}>공략</span>
+    );
+  if (category === "질문")
+    return (
+      <span className={`${base} bg-amber-50 text-amber-700 border-amber-200`}>질문</span>
+    );
+  if (category === "자유")
+    return (
+      <span className={`${base} bg-slate-50 text-slate-700 border-slate-200`}>자유</span>
+    );
   return <span className={`${base} bg-slate-50 text-slate-700 border-slate-200`}>{category}</span>;
 }
 

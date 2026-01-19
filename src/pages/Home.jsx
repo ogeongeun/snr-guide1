@@ -9,8 +9,10 @@ const Home = () => {
 
   // ✅ 관리자 여부
   const [isAdmin, setIsAdmin] = useState(false);
-  // ✅ 길드마스터 여부
-  const [isGuildMaster, setIsGuildMaster] = useState(false);
+
+  // ✅ 길드(길마/길드원)
+  const [isGuildMaster, setIsGuildMaster] = useState(false); // 길드장(leader)
+  const [isGuildMember, setIsGuildMember] = useState(false); // 길드원(멤버십)
 
   const [todayVisitors, setTodayVisitors] = useState(null);
   const [totalVisitors, setTotalVisitors] = useState(null);
@@ -94,13 +96,12 @@ const Home = () => {
       setCommunityLoading(true);
       try {
         const { data } = await supabase
-  .from("community_posts")
-  .select("id, title, category, pinned, created_at, hot_until")
-  .order("pinned", { ascending: false })
-  .order("hot_until", { ascending: false, nullsFirst: false })
-  .order("created_at", { ascending: false })
-  .limit(3);
-
+          .from("community_posts")
+          .select("id, title, category, pinned, created_at, hot_until")
+          .order("pinned", { ascending: false })
+          .order("hot_until", { ascending: false, nullsFirst: false })
+          .order("created_at", { ascending: false })
+          .limit(3);
 
         const rows = (data || []).map((p) => ({
           id: p.id,
@@ -133,17 +134,56 @@ const Home = () => {
     run();
   }, []);
 
-  // 길드마스터 체크
-  useEffect(() => {
-    const run = async () => {
-      const { data } = await supabase.auth.getUser();
-      const uid = data?.user?.id;
-      if (!uid) return setIsGuildMaster(false);
-      const { data: rows } = await supabase.from("guilds").select("id").eq("leader_user_id", uid).limit(1);
+  // ✅ 길드장/길드원 체크 (길드원도 "내 길드" 버튼 뜨게)
+ // ✅ 길드장/길드원 체크 (길드원도 "내 길드" 버튼 뜨게)
+useEffect(() => {
+  const run = async () => {
+    const { data } = await supabase.auth.getUser();
+    const uid = data?.user?.id;
+
+    // 🔽 여기 딱 추가
+    const { data: s } = await supabase.auth.getSession();
+    console.log("[session]", !!s?.session, s?.session?.user?.id);
+
+    setIsGuildMaster(false);
+    setIsGuildMember(false);
+
+    if (!uid) return;
+
+    // 1) 길드장인지
+    try {
+      const { data: rows } = await supabase
+        .from("guilds")
+        .select("id")
+        .eq("leader_user_id", uid)
+        .limit(1);
+
       setIsGuildMaster((rows?.length ?? 0) > 0);
-    };
-    run();
-  }, []);
+    } catch {
+      setIsGuildMaster(false);
+    }
+
+    // 2) 길드원인지
+    try {
+      const { data: mem, error } = await supabase
+        .from("guild_members")
+        .select("guild_id")
+        .eq("user_id", uid)
+        .limit(1);
+
+      console.log("[guild_members]", mem, error);
+      setIsGuildMember((mem?.length ?? 0) > 0);
+    } catch (e) {
+      console.log("[guild_members exception]", e);
+      setIsGuildMember(false);
+    }
+  };
+  run();
+}, []);
+
+
+  const showMyGuildButton = isGuildMaster || isGuildMember;
+  const myGuildButtonText = isGuildMaster ? "길드관리" : "내 길드";
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -162,10 +202,8 @@ const Home = () => {
               세븐나이츠 리버스 공략 도우미
             </h1>
 
-
             <p className="mt-2 rounded-full bg-white/85 px-3 py-1 text-[11px] lg:text-[13px] font-semibold text-rose-600 shadow-sm">
               본 콘텐츠는 천우회,백우회,매드데이,조림 길드 전용이며, 무단 사용 및 복제를 금합니다.
-
             </p>
             <p className="mt-2 text-xs lg:text-sm font-semibold text-slate-700/70 italic">made by 건근본</p>
           </div>
@@ -180,14 +218,17 @@ const Home = () => {
                   로그인계정들
                 </Link>
               )}
-              {isGuildMaster && (
+
+              {showMyGuildButton && (
                 <Link to="/guild-manage" className="shrink-0 rounded-xl px-3 py-2 text-sm font-extrabold bg-amber-600 text-white">
-                  길드관리
+                  {myGuildButtonText}
                 </Link>
               )}
+
               <Link to="/me" className="shrink-0 rounded-xl px-3 py-2 text-sm font-extrabold bg-indigo-600 text-white">
                 내 프로필
               </Link>
+
               <button
                 onClick={handleLogout}
                 disabled={logoutLoading}
@@ -208,7 +249,9 @@ const Home = () => {
                 <span className="text-xl">📣</span>
                 <span className="text-[16px] font-black text-slate-900">커뮤니티</span>
                 <div className="flex-1 h-px bg-slate-200 ml-2" />
-                {hasNewCommunity && <span className="w-4 h-4 rounded-full bg-rose-600 text-white text-[11px] font-black grid place-items-center">!</span>}
+                {hasNewCommunity && (
+                  <span className="w-4 h-4 rounded-full bg-rose-600 text-white text-[11px] font-black grid place-items-center">!</span>
+                )}
               </div>
 
               <div className="mt-2 rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
@@ -219,11 +262,24 @@ const Home = () => {
                     <div className="px-4 py-6 text-sm font-semibold text-slate-600">아직 게시글이 없습니다.</div>
                   ) : (
                     communityItems.map((item) => (
-                      <Link key={item.id} to={`/community/post/${item.id}`} onClick={markCommunitySeen} className="px-4 py-3 flex items-center gap-3 hover:bg-slate-50">
-                        <span className={`shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold ${item.tag === "공지" ? "bg-rose-50 text-rose-600" : "bg-blue-50 text-blue-600"}`}>
+                      <Link
+                        key={item.id}
+                        to={`/community/post/${item.id}`}
+                        onClick={markCommunitySeen}
+                        className="px-4 py-3 flex items-center gap-3 hover:bg-slate-50"
+                      >
+                        <span
+                          className={`shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold ${
+                            item.tag === "공지" ? "bg-rose-50 text-rose-600" : "bg-blue-50 text-blue-600"
+                          }`}
+                        >
                           {item.tag}
                         </span>
-                        <span className={`shrink-0 text-[12px] font-extrabold ${item.type === "공지" ? "text-rose-600" : "text-slate-700"}`}>
+                        <span
+                          className={`shrink-0 text-[12px] font-extrabold ${
+                            item.type === "공지" ? "text-rose-600" : "text-slate-700"
+                          }`}
+                        >
                           [{item.type}]
                         </span>
                         <span className="text-[13px] font-semibold text-slate-800 line-clamp-1">{item.title}</span>
@@ -231,7 +287,11 @@ const Home = () => {
                     ))
                   )}
                 </div>
-                <Link to="/community" onClick={markCommunitySeen} className="block px-4 py-3 text-center text-[13px] font-extrabold text-indigo-600 bg-slate-50">
+                <Link
+                  to="/community"
+                  onClick={markCommunitySeen}
+                  className="block px-4 py-3 text-center text-[13px] font-extrabold text-indigo-600 bg-slate-50"
+                >
                   [ 전체 커뮤니티 보기 → ]
                 </Link>
               </div>
@@ -263,21 +323,24 @@ const Home = () => {
                   </Link>
                 </div>
               )}
+
               <div className="flex justify-end gap-2">
-                {isGuildMaster && (
+                {showMyGuildButton && (
                   <Link
                     to="/guild-manage"
                     className="whitespace-nowrap rounded-xl px-3 py-2 text-sm font-extrabold bg-amber-600 text-white hover:bg-amber-500"
                   >
-                    길드관리
+                    {myGuildButtonText}
                   </Link>
                 )}
+
                 <Link
                   to="/me"
                   className="whitespace-nowrap rounded-xl px-3 py-2 text-sm font-extrabold bg-indigo-600 text-white hover:bg-indigo-500"
                 >
                   내 프로필
                 </Link>
+
                 <button
                   onClick={handleLogout}
                   disabled={logoutLoading}
@@ -298,7 +361,9 @@ const Home = () => {
               <div className="px-4 py-3 flex items-center gap-2 border-b border-slate-100">
                 <span className="text-lg">📣</span>
                 <span className="text-[15px] font-black text-slate-900">커뮤니티</span>
-                {hasNewCommunity && <span className="ml-2 w-4 h-4 rounded-full bg-rose-600 text-white text-[11px] font-black grid place-items-center">!</span>}
+                {hasNewCommunity && (
+                  <span className="ml-2 w-4 h-4 rounded-full bg-rose-600 text-white text-[11px] font-black grid place-items-center">!</span>
+                )}
               </div>
               <div className="divide-y divide-slate-100">
                 {communityLoading ? (
@@ -307,11 +372,24 @@ const Home = () => {
                   <div className="px-4 py-6 text-sm font-semibold text-slate-600">아직 게시글이 없습니다.</div>
                 ) : (
                   communityItems.map((item) => (
-                    <Link key={item.id} to={`/community/post/${item.id}`} onClick={markCommunitySeen} className="px-4 py-3 flex items-center gap-3 hover:bg-slate-50">
-                      <span className={`shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold ${item.tag === "공지" ? "bg-rose-50 text-rose-600" : "bg-blue-50 text-blue-600"}`}>
+                    <Link
+                      key={item.id}
+                      to={`/community/post/${item.id}`}
+                      onClick={markCommunitySeen}
+                      className="px-4 py-3 flex items-center gap-3 hover:bg-slate-50"
+                    >
+                      <span
+                        className={`shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold ${
+                          item.tag === "공지" ? "bg-rose-50 text-rose-600" : "bg-blue-50 text-blue-600"
+                        }`}
+                      >
                         {item.tag}
                       </span>
-                      <span className={`shrink-0 text-[12px] font-extrabold ${item.type === "공지" ? "text-rose-600" : "text-slate-700"}`}>
+                      <span
+                        className={`shrink-0 text-[12px] font-extrabold ${
+                          item.type === "공지" ? "text-rose-600" : "text-slate-700"
+                        }`}
+                      >
                         [{item.type}]
                       </span>
                       <span className="text-[13px] font-semibold text-slate-800 line-clamp-1">{item.title}</span>
@@ -319,7 +397,11 @@ const Home = () => {
                   ))
                 )}
               </div>
-              <Link to="/community" onClick={markCommunitySeen} className="block px-4 py-3 text-center text-[13px] font-extrabold text-indigo-600 bg-slate-50">
+              <Link
+                to="/community"
+                onClick={markCommunitySeen}
+                className="block px-4 py-3 text-center text-[13px] font-extrabold text-indigo-600 bg-slate-50"
+              >
                 전체 커뮤니티 보기 →
               </Link>
             </div>
@@ -335,7 +417,11 @@ const Home = () => {
 
             <div className="grid grid-cols-3 gap-4 xl:grid-cols-4">
               {features.map((feature, index) => (
-                <Link key={index} to={feature.path} className="rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md p-5">
+                <Link
+                  key={index}
+                  to={feature.path}
+                  className="rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md p-5"
+                >
                   <div className="text-4xl">{feature.emoji}</div>
                   <h3 className="mt-2 text-[16px] font-extrabold text-slate-900">{feature.title}</h3>
                   <p className="mt-1 text-[13px] font-semibold text-slate-600">{feature.description}</p>

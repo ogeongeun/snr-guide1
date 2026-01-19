@@ -57,6 +57,25 @@ export default function AdminUsersPage() {
     run();
   }, [navigate]);
 
+  /** 닉네임별 카운트 */
+  const nicknameCounts = useMemo(() => {
+    const map = {};
+    for (const u of users) {
+      const nick = u.nickname?.trim();
+      if (!nick) continue;
+      map[nick] = (map[nick] || 0) + 1;
+    }
+    return map;
+  }, [users]);
+
+  /** ✅ 중복 닉네임 유저만 */
+  const duplicateUsers = useMemo(() => {
+    return users.filter((u) => {
+      const nick = u.nickname?.trim();
+      return nick && nicknameCounts[nick] > 1;
+    });
+  }, [users, nicknameCounts]);
+
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
     if (!s) return users;
@@ -87,6 +106,34 @@ export default function AdminUsersPage() {
         <Card>관리자만 접근 가능합니다.</Card>
       ) : (
         <div className="grid gap-4">
+          {/* 🔴 중복 닉네임 섹션 */}
+          {duplicateUsers.length > 0 && (
+            <div className="rounded-2xl bg-red-50 border border-red-200 shadow-sm overflow-hidden">
+              <div className="px-4 py-3 border-b border-red-200 text-sm font-black text-red-700">
+                중복 닉네임 계정 ({duplicateUsers.length})
+              </div>
+
+              <div className="divide-y divide-red-100">
+                {duplicateUsers.map((u) => (
+                  <div key={u.user_id} className="px-4 py-3">
+                    <div className="flex items-center gap-2">
+                      <div className="text-sm font-extrabold text-slate-900">
+                        {formatDisplayName(u)}
+                      </div>
+                      <span className="rounded-lg bg-red-200 px-2 py-0.5 text-[11px] font-black text-red-700">
+                        중복
+                      </span>
+                    </div>
+                    <div className="mt-1 text-xs font-semibold text-slate-600">
+                      {u.user_id}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* 검색 */}
           <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-4">
             <div className="text-sm font-black text-slate-900">검색</div>
             <div className="mt-2 flex items-center gap-2">
@@ -102,9 +149,10 @@ export default function AdminUsersPage() {
             </div>
           </div>
 
+          {/* 전체 목록 */}
           <div className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
             <div className="px-4 py-3 border-b border-slate-100 text-sm font-black text-slate-900">
-              목록
+              전체 목록
             </div>
 
             {filtered.length === 0 ? (

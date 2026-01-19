@@ -1,8 +1,9 @@
+// src/pages/ProfileSetupPage.jsx
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
-const GUILD_PRESETS = ["천우회", "백우회", "Madday", "조림", "Platinum"];
+const GUILD_PRESETS = ["천우회", "백우회", "Madday", "조림", "Platinum", "Luckyday"];
 
 export default function ProfileSetupPage() {
   const [loading, setLoading] = useState(true);
@@ -39,7 +40,7 @@ export default function ProfileSetupPage() {
       // 기존 닉네임/길드 조회
       const { data, error } = await supabase
         .from("profiles")
-        .select("nickname,guild")
+        .select("nickname,guild,guild_id")
         .eq("user_id", sess.user.id)
         .single();
 
@@ -81,7 +82,7 @@ export default function ProfileSetupPage() {
 
   const save = async () => {
     const nick = nickname.trim();
-    const guildValue = composedGuild;
+    const guildValue = composedGuild.trim();
 
     if (!nick) {
       alert("닉네임 입력해줘");
@@ -95,14 +96,78 @@ export default function ProfileSetupPage() {
     try {
       setSaving(true);
 
-      // ✅ 닉네임 + 길드 한번에 upsert
+      // 0) 길드 미지정이면 guild / guild_id 둘 다 null
+      if (!guildValue.length) {
+        const { error } = await supabase
+          .from("profiles")
+          .upsert(
+            {
+              user_id: session.user.id,
+              nickname: nick,
+              guild: null,
+              guild_id: null,
+            },
+            { onConflict: "user_id" }
+          );
+
+        if (error) {
+          alert(error.message);
+          return;
+        }
+
+        navigate("/", { replace: true });
+        return;
+      }
+
+      // 1) guilds에서 길드 id 조회
+      const { data: found, error: findErr } = await supabase
+        .from("guilds")
+        .select("id")
+        .eq("name", guildValue)
+        .maybeSingle();
+
+      if (findErr) {
+        alert(findErr.message);
+        return;
+      }
+
+      let guildId = found?.id ?? null;
+
+      // 2) 없으면 guilds에 생성(직접입력 포함)
+      if (!guildId) {
+        const { data: created, error: createErr } = await supabase
+          .from("guilds")
+          .insert({ name: guildValue })
+          .select("id")
+          .single();
+
+        if (createErr) {
+          // 동시 생성 레이스(UNIQUE 충돌) 가능 → 재조회
+          const { data: retry, error: retryErr } = await supabase
+            .from("guilds")
+            .select("id")
+            .eq("name", guildValue)
+            .single();
+
+          if (retryErr) {
+            alert(createErr.message);
+            return;
+          }
+          guildId = retry.id;
+        } else {
+          guildId = created.id;
+        }
+      }
+
+      // 3) profiles에 닉네임 + 길드 + guild_id 한번에 upsert
       const { error } = await supabase
         .from("profiles")
         .upsert(
           {
             user_id: session.user.id,
             nickname: nick,
-            guild: guildValue.length ? guildValue : null,
+            guild: guildValue,
+            guild_id: guildId,
           },
           { onConflict: "user_id" }
         );
@@ -136,7 +201,9 @@ export default function ProfileSetupPage() {
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
           />
-          <div className="mt-1 text-xs text-gray-500">인게임 닉네임(다르면 삭제될수있음)</div>
+          <div className="mt-1 text-xs text-gray-500">
+            인게임 닉네임(다르면 삭제될수있음)
+          </div>
         </div>
 
         {/* 길드 */}

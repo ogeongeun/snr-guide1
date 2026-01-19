@@ -1,16 +1,36 @@
 // src/pages/GuildManagePage.jsx
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function GuildManagePage() {
   const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
   const [guild, setGuild] = useState(null);
+  const [myRole, setMyRole] = useState(null); // "leader" | "member" | null
+  const [errMsg, setErrMsg] = useState("");
+
+  const [membersLoading, setMembersLoading] = useState(false);
+  const [members, setMembers] = useState([]); // [{user_id, nickname, role, joined_at}]
+
+  const pageTitle = useMemo(
+    () => (myRole === "leader" ? "길드관리" : "내 길드"),
+    [myRole]
+  );
+
+  const roleLabel = (role) => (role === "leader" ? "길드장" : "길드원");
+
+  const badgeClass = (role) =>
+    role === "leader"
+      ? "bg-amber-50 text-amber-700 border border-amber-200"
+      : "bg-slate-50 text-slate-700 border border-slate-200";
 
   useEffect(() => {
     const run = async () => {
       setLoading(true);
+      setErrMsg("");
+
       try {
         const { data: userRes, error: uErr } = await supabase.auth.getUser();
         if (uErr) throw uErr;
@@ -21,26 +41,52 @@ export default function GuildManagePage() {
           return;
         }
 
-        // ✅ 길마인지 서버에서 다시 확인
-        const { data, error } = await supabase
-          .from("guilds")
-          .select("id, name, leader_user_id")
-          .eq("leader_user_id", uid)
-          .maybeSingle();
+        // 1) 내 멤버십(길드원/길드장 공통) 1개
+        const { data: memRows, error: memErr } = await supabase
+          .from("guild_members")
+          .select("guild_id, role, created_at")
+          .eq("user_id", uid)
+          .order("created_at", { ascending: false })
+          .limit(1);
 
-        if (error) throw error;
+        if (memErr) throw memErr;
 
-        if (!data) {
-          // 길마 아니면 홈으로
-          navigate("/", { replace: true });
+        const mem = (memRows ?? [])[0] ?? null;
+        if (!mem?.guild_id) {
+          setErrMsg("길드 소속 정보가 없습니다. (guild_members에 내 계정이 없음)");
           return;
         }
 
-        setGuild(data);
+        setMyRole(mem.role ?? "member");
+
+        // 2) 길드 정보
+        const { data: gRows, error: gErr } = await supabase
+          .from("guilds")
+          .select("id, name, leader_user_id")
+          .eq("id", mem.guild_id)
+          .limit(1);
+
+        if (gErr) throw gErr;
+
+        const g = (gRows ?? [])[0] ?? null;
+        if (!g) {
+          setErrMsg("길드 정보를 찾을 수 없습니다. (guilds RLS / 데이터 확인)");
+          return;
+        }
+        setGuild(g);
+
+        // 3) 길드원 목록 (RPC)
+        setMembersLoading(true);
+        const { data: mRows, error: mErr } = await supabase.rpc(
+          "get_my_guild_members"
+        );
+        if (mErr) throw mErr;
+        setMembers(Array.isArray(mRows) ? mRows : []);
       } catch (e) {
-        console.error("GuildManagePage error:", e?.message || e);
-        navigate("/", { replace: true });
+        console.error("GuildManagePage error:", e);
+        setErrMsg(e?.message ? String(e.message) : "알 수 없는 오류");
       } finally {
+        setMembersLoading(false);
         setLoading(false);
       }
     };
@@ -59,24 +105,106 @@ export default function GuildManagePage() {
             ← 홈
           </Link>
 
-          <h1 className="text-[20px] font-black text-slate-900">길드관리</h1>
+          <h1 className="text-[20px] font-black text-slate-900">{pageTitle}</h1>
           <div className="flex-1 h-px bg-slate-200 ml-2" />
         </div>
 
         <div className="mt-4 rounded-2xl border border-slate-200 bg-white shadow-sm p-5">
           {loading ? (
-            <div className="text-sm font-semibold text-slate-600">불러오는중...</div>
+            <div className="text-sm font-semibold text-slate-600">
+              불러오는중...
+            </div>
+          ) : errMsg ? (
+            <div className="rounded-xl border border-rose-200 bg-rose-50 p-4">
+              <div className="text-[13px] font-extrabold text-rose-700">
+                오류
+              </div>
+              <div className="mt-1 text-[12px] font-semibold text-rose-700/90 break-all">
+                {errMsg}
+              </div>
+            </div>
           ) : (
             <>
-              <div className="text-sm font-semibold text-slate-600">내 길드</div>
-              <div className="mt-1 text-[18px] font-black text-slate-900">
-                {guild?.name || "(길드명 없음)"}
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <div className="text-sm font-semibold text-slate-600">
+                    내 길드
+                  </div>
+                  <div className="mt-1 text-[18px] font-black text-slate-900">
+                    {guild?.name || "(길드명 없음)"}
+                  </div>
+                </div>
+
+                <div
+                  className={`shrink-0 rounded-full px-3 py-1 text-[12px] font-extrabold border ${badgeClass(
+                    myRole
+                  )}`}
+                >
+                  {roleLabel(myRole)}
+                </div>
+              </div>
+
+              {/* 길드원 목록 */}
+              <div className="mt-4 rounded-xl bg-white border border-slate-200 overflow-hidden">
+                <div className="px-4 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                  <div className="text-[14px] font-extrabold text-slate-900">
+                    길드원
+                  </div>
+                  <div className="text-[12px] font-bold text-slate-600">
+                    {membersLoading ? "불러오는중..." : `${members.length}명`}
+                  </div>
+                </div>
+
+                {membersLoading ? (
+                  <div className="px-4 py-5 text-sm font-semibold text-slate-600">
+                    불러오는중...
+                  </div>
+                ) : members.length === 0 ? (
+                  <div className="px-4 py-5 text-sm font-semibold text-slate-600">
+                    길드원이 없습니다.
+                  </div>
+                ) : (
+                  <div className="divide-y divide-slate-100">
+                    {members.map((m) => (
+                      <div
+                        key={m.user_id}
+                        className="px-4 py-3 flex items-center gap-3"
+                      >
+                        <span
+                          className={`shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold border ${badgeClass(
+                            m.role
+                          )}`}
+                        >
+                          {roleLabel(m.role)}
+                        </span>
+
+                        <div className="min-w-0 flex-1">
+                          <div className="text-[14px] font-extrabold text-slate-900 truncate">
+                            {m.nickname || "(닉네임 없음)"}
+                          </div>
+                        </div>
+
+                        <div className="text-[11px] font-semibold text-slate-500">
+                          {m.joined_at
+                            ? new Date(m.joined_at).toLocaleDateString()
+                            : ""}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4">
-                <div className="text-[13px] font-semibold text-slate-700">
-                  (여기부터 길드원 리스트/기능 붙이면 됨)
-                </div>
+                {myRole === "leader" ? (
+                  <div className="text-[13px] font-semibold text-slate-700">
+                    (길드장 전용 관리 기능 영역)
+                  </div>
+                ) : (
+                  <div className="text-[13px] font-semibold text-slate-700">
+                    (길드원용: 길드 정보/공지/길드원 목록 보기 영역)
+                  </div>
+                )}
               </div>
             </>
           )}

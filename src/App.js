@@ -120,7 +120,15 @@ const App = () => {
         <Route path="/farming" element={<FarmingEfficiency />} />
         <Route path="/essential-heroes" element={<EssentialHeroesPage />} />
         <Route path="/essential-skill/:element/:teamIndex" element={<EssentialSkillDetailPage />} />
-<Route path="/guild-manage" element={<GuildManagePage />} />
+<Route
+  path="/guild-manage"
+  element={
+    <RequireAuth>
+      <GuildManagePage />
+    </RequireAuth>
+  }
+/>
+
 
         <Route path="/raid-guide" element={<RaidGuidePage />} />
         <Route path="/raid-skill/:bossKey/:teamIndex" element={<RaidSkillDetailPage />} />
