@@ -4,6 +4,8 @@ import { supabase } from "../lib/supabaseClient";
 import LoginBox from "../components/LoginBox";
 import { useLocation, useNavigate } from "react-router-dom";
 
+const isTempNick = (n) => (n ?? "").startsWith("TEMP_");
+
 export default function LoginPage() {
   const [session, setSession] = useState(undefined);
   const [checkingProfile, setCheckingProfile] = useState(false);
@@ -47,8 +49,8 @@ export default function LoginPage() {
           .eq("user_id", uid)
           .maybeSingle();
 
-        // ✅ 프로필 없거나 nickname 없으면 닉네임 설정으로
-        if (error || !prof?.nickname) {
+        // ✅ 프로필 없거나 nickname 없거나 TEMP_면 닉네임 설정으로
+        if (error || !prof?.nickname || isTempNick(prof.nickname)) {
           navigate("/profile-setup", { replace: true });
           return;
         }

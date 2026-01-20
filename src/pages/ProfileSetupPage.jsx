@@ -3,10 +3,13 @@ import { useEffect, useMemo, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
-const GUILD_PRESETS = ["천우회", "백우회", "Madday", "조림", "Platinum", "Luckyday","실버타운"];
+const GUILD_PRESETS = ["천우회", "백우회", "Madday", "조림", "Platinum", "Luckyday", "실버타운"];
 
 const DUP_TEXT =
   "중복시 이전에 가입한 닉네임이있습니다 관리자에게 말해서 삭제후 가입부탁드립니다";
+
+const normalize = (s) => (s ?? "").trim().toLowerCase();
+const isTempNick = (n) => (n ?? "").startsWith("TEMP_");
 
 export default function ProfileSetupPage() {
   const [loading, setLoading] = useState(true);
@@ -28,59 +31,68 @@ export default function ProfileSetupPage() {
     return (guildPreset || "").trim();
   }, [guildMode, guildPreset, guildCustom]);
 
-  const normalize = (s) => (s ?? "").trim().toLowerCase();
-
   useEffect(() => {
     const run = async () => {
-      // 로그인 세션 확인
-      const { data: sessionRes } = await supabase.auth.getSession();
-      const sess = sessionRes?.session;
+      try {
+        // 로그인 세션 확인
+        const { data: sessionRes } = await supabase.auth.getSession();
+        const sess = sessionRes?.session;
 
-      if (!sess) {
-        navigate("/login", { replace: true });
-        return;
-      }
-
-      setSession(sess);
-
-      // 기존 닉네임/길드 조회
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("nickname,guild,guild_id")
-        .eq("user_id", sess.user.id)
-        .single();
-
-      // 이미 닉네임이 있으면 바로 홈으로
-      // (길드는 나중에 바꿀 수 있으니 닉네임만 기준으로 유지)
-      if (!error && data?.nickname && data.nickname !== "익명") {
-        navigate("/", { replace: true });
-        return;
-      }
-
-      // 기존 닉네임 채우기
-      if (!error && data?.nickname) {
-        setNickname(data.nickname);
-      }
-
-      // ✅ 기존 길드가 있으면 preset/custom 모드 자동 세팅
-      const currentGuild = (data?.guild || "").trim();
-      if (currentGuild) {
-        if (GUILD_PRESETS.includes(currentGuild)) {
-          setGuildMode("preset");
-          setGuildPreset(currentGuild);
-          setGuildCustom("");
-        } else {
-          setGuildMode("custom");
-          setGuildPreset("");
-          setGuildCustom(currentGuild);
+        if (!sess) {
+          navigate("/login", { replace: true });
+          return;
         }
-      } else {
-        setGuildMode("preset");
-        setGuildPreset("");
-        setGuildCustom("");
-      }
 
-      setLoading(false);
+        setSession(sess);
+
+        // 기존 닉네임/길드 조회
+        const { data, error } = await supabase
+          .from("profiles")
+          .select("nickname,guild,guild_id")
+          .eq("user_id", sess.user.id)
+          .single();
+
+        // ✅ 이미 "확정 닉네임"이 있으면 홈으로
+        // - TEMP_ 로 시작하는 임시 닉네임은 "미설정" 취급
+        // - "익명"도 미설정 취급
+        const hasFinalNickname =
+          !error &&
+          data?.nickname &&
+          data.nickname !== "익명" &&
+          !isTempNick(data.nickname);
+
+        if (hasFinalNickname) {
+          navigate("/", { replace: true });
+          return;
+        }
+
+        // ✅ 임시 닉네임(TEMP_)은 입력칸에 자동 채우지 않음
+        if (!error && data?.nickname && !isTempNick(data.nickname) && data.nickname !== "익명") {
+          setNickname(data.nickname);
+        } else {
+          setNickname("");
+        }
+
+        // ✅ 기존 길드가 있으면 preset/custom 모드 자동 세팅
+        const currentGuild = (data?.guild || "").trim();
+        if (currentGuild) {
+          if (GUILD_PRESETS.includes(currentGuild)) {
+            setGuildMode("preset");
+            setGuildPreset(currentGuild);
+            setGuildCustom("");
+          } else {
+            setGuildMode("custom");
+            setGuildPreset("");
+            setGuildCustom(currentGuild);
+          }
+        } else {
+          setGuildMode("preset");
+          setGuildPreset("");
+          setGuildCustom("");
+        }
+      } finally {
+        setLoading(false);
+      }
     };
 
     run();
@@ -91,9 +103,6 @@ export default function ProfileSetupPage() {
     const n = normalize(rawNick);
     if (!n) return false;
 
-    // 서버에서 전체를 한번에 정규화 비교할 수 없어서,
-    // 후보를 조금 가져온 뒤 JS에서 normalize로 최종 판정
-    // (대부분 데이터가 크지 않으니 충분히 안전)
     const { data, error } = await supabase
       .from("profiles")
       .select("user_id,nickname")
@@ -149,7 +158,6 @@ export default function ProfileSetupPage() {
           );
 
         if (error) {
-          // ✅ DB 유니크(닉네임)로 걸리면 동일 문구
           if (error.code === "23505") {
             setDupWarn(DUP_TEXT);
             return;
@@ -216,7 +224,6 @@ export default function ProfileSetupPage() {
         );
 
       if (error) {
-        // ✅ DB 유니크(닉네임)로 걸리면 동일 문구
         if (error.code === "23505") {
           setDupWarn(DUP_TEXT);
           return;
@@ -256,7 +263,7 @@ export default function ProfileSetupPage() {
             value={nickname}
             onChange={(e) => {
               setNickname(e.target.value);
-              if (dupWarn) setDupWarn(""); // 입력 바꾸면 경고 지우기
+              if (dupWarn) setDupWarn("");
             }}
           />
           <div className="mt-1 text-xs text-gray-500">
