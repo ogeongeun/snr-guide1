@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
-const GUILD_PRESETS = ["천우회", "백우회", "Madday", "조림", "Platinum", "Luckyday"];
+const GUILD_PRESETS = ["천우회", "백우회", "Madday", "조림", "Platinum", "Luckyday","실버타운"];
 
 const DUP_TEXT =
   "중복시 이전에 가입한 닉네임이있습니다 관리자에게 말해서 삭제후 가입부탁드립니다";
