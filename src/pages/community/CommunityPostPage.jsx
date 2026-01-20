@@ -29,9 +29,12 @@ export default function CommunityPostPage() {
   const [editCommentText, setEditCommentText] = useState("");
   const [savingCommentId, setSavingCommentId] = useState(null);
 
-  // ✅ 추천(좋아요)
+  // ✅ 추천/비추
   const [liked, setLiked] = useState(false);
   const [togglingLike, setTogglingLike] = useState(false);
+
+  const [disliked, setDisliked] = useState(false);
+  const [togglingDislike, setTogglingDislike] = useState(false);
 
   // ✅ 상단고정 토글
   const [togglingPin, setTogglingPin] = useState(false);
@@ -69,7 +72,7 @@ export default function CommunityPostPage() {
       await supabase.rpc("community_inc_view", { p_post_id: postId });
     } catch {}
 
-    // 게시글 + 작성자 닉/길드 (+ like_count)
+    // 게시글 + 작성자 닉/길드 (+ like_count/dislike_count)
     const { data: p, error: pe } = await supabase
       .from("community_posts")
       .select(
@@ -82,6 +85,7 @@ export default function CommunityPostPage() {
         created_at,
         view_count,
         like_count,
+        dislike_count,
         author_id,
         profiles!community_posts_author_id_fkey (
           nickname,
@@ -102,14 +106,23 @@ export default function CommunityPostPage() {
 
     setPost(p);
 
-    // ✅ 내 추천 여부
+    // ✅ 내 추천/비추 여부
     if (user?.id) {
-      const { data: likeRow, error: le } = await supabase
-        .from("community_post_likes")
-        .select("post_id")
-        .eq("post_id", postId)
-        .eq("user_id", user.id)
-        .maybeSingle();
+      const [{ data: likeRow, error: le }, { data: dislikeRow, error: de }] =
+        await Promise.all([
+          supabase
+            .from("community_post_likes")
+            .select("post_id")
+            .eq("post_id", postId)
+            .eq("user_id", user.id)
+            .maybeSingle(),
+          supabase
+            .from("community_post_dislikes")
+            .select("post_id")
+            .eq("post_id", postId)
+            .eq("user_id", user.id)
+            .maybeSingle(),
+        ]);
 
       if (le) {
         console.error(le);
@@ -117,8 +130,16 @@ export default function CommunityPostPage() {
       } else {
         setLiked(!!likeRow);
       }
+
+      if (de) {
+        console.error(de);
+        setDisliked(false);
+      } else {
+        setDisliked(!!dislikeRow);
+      }
     } else {
       setLiked(false);
+      setDisliked(false);
     }
 
     // 댓글 + 작성자 닉/길드
@@ -161,6 +182,7 @@ export default function CommunityPostPage() {
   }, [postId]);
 
   const toggleLike = async () => {
+    if (!Number.isFinite(postId)) return alert("잘못된 게시글 ID");
     if (togglingLike || !supabase) return;
 
     const { data: userRes } = await supabase.auth.getUser();
@@ -179,6 +201,7 @@ export default function CommunityPostPage() {
       });
 
       if (error) {
+        console.log("RPC like error:", error);
         alert(`추천 처리 실패: ${error.message}`);
         return;
       }
@@ -187,11 +210,73 @@ export default function CommunityPostPage() {
       if (!row) return;
 
       setLiked(!!row.liked);
+      // like 누르면 dislike가 자동 해제될 수 있으니 동기화
+      if (typeof row.disliked !== "undefined") setDisliked(!!row.disliked);
+
       setPost((prev) =>
-        prev ? { ...prev, like_count: Number(row.like_count || 0) } : prev
+        prev
+          ? {
+              ...prev,
+              like_count: Number(row.like_count || 0),
+              dislike_count:
+                typeof row.dislike_count !== "undefined"
+                  ? Number(row.dislike_count || 0)
+                  : prev.dislike_count,
+            }
+          : prev
       );
     } finally {
       setTogglingLike(false);
+    }
+  };
+
+  // ✅ 비추 토글 (DB에 community_toggle_dislike RPC가 있어야 함)
+  const toggleDislike = async () => {
+    if (!Number.isFinite(postId)) return alert("잘못된 게시글 ID");
+    if (togglingDislike || !supabase) return;
+
+    const { data: userRes } = await supabase.auth.getUser();
+    const uid = userRes?.user?.id;
+    if (!uid) {
+      alert("로그인이 필요합니다.");
+      navigate("/login", { replace: true });
+      return;
+    }
+
+    try {
+      setTogglingDislike(true);
+
+      const { data, error } = await supabase.rpc("community_toggle_dislike", {
+        p_post_id: postId,
+      });
+
+      if (error) {
+        console.log("RPC dislike error:", error);
+        alert(`비추 처리 실패: ${error.message}`);
+        return;
+      }
+
+      const row = Array.isArray(data) ? data[0] : data;
+      if (!row) return;
+
+      setDisliked(!!row.disliked);
+      // dislike 누르면 like가 자동 해제될 수 있으니 동기화
+      if (typeof row.liked !== "undefined") setLiked(!!row.liked);
+
+      setPost((prev) =>
+        prev
+          ? {
+              ...prev,
+              like_count:
+                typeof row.like_count !== "undefined"
+                  ? Number(row.like_count || 0)
+                  : prev.like_count,
+              dislike_count: Number(row.dislike_count || 0),
+            }
+          : prev
+      );
+    } finally {
+      setTogglingDislike(false);
     }
   };
 
@@ -220,6 +305,7 @@ export default function CommunityPostPage() {
           created_at,
           view_count,
           like_count,
+          dislike_count,
           author_id,
           profiles!community_posts_author_id_fkey (
             nickname,
@@ -322,6 +408,7 @@ export default function CommunityPostPage() {
           created_at,
           view_count,
           like_count,
+          dislike_count,
           author_id,
           profiles!community_posts_author_id_fkey (
             nickname,
@@ -347,7 +434,10 @@ export default function CommunityPostPage() {
     if (!post || !supabase) return;
     if (!window.confirm("정말 삭제할까?")) return;
 
-    const { error } = await supabase.from("community_posts").delete().eq("id", postId);
+    const { error } = await supabase
+      .from("community_posts")
+      .delete()
+      .eq("id", postId);
 
     if (error) {
       alert(`삭제 실패: ${error.message}`);
@@ -409,7 +499,10 @@ export default function CommunityPostPage() {
     if (!supabase) return;
     if (!window.confirm("댓글 삭제할까?")) return;
 
-    const { error } = await supabase.from("community_comments").delete().eq("id", commentId);
+    const { error } = await supabase
+      .from("community_comments")
+      .delete()
+      .eq("id", commentId);
 
     if (error) {
       alert(`삭제 실패: ${error.message}`);
@@ -448,7 +541,9 @@ export default function CommunityPostPage() {
                 <Tag category={post.category} pinned={post.pinned} />
 
                 {!editingPost ? (
-                  <div className="text-[16px] font-black text-slate-900 truncate">{post.title}</div>
+                  <div className="text-[16px] font-black text-slate-900 truncate">
+                    {post.title}
+                  </div>
                 ) : (
                   <div className="min-w-0 flex-1">
                     <input
@@ -490,7 +585,6 @@ export default function CommunityPostPage() {
                       </button>
                     )}
 
-                    {/* ✅ 관리자만: 상단고정/해제 */}
                     {isAdmin && (
                       <button
                         type="button"
@@ -499,7 +593,11 @@ export default function CommunityPostPage() {
                         className="rounded-xl px-3 py-2 text-xs font-extrabold bg-amber-600 text-white hover:bg-amber-500 disabled:opacity-50 disabled:cursor-not-allowed"
                         title="상단 고정"
                       >
-                        {togglingPin ? "처리중..." : post.pinned ? "고정해제" : "상단고정"}
+                        {togglingPin
+                          ? "처리중..."
+                          : post.pinned
+                          ? "고정해제"
+                          : "상단고정"}
                       </button>
                     )}
                   </>
@@ -539,7 +637,8 @@ export default function CommunityPostPage() {
                   {post.content}
                 </div>
 
-                <div className="mt-4 flex items-center justify-left">
+                <div className="mt-4 flex items-center gap-2">
+                  {/* 👍 추천 */}
                   <button
                     type="button"
                     onClick={toggleLike}
@@ -555,7 +654,30 @@ export default function CommunityPostPage() {
                   >
                     <ThumbIcon filled={liked} />
                     <span className="text-slate-800">추천</span>
-                    <span className="text-slate-500">{Number(post.like_count || 0).toLocaleString()}</span>
+                    <span className="text-slate-500">
+                      {Number(post.like_count || 0).toLocaleString()}
+                    </span>
+                  </button>
+
+                  {/* 👎 비추 */}
+                  <button
+                    type="button"
+                    onClick={toggleDislike}
+                    disabled={togglingDislike}
+                    className={[
+                      "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-extrabold",
+                      "border border-slate-200 bg-white transition select-none",
+                      "hover:bg-slate-50",
+                      togglingDislike ? "opacity-50 cursor-not-allowed" : "",
+                    ].join(" ")}
+                    aria-pressed={disliked}
+                    title="비추"
+                  >
+                    <DownIcon filled={disliked} />
+                    <span className="text-slate-800">비추</span>
+                    <span className="text-slate-500">
+                      {Number(post.dislike_count || 0).toLocaleString()}
+                    </span>
                   </button>
                 </div>
               </>
@@ -572,6 +694,7 @@ export default function CommunityPostPage() {
             )}
           </div>
 
+          {/* 댓글 영역 이하 동일 */}
           <div className="mt-4 rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
             <div className="px-4 py-3 border-b border-slate-100 text-sm font-black text-slate-900">
               댓글 {comments.length.toLocaleString()}개
@@ -637,7 +760,9 @@ export default function CommunityPostPage() {
                     </div>
 
                     {!isEditing ? (
-                      <div className="mt-2 text-sm font-semibold text-slate-800 whitespace-pre-wrap">{c.content}</div>
+                      <div className="mt-2 text-sm font-semibold text-slate-800 whitespace-pre-wrap">
+                        {c.content}
+                      </div>
                     ) : (
                       <div className="mt-2">
                         <textarea
@@ -653,7 +778,9 @@ export default function CommunityPostPage() {
               })}
 
               {comments.length === 0 && (
-                <div className="px-4 py-6 text-sm font-semibold text-slate-600">첫 댓글을 남겨봐.</div>
+                <div className="px-4 py-6 text-sm font-semibold text-slate-600">
+                  첫 댓글을 남겨봐.
+                </div>
               )}
             </div>
 
@@ -738,6 +865,20 @@ function ThumbIcon({ filled }) {
       <path
         fill="currentColor"
         d="M2 10.5C2 9.67 2.67 9 3.5 9H8V20H3.5C2.67 20 2 19.33 2 18.5V10.5ZM6.5 18.5H8V10.5H6.5V18.5ZM9 9H14.25C15.22 9 16 8.22 16 7.25V6.5C16 4.57 14.43 3 12.5 3H12.1C11.22 3 10.44 3.57 10.18 4.41L8.38 9.86C8.13 10.61 8 11.42 8 12.25V20H17.2C18.58 20 19.78 19.06 20.12 17.72L21.62 11.72C21.94 10.43 20.96 9.2 19.63 9.2H15.4L15.81 7.16C16.07 5.86 15.07 4.6 13.74 4.6H12.5C11.57 4.6 10.74 5.18 10.42 6.05L9 10.26V9ZM10 12.25c0-.72.12-1.43.34-2.09L11.37 7.1c.06-.18.23-.3.42-.3h1.95c.23 0 .4.21.35.44l-.46 2.34c-.26 1.32.76 2.52 2.1 2.52h4.23l-1.5 6c-.11.45-.52.77-.99.77H10v-7.62Z"
+      />
+    </svg>
+  );
+}
+
+function DownIcon({ filled }) {
+  const common = "w-[18px] h-[18px]";
+  const colorClass = filled ? "text-rose-600" : "text-slate-400";
+
+  return (
+    <svg viewBox="0 0 24 24" className={`${common} ${colorClass}`} aria-hidden="true" focusable="false">
+      <path
+        fill="currentColor"
+        d="M2 5.5C2 4.67 2.67 4 3.5 4H8v11H3.5C2.67 15 2 14.33 2 13.5V5.5ZM10 4h7.2c1.38 0 2.58.94 2.92 2.28l1.5 6c.32 1.29-.66 2.52-1.99 2.52H15.4l.41 2.04c.05.23-.12.44-.35.44H13.5c-.19 0-.36-.12-.42-.3l-1.03-3.06c-.22-.66-.34-1.37-.34-2.09V4Z"
       />
     </svg>
   );
