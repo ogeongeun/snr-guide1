@@ -384,6 +384,11 @@ export default function GuildOffenseListPage() {
           >
             상대 방어팀 새로 추가하기 →
           </button>
+ <div className="mt-2 text-[12px] font-semibold text-slate-500">
+  상대 방어팀 추가하기에서 <span className="font-extrabold text-slate-700">상대 방어팀을 먼저 검색</span>한 뒤,
+  <span className="font-extrabold text-slate-700">이미 등록된 방어팀이면</span> 해당 방어팀 상세로 들어가서
+  <span className="font-extrabold text-slate-700">카운터덱을 추가</span>해주세요.
+</div>
 
           {!hasAny ? (
             <div className="rounded-3xl bg-white border border-slate-200 shadow-sm p-6">
@@ -592,6 +597,12 @@ export default function GuildOffenseListPage() {
                   >
                     상대 방어팀 추가하기 →
                   </button>
+                  <div className="mt-2 text-[12px] font-semibold text-slate-500">
+  상대 방어팀 추가하기에서 <span className="font-extrabold text-slate-700">상대 방어팀을 먼저 검색</span>한 뒤,
+  <span className="font-extrabold text-slate-700">이미 등록된 방어팀이면</span> 해당 방어팀 상세로 들어가서
+  <span className="font-extrabold text-slate-700">카운터덱을 추가</span>해주세요.
+</div>
+
                 </div>
               </div>
             </aside>
