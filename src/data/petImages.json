@@ -1,0 +1,52 @@
+[
+  {
+    "key": "chri",
+    "name": "크리",
+    "image": "/images/pet/chri.png"
+  },
+  {
+    "key": "dello",
+    "name": "델로",
+    "image": "/images/pet/dello.png"
+  },
+  {
+    "key": "irin",
+    "name": "이린",
+    "image": "/images/pet/irin.png"
+  },
+  {
+    "key": "karam",
+    "name": "카람",
+    "image": "/images/pet/karam.png"
+  },
+  {
+    "key": "meparo",
+    "name": "멜페로",
+    "image": "/images/pet/meparo.png"
+  },
+  {
+    "key": "pike",
+    "name": "파이크",
+    "image": "/images/pet/pike.png"
+  },
+  {
+    "key": "rechel",
+    "name": "리첼",
+    "image": "/images/pet/rechel.png"
+  },
+  {
+    "key": "ru",
+    "name": "루",
+    "image": "/images/pet/ru.png"
+  },
+  {
+    "key": "yeonji",
+    "name": "연지",
+    "image": "/images/pet/Yeonji.png"
+  },
+  {
+    "key": "yu",
+    "name": "유",
+    "image": "/images/pet/yu.png"
+  }
+]
