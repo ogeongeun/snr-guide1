@@ -28,10 +28,10 @@ export default function GuildDefenseCreatePage() {
 
   // ✅ 입력값
   const [label, setLabel] = useState("");
-  const [tagText, setTagText] = useState("");
+  const [tagText] = useState("");
   const [note, setNote] = useState("");
 
-  const [anonymous, setAnonymous] = useState(false);
+  const [anonymous] = useState(false);
 
   // ✅ 영웅 3명
   const [slots, setSlots] = useState([emptySlot(), emptySlot(), emptySlot()]);
