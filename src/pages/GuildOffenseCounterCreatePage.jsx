@@ -1,7 +1,7 @@
 // src/pages/GuildOffenseCounterCreatePage.jsx
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Search, X, Swords, Shield, PawPrint, Save } from "lucide-react";
+import { Plus, Swords, Shield, Search, X } from "lucide-react";
 
 import heroesList from "../data/heroes.json";
 import skillImages from "../data/skillImages.json";
@@ -49,14 +49,12 @@ const defaultBuild = () => ({
   note: "",
 });
 
-const emptyHero = () => ({ hero_key: "", name: "", image: "", build: defaultBuild() });
-
-function filenameFromImagePath(p) {
-  if (!p) return "";
-  const s = String(p);
-  const parts = s.split("/");
-  return parts[parts.length - 1] || "";
-}
+const emptyHero = () => ({
+  hero_key: "",
+  name: "",
+  image: "",
+  build: defaultBuild(),
+});
 
 function useQuery() {
   const { search } = useLocation();
@@ -65,36 +63,55 @@ function useQuery() {
 
 const heroImg = (src) => (src?.startsWith("/images/") ? src : `/images/heroes/${src || ""}`);
 
-function normalizeBuild(raw) {
-  const b = raw && typeof raw === "object" ? raw : {};
-  return {
-    set: String(b.set || ""),
-    weapon: {
-      main1: String(b.weapon?.main1 || ""),
-      main2: String(b.weapon?.main2 || ""),
-    },
-    armor: {
-      main1: String(b.armor?.main1 || ""),
-      main2: String(b.armor?.main2 || ""),
-    },
-    subOption: String(b.subOption || ""),
-    speed: Number.isFinite(b.speed) ? b.speed : b.speed === 0 ? 0 : null,
-    note: String(b.note || ""),
-  };
+function filenameFromImagePath(p) {
+  if (!p) return "";
+  const s = String(p);
+  const parts = s.split("/");
+  return parts[parts.length - 1] || "";
 }
 
 export default function GuildOffenseCounterCreatePage() {
   const navigate = useNavigate();
   const q = useQuery();
 
-  // ✅ 대상(방어팀 post_id / variant_idx) : URL 쿼리로 받는 형태
-  // 예) /guild-offense-counter-create?post=123&v=0
-  const postId = q.get("post") ? Number(q.get("post")) : null;
-  const variantIdx = q.get("v") ? Number(q.get("v")) : 0;
+  // =========================
+  // ✅ URL 파라미터
+  // =========================
+  const defensePostIdRaw = q.get("defensePostId");
+  const defensePostId = defensePostIdRaw != null ? Number(defensePostIdRaw) : null;
 
-  // ------------------------------------------------------
+  const jsonCategoryRaw = q.get("jsonCategory");
+  const jsonTeamIndexRaw = q.get("jsonTeamIndex");
+  const jsonTeamIndex = jsonTeamIndexRaw != null ? Number(jsonTeamIndexRaw) : null;
+
+  const variantIdx = q.get("variant") ? Number(q.get("variant")) : 0;
+
+  // ✅ 문자열 decode
+  const jsonCategory = jsonCategoryRaw ? decodeURIComponent(jsonCategoryRaw) : "";
+
+  // ✅ 여기서 “대상”을 1번만 확정(DB 우선)
+  const target = useMemo(() => {
+    const dbOk = Number.isFinite(defensePostId) && defensePostId > 0;
+    const jsonOk =
+      !dbOk && !!jsonCategoryRaw && Number.isFinite(jsonTeamIndex) && jsonTeamIndex !== null;
+
+    if (dbOk) {
+      return { type: "db", post_id: Number(defensePostId), json_category: null, json_team_index: null };
+    }
+    if (jsonOk) {
+      return {
+        type: "json",
+        post_id: null,
+        json_category: String(jsonCategory),
+        json_team_index: Number(jsonTeamIndex),
+      };
+    }
+    return { type: "none", post_id: null, json_category: null, json_team_index: null };
+  }, [defensePostId, jsonCategoryRaw, jsonCategory, jsonTeamIndex]);
+
+  // =========================
   // ✅ 로그인
-  // ------------------------------------------------------
+  // =========================
   const [me, setMe] = useState(null);
   const [loadingMe, setLoadingMe] = useState(true);
 
@@ -105,43 +122,49 @@ export default function GuildOffenseCounterCreatePage() {
       const user = data?.user ?? null;
       setMe(user);
       setLoadingMe(false);
-
       if (!user) navigate("/login", { replace: true });
     };
     run();
   }, [navigate]);
 
-  // ------------------------------------------------------
+  // =========================
   // ✅ 입력값
-  // ------------------------------------------------------
+  // =========================
   const [anonymous, setAnonymous] = useState(false);
-
   const [note, setNote] = useState("");
   const [detail, setDetail] = useState("");
 
-  // ✅ 속공 조건
+  // any / win / lose
   const [speedMode, setSpeedMode] = useState("any");
-  const [speedMin, setSpeedMin] = useState(""); // win일 때만 숫자
+  const [speedMin, setSpeedMin] = useState("");
 
-  // 공격 영웅 3명
   const [slots, setSlots] = useState([emptyHero(), emptyHero(), emptyHero()]);
   const [activeSlot, setActiveSlot] = useState(0);
 
+  // 영웅 선택기
   const [pickerOpen, setPickerOpen] = useState(false);
   const [pickerSlot, setPickerSlot] = useState(0);
+  const [heroQ, setHeroQ] = useState("");
 
-  // 공격 스킬 3개(파일명)
+  // 스킬
   const [skills, setSkills] = useState(["", "", ""]);
   const [skillQ, setSkillQ] = useState("");
 
-  // 펫 (최대 3개)
+  // 펫
   const [pets, setPets] = useState([]);
-  const [petPickerOpen, setPetPickerOpen] = useState(false);
   const [petQ, setPetQ] = useState("");
 
-  // ------------------------------------------------------
-  // ✅ 필터
-  // ------------------------------------------------------
+  const filteredHeroes = useMemo(() => {
+    const qq = (heroQ || "").trim().toLowerCase();
+    const list = Array.isArray(heroesList) ? heroesList : [];
+    if (!qq) return list;
+    return list.filter((h) => {
+      const k = String(h.key || "").toLowerCase();
+      const n = String(h.name || "").toLowerCase();
+      return k.includes(qq) || n.includes(qq);
+    });
+  }, [heroQ]);
+
   const filteredSkillImages = useMemo(() => {
     const qq = (skillQ || "").trim().toLowerCase();
     const list = Array.isArray(skillImages) ? skillImages : [];
@@ -164,9 +187,6 @@ export default function GuildOffenseCounterCreatePage() {
     });
   }, [petQ]);
 
-  // ------------------------------------------------------
-  // ✅ 조작 함수
-  // ------------------------------------------------------
   const setSkillAt = (idx, filename) => {
     setSkills((prev) => {
       const next = [...prev];
@@ -241,107 +261,119 @@ export default function GuildOffenseCounterCreatePage() {
     });
   };
 
-  // ------------------------------------------------------
+  // =========================
   // ✅ 검증 / 저장
-  // ------------------------------------------------------
+  // =========================
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState("");
 
+  // ✅ “2번 저장” 절대 못 하게 하는 락
+  const saveLockRef = useRef(false);
+
   const validate = () => {
     if (!me?.id) return "로그인이 필요합니다.";
-    if (!Number.isFinite(postId) || postId === null) return "대상 방어팀 정보가 없습니다. (post 필요)";
-    if (!Number.isFinite(variantIdx)) return "패턴 정보가 올바르지 않습니다. (v)";
+    if (target.type === "none") return "대상 방어팀 정보가 없습니다.";
 
     for (let i = 0; i < 3; i++) {
-      if (!String(slots[i]?.name || "").trim()) return `공격 영웅 ${i + 1}번이 비어있습니다.`;
+      if (!String(slots[i]?.name || "").trim()) {
+        return `공격 영웅 ${i + 1}번이 비어있습니다.`;
+      }
     }
 
     if (speedMode === "win") {
       const n = Number(speedMin);
-      if (!Number.isFinite(n) || n <= 0) return "속공 '이길 때'를 선택했다면 안전 기준 속공(숫자)을 입력해야 합니다.";
+      if (!Number.isFinite(n) || n <= 0) {
+        return "속공 '이길 때'를 선택했다면 안전 기준 속공(숫자)을 입력해야 합니다.";
+      }
     }
     return "";
   };
 
   const save = async () => {
+    if (saveLockRef.current) return;
+    saveLockRef.current = true;
+
     setErr("");
     const v = validate();
     if (v) {
       setErr(v);
+      saveLockRef.current = false;
       return;
     }
 
     setSaving(true);
     try {
-      // 1) counters insert
+      // ✅ 대상 칼럼 3개를 항상 전부 넣고, 아닌 쪽은 null 강제
       const payload = {
-        post_id: Number(postId),
         variant_idx: Number(variantIdx) || 0,
+
+        post_id: target.type === "db" ? Number(target.post_id) : null,
+        json_category: target.type === "json" ? String(target.json_category) : null,
+        json_team_index: target.type === "json" ? Number(target.json_team_index) : null,
+
         note: note || "",
         detail: detail || "",
-        speed_mode: speedMode,
+
+        speed_mode: speedMode, // 'any'|'win'|'lose'
         speed_min: speedMode === "win" ? Number(speedMin) : null,
+
         skills: skills.map((x) => String(x || "").trim()).filter(Boolean).slice(0, 3),
         pets: pets.map((x) => String(x || "").trim()).filter(Boolean).slice(0, 3),
-        anonymous: !!anonymous,
+
         created_by: me.id,
+        anonymous: !!anonymous,
       };
 
-      const { data: inserted, error: insErr } = await supabase
+      const { data: counterRow, error: cErr } = await supabase
         .from("guild_offense_counters")
-        .insert(payload)
+        .insert([payload])
         .select("id")
-        .maybeSingle();
+        .single();
+      if (cErr) throw cErr;
 
-      if (insErr) throw insErr;
-      const counterId = inserted?.id;
-      if (!counterId) throw new Error("생성 실패: counter id를 받지 못했습니다.");
+      const counterId = counterRow.id;
 
-      // 2) members insert (slot 1~3)
       const membersPayload = slots.slice(0, 3).map((x, i) => ({
-        counter_id: Number(counterId),
+        counter_id: counterId,
         slot: i + 1,
         hero_key: x.hero_key || "",
         hero_name: x.name || "",
         hero_image: x.image || "",
-        build: normalizeBuild(x.build || {}),
+        build: x.build || {},
       }));
 
-      const { error: mErr } = await supabase.from("guild_offense_counter_members").insert(membersPayload);
-      if (mErr) throw mErr;
+      const { error: mErr } = await supabase
+        .from("guild_offense_counter_members")
+        .insert(membersPayload);
+
+      if (mErr) {
+        await supabase.from("guild_offense_counters").delete().eq("id", counterId);
+        throw mErr;
+      }
 
       navigate(-1);
     } catch (e) {
       setErr(e?.message || "저장 실패");
+      saveLockRef.current = false; // 실패 시만 락 해제
     } finally {
       setSaving(false);
     }
   };
 
-  // ------------------------------------------------------
+  // =========================
   // ✅ UI
-  // ------------------------------------------------------
+  // =========================
   const targetLabel = useMemo(() => {
-    if (Number.isFinite(postId) && postId !== null)
-      return `DB 방어팀 #${postId} · 패턴 #${(Number(variantIdx) || 0) + 1}`;
+    if (target.type === "db")
+      return `DB 방어팀 #${target.post_id} · 패턴 #${(Number(variantIdx) || 0) + 1}`;
+    if (target.type === "json")
+      return `JSON 방어팀 · ${target.json_category} #${Number(target.json_team_index) + 1} · 패턴 #${
+        (Number(variantIdx) || 0) + 1
+      }`;
     return "대상 없음";
-  }, [postId, variantIdx]);
+  }, [target, variantIdx]);
 
   const s = slots[activeSlot] || emptyHero();
-
-  // 로딩 화면
-  if (loadingMe) {
-    return (
-      <div className="min-h-screen bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-4 py-10">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="text-[15px] font-black text-slate-900">불러오는 중...</div>
-            <div className="mt-2 text-[12px] font-semibold text-slate-500">잠시만</div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -358,7 +390,7 @@ export default function GuildOffenseCounterCreatePage() {
           <div className="absolute inset-0 flex items-center justify-between px-5 lg:px-8">
             <div className="min-w-0">
               <h1 className="text-[22px] lg:text-[28px] font-black tracking-tight text-slate-900">
-                카운터 등록
+                카운터 추가
               </h1>
               <p className="mt-1 text-xs lg:text-sm font-semibold text-slate-700/70">
                 공격팀 3명 + 영웅별 장비 + 스킬(최대 3개) + 펫(최대 3개) + 속공조건
@@ -371,7 +403,7 @@ export default function GuildOffenseCounterCreatePage() {
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[12px] font-extrabold text-slate-700">
                   <Swords size={14} strokeWidth={2.6} />
-                  새 카운터 작성
+                  {loadingMe ? "유저 확인중" : me ? "로그인됨" : "로그인 필요"}
                 </span>
               </div>
             </div>
@@ -394,7 +426,6 @@ export default function GuildOffenseCounterCreatePage() {
           </div>
         </div>
 
-        {/* 본문 */}
         <div className="mt-6 grid gap-6">
           {err ? (
             <div className="rounded-3xl border border-rose-200 bg-rose-50 p-5">
@@ -407,10 +438,8 @@ export default function GuildOffenseCounterCreatePage() {
           <div className="rounded-3xl bg-white border border-slate-200 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between gap-3">
               <div className="min-w-0">
-                <div className="text-[12px] font-extrabold text-slate-500">작성 후 저장</div>
-                <div className="mt-1 text-[15px] font-black text-slate-900 truncate">
-                  카운터 등록
-                </div>
+                <div className="text-[12px] font-extrabold text-slate-500">입력 후 저장</div>
+                <div className="mt-1 text-[15px] font-black text-slate-900 truncate">카운터 등록</div>
               </div>
 
               <button
@@ -419,7 +448,7 @@ export default function GuildOffenseCounterCreatePage() {
                 disabled={saving || !me}
                 className="inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-60"
               >
-                <Save size={16} strokeWidth={2.6} />
+                <Plus size={16} strokeWidth={2.6} />
                 {saving ? "저장중..." : "저장"}
               </button>
             </div>
@@ -465,6 +494,7 @@ export default function GuildOffenseCounterCreatePage() {
                 {/* 속공 조건 */}
                 <div className="rounded-3xl border border-slate-200 bg-white p-4">
                   <div className="text-[12px] font-extrabold text-slate-600">속공 조건</div>
+
                   <div className="mt-2 grid grid-cols-1 gap-2">
                     {[
                       { key: "any", label: "무관" },
@@ -485,19 +515,18 @@ export default function GuildOffenseCounterCreatePage() {
                           ].join(" ")}
                         >
                           <div className="text-[12px] font-black">{o.label}</div>
-                          {o.key === "win" ? (
-                            <div className={`mt-1 text-[12px] font-semibold ${on ? "text-white/80" : "text-slate-500"}`}>
-                              속공을 “이기는” 상황에서만 유효한 카운터
-                            </div>
-                          ) : o.key === "lose" ? (
-                            <div className={`mt-1 text-[12px] font-semibold ${on ? "text-white/80" : "text-slate-500"}`}>
-                              속공을 “지는” 상황에서도 가능한 카운터
-                            </div>
-                          ) : (
-                            <div className={`mt-1 text-[12px] font-semibold ${on ? "text-white/80" : "text-slate-500"}`}>
-                              속공 조건 없이 적용
-                            </div>
-                          )}
+                          <div
+                            className={[
+                              "mt-1 text-[12px] font-semibold",
+                              on ? "text-white/80" : "text-slate-500",
+                            ].join(" ")}
+                          >
+                            {o.key === "win"
+                              ? "속공을 “이기는” 상황에서만 유효"
+                              : o.key === "lose"
+                              ? "속공을 “지는” 상황에서도 가능"
+                              : "속공 조건 없이 적용"}
+                          </div>
                         </button>
                       );
                     })}
@@ -505,7 +534,9 @@ export default function GuildOffenseCounterCreatePage() {
 
                   {speedMode === "win" ? (
                     <div className="mt-3">
-                      <div className="text-[11px] font-extrabold text-slate-600">속공 이길 때 안전 기준 (몇 이상)</div>
+                      <div className="text-[11px] font-extrabold text-slate-600">
+                        속공 이길 때 안전 기준 (몇 이상)
+                      </div>
                       <input
                         type="number"
                         inputMode="numeric"
@@ -514,9 +545,7 @@ export default function GuildOffenseCounterCreatePage() {
                         placeholder="예) 81"
                         className="mt-1 w-full rounded-2xl border border-slate-200 px-3 py-2 text-[12px] font-semibold"
                       />
-                      <div className="mt-1 text-[12px] font-semibold text-slate-500">
-                        예) “81 이상이면 안전” 같은 기준을 적어두면 됨.
-                      </div>
+                      <div className="mt-1 text-[12px] font-semibold text-slate-500">예) “81 이상이면 안전”</div>
                     </div>
                   ) : null}
                 </div>
@@ -567,19 +596,14 @@ export default function GuildOffenseCounterCreatePage() {
                         >
                           <div className="flex items-center justify-between">
                             <div className="text-[11px] font-extrabold text-slate-500">슬롯 {idx2 + 1}</div>
-                            <div className={`text-[10px] font-extrabold ${on ? "text-slate-900" : "text-slate-300"}`}>
+                            <div className={["text-[10px] font-extrabold", on ? "text-slate-900" : "text-slate-300"].join(" ")}>
                               {on ? "편집중" : ""}
                             </div>
                           </div>
 
                           <div className="mt-2 w-full aspect-square rounded-2xl border border-slate-200 bg-slate-50 overflow-hidden flex items-center justify-center">
                             {x?.image ? (
-                              <img
-                                src={heroImg(x.image)}
-                                alt={x.name || "hero"}
-                                className="w-full h-full object-contain"
-                                loading="lazy"
-                              />
+                              <img src={heroImg(x.image)} alt={x.name || "hero"} className="w-full h-full object-contain" loading="lazy" />
                             ) : (
                               <div className="text-[12px] font-extrabold text-slate-400">선택</div>
                             )}
@@ -731,13 +755,14 @@ export default function GuildOffenseCounterCreatePage() {
                   </div>
                 </div>
 
-                {/* 스킬 3개 */}
+                {/* ✅✅✅ 스킬 (편집페이지랑 동일) ✅✅✅ */}
                 <div className="rounded-3xl border border-slate-200 bg-white p-4">
                   <div className="text-[12px] font-extrabold text-slate-600">공격팀 스킬 (최대 3개)</div>
                   <div className="mt-1 text-[12px] font-semibold text-slate-500">
                     아래에서 클릭하면 빈 칸부터 채워짐 (슬롯 클릭하면 제거)
                   </div>
 
+                  {/* 3칸 슬롯 */}
                   <div className="mt-3 grid grid-cols-3 gap-3">
                     {skills.map((s2, i) => (
                       <button
@@ -770,10 +795,11 @@ export default function GuildOffenseCounterCreatePage() {
                     ))}
                   </div>
 
-                  {/* 스킬 검색 */}
+                  {/* 스킬 검색 + 선택 grid */}
                   <div className="mt-4 rounded-3xl border border-slate-200 bg-slate-50 p-4">
                     <div className="flex items-center justify-between gap-2">
                       <div className="text-[12px] font-extrabold text-slate-700">스킬 선택</div>
+
                       <div className="relative w-[260px] max-w-full">
                         <input
                           value={skillQ}
@@ -798,7 +824,7 @@ export default function GuildOffenseCounterCreatePage() {
                             className="rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 p-2 text-left"
                             title={filename}
                           >
-                            {/* ✅ EditPage랑 동일: x.image 그대로 사용 */}
+                            {/* ✅ 편집페이지처럼 x.image 그대로 사용 */}
                             <img src={x.image} alt={x.name} className="w-full h-12 object-contain" loading="lazy" />
                             <div className="mt-1 text-[11px] font-extrabold text-slate-900 truncate">{x.name}</div>
                           </button>
@@ -806,231 +832,132 @@ export default function GuildOffenseCounterCreatePage() {
                       })}
 
                       {!filteredSkillImages.length ? (
-                        <div className="col-span-full text-[12px] font-semibold text-slate-500">검색 결과가 없습니다.</div>
+                        <div className="col-span-full text-[12px] font-semibold text-slate-500">
+                          검색 결과가 없습니다.
+                        </div>
                       ) : null}
                     </div>
                   </div>
                 </div>
 
-                {/* 펫 */}
+                {/* 펫 (원래 로직 유지) */}
                 <div className="rounded-3xl border border-slate-200 bg-white p-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="min-w-0">
-                      <div className="text-[12px] font-extrabold text-slate-600">펫 (최대 3개)</div>
-                      <div className="mt-1 text-[12px] font-semibold text-slate-500">
-                        선택/해제 가능 (3개 초과 시 오래된 것 교체)
-                      </div>
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={() => setPetPickerOpen(true)}
-                      className="shrink-0 inline-flex items-center gap-2 rounded-2xl px-3 py-2 text-xs font-extrabold bg-slate-900 text-white hover:bg-slate-800"
-                    >
-                      <PawPrint size={16} />
-                      펫 선택
-                    </button>
-                  </div>
+                  <div className="text-[12px] font-extrabold text-slate-600">펫 (최대 3개)</div>
 
                   <div className="mt-3 flex flex-wrap gap-2">
-                    {pets.length ? (
-                      pets.map((k) => {
-                        const p = (Array.isArray(petImages) ? petImages : []).find((x) => x.key === k);
-                        return (
-                          <button
-                            key={k}
-                            type="button"
-                            onClick={() => togglePet(k)}
-                            className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 hover:bg-white px-3 py-2"
-                            title="클릭하면 제거"
-                          >
-                            <div className="w-9 h-9 rounded-2xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center">
-                              {p?.image ? (
-                                <img src={p.image} alt={p.name || k} className="w-full h-full object-contain" loading="lazy" />
-                              ) : (
-                                <div className="text-[11px] font-black text-slate-400">-</div>
-                              )}
-                            </div>
-                            <div className="min-w-0">
-                              <div className="text-[12px] font-black text-slate-900">{p?.name || k}</div>
-                              <div className="text-[11px] font-semibold text-slate-500">{k}</div>
-                            </div>
-                            <span className="ml-1 text-[11px] font-extrabold text-slate-400">제거 ✕</span>
-                          </button>
-                        );
-                      })
-                    ) : (
-                      <div className="text-[12px] font-semibold text-slate-400">(미선택) “펫 선택”을 눌러 추가하세요.</div>
-                    )}
+                    {pets.map((k) => {
+                      const found = (Array.isArray(petImages) ? petImages : []).find((p) => p.key === k);
+                      const img = found?.image ? found.image : `/images/pet/${k}`;
+                      return (
+                        <button
+                          key={k}
+                          type="button"
+                          onClick={() => togglePet(k)}
+                          className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[12px] font-extrabold text-slate-700 hover:bg-slate-50"
+                          title="클릭하면 제거"
+                        >
+                          <img src={img} alt={k} className="w-6 h-6 object-contain" />
+                          {found?.name || k}
+                          <span className="text-slate-400">✕</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <div className="mt-3">
+                    <input
+                      value={petQ}
+                      onChange={(e) => setPetQ(e.target.value)}
+                      placeholder="펫 검색"
+                      className="w-full rounded-2xl border border-slate-200 px-3 py-2 text-[12px] font-semibold"
+                    />
+
+                    <div className="mt-3 grid grid-cols-5 gap-2">
+                      {filteredPets.slice(0, 30).map((p) => (
+                        <button
+                          key={p.key}
+                          type="button"
+                          onClick={() => togglePet(p.key)}
+                          className={[
+                            "rounded-2xl border p-2 hover:bg-slate-50",
+                            pets.includes(p.key) ? "border-slate-900 bg-slate-50" : "border-slate-200 bg-white",
+                          ].join(" ")}
+                          title={p.name || p.key}
+                        >
+                          <img
+                            src={p.image || `/images/pet/${p.key}`}
+                            alt={p.name || p.key}
+                            className="w-full h-full object-contain"
+                          />
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
+
+                {/* 영웅 선택기(간단 버전: 너 프로젝트 기존 모달 있으면 거기로 교체 가능) */}
+                {pickerOpen ? (
+                  <div className="fixed inset-0 z-[9999] bg-black/60 flex items-center justify-center p-3">
+                    <div className="w-[94vw] max-w-2xl bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                      <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between">
+                        <div className="text-[13px] font-black">영웅 선택</div>
+                        <button
+                          type="button"
+                          onClick={() => setPickerOpen(false)}
+                          className="w-9 h-9 rounded-2xl hover:bg-slate-100"
+                        >
+                          ✕
+                        </button>
+                      </div>
+
+                      <div className="p-4">
+                        <input
+                          value={heroQ}
+                          onChange={(e) => setHeroQ(e.target.value)}
+                          placeholder="영웅 검색"
+                          className="w-full rounded-2xl border border-slate-200 px-3 py-2 text-[12px] font-semibold"
+                        />
+
+                        <div className="mt-4 grid grid-cols-4 md:grid-cols-6 gap-2 max-h-[55vh] overflow-auto">
+                          {filteredHeroes.map((h) => (
+                            <button
+                              key={h.key}
+                              type="button"
+                              onClick={() => {
+                                updateSlot(pickerSlot, {
+                                  hero_key: h.key || "",
+                                  name: h.name || "",
+                                  image: h.image || "",
+                                  build: slots[pickerSlot]?.build || defaultBuild(),
+                                });
+                                setPickerOpen(false);
+                              }}
+                              className="rounded-2xl border border-slate-200 bg-white p-2 hover:bg-slate-50"
+                              title={h.name}
+                            >
+                              <div className="w-full aspect-square rounded-xl border border-slate-200 bg-slate-50 overflow-hidden">
+                                <img src={heroImg(h.image)} alt={h.name} className="w-full h-full object-contain" />
+                              </div>
+                              <div className="mt-1 text-[11px] font-extrabold text-slate-700 truncate">{h.name}</div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="px-4 py-3 border-t border-slate-200 flex justify-end">
+                        <button
+                          type="button"
+                          onClick={() => setPickerOpen(false)}
+                          className="rounded-xl px-4 py-2 text-sm font-extrabold bg-slate-900 text-white"
+                        >
+                          닫기
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 영웅 선택 모달 */}
-      {pickerOpen ? (
-        <HeroPickerModal
-          heroesList={heroesList}
-          heroImg={heroImg}
-          onClose={() => setPickerOpen(false)}
-          onPick={(hero) => {
-            updateSlot(pickerSlot, {
-              hero_key: hero.key || "",
-              name: hero.name || "",
-              image: hero.image || "",
-              build: defaultBuild(),
-            });
-            setActiveSlot(pickerSlot);
-            setPickerOpen(false);
-          }}
-        />
-      ) : null}
-
-      {/* 펫 선택 모달 */}
-      {petPickerOpen ? (
-        <PetPickerModal
-          pets={filteredPets}
-          selected={pets}
-          q={petQ}
-          setQ={setPetQ}
-          onClose={() => setPetPickerOpen(false)}
-          onToggle={(k) => togglePet(k)}
-        />
-      ) : null}
-    </div>
-  );
-}
-
-function HeroPickerModal({ heroesList, heroImg, onClose, onPick }) {
-  const [q, setQ] = useState("");
-
-  const filtered = useMemo(() => {
-    const query = (q || "").trim().toLowerCase();
-    const list = Array.isArray(heroesList) ? heroesList : [];
-    if (!query) return list;
-    return list.filter((h) => {
-      const n = String(h.name || "").toLowerCase();
-      const k = String(h.key || "").toLowerCase();
-      return n.includes(query) || k.includes(query);
-    });
-  }, [q, heroesList]);
-
-  return (
-    <div className="fixed inset-0 z-[10000] bg-black/60 flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="flex items-start justify-between gap-3 p-4 border-b border-slate-200">
-          <div>
-            <div className="font-black text-slate-900">영웅 선택</div>
-            <div className="mt-1 text-[12px] font-semibold text-slate-500">한글 이름 또는 key로 검색</div>
-          </div>
-          <button
-            onClick={onClose}
-            className="w-9 h-9 rounded-full flex items-center justify-center text-slate-600 hover:bg-slate-100 active:scale-95 transition"
-            aria-label="닫기"
-            type="button"
-          >
-            ✕
-          </button>
-        </div>
-
-        <div className="p-4">
-          <input
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="예: 에반 / 루리 / 미호 ..."
-            className="w-full rounded-2xl border border-slate-200 px-3 py-2 text-[13px] font-semibold"
-          />
-
-          <div className="mt-3 max-h-[60vh] overflow-y-auto grid grid-cols-2 sm:grid-cols-4 gap-2">
-            {filtered.map((h) => (
-              <button
-                key={h.key}
-                type="button"
-                onClick={() => onPick(h)}
-                className="rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 p-3 text-left"
-              >
-                <img src={heroImg(h.image)} alt={h.name} className="w-full h-16 object-contain" loading="lazy" />
-                <div className="mt-2 text-[12px] font-extrabold text-slate-900 truncate">{h.name}</div>
-                <div className="text-[11px] font-semibold text-slate-500 truncate">{h.key}</div>
-              </button>
-            ))}
-          </div>
-
-          {!filtered.length ? <div className="mt-4 text-[12px] font-semibold text-slate-500">검색 결과가 없습니다.</div> : null}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function PetPickerModal({ pets, selected, q, setQ, onClose, onToggle }) {
-  return (
-    <div className="fixed inset-0 z-[10000] bg-black/60 flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="flex items-start justify-between gap-3 p-4 border-b border-slate-200">
-          <div>
-            <div className="font-black text-slate-900">펫 선택 (최대 3개)</div>
-            <div className="mt-1 text-[12px] font-semibold text-slate-500">선택/해제 가능 (3개 초과 시 자동 교체)</div>
-          </div>
-          <button
-            onClick={onClose}
-            className="w-9 h-9 rounded-full flex items-center justify-center text-slate-600 hover:bg-slate-100 active:scale-95 transition"
-            aria-label="닫기"
-            type="button"
-          >
-            ✕
-          </button>
-        </div>
-
-        <div className="p-4">
-          <div className="flex items-center justify-between gap-2">
-            <div className="text-[12px] font-extrabold text-slate-700">
-              현재 선택: {Array.isArray(selected) ? selected.length : 0}/3
-            </div>
-            <div className="relative w-[260px] max-w-full">
-              <input
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                placeholder="검색: 델로 / ru ..."
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2 text-[12px] font-semibold"
-              />
-              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-300">
-                <Search size={16} />
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-3 max-h-[60vh] overflow-y-auto grid grid-cols-2 sm:grid-cols-4 gap-2">
-            {(Array.isArray(pets) ? pets : []).map((p) => {
-              const on = Array.isArray(selected) ? selected.includes(p.key) : false;
-              return (
-                <button
-                  key={p.key}
-                  type="button"
-                  onClick={() => onToggle(p.key)}
-                  className={[
-                    "rounded-2xl border p-3 text-left transition",
-                    on ? "bg-slate-900 text-white border-slate-900" : "bg-white text-slate-900 border-slate-200 hover:bg-slate-50",
-                  ].join(" ")}
-                >
-                  <div className="w-full h-16 rounded-2xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center">
-                    <img src={p.image} alt={p.name} className="w-full h-full object-contain" loading="lazy" />
-                  </div>
-                  <div className="mt-2 text-[12px] font-extrabold truncate">{p.name}</div>
-                  <div className={`text-[11px] font-semibold truncate ${on ? "text-white/80" : "text-slate-500"}`}>{p.key}</div>
-                  <div className={`mt-2 text-[11px] font-extrabold ${on ? "text-white/80" : "text-slate-400"}`}>
-                    {on ? "선택됨 ✓" : "탭해서 선택"}
-                  </div>
-                </button>
-              );
-            })}
-
-            {!Array.isArray(pets) || pets.length === 0 ? (
-              <div className="col-span-full text-[12px] font-semibold text-slate-500">검색 결과가 없습니다.</div>
-            ) : null}
           </div>
         </div>
       </div>
