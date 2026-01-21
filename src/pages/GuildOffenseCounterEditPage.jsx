@@ -1,7 +1,7 @@
 // src/pages/GuildOffenseCounterEditPage.jsx
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Search, Plus, X, Swords, Shield, PawPrint, Save } from "lucide-react";
+import { Search, X, Swords, Shield, PawPrint, Save } from "lucide-react";
 
 import heroesList from "../data/heroes.json";
 import skillImages from "../data/skillImages.json";
@@ -132,7 +132,8 @@ export default function GuildOffenseCounterEditPage() {
   // ✅ 입력값
   // ------------------------------------------------------
   const [anonymous, setAnonymous] = useState(false);
-  const [firstAttack, setFirstAttack] = useState(false);
+  
+  
 
   const [note, setNote] = useState("");
   const [detail, setDetail] = useState("");
@@ -178,7 +179,7 @@ export default function GuildOffenseCounterEditPage() {
         const { data: cRow, error: cErr } = await supabase
           .from("guild_offense_counters")
           .select(
-            "id, post_id, variant_idx, first_attack, note, detail, skills, pets, speed_mode, speed_min, created_by, anonymous"
+            "id, post_id, variant_idx,  note, detail, skills, pets, speed_mode, speed_min, created_by, anonymous"
           )
           .eq("id", Number(counterId))
           .maybeSingle();
@@ -191,7 +192,7 @@ export default function GuildOffenseCounterEditPage() {
         setCreatedBy(cRow.created_by || null);
 
         setAnonymous(!!cRow.anonymous);
-        setFirstAttack(!!cRow.first_attack);
+       
         setNote(String(cRow.note || ""));
         setDetail(String(cRow.detail || ""));
 
@@ -370,7 +371,7 @@ export default function GuildOffenseCounterEditPage() {
     setSaving(true);
     try {
       const payload = {
-        first_attack: !!firstAttack,
+       
         note: note || "",
         detail: detail || "",
         speed_mode: speedMode,
@@ -595,29 +596,7 @@ export default function GuildOffenseCounterEditPage() {
                   </div>
                 </div>
 
-                {/* 첫공 */}
-                <div className="rounded-3xl border border-slate-200 bg-white p-4">
-                  <div className="text-[12px] font-extrabold text-slate-600">첫공격</div>
-
-                  <div className="mt-3 grid grid-cols-1 gap-3">
-                    <button
-                      type="button"
-                      disabled={!canEdit}
-                      onClick={() => setFirstAttack((v) => !v)}
-                      className={[
-                        "rounded-2xl border px-4 py-3 text-left transition",
-                        firstAttack ? "bg-rose-500 text-white border-rose-500" : "bg-white text-slate-800 border-slate-200 hover:bg-slate-50",
-                        !canEdit ? "opacity-60 cursor-not-allowed" : "",
-                      ].join(" ")}
-                      aria-pressed={firstAttack}
-                    >
-                      <div className="text-[12px] font-black">{firstAttack ? "첫공격 ✅" : "첫공격(선택)"}</div>
-                      <div className={`mt-1 text-[12px] font-semibold ${firstAttack ? "text-white/85" : "text-slate-500"}`}>
-                        첫공격으로 적당한 카운터라면 켜주세요(너무 강한덱은 제외).
-                      </div>
-                    </button>
-                  </div>
-                </div>
+               
 
                 {/* 속공 조건 */}
                 <div className="rounded-3xl border border-slate-200 bg-white p-4">

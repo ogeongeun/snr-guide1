@@ -128,7 +128,7 @@ export default function GuildOffenseCounterCreatePage() {
   // ✅ 입력값
   // =========================
   const [anonymous, setAnonymous] = useState(false);
-  const [firstAttack, setFirstAttack] = useState(false);
+
 
   const [note, setNote] = useState("");
   const [detail, setDetail] = useState("");
@@ -151,7 +151,7 @@ export default function GuildOffenseCounterCreatePage() {
 
   // 펫
   const [pets, setPets] = useState([]);
-  const [petPickerOpen, setPetPickerOpen] = useState(false);
+ 
   const [petQ, setPetQ] = useState("");
 
   const filteredHeroes = useMemo(() => {
@@ -313,7 +313,7 @@ export default function GuildOffenseCounterCreatePage() {
         json_category: target.type === "json" ? String(target.json_category) : null,
         json_team_index: target.type === "json" ? Number(target.json_team_index) : null,
 
-        first_attack: !!firstAttack,
+      
         note: note || "",
         detail: detail || "",
 
@@ -501,35 +501,7 @@ export default function GuildOffenseCounterCreatePage() {
                   </div>
                 </div>
 
-                {/* 첫공 */}
-                <div className="rounded-3xl border border-slate-200 bg-white p-4">
-                  <div className="text-[12px] font-extrabold text-slate-600">첫공격</div>
-
-                  <div className="mt-3 grid grid-cols-1 gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setFirstAttack((v) => !v)}
-                      className={[
-                        "rounded-2xl border px-4 py-3 text-left transition",
-                        firstAttack
-                          ? "bg-rose-500 text-white border-rose-500"
-                          : "bg-white text-slate-800 border-slate-200 hover:bg-slate-50",
-                      ].join(" ")}
-                      aria-pressed={firstAttack}
-                    >
-                      <div className="text-[12px] font-black">
-                        {firstAttack ? "첫공격 ✅" : "첫공격(선택)"}
-                      </div>
-                      <div
-                        className={`mt-1 text-[12px] font-semibold ${
-                          firstAttack ? "text-white/85" : "text-slate-500"
-                        }`}
-                      >
-                        첫공격으로 적당한 카운터라면 켜주세요(너무 강한덱은 제외).
-                      </div>
-                    </button>
-                  </div>
-                </div>
+             
 
                 {/* 속공 조건 */}
                 <div className="rounded-3xl border border-slate-200 bg-white p-4">

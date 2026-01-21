@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import {
   ChevronLeft,
-  ChevronRight,
+
   Plus,
   ThumbsUp,
   ThumbsDown,
@@ -34,7 +34,7 @@ export default function GuildOffenseDetailPage({
 }) {
   const navigate = useNavigate();
   const { category, teamIndex } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const [selectedHeroKey, setSelectedHeroKey] = useState(null);
   const [presetTag, setPresetTag] = useState(null);
@@ -65,8 +65,8 @@ export default function GuildOffenseDetailPage({
 
   // ✅ 라우트로 진입한 DB(사용자등록) entry를 DB에서 만들어 쓰기 위한 state
   const [routeDbEntry, setRouteDbEntry] = useState(null);
-  const [routeEntryLoading, setRouteEntryLoading] = useState(false);
-  const [routeEntryErr, setRouteEntryErr] = useState("");
+
+
 
   // ✅ 카테고리/인덱스/entry 결정
   const decodedCategory = useMemo(() => {
@@ -94,15 +94,15 @@ export default function GuildOffenseDetailPage({
   // ✅ 라우트 DB entry 로드 (방어팀 표시용)
   useEffect(() => {
     const run = async () => {
-      setRouteEntryErr("");
+    
 
       if (!isRouteDbCategory) {
         setRouteDbEntry(null);
-        setRouteEntryLoading(false);
+        
         return;
       }
 
-      setRouteEntryLoading(true);
+    
       try {
         const pid = Number(routePostId);
         if (!Number.isFinite(pid) || pid <= 0) throw new Error("postId가 올바르지 않습니다.");
@@ -152,9 +152,9 @@ export default function GuildOffenseDetailPage({
         });
       } catch (e) {
         setRouteDbEntry(null);
-        setRouteEntryErr(e?.message || "DB 방어글 로드 실패");
+       
       } finally {
-        setRouteEntryLoading(false);
+       
       }
     };
 
@@ -175,11 +175,7 @@ export default function GuildOffenseDetailPage({
     return 0;
   }, [embedded, embeddedVariantIdx, variantParam]);
 
-  const defenseNotes = useMemo(() => {
-    const list = Array.isArray(entry?.defenseNotes) ? entry.defenseNotes : [];
-    return list.filter(Boolean);
-  }, [entry]);
-
+ 
   const variants = useMemo(() => {
     return Array.isArray(entry?.defenseVariants) ? entry.defenseVariants : [];
   }, [entry]);
@@ -639,8 +635,7 @@ export default function GuildOffenseDetailPage({
   const sortedCounters = useMemo(() => {
     if (!Array.isArray(baseCounters)) return [];
     return [...baseCounters].sort((a, b) => {
-      if (a?.firstAttack === true && b?.firstAttack !== true) return -1;
-      if (b?.firstAttack === true && a?.firstAttack !== true) return 1;
+     
 
       const aKey = getCounterKey(a);
       const bKey = getCounterKey(b);
@@ -656,7 +651,7 @@ export default function GuildOffenseDetailPage({
 
   const renderCounterCard = (recommended, j) => {
     const detailKey = `${safeVariantIdx}-${getCounterKey(recommended)}`; // ✅ 안정
-    const isFirstAttack = recommended?.firstAttack === true;
+   
 
     const key = getCounterKey(recommended);
     if (voteOverride[key]?.__deleted) return null;
@@ -683,17 +678,12 @@ export default function GuildOffenseDetailPage({
     const authorLabel = isDbCounter ? (isAnon ? "익명" : nick || "알수없음") : "기존";
 
     return (
-      <div
-        key={key}
-        className={`relative mb-6 rounded-2xl p-4 bg-white ${
-          isFirstAttack ? "border-2 border-rose-500" : "border border-slate-200"
-        }`}
-      >
-        {isFirstAttack && (
-          <div className="absolute -top-3 left-3 bg-rose-500 text-white text-[10px] px-2 py-0.5 rounded-full">
-            첫공격
-          </div>
-        )}
+     <div
+  key={key}
+  className="relative mb-6 rounded-2xl p-4 bg-white border border-slate-200"
+>
+
+     
 
         <div className="flex justify-between items-center mb-2">
           <div className="flex items-center gap-2">
@@ -840,19 +830,7 @@ export default function GuildOffenseDetailPage({
     );
   };
 
-  const setVariant = (nextIdx) => {
-    const next = Math.max(0, Math.min(nextIdx, variants.length - 1));
-    setOpenDetailKey(null);
-
-    if (embedded) {
-      if (typeof onVariantChange === "function") onVariantChange(next);
-      return;
-    }
-    setSearchParams({
-      variant: String(next),
-      ...(postId ? { postId: String(postId) } : {}),
-    });
-  };
+ 
 
   const goAddCounter = () => {
     console.log("[goAddCounter fired]", {
