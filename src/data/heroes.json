@@ -6,6 +6,11 @@
     "image": "/images/heroes/ace.png"
   },
   {
+    "key": "choseon",
+    "name": "초선",
+    "image": "/images/heroes/choseon.png"
+  },
+  {
     "key": "palanus",
     "name": "팔라누스",
     "image": "/images/heroes/palanus.png"
