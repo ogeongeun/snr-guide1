@@ -1,8 +1,14 @@
+
 [
   {
     "key": "ace",
     "name": "에이스",
     "image": "/images/heroes/ace.png"
+  },
+  {
+    "key": "palanus",
+    "name": "팔라누스",
+    "image": "/images/heroes/palanus.png"
   },
   {
     "key": "akilra",
