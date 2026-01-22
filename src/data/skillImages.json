@@ -10,6 +10,16 @@
     "image": "/images/skills/ace2.png"
   },
   {
+    "key": "palanus1",
+    "name": "팔라누스1",
+    "image": "/images/skills/palanus1.png"
+  },
+   {
+    "key": "palanus2",
+    "name": "팔라누스2",
+    "image": "/images/skills/palanus2.png"
+  },
+  {
     "key": "akilra1",
     "name": "아킬라1",
     "image": "/images/skills/akilra1.png"
