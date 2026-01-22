@@ -22,14 +22,29 @@ export default function CommunityListPage() {
     const run = async () => {
       setLoading(true);
 
+      // ✅ 목록에서 작성자(닉/길드) + 댓글수까지 같이 불러오기
       let query = supabase
         .from("community_posts")
-        .select("id, created_at, title, category, pinned, view_count, author_id")
+        .select(`
+          id,
+          created_at,
+          title,
+          category,
+          pinned,
+          view_count,
+          author_id,
+          profiles!community_posts_author_id_fkey (
+            nickname,
+            guild
+          ),
+          community_comments(count)
+        `)
         .order("pinned", { ascending: false })
         .order("created_at", { ascending: false })
         .limit(60);
 
       if (category !== "전체") query = query.eq("category", category);
+
       const keyword = (searchParams.get("q") || "").trim();
       if (keyword) query = query.ilike("title", `%${keyword}%`);
 
@@ -123,25 +138,38 @@ export default function CommunityListPage() {
           <div className="p-6 text-sm font-semibold text-slate-600">글이 없습니다.</div>
         ) : (
           <div className="divide-y divide-slate-100">
-            {posts.map((p) => (
-              <Link
-                key={p.id}
-                to={`/community/post/${p.id}`}
-                className="block px-4 py-4 hover:bg-slate-50 transition"
-              >
-                <div className="flex items-center gap-2">
-                  <Tag category={p.category} pinned={p.pinned} />
-                  <div className="text-[14px] font-extrabold text-slate-900 line-clamp-1">
-                    {p.title}
-                  </div>
-                </div>
+            {posts.map((p) => {
+              // ✅ 댓글 수 (select한 community_comments(count) 형태 대응)
+              const commentCount = Array.isArray(p.community_comments)
+                ? Number(p.community_comments?.[0]?.count || 0)
+                : Number(p.community_comments?.count || 0);
 
-                <div className="mt-2 flex items-center justify-between text-xs font-semibold text-slate-500">
-                  <span>{formatTime(p.created_at)}</span>
-                  <span>조회 {Number(p.view_count || 0).toLocaleString()}</span>
-                </div>
-              </Link>
-            ))}
+              return (
+                <Link
+                  key={p.id}
+                  to={`/community/post/${p.id}`}
+                  className="block px-4 py-4 hover:bg-slate-50 transition"
+                >
+                  <div className="flex items-center gap-2">
+                    <Tag category={p.category} pinned={p.pinned} />
+                    <div className="text-[14px] font-extrabold text-slate-900 line-clamp-1">
+                      {p.title}
+                    </div>
+                  </div>
+
+                  {/* ✅ 여기서 작성자/댓글수 노출 */}
+                  <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-500">
+                    <span>
+                      {formatDisplayName(p.profiles)} · {formatTime(p.created_at)}
+                    </span>
+                    <span className="flex items-center gap-3">
+                      <span>댓글 {commentCount.toLocaleString()}</span>
+                      <span>조회 {Number(p.view_count || 0).toLocaleString()}</span>
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>
@@ -155,22 +183,29 @@ export default function CommunityListPage() {
 }
 
 function Tag({ category, pinned }) {
-  const base =
-    "shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold border";
-if (category === "공지")
-  return (
-    <span className={`${base} bg-red-50 text-red-600 border-red-200`}>
-      공지
-    </span>
-  );
+  const base = "shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold border";
 
+  // ✅ pinned는 리스트에선 "공지" 카테고리랑 별개면, 이대로 두면 됨
+  if (category === "공지")
+    return <span className={`${base} bg-red-50 text-red-600 border-red-200`}>공지</span>;
 
-  if (category === "공략") return <span className={`${base} bg-blue-50 text-blue-600 border-blue-200`}>공략</span>;
-  if (category === "질문") return <span className={`${base} bg-amber-50 text-amber-700 border-amber-200`}>질문</span>;
-  if (category === "자유") return <span className={`${base} bg-slate-50 text-slate-700 border-slate-200`}>자유</span>;
+  if (category === "공략")
+    return <span className={`${base} bg-blue-50 text-blue-600 border-blue-200`}>공략</span>;
+  if (category === "질문")
+    return <span className={`${base} bg-amber-50 text-amber-700 border-amber-200`}>질문</span>;
+  if (category === "자유")
+    return <span className={`${base} bg-slate-50 text-slate-700 border-slate-200`}>자유</span>;
+
   return <span className={`${base} bg-slate-50 text-slate-700 border-slate-200`}>{category}</span>;
 }
 
+function formatDisplayName(profile) {
+  const nick = profile?.nickname?.trim();
+  const guild = profile?.guild?.trim();
+  if (nick && guild) return `${nick}(${guild})`;
+  if (nick) return nick;
+  return "익명";
+}
 
 function formatTime(iso) {
   try {
