@@ -5,6 +5,15 @@
     "image": "/images/skills/ace1.png"
   },
   {
+    "key": "choseon1",
+    "name": "초선1",
+    "image": "/images/skills/choseon1.png"
+  }, {
+    "key": "choseon2",
+    "name": "초선2",
+    "image": "/images/skills/choseon2.png"
+  },
+  {
     "key": "ace2",
     "name": "에이스2",
     "image": "/images/skills/ace2.png"
