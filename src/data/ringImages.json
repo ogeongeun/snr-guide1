@@ -1,0 +1,62 @@
+[
+  {
+    "key": "4bu",
+    "name": "4부활",
+    "image": "/images/ring/4bu.png"
+  },
+  {
+    "key": "4bul",
+    "name": "4불사",
+    "image": "/images/ring/4bul.png"
+  },
+  {
+    "key": "4geon",
+    "name": "4권능",
+    "image": "/images/ring/4geon.png"
+  },
+  {
+    "key": "5bu",
+    "name": "5부활",
+    "image": "/images/ring/5bu.png"
+  },
+  {
+    "key": "5bul",
+    "name": "5불사",
+    "image": "/images/ring/5bul.png"
+  },
+  {
+    "key": "5geon",
+    "name": "5권능",
+    "image": "/images/ring/5geon.png"
+  },
+  {
+    "key": "6bu",
+    "name": "6부활",
+    "image": "/images/ring/6bu.png"
+  },
+  {
+    "key": "6bul",
+    "name": "6불사",
+    "image": "/images/ring/6bul.png"
+  },
+  {
+    "key": "6cheol",
+    "name": "6철벽",
+    "image": "/images/ring/6cheol.png"
+  },
+  {
+    "key": "6geon",
+    "name": "6권능",
+    "image": "/images/ring/6geon.png"
+  },
+  {
+    "key": "6geongang",
+    "name": "6건강",
+    "image": "/images/ring/6geongang.png"
+  },
+  {
+    "key": "6gihap",
+    "name": "6기합",
+    "image": "/images/ring/6gihap.png"
+  }
+]

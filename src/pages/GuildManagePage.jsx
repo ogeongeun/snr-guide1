@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { Link, useNavigate } from "react-router-dom";
+import DefenseSubmitPage from "./DefenseSubmitPage";
 
 export default function GuildManagePage() {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ export default function GuildManagePage() {
         label: "방어팀 제출",
         desc: "세팅 등록",
         emoji: "🛡️",
-        to: "/guild-manage/defense",
+        to: "/guild-manage/defense", // ✅ 모바일 전용 페이지
       },
     ],
     []
@@ -99,8 +100,7 @@ export default function GuildManagePage() {
         }
         setGuild(g);
 
-        // 3) 길드원 수(PC 좌측 상태 카드/모바일 힌트용)만 필요하면 여기서 불러옴
-        //    (모바일은 페이지 이동이라 목록을 여기서 굳이 렌더할 필요 없음)
+        // 3) 길드원 로드
         setMembersLoading(true);
         const { data: mRows, error: mErr } = await supabase.rpc(
           "get_my_guild_members"
@@ -120,13 +120,11 @@ export default function GuildManagePage() {
     run();
   }, [navigate]);
 
- 
-
-  // ✅ PC에서만: 우측 패널 전환
+  // ✅ PC: 우측 패널 전환 유지 (defense도 navigate 금지)
   const handleSelectPc = async (key) => {
     setActive(key);
 
-    // members 탭을 눌렀는데 아직 멤버가 없고 로딩도 아니라면(최소 한 번) 로드
+    // members 탭을 눌렀는데 아직 멤버가 없고 로딩도 아니라면 로드
     if (key === "members" && members.length === 0 && !membersLoading && !loading) {
       try {
         setMembersLoading(true);
@@ -150,8 +148,6 @@ export default function GuildManagePage() {
       <div className="mx-auto w-full max-w-6xl px-4 py-8 lg:py-10">
         {/* 상단 바 */}
         <div className="flex items-center gap-3">
-         
-
           {/* ✅ PC: 홈 */}
           <Link
             to="/"
@@ -196,7 +192,7 @@ export default function GuildManagePage() {
           </div>
         ) : (
           <>
-            {/* ✅ 모바일: "메뉴 리스트만" 보여주고, 클릭하면 페이지 이동 */}
+            {/* ✅ 모바일: 메뉴 리스트만 + 클릭하면 페이지 이동 */}
             <div className="lg:hidden mt-4 space-y-3">
               {/* 요약 */}
               <div className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
@@ -223,7 +219,6 @@ export default function GuildManagePage() {
                 </div>
               </div>
 
-              {/* ✅ 메뉴(설정 느낌) — 클릭 시 navigate */}
               <MobileSettingsSection
                 title="메뉴"
                 items={menu}
@@ -234,7 +229,7 @@ export default function GuildManagePage() {
               />
             </div>
 
-            {/* ✅ PC: 기존 그대로(좌측 메뉴 + 우측 패널 전환) */}
+            {/* ✅ PC: 좌측 메뉴 + 우측 패널 */}
             <div className="hidden lg:grid mt-6 lg:grid-cols-12 lg:gap-6">
               {/* Left sidebar */}
               <aside className="lg:col-span-3">
@@ -338,7 +333,8 @@ export default function GuildManagePage() {
                     {active === "members" ? (
                       <MembersPanel members={members} loading={membersLoading} />
                     ) : (
-                      <DefensePanel guild={guild} myRole={myRole} />
+                      // ✅ PC에서는 우측 패널에 DefenseSubmitPage를 임베드로 표시
+                      <DefenseSubmitPage embedded />
                     )}
                   </div>
                 </div>
@@ -440,44 +436,6 @@ function MembersPanel({ members, loading }) {
             </div>
           </div>
         ))}
-      </div>
-    </div>
-  );
-}
-
-function DefensePanel({ guild, myRole }) {
-  return (
-    <div className="space-y-3">
-      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-        <div className="text-[12px] font-extrabold text-slate-600">길드</div>
-        <div className="mt-1 text-[16px] font-black text-slate-900">
-          {guild?.name || "(길드명 없음)"}
-        </div>
-        <div className="mt-2 text-[12px] font-semibold text-slate-600 leading-relaxed">
-          여기서 방어 덱(영웅/장비/펫/스킬 순서) 제출 UI를 붙이면 됨.
-        </div>
-      </div>
-
-      <div className="rounded-2xl border border-slate-200 bg-white p-4">
-        <div className="text-[14px] font-black text-slate-900">제출 폼(추후)</div>
-        <div className="mt-2 text-[12px] font-semibold text-slate-600 leading-relaxed">
-          저장 구조(길드 공통 1개 vs 길드원 개인 1개)가 확정되면 폼+DB 저장까지 바로 붙일 수 있음.
-        </div>
-
-        <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-            <div className="text-[12px] font-extrabold text-slate-700">권한</div>
-            <div className="mt-1 text-[12px] font-semibold text-slate-600">
-              현재: {myRole === "leader" ? "길드장" : "길드원"}
-            </div>
-          </div>
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-            <div className="text-[12px] font-extrabold text-slate-700">상태</div>
-            <div className="mt-1 text-[12px] font-semibold text-slate-600">
-              제출 UI 연결 전
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

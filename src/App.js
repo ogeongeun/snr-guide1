@@ -2,7 +2,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GuildOffenseCounterCreatePage from "./pages/GuildOffenseCounterCreatePage";
-
+import DefenseEditPage from "./pages/DefenseEditPage";
 import GuildMembersPage from "./pages/GuildMembersPage";
 import GuildDefenseSubmitPage from "./pages/DefenseSubmitPage";
 import Home from "./pages/Home";
@@ -130,7 +130,7 @@ const App = () => {
             </RequireAuth>
           }
         />
-
+<Route path="/guild-manage/defense/edit" element={<DefenseEditPage />} />
         <Route path="/siege/edit/:id" element={<SiegeTeamEditPage />} />
         <Route path="/guild-manage/members" element={<GuildMembersPage />} />
         <Route path="/guild-manage/defense" element={<GuildDefenseSubmitPage />} />
