@@ -174,7 +174,7 @@ export default function DefenseSubmitPage({ embedded = false }) {
 
   const [guild, setGuild] = useState(null);
   const [myRole, setMyRole] = useState(null);
-  const [me, setMe] = useState(null);
+
 
   // ✅ 랭킹
   const [rankLoading, setRankLoading] = useState(false);
@@ -214,7 +214,7 @@ export default function DefenseSubmitPage({ embedded = false }) {
           navigate("/login", { replace: true });
           return;
         }
-        setMe({ id: uid });
+      
 
         // 1) 내 멤버십(최근 1개)
         const { data: memRows, error: memErr } = await supabase
