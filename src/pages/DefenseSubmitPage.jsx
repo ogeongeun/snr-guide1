@@ -7,7 +7,8 @@ import heroesList from "../data/heroes.json";
 // =========================
 // 이미지 유틸
 // =========================
-const heroImg = (src) => (src?.startsWith("/images/") ? src : `/images/heroes/${src || ""}.png`);
+const heroImg = (src) =>
+  src?.startsWith("/images/") ? src : `/images/heroes/${src || ""}.png`;
 const ringImg = (key) => `/images/ring/${key}.png`;
 // ✅ 세공 폴더/파일명이 다르면 여기만 바꾸면 됨
 const engraveImg = (key) => `/images/ring/${key}.png`;
@@ -75,7 +76,8 @@ const tierRankFromKey = (key) => {
 };
 
 const ringName = (key) => RING_OPTIONS.find((x) => x.key === key)?.name || key;
-const engraveName = (key) => ENGRAVE_OPTIONS.find((x) => x.key === key)?.name || key;
+const engraveName = (key) =>
+  ENGRAVE_OPTIONS.find((x) => x.key === key)?.name || key;
 
 // =========================
 // 영웅 선택 모달(필터용)
@@ -105,7 +107,9 @@ function HeroPickerModal({ open, onClose, onPick }) {
         <div className="p-4 border-b border-slate-200 flex items-center gap-3">
           <div className="min-w-0">
             <div className="text-[12px] font-extrabold text-slate-500">영웅 선택</div>
-            <div className="text-[16px] font-black text-slate-900">필터 영웅을 선택하세요</div>
+            <div className="text-[16px] font-black text-slate-900">
+              필터 영웅을 선택하세요
+            </div>
           </div>
           <div className="flex-1" />
           <button
@@ -146,7 +150,9 @@ function HeroPickerModal({ open, onClose, onPick }) {
                   <div className="mt-1 text-[11px] font-extrabold text-slate-800 truncate">
                     {h.name}
                   </div>
-                  <div className="text-[10px] font-semibold text-slate-500 truncate">{h.key}</div>
+                  <div className="text-[10px] font-semibold text-slate-500 truncate">
+                    {h.key}
+                  </div>
                 </button>
               ))}
               {filtered.length === 0 ? (
@@ -158,7 +164,8 @@ function HeroPickerModal({ open, onClose, onPick }) {
           </div>
 
           <div className="mt-3 text-[11px] font-semibold text-slate-500">
-            * 영웅 이미지는 <span className="font-extrabold">/images/heroes</span> 기준으로 표시됩니다.
+            * 영웅 이미지는 <span className="font-extrabold">/images/heroes</span> 기준으로
+            표시됩니다.
           </div>
         </div>
       </div>
@@ -174,7 +181,6 @@ export default function DefenseSubmitPage({ embedded = false }) {
 
   const [guild, setGuild] = useState(null);
   const [myRole, setMyRole] = useState(null);
-
 
   // ✅ 랭킹
   const [rankLoading, setRankLoading] = useState(false);
@@ -192,6 +198,7 @@ export default function DefenseSubmitPage({ embedded = false }) {
     arr.forEach((h) => m.set(h.key, h.name));
     return m;
   }, []);
+
   const heroName = (key) => {
     if (!key) return "-";
     return heroNameMap.get(key) || key;
@@ -214,7 +221,6 @@ export default function DefenseSubmitPage({ embedded = false }) {
           navigate("/login", { replace: true });
           return;
         }
-      
 
         // 1) 내 멤버십(최근 1개)
         const { data: memRows, error: memErr } = await supabase
@@ -288,7 +294,7 @@ export default function DefenseSubmitPage({ embedded = false }) {
   };
 
   // -------------------------
-  // 1) 랭킹 로드 (데이터는 그대로, "팀 한줄"은 렌더에서 펼침)
+  // 1) 랭킹 로드
   // -------------------------
   const loadRanking = async (guildId) => {
     setRankLoading(true);
@@ -360,20 +366,18 @@ export default function DefenseSubmitPage({ embedded = false }) {
   }, [guild?.id]);
 
   // -------------------------
-  // ✅ 여기만 핵심: "팀 하나당 한줄" 펼치기 + 필터도 팀 기준
+  // ✅ 팀 하나당 한줄 펼치기
   // -------------------------
   const expandedRows = useMemo(() => {
     const out = [];
 
     for (const r of rows) {
       const teamsArr = Array.isArray(r?.teams) ? r.teams : [];
-      // teams가 있으면 teams 기준으로 펼침
       if (teamsArr.length) {
         for (let teamIdx = 0; teamIdx < teamsArr.length; teamIdx++) {
           const slots = getTeamSlots(r, teamIdx);
           const heroes = slots.map((s) => s.hero).filter(Boolean);
 
-          // 필터: "해당 팀에 영웅 포함"일 때만 노출
           if (filterHero && !heroes.includes(filterHero)) continue;
 
           const ringKeys = slots.map((s) => s.ring_key).filter(Boolean);
@@ -388,11 +392,12 @@ export default function DefenseSubmitPage({ embedded = false }) {
           });
         }
       } else {
-        // teams가 없으면(구버전) 기존 heroes만 1줄로
         const heroes = Array.isArray(r?.heroes) ? r.heroes.slice(0, 3).filter(Boolean) : [];
         if (filterHero && !heroes.includes(filterHero)) continue;
 
-        const slots = heroes.slice(0, 3).map((h) => ({ hero: h, ring_key: null, engrave_key: null }));
+        const slots = heroes
+          .slice(0, 3)
+          .map((h) => ({ hero: h, ring_key: null, engrave_key: null }));
         while (slots.length < 3) slots.push({ hero: null, ring_key: null, engrave_key: null });
 
         out.push({
@@ -405,7 +410,7 @@ export default function DefenseSubmitPage({ embedded = false }) {
       }
     }
 
-    // 정렬: 반지 좋은 순 → 세공 좋은 순 → 업데이트 빠른 순 (팀 기준)
+    // 정렬: 반지 좋은 순 → 세공 좋은 순 → 업데이트 빠른 순
     out.sort((a, b) => {
       if (a.ringTier !== b.ringTier) return a.ringTier - b.ringTier;
       if (a.engraveTier !== b.engraveTier) return a.engraveTier - b.engraveTier;
@@ -455,7 +460,9 @@ export default function DefenseSubmitPage({ embedded = false }) {
 
           <div className="min-w-0">
             <div className="text-[12px] font-extrabold text-slate-500">길드관리</div>
-            <h1 className="text-[18px] lg:text-[20px] font-black text-slate-900">방어팀 리스트</h1>
+            <h1 className="text-[18px] lg:text-[20px] font-black text-slate-900">
+              방어팀 리스트
+            </h1>
           </div>
 
           <div className="flex-1 h-px bg-slate-200 ml-2" />
@@ -596,10 +603,11 @@ export default function DefenseSubmitPage({ embedded = false }) {
                   </div>
                 ) : (
                   <div className="mt-4 overflow-hidden rounded-xl border border-slate-200">
+                    {/* ✅ 헤더: PC는 기존 1/3/8, 모바일은 1/11 */}
                     <div className="grid grid-cols-12 bg-slate-50 px-3 py-2 text-[11px] font-extrabold text-slate-600">
                       <div className="col-span-1">순위</div>
-                      <div className="col-span-3">닉네임</div>
-                      <div className="col-span-8">방어팀(영웅 · 반지 · 세공)</div>
+                      <div className="hidden lg:block col-span-3">닉네임</div>
+                      <div className="col-span-11 lg:col-span-8">방어팀(영웅 · 반지 · 세공)</div>
                     </div>
 
                     <div className="divide-y divide-slate-200">
@@ -609,111 +617,126 @@ export default function DefenseSubmitPage({ embedded = false }) {
                         return (
                           <div
                             key={`${r.id}-team-${r._teamIdx}`}
-                            className="grid grid-cols-12 items-center px-3 py-3"
+                            className="grid grid-cols-12 items-start px-3 py-3"
                           >
+                            {/* ✅ 모바일: 닉네임을 위로(작게), PC는 숨김 */}
+                            <div className="col-span-12 mb-1 lg:hidden">
+                              <span className="text-[11px] font-extrabold text-slate-600">
+                                {r.nickname}
+                              </span>
+                            </div>
+
+                            {/* 순위 */}
                             <div className="col-span-1 text-[12px] font-black text-slate-900">
                               #{i + 1}
                             </div>
 
-                            <div className="col-span-3 min-w-0">
+                            {/* ✅ PC 전용 닉네임 칸(기존 그대로) */}
+                            <div className="hidden lg:block col-span-3 min-w-0">
                               <div className="text-[12px] font-extrabold text-slate-800 truncate">
                                 {r.nickname}
                               </div>
                             </div>
 
-                            <div className="col-span-8 flex gap-3">
-                              {slots.slice(0, 3).map((s, idx) => {
-                                const heroKey = s.hero;
-                                const ringKey = s.ring_key;
-                                const engraveKey = s.engrave_key;
+                            {/* ✅ 팀 영역: 모바일은 11칸 + grid 3칸(스크롤 없음), PC는 8칸 + flex(기존) */}
+                            <div className="col-span-11 lg:col-span-8">
+                              <div className="grid grid-cols-3 gap-2 lg:flex lg:gap-3">
+                                {slots.slice(0, 3).map((s, idx) => {
+                                  const heroKey = s.hero;
+                                  const ringKey = s.ring_key;
+                                  const engraveKey = s.engrave_key;
 
-                                return (
-                                  <div
-                                    key={`${r.id}-team-${r._teamIdx}-slot-${idx}`}
-                                    className="flex-1 rounded-2xl border border-slate-200 bg-slate-50 p-3"
-                                  >
-                                    <div className="flex items-center gap-2">
-                                      <div className="h-12 w-12 rounded-xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center">
-                                        {heroKey ? (
-                                          <img
-                                            src={heroImg(heroKey)}
-                                            alt=""
-                                            className="h-full w-full object-contain"
-                                            onError={(e) => {
-                                              e.currentTarget.style.display = "none";
-                                            }}
-                                          />
-                                        ) : (
-                                          <div className="text-[12px] font-extrabold text-slate-400">
-                                            -
-                                          </div>
-                                        )}
-                                      </div>
-
-                                      <div className="min-w-0">
-                                        <div className="text-[12px] font-black text-slate-900 truncate">
-                                          {heroName(heroKey)}
-                                        </div>
-                                        <div className="text-[10px] font-semibold text-slate-500 truncate">
-                                          {heroKey || ""}
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <div className="mt-2 grid grid-cols-1 gap-1">
-                                      <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 py-1">
-                                        <div className="text-[10px] font-extrabold text-slate-500 shrink-0">
-                                          반지
-                                        </div>
-                                        {ringKey ? (
-                                          <>
+                                  return (
+                                    <div
+                                      key={`${r.id}-team-${r._teamIdx}-slot-${idx}`}
+                                      className="rounded-xl lg:rounded-2xl border border-slate-200 bg-slate-50 p-2 lg:p-3 lg:flex-1"
+                                    >
+                                      <div className="flex items-center gap-2">
+                                        <div className="h-9 w-9 lg:h-12 lg:w-12 rounded-xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center">
+                                          {heroKey ? (
                                             <img
-                                              src={ringImg(ringKey)}
-                                              className="h-5 w-5 rounded-md border border-slate-200 bg-white object-contain"
+                                              src={heroImg(heroKey)}
                                               alt=""
+                                              className="h-full w-full object-contain"
                                               onError={(e) => {
                                                 e.currentTarget.style.display = "none";
                                               }}
                                             />
-                                            <div className="min-w-0 text-[11px] font-extrabold text-slate-800 truncate">
-                                              {ringName(ringKey)}
+                                          ) : (
+                                            <div className="text-[12px] font-extrabold text-slate-400">
+                                              -
                                             </div>
-                                          </>
-                                        ) : (
-                                          <div className="text-[11px] font-semibold text-slate-400">
-                                            없음
+                                          )}
+                                        </div>
+
+                                        <div className="min-w-0">
+                                          <div className="text-[11px] lg:text-[12px] font-black text-slate-900 truncate">
+                                            {heroName(heroKey)}
                                           </div>
-                                        )}
+                                          {/* ✅ 모바일은 키 줄 숨김 */}
+                                          <div className="hidden lg:block text-[10px] font-semibold text-slate-500 truncate">
+                                            {heroKey || ""}
+                                          </div>
+                                        </div>
                                       </div>
 
-                                      <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 py-1">
-                                        <div className="text-[10px] font-extrabold text-slate-500 shrink-0">
-                                          세공
-                                        </div>
-                                        {engraveKey ? (
-                                          <>
-                                            <img
-                                              src={engraveImg(engraveKey)}
-                                              className="h-5 w-5 rounded-md border border-slate-200 bg-white object-contain"
-                                              alt=""
-                                              onError={(e) => {
-                                                e.currentTarget.style.display = "none";
-                                              }}
-                                            />
-                                            <div className="min-w-0 text-[11px] font-extrabold text-slate-800 truncate">
-                                              {engraveName(engraveKey)}
-                                            </div>
-                                          </>
-                                        ) : (
-                                          <div className="text-[11px] font-semibold text-slate-400">
-                                            없음
+                                      <div className="mt-2 grid grid-cols-1 gap-1">
+                                        {/* 반지 */}
+                                        <div className="flex items-center gap-1 rounded-xl border border-slate-200 bg-white px-1.5 py-1 lg:px-2 lg:py-1">
+                                          <div className="text-[10px] font-extrabold text-slate-500 shrink-0">
+                                            반지
                                           </div>
-                                        )}
+                                          {ringKey ? (
+                                            <>
+                                              <img
+                                                src={ringImg(ringKey)}
+                                                className="h-4 w-4 lg:h-5 lg:w-5 rounded-md border border-slate-200 bg-white object-contain"
+                                                alt=""
+                                                onError={(e) => {
+                                                  e.currentTarget.style.display = "none";
+                                                }}
+                                              />
+                                              <div className="min-w-0 text-[10px] lg:text-[11px] font-extrabold text-slate-800 truncate">
+                                                {ringName(ringKey)}
+                                              </div>
+                                            </>
+                                          ) : (
+                                            <div className="text-[10px] lg:text-[11px] font-semibold text-slate-400">
+                                              없음
+                                            </div>
+                                          )}
+                                        </div>
+
+                                        {/* 세공 */}
+                                        <div className="flex items-center gap-1 rounded-xl border border-slate-200 bg-white px-1.5 py-1 lg:px-2 lg:py-1">
+                                          <div className="text-[10px] font-extrabold text-slate-500 shrink-0">
+                                            세공
+                                          </div>
+                                          {engraveKey ? (
+                                            <>
+                                              <img
+                                                src={engraveImg(engraveKey)}
+                                                className="h-4 w-4 lg:h-5 lg:w-5 rounded-md border border-slate-200 bg-white object-contain"
+                                                alt=""
+                                                onError={(e) => {
+                                                  e.currentTarget.style.display = "none";
+                                                }}
+                                              />
+                                              <div className="min-w-0 text-[10px] lg:text-[11px] font-extrabold text-slate-800 truncate">
+                                                {engraveName(engraveKey)}
+                                              </div>
+                                            </>
+                                          ) : (
+                                            <div className="text-[10px] lg:text-[11px] font-semibold text-slate-400">
+                                              없음
+                                            </div>
+                                          )}
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
-                                );
-                              })}
+                                  );
+                                })}
+                              </div>
                             </div>
                           </div>
                         );
