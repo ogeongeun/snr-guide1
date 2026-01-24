@@ -18,7 +18,7 @@ export default function GuildDefensePage() {
         tone: "indigo",
       },
       {
-        label: "카운터덱 편성",
+        label: "카운터덱 확인/추가",
         path: "/guild-offense",
         icon: Sword,
         description: "방어팀별 추천 카운터 조합 확인",
