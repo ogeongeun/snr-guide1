@@ -1,15 +1,7 @@
 // src/pages/GuildOffenseDetailPage.jsx
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
-import {
-  ChevronLeft,
-
-  Plus,
-  ThumbsUp,
-  ThumbsDown,
-  Pencil,
-  Trash2,
-} from "lucide-react";
+import { ChevronLeft, Plus, ThumbsUp, ThumbsDown, Pencil, Trash2 } from "lucide-react";
 
 import data from "../data/guildCounter.json";
 import equipmentData from "../data/equipmentRecommend.json";
@@ -66,13 +58,11 @@ export default function GuildOffenseDetailPage({
   // ✅ 라우트로 진입한 DB(사용자등록) entry를 DB에서 만들어 쓰기 위한 state
   const [routeDbEntry, setRouteDbEntry] = useState(null);
 
-
-
+  // =========================
   // ✅ 카테고리/인덱스/entry 결정
+  // =========================
   const decodedCategory = useMemo(() => {
-    return embedded
-      ? String(embeddedCategory || "")
-      : decodeURIComponent(category || "");
+    return embedded ? String(embeddedCategory || "") : decodeURIComponent(category || "");
   }, [embedded, embeddedCategory, category]);
 
   const idx = useMemo(() => {
@@ -94,15 +84,11 @@ export default function GuildOffenseDetailPage({
   // ✅ 라우트 DB entry 로드 (방어팀 표시용)
   useEffect(() => {
     const run = async () => {
-    
-
       if (!isRouteDbCategory) {
         setRouteDbEntry(null);
-        
         return;
       }
 
-    
       try {
         const pid = Number(routePostId);
         if (!Number.isFinite(pid) || pid <= 0) throw new Error("postId가 올바르지 않습니다.");
@@ -152,9 +138,6 @@ export default function GuildOffenseDetailPage({
         });
       } catch (e) {
         setRouteDbEntry(null);
-       
-      } finally {
-       
       }
     };
 
@@ -175,7 +158,6 @@ export default function GuildOffenseDetailPage({
     return 0;
   }, [embedded, embeddedVariantIdx, variantParam]);
 
- 
   const variants = useMemo(() => {
     return Array.isArray(entry?.defenseVariants) ? entry.defenseVariants : [];
   }, [entry]);
@@ -216,6 +198,170 @@ export default function GuildOffenseDetailPage({
   }, []);
 
   // =========================
+  // ✅ 유틸/렌더
+  // =========================
+  const heroImg = (src) => (src?.startsWith("/images/") ? src : `/images/heroes/${src || ""}`);
+
+  const petImgFromKey = (keyOrPath) => {
+    if (!keyOrPath) return "";
+    const s = String(keyOrPath);
+    if (s.startsWith("/images/")) return s;
+
+    const found = (Array.isArray(petImages) ? petImages : []).find((x) => x.key === s);
+    if (found?.image) return found.image;
+
+    return `/images/pet/${s}`;
+  };
+
+  // ✅ 스킬 이미지: 이미 경로면 그대로, 파일명이면 /images/skills 붙임
+  const skillImg = (s) => {
+    if (!s) return "";
+    const str = String(s);
+    if (str.startsWith("/images/")) return str;
+    if (str.startsWith("http")) return str;
+    return `/images/skills/${str}`;
+  };
+
+  const findHeroKeyByName = (name) => {
+    const key = Object.keys(equipmentData || {}).find((k) => equipmentData?.[k]?.name === name);
+    return key || null;
+  };
+
+  const hasBuild = (b) => {
+    const build = b || {};
+    return (
+      !!build.set ||
+      !!build.subOption ||
+      !!build.note ||
+      Number.isFinite(build.speed) ||
+      !!build.weapon?.main1 ||
+      !!build.weapon?.main2 ||
+      !!build.armor?.main1 ||
+      !!build.armor?.main2
+    );
+  };
+
+  const openEquipmentByHero = (hero) => {
+    if (!hero) return;
+
+    if (hero.hero_key && equipmentData?.[hero.hero_key]) {
+      setSelectedHeroKey(hero.hero_key);
+      setPresetTag(null);
+      return;
+    }
+
+    const hk = findHeroKeyByName(hero?.name);
+    if (hk) {
+      setSelectedHeroKey(hk);
+      setPresetTag(hero?.preset || null);
+    }
+  };
+
+  // ✅ "속공 이길 때(250~)" 같은 라벨에서 speed_mode/speed_min 추출
+  const parseSpeedFromLabel = (label) => {
+    const s = String(label || "");
+    const out = { speed_mode: "any", speed_min: null };
+
+    if (s.includes("질 때")) {
+      out.speed_mode = "lose";
+      return out;
+    }
+
+    if (s.includes("이길 때")) {
+      out.speed_mode = "win";
+      const m = s.match(/(\d+)/);
+      if (m) out.speed_min = Number(m[1]);
+      return out;
+    }
+
+    return out;
+  };
+
+  const SkillStrip = ({ skills, size = "w-9 h-9" }) => {
+    if (!Array.isArray(skills) || skills.length === 0) return null;
+    return (
+      <div className="flex flex-wrap gap-2 justify-center">
+        {skills.map((img, i) => (
+          <img
+            key={`${img}-${i}`}
+            src={skillImg(img)}
+            alt={`Skill ${i + 1}`}
+            className={`${size} border border-slate-200 rounded bg-white`}
+            loading="lazy"
+          />
+        ))}
+      </div>
+    );
+  };
+
+  const renderHeroCard = (hero) => {
+    const b = hero?.build || null;
+    const buildOn = hasBuild(b);
+
+    return (
+      <button
+        key={`${hero?.hero_key || hero?.name}-${hero?.image}`}
+        type="button"
+        onClick={() => {
+          if (buildOn) {
+            setOpenDbBuild({ heroName: hero?.name || "영웅", build: b || {} });
+            return;
+          }
+          openEquipmentByHero(hero);
+        }}
+        className="flex flex-col items-center bg-white border border-slate-200 rounded-2xl p-2"
+        title={buildOn ? "DB 세팅 있음" : "기본 추천 열기"}
+      >
+        <img src={heroImg(hero?.image)} alt={hero?.name} className="w-14 h-14 object-contain" loading="lazy" />
+        <p className="text-[11px] mt-1 font-semibold text-slate-700">{hero?.name}</p>
+        {buildOn ? <span className="mt-1 w-2 h-2 rounded-full bg-emerald-500" /> : <div className="h-2" />}
+      </button>
+    );
+  };
+
+  const renderPetIcons = (pets) => {
+    const list = Array.isArray(pets) ? pets : pets ? [pets] : [];
+    if (!list.length) return null;
+    return (
+      <div className="ml-3 flex flex-col gap-2">
+        {list.map((p, i) => (
+          <img
+            key={`${p}-${i}`}
+            src={petImgFromKey(p)}
+            alt={`Pet ${i + 1}`}
+            className="w-10 h-10 object-contain"
+            loading="lazy"
+          />
+        ))}
+      </div>
+    );
+  };
+
+  // ✅ 속공 조건 칩
+  const renderSpeedCondition = (rec) => {
+    const mode = String(rec?.speed_mode ?? rec?.speedMode ?? "any");
+    const min = rec?.speed_min ?? rec?.speedMin ?? null;
+
+    let label = "무관";
+    let tone = "border-slate-200 bg-white text-slate-700";
+
+    if (mode === "win") {
+      label = `속공 이길 때${Number.isFinite(Number(min)) ? ` (≥${Number(min)})` : ""}`;
+      tone = "border-emerald-200 bg-emerald-50 text-emerald-700";
+    } else if (mode === "lose") {
+      label = "속공 질 때";
+      tone = "border-indigo-200 bg-indigo-50 text-indigo-700";
+    }
+
+    return (
+      <div className="mt-3 flex justify-between items-center">
+        <div className="text-[12px] font-extrabold text-slate-500">속공 조건</div>
+        <span className={`text-[11px] font-extrabold px-2 py-1 rounded-full border ${tone}`}>{label}</span>
+      </div>
+    );
+  };
+
+  // =========================
   // ✅ DB counters + members(build) + 작성자 닉네임 로드
   // =========================
   useEffect(() => {
@@ -223,11 +369,8 @@ export default function GuildOffenseDetailPage({
       setDbCountersErr("");
 
       // ✅ DB 방어팀 or JSON 방어팀 모두 허용
-      const canLoadByPost =
-        isDb && Number.isFinite(Number(postId)) && Number(postId) > 0;
-
-      const canLoadByJson =
-        !canLoadByPost && decodedCategory && Number.isFinite(idx);
+      const canLoadByPost = isDb && Number.isFinite(Number(postId)) && Number(postId) > 0;
+      const canLoadByJson = !canLoadByPost && decodedCategory && Number.isFinite(idx);
 
       if (!canLoadByPost && !canLoadByJson) {
         setDbCounters([]);
@@ -248,9 +391,7 @@ export default function GuildOffenseDetailPage({
         if (canLoadByPost) {
           q = q.eq("post_id", Number(postId));
         } else {
-          q = q
-            .eq("json_category", String(decodedCategory || "").trim())
-            .eq("json_team_index", Number(idx));
+          q = q.eq("json_category", String(decodedCategory || "").trim()).eq("json_team_index", Number(idx));
         }
 
         const { data: counters, error: cErr } = await q;
@@ -278,15 +419,10 @@ export default function GuildOffenseDetailPage({
           byCounter.get(m.counter_id).push(m);
         }
 
-        const uids = [
-          ...new Set((counters || []).map((c) => c.created_by).filter(Boolean)),
-        ];
+        const uids = [...new Set((counters || []).map((c) => c.created_by).filter(Boolean))];
 
         if (uids.length) {
-          const { data: profs, error: pErr } = await supabase
-            .from("profiles")
-            .select("user_id,nickname")
-            .in("user_id", uids);
+          const { data: profs, error: pErr } = await supabase.from("profiles").select("user_id,nickname").in("user_id", uids);
 
           if (!pErr) {
             const m = {};
@@ -300,9 +436,7 @@ export default function GuildOffenseDetailPage({
         }
 
         const mapped = (counters || []).map((c) => {
-          const ms = (byCounter.get(c.id) || []).sort(
-            (a, b) => (a.slot ?? 0) - (b.slot ?? 0)
-          );
+          const ms = (byCounter.get(c.id) || []).sort((a, b) => (a.slot ?? 0) - (b.slot ?? 0));
           const team = ms.slice(0, 3).map((m) => ({
             hero_key: m.hero_key || "",
             name: m.hero_name || "",
@@ -340,157 +474,6 @@ export default function GuildOffenseDetailPage({
 
     run();
   }, [embedded, decodedCategory, idx, postId, safeVariantIdx, isDb]);
-
-  // =========================
-  // ✅ 유틸/렌더
-  // =========================
-  const heroImg = (src) =>
-    src?.startsWith("/images/") ? src : `/images/heroes/${src || ""}`;
-
-  const petImgFromKey = (keyOrPath) => {
-    if (!keyOrPath) return "";
-    const s = String(keyOrPath);
-    if (s.startsWith("/images/")) return s;
-
-    const found = (Array.isArray(petImages) ? petImages : []).find((x) => x.key === s);
-    if (found?.image) return found.image;
-
-    return `/images/pet/${s}`;
-  };
-
-  const findHeroKeyByName = (name) => {
-    const key = Object.keys(equipmentData || {}).find(
-      (k) => equipmentData?.[k]?.name === name
-    );
-    return key || null;
-  };
-
-  const hasBuild = (b) => {
-    const build = b || {};
-    return (
-      !!build.set ||
-      !!build.subOption ||
-      !!build.note ||
-      Number.isFinite(build.speed) ||
-      !!build.weapon?.main1 ||
-      !!build.weapon?.main2 ||
-      !!build.armor?.main1 ||
-      !!build.armor?.main2
-    );
-  };
-
-  const openEquipmentByHero = (hero) => {
-    if (!hero) return;
-
-    if (hero.hero_key && equipmentData?.[hero.hero_key]) {
-      setSelectedHeroKey(hero.hero_key);
-      setPresetTag(null);
-      return;
-    }
-
-    const hk = findHeroKeyByName(hero?.name);
-    if (hk) {
-      setSelectedHeroKey(hk);
-      setPresetTag(hero?.preset || null);
-    }
-  };
-
-  const SkillStrip = ({ skills, size = "w-9 h-9" }) => {
-    if (!Array.isArray(skills) || skills.length === 0) return null;
-    return (
-      <div className="flex flex-wrap gap-2 justify-center">
-        {skills.map((img, i) => (
-          <img
-            key={`${img}-${i}`}
-            src={`/images/skills/${img}`}
-            alt={`Skill ${i + 1}`}
-            className={`${size} border border-slate-200 rounded bg-white`}
-            loading="lazy"
-          />
-        ))}
-      </div>
-    );
-  };
-
-  const renderHeroCard = (hero) => {
-    const b = hero?.build || null;
-    const buildOn = hasBuild(b);
-
-    return (
-      <button
-        key={`${hero?.hero_key || hero?.name}-${hero?.image}`}
-        type="button"
-        onClick={() => {
-          if (buildOn) {
-            setOpenDbBuild({ heroName: hero?.name || "영웅", build: b || {} });
-            return;
-          }
-          openEquipmentByHero(hero);
-        }}
-        className="flex flex-col items-center bg-white border border-slate-200 rounded-2xl p-2"
-        title={buildOn ? "DB 세팅 있음" : "기본 추천 열기"}
-      >
-        <img
-          src={heroImg(hero?.image)}
-          alt={hero?.name}
-          className="w-14 h-14 object-contain"
-          loading="lazy"
-        />
-        <p className="text-[11px] mt-1 font-semibold text-slate-700">{hero?.name}</p>
-        {buildOn ? (
-          <span className="mt-1 w-2 h-2 rounded-full bg-emerald-500" />
-        ) : (
-          <div className="h-2" />
-        )}
-      </button>
-    );
-  };
-
-  const renderPetIcons = (pets) => {
-    const list = Array.isArray(pets) ? pets : pets ? [pets] : [];
-    if (!list.length) return null;
-    return (
-      <div className="ml-3 flex flex-col gap-2">
-        {list.map((p, i) => (
-          <img
-            key={`${p}-${i}`}
-            src={petImgFromKey(p)}
-            alt={`Pet ${i + 1}`}
-            className="w-10 h-10 object-contain"
-            loading="lazy"
-          />
-        ))}
-      </div>
-    );
-  };
-
-  // ✅ 속공 조건 칩
-  const renderSpeedCondition = (rec) => {
-    const mode = String(rec?.speed_mode ?? rec?.speedMode ?? "any");
-    const min = rec?.speed_min ?? rec?.speedMin ?? null;
-
-    let label = "무관";
-    let tone = "border-slate-200 bg-white text-slate-700";
-
-    if (mode === "win") {
-      label = `속공 이길 때${
-        Number.isFinite(Number(min)) ? ` (≥${Number(min)})` : ""
-      }`;
-      tone = "border-emerald-200 bg-emerald-50 text-emerald-700";
-    } else if (mode === "lose") {
-      label = "속공 질 때";
-      tone = "border-indigo-200 bg-indigo-50 text-indigo-700";
-    }
-
-    return (
-      <div className="mt-3 flex justify-between items-center">
-        <div className="text-[12px] font-extrabold text-slate-500">속공 조건</div>
-        <span className={`text-[11px] font-extrabold px-2 py-1 rounded-full border ${tone}`}>
-          {label}
-        </span>
-      </div>
-    );
-  };
 
   // =========================
   // ✅ 투표 (DB 카운터만 투표 가능)
@@ -555,8 +538,6 @@ export default function GuildOffenseDetailPage({
         <div className="mt-2 h-2 rounded-full bg-slate-200 overflow-hidden">
           <div className="h-full bg-slate-900" style={{ width: `${pct}%` }} />
         </div>
-
-        
       </div>
     );
   };
@@ -579,16 +560,10 @@ export default function GuildOffenseDetailPage({
     setRowActionLoading((p) => ({ ...p, [counterId]: true }));
 
     try {
-      const { error: mErr } = await supabase
-        .from("guild_offense_counter_members")
-        .delete()
-        .eq("counter_id", counterId);
+      const { error: mErr } = await supabase.from("guild_offense_counter_members").delete().eq("counter_id", counterId);
       if (mErr) throw mErr;
 
-      const { error: dErr } = await supabase
-        .from("guild_offense_counters")
-        .delete()
-        .eq("id", counterId);
+      const { error: dErr } = await supabase.from("guild_offense_counters").delete().eq("id", counterId);
       if (dErr) throw dErr;
 
       // ✅ 삭제 키 고정 (voteOverride는 db-키로 관리)
@@ -610,12 +585,26 @@ export default function GuildOffenseDetailPage({
   const jsonCounters = useMemo(() => {
     if (!currentVariant || !Array.isArray(currentVariant.counters)) return [];
 
-    // ✅ JSON도 고정 key를 부여 (정렬/필터/삭제/리렌더 꼬임 방지)
-    return currentVariant.counters.map((x, i) => ({
-      ...x,
-      source: x?.source || "json",
-      _key: x?._key || `json-${decodedCategory}-${idx}-${safeVariantIdx}-${i}`,
-    }));
+    // ✅ JSON도 고정 key 부여 + skillOrders → skills, speed_mode/speed_min 정규화
+    return currentVariant.counters.map((x, i) => {
+      const orders = Array.isArray(x?.skillOrders) ? x.skillOrders : [];
+      const firstOrder = orders[0] || null;
+      const speedFromLabel = parseSpeedFromLabel(firstOrder?.label);
+
+      return {
+        ...x,
+        source: x?.source || "json",
+        _key: x?._key || `json-${decodedCategory}-${idx}-${safeVariantIdx}-${i}`,
+
+        // ✅ UI가 보는 필드로 맞춤
+        skills: Array.isArray(firstOrder?.skills) ? firstOrder.skills : [],
+        speed_mode: x?.speed_mode ?? x?.speedMode ?? speedFromLabel.speed_mode,
+        speed_min: x?.speed_min ?? x?.speedMin ?? speedFromLabel.speed_min,
+
+        // (선택) 원본 유지 (나중에 탭 UI 만들 때 사용)
+        _skillOrders: orders,
+      };
+    });
   }, [currentVariant, decodedCategory, idx, safeVariantIdx]);
 
   const dbOnlyCounters = useMemo(() => {
@@ -635,8 +624,6 @@ export default function GuildOffenseDetailPage({
   const sortedCounters = useMemo(() => {
     if (!Array.isArray(baseCounters)) return [];
     return [...baseCounters].sort((a, b) => {
-     
-
       const aKey = getCounterKey(a);
       const bKey = getCounterKey(b);
 
@@ -651,8 +638,6 @@ export default function GuildOffenseDetailPage({
 
   const renderCounterCard = (recommended, j) => {
     const detailKey = `${safeVariantIdx}-${getCounterKey(recommended)}`; // ✅ 안정
-   
-
     const key = getCounterKey(recommended);
     if (voteOverride[key]?.__deleted) return null;
 
@@ -662,7 +647,7 @@ export default function GuildOffenseDetailPage({
     const loading = !!voteLoading[key];
     const err = voteErr[key];
 
-    // ✅ 수정/삭제 로딩/에러는 DB id 기준 (여기 버그였음: db-키로 읽고 있었음)
+    // ✅ 수정/삭제 로딩/에러는 DB id 기준
     const isDbCounter = recommended?.source === "db" && recommended?.id != null;
     const dbId = isDbCounter ? Number(recommended.id) : null;
 
@@ -678,13 +663,7 @@ export default function GuildOffenseDetailPage({
     const authorLabel = isDbCounter ? (isAnon ? "익명" : nick || "알수없음") : "기존";
 
     return (
-     <div
-  key={key}
-  className="relative mb-6 rounded-2xl p-4 bg-white border border-slate-200"
->
-
-     
-
+      <div key={key} className="relative mb-6 rounded-2xl p-4 bg-white border border-slate-200">
         <div className="flex justify-between items-center mb-2">
           <div className="flex items-center gap-2">
             <div className="text-[12px] font-extrabold text-slate-500">카운터 #{j + 1}</div>
@@ -738,56 +717,48 @@ export default function GuildOffenseDetailPage({
                 </button>
               </>
             ) : null}
-
-            {/* ✅ 투표 버튼 (DB 카운터만 가능) */}
-        
-
           </div>
         </div>
 
         {renderWinRateBar(wins, losses)}
-{/* ✅ 투표 버튼 줄 (승률바 아래로 이동) */}
-<div className="mt-3 flex justify-end gap-2">
-  <button
-    type="button"
-    disabled={loading || !isDbCounter}
-    onClick={() => doVote(recommended.id, "win")}
-    className={[
-      "inline-flex items-center gap-1 rounded-xl px-3 py-2 text-xs font-extrabold border",
-      loading || !isDbCounter
-        ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
-        : "bg-white text-slate-800 border-slate-200 hover:bg-slate-50",
-    ].join(" ")}
-    title={!isDbCounter ? "DB 카운터만 투표 가능" : "승"}
-  >
-    <ThumbsUp size={14} />
-    승
-  </button>
 
-  <button
-    type="button"
-    disabled={loading || !isDbCounter}
-    onClick={() => doVote(recommended.id, "lose")}
-    className={[
-      "inline-flex items-center gap-1 rounded-xl px-3 py-2 text-xs font-extrabold border",
-      loading || !isDbCounter
-        ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
-        : "bg-white text-slate-800 border-slate-200 hover:bg-slate-50",
-    ].join(" ")}
-    title={!isDbCounter ? "DB 카운터만 투표 가능" : "패"}
-  >
-    <ThumbsDown size={14} />
-    패
-  </button>
-</div>
+        {/* ✅ 투표 버튼 줄 (승률바 아래로 이동) */}
+        <div className="mt-3 flex justify-end gap-2">
+          <button
+            type="button"
+            disabled={loading || !isDbCounter}
+            onClick={() => doVote(recommended.id, "win")}
+            className={[
+              "inline-flex items-center gap-1 rounded-xl px-3 py-2 text-xs font-extrabold border",
+              loading || !isDbCounter
+                ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
+                : "bg-white text-slate-800 border-slate-200 hover:bg-slate-50",
+            ].join(" ")}
+            title={!isDbCounter ? "DB 카운터만 투표 가능" : "승"}
+          >
+            <ThumbsUp size={14} />
+            승
+          </button>
 
-        {err ? (
-          <div className="mt-2 text-[12px] font-semibold text-rose-600">투표 오류: {err}</div>
-        ) : null}
+          <button
+            type="button"
+            disabled={loading || !isDbCounter}
+            onClick={() => doVote(recommended.id, "lose")}
+            className={[
+              "inline-flex items-center gap-1 rounded-xl px-3 py-2 text-xs font-extrabold border",
+              loading || !isDbCounter
+                ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
+                : "bg-white text-slate-800 border-slate-200 hover:bg-slate-50",
+            ].join(" ")}
+            title={!isDbCounter ? "DB 카운터만 투표 가능" : "패"}
+          >
+            <ThumbsDown size={14} />
+            패
+          </button>
+        </div>
 
-        {actErr ? (
-          <div className="mt-2 text-[12px] font-semibold text-rose-600">처리 오류: {actErr}</div>
-        ) : null}
+        {err ? <div className="mt-2 text-[12px] font-semibold text-rose-600">투표 오류: {err}</div> : null}
+        {actErr ? <div className="mt-2 text-[12px] font-semibold text-rose-600">처리 오류: {actErr}</div> : null}
 
         <div className="mt-4 flex justify-center items-start">
           <div className="grid grid-cols-3 gap-2">
@@ -805,9 +776,7 @@ export default function GuildOffenseDetailPage({
           </div>
         ) : null}
 
-        {recommended?.note ? (
-          <p className="text-[12px] text-slate-600 mt-2 italic">※ {recommended.note}</p>
-        ) : null}
+        {recommended?.note ? <p className="text-[12px] text-slate-600 mt-2 italic">※ {recommended.note}</p> : null}
 
         {recommended?.detail ? (
           <div className="mt-2 text-center">
@@ -822,15 +791,11 @@ export default function GuildOffenseDetailPage({
         ) : null}
 
         {openDetailKey === detailKey && recommended?.detail ? (
-          <div className="mt-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">
-            {recommended.detail}
-          </div>
+          <div className="mt-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">{recommended.detail}</div>
         ) : null}
       </div>
     );
   };
-
- 
 
   const goAddCounter = () => {
     console.log("[goAddCounter fired]", {
@@ -841,6 +806,7 @@ export default function GuildOffenseDetailPage({
       postId,
       href: window.location.href,
     });
+
     if (isDb && postId) {
       navigate(`/guild-offense/counter/new?defensePostId=${postId}&variant=${safeVariantIdx}`);
       return;
@@ -905,9 +871,7 @@ export default function GuildOffenseDetailPage({
               disabled={embedded}
               className={[
                 "inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-extrabold",
-                embedded
-                  ? "bg-slate-200 text-slate-500 cursor-not-allowed"
-                  : "bg-indigo-600 text-white hover:bg-indigo-700",
+                embedded ? "bg-slate-200 text-slate-500 cursor-not-allowed" : "bg-indigo-600 text-white hover:bg-indigo-700",
               ].join(" ")}
               title={embedded ? "PC 우측패널(embedded)에서는 추가를 막습니다. 상세 페이지에서 추가하세요." : ""}
             >
@@ -917,19 +881,13 @@ export default function GuildOffenseDetailPage({
           </div>
 
           {/* 로딩/에러 표시(선택) */}
-          {dbCountersLoading ? (
-            <div className="mb-4 text-[12px] font-extrabold text-slate-500">DB 카운터 로딩중...</div>
-          ) : null}
-          {dbCountersErr ? (
-            <div className="mb-4 text-[12px] font-extrabold text-rose-600">DB 로드 오류: {dbCountersErr}</div>
-          ) : null}
+          {dbCountersLoading ? <div className="mb-4 text-[12px] font-extrabold text-slate-500">DB 카운터 로딩중...</div> : null}
+          {dbCountersErr ? <div className="mb-4 text-[12px] font-extrabold text-rose-600">DB 로드 오류: {dbCountersErr}</div> : null}
 
           {visibleCounters.length === 0 ? (
             <div className="rounded-2xl border border-slate-200 bg-white p-5">
               <div className="text-[13px] font-black text-slate-900">카운터 없음</div>
-              <div className="mt-1 text-[12px] font-semibold text-slate-600">
-                아직 등록된 카운터가 없습니다.
-              </div>
+              <div className="mt-1 text-[12px] font-semibold text-slate-600">아직 등록된 카운터가 없습니다.</div>
             </div>
           ) : (
             visibleCounters.map((rec, j) => renderCounterCard(rec, j))
@@ -951,11 +909,7 @@ export default function GuildOffenseDetailPage({
 
       {/* DB 빌드 모달 */}
       {openDbBuild ? (
-        <DbBuildModal
-          heroName={openDbBuild.heroName}
-          build={openDbBuild.build}
-          onClose={() => setOpenDbBuild(null)}
-        />
+        <DbBuildModal heroName={openDbBuild.heroName} build={openDbBuild.build} onClose={() => setOpenDbBuild(null)} />
       ) : null}
     </>
   );
@@ -983,12 +937,7 @@ function DbBuildModal({ heroName, build, onClose }) {
   const Row = ({ label, value, mono = false }) => (
     <div className="grid grid-cols-[70px_1fr] gap-2 py-1.5">
       <div className="text-[11px] font-extrabold text-slate-500">{label}</div>
-      <div
-        className={[
-          "text-[12px] font-extrabold text-slate-900 break-words",
-          mono ? "font-mono" : "",
-        ].join(" ")}
-      >
+      <div className={["text-[12px] font-extrabold text-slate-900 break-words", mono ? "font-mono" : ""].join(" ")}>
         {value}
       </div>
     </div>
