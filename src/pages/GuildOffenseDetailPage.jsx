@@ -476,17 +476,79 @@ export default function GuildOffenseDetailPage({
   }, [embedded, decodedCategory, idx, postId, safeVariantIdx, isDb]);
 
   // =========================
-  // ✅ 투표 (DB 카운터만 투표 가능)
+  // ✅ (추가) JSON 카운터도 투표 가능하게: JSON을 DB counter_id로 "확보" 후 투표
   // =========================
-  const doVote = async (counterId, type) => {
-    if (!counterId) return;
+  const ensureJsonCounterId = async (rec) => {
+    // rec.source !== "db" 인 JSON 카운터를 DB row로 연결(또는 생성)해주는 RPC 필요
+    // ✅ 서버에 아래 RPC가 있어야 함:
+    //   rpc: guild_offense_ensure_json_counter(
+    //     p_json_key text,
+    //     p_json_category text,
+    //     p_json_team_index int,
+    //     p_variant_idx int
+    //   ) returns table(out_counter_id bigint, out_wins int, out_losses int)
+    const jsonKey = getCounterKey(rec); // json-... 고정키
+    const { data: rdata, error } = await supabase.rpc("guild_offense_ensure_json_counter", {
+      p_json_key: String(jsonKey),
+      p_json_category: String(decodedCategory || "").trim(),
+      p_json_team_index: Number(idx),
+      p_variant_idx: Number(safeVariantIdx),
+    });
+    if (error) throw error;
+    const row = Array.isArray(rdata) ? rdata[0] : rdata;
+    const cid = Number(row?.out_counter_id);
+    if (!Number.isFinite(cid) || cid <= 0) throw new Error("JSON counter_id 확보 실패");
+    return {
+      counterId: cid,
+      wins: Number(row?.out_wins ?? 0),
+      losses: Number(row?.out_losses ?? 0),
+    };
+  };
 
-    const key = `db-${counterId}`;
+  // =========================
+  // ✅ 투표 (DB + JSON 모두 가능)
+  // =========================
+  const doVote = async (recOrCounterId, type) => {
+    // (1) 호출이 (counterId)로 오면 기존대로 처리
+    // (2) 호출이 (rec)로 오면 JSON이면 ensure 후 DB id로 투표
+    let rec = null;
+    let counterId = null;
+
+    if (typeof recOrCounterId === "object" && recOrCounterId) {
+      rec = recOrCounterId;
+      if (rec?.source === "db" && rec?.id != null) {
+        counterId = Number(rec.id);
+      }
+    } else {
+      counterId = Number(recOrCounterId);
+    }
+
+    const key = rec ? getCounterKey(rec) : `db-${counterId}`;
+    if (!key) return;
 
     setVoteErr((p) => ({ ...p, [key]: "" }));
     setVoteLoading((p) => ({ ...p, [key]: true }));
 
     try {
+      // ✅ JSON이면 먼저 DB counter_id 확보(또는 생성)
+      if (rec && rec?.source !== "db") {
+        const ensured = await ensureJsonCounterId(rec);
+
+        // 확보된 wins/losses로 먼저 UI 싱크(선택)
+        setVoteOverride((p) => ({
+          ...p,
+          [key]: {
+            ...(p[key] || {}),
+            wins: Number.isFinite(ensured.wins) ? ensured.wins : (p[key]?.wins ?? rec?.wins ?? 0),
+            losses: Number.isFinite(ensured.losses) ? ensured.losses : (p[key]?.losses ?? rec?.losses ?? 0),
+          },
+        }));
+
+        counterId = ensured.counterId;
+      }
+
+      if (!counterId || !Number.isFinite(counterId) || counterId <= 0) return;
+
       const { data: rdata, error } = await supabase.rpc("guild_offense_vote", {
         p_counter_id: Number(counterId),
         p_is_win: type === "win",
@@ -497,8 +559,6 @@ export default function GuildOffenseDetailPage({
           setVoteErr((p) => ({ ...p, [key]: "이미 오늘 투표했습니다." }));
           return;
         }
-        console.log("RPC_ERR_CODE:", error.code);
-        console.log("RPC_ERR_MSG:", error.message);
         setVoteErr((p) => ({ ...p, [key]: error.message }));
         return;
       }
@@ -580,7 +640,7 @@ export default function GuildOffenseDetailPage({
   };
 
   // =========================
-  // ✅ 카운터: JSON + DB 합치기 (JSON은 보기만, DB는 투표 가능)
+  // ✅ 카운터: JSON + DB 합치기 (이제 JSON도 투표 가능)
   // =========================
   const jsonCounters = useMemo(() => {
     if (!currentVariant || !Array.isArray(currentVariant.counters)) return [];
@@ -591,10 +651,13 @@ export default function GuildOffenseDetailPage({
       const firstOrder = orders[0] || null;
       const speedFromLabel = parseSpeedFromLabel(firstOrder?.label);
 
+      // ✅ 가능하면 JSON 자체 id를 우선 사용(있으면)
+      const stableId = x?.id ? `json-${String(x.id)}` : `json-${decodedCategory}-${idx}-${safeVariantIdx}-${i}`;
+
       return {
         ...x,
         source: x?.source || "json",
-        _key: x?._key || `json-${decodedCategory}-${idx}-${safeVariantIdx}-${i}`,
+        _key: x?._key || stableId,
 
         // ✅ UI가 보는 필드로 맞춤
         skills: Array.isArray(firstOrder?.skills) ? firstOrder.skills : [],
@@ -722,19 +785,19 @@ export default function GuildOffenseDetailPage({
 
         {renderWinRateBar(wins, losses)}
 
-        {/* ✅ 투표 버튼 줄 (승률바 아래로 이동) */}
+        {/* ✅ 투표 버튼 줄 (승률바 아래) : JSON도 투표 가능 */}
         <div className="mt-3 flex justify-end gap-2">
           <button
             type="button"
-            disabled={loading || !isDbCounter}
-            onClick={() => doVote(recommended.id, "win")}
+            disabled={loading}
+            onClick={() => doVote(recommended, "win")}
             className={[
               "inline-flex items-center gap-1 rounded-xl px-3 py-2 text-xs font-extrabold border",
-              loading || !isDbCounter
+              loading
                 ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
                 : "bg-white text-slate-800 border-slate-200 hover:bg-slate-50",
             ].join(" ")}
-            title={!isDbCounter ? "DB 카운터만 투표 가능" : "승"}
+            title="승"
           >
             <ThumbsUp size={14} />
             승
@@ -742,15 +805,15 @@ export default function GuildOffenseDetailPage({
 
           <button
             type="button"
-            disabled={loading || !isDbCounter}
-            onClick={() => doVote(recommended.id, "lose")}
+            disabled={loading}
+            onClick={() => doVote(recommended, "lose")}
             className={[
               "inline-flex items-center gap-1 rounded-xl px-3 py-2 text-xs font-extrabold border",
-              loading || !isDbCounter
+              loading
                 ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
                 : "bg-white text-slate-800 border-slate-200 hover:bg-slate-50",
             ].join(" ")}
-            title={!isDbCounter ? "DB 카운터만 투표 가능" : "패"}
+            title="패"
           >
             <ThumbsDown size={14} />
             패
