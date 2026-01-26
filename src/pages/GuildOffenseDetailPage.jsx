@@ -1,5 +1,5 @@
 // src/pages/GuildOffenseDetailPage.jsx
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { ChevronLeft, Plus, ThumbsUp, ThumbsDown, Pencil, Trash2 } from "lucide-react";
 
@@ -362,6 +362,19 @@ export default function GuildOffenseDetailPage({
   };
 
   // =========================
+  // ✅ JSON 카운터의 "고정키" (DB json_key와 1:1 매칭용)
+  // =========================
+  const makeJsonKey = useCallback(
+    (x, i) => {
+      // ✅ JSON 자체 id가 있으면 그걸 최우선(영구키)
+      if (x?.id != null && String(x.id).trim() !== "") return `json-${String(x.id)}`;
+      // ✅ 없으면 화면 위치 기반(카테고리/팀/패턴/인덱스)
+      return `json-${String(decodedCategory)}-${Number(idx)}-${Number(safeVariantIdx)}-${Number(i)}`;
+    },
+    [decodedCategory, idx, safeVariantIdx]
+  );
+
+  // =========================
   // ✅ DB counters + members(build) + 작성자 닉네임 로드
   // =========================
   useEffect(() => {
@@ -383,7 +396,7 @@ export default function GuildOffenseDetailPage({
         let q = supabase
           .from("guild_offense_counters")
           .select(
-            "id,post_id,variant_idx,recommendation,first_attack,note,detail,pets,skills,created_at,wins,losses,created_by,anonymous,speed_mode,speed_min,json_category,json_team_index"
+            "id,post_id,variant_idx,recommendation,first_attack,note,detail,pets,skills,created_at,wins,losses,created_by,anonymous,speed_mode,speed_min,json_category,json_team_index,json_key"
           )
           .eq("variant_idx", Number(safeVariantIdx))
           .order("created_at", { ascending: false });
@@ -444,9 +457,22 @@ export default function GuildOffenseDetailPage({
             build: m.build || {},
           }));
 
+          // ✅ json_key가 붙어있는 row는 "JSON 집계용(shadow)" 일 수 있음
+          // ✅ 팀이 비어있으면 무조건 집계용으로 간주 (화면에서 숨길 예정)
+          const isJsonAgg = !!c?.json_key && (!Array.isArray(team) || team.length === 0);
+
           return {
             id: c.id,
             source: "db",
+
+            // ✅ JSON 집계 매칭용
+            json_key: c.json_key || null,
+            is_json_agg: isJsonAgg,
+
+            // (참고) json 방어팀 필터링에 사용될 수 있음
+            json_category: c.json_category || null,
+            json_team_index: c.json_team_index ?? null,
+
             firstAttack: !!c.first_attack,
             note: c.note || "",
             detail: c.detail || "",
@@ -476,28 +502,41 @@ export default function GuildOffenseDetailPage({
   }, [embedded, decodedCategory, idx, postId, safeVariantIdx, isDb]);
 
   // =========================
+  // ✅ JSON 투표 집계(wins/losses)만 json_key로 매핑
+  // =========================
+  const jsonDbAgg = useMemo(() => {
+    const m = new Map();
+    (dbCounters || []).forEach((c) => {
+      if (!c?.json_key) return;
+      // ✅ 집계 row든 아니든 json_key가 있으면 그 값을 JSON 카드에 반영
+      m.set(String(c.json_key), {
+        wins: Number(c.wins || 0),
+        losses: Number(c.losses || 0),
+        id: c.id,
+      });
+    });
+    return m;
+  }, [dbCounters]);
+
+  // =========================
   // ✅ (추가) JSON 카운터도 투표 가능하게: JSON을 DB counter_id로 "확보" 후 투표
   // =========================
   const ensureJsonCounterId = async (rec) => {
-    // rec.source !== "db" 인 JSON 카운터를 DB row로 연결(또는 생성)해주는 RPC 필요
-    // ✅ 서버에 아래 RPC가 있어야 함:
-    //   rpc: guild_offense_ensure_json_counter(
-    //     p_json_key text,
-    //     p_json_category text,
-    //     p_json_team_index int,
-    //     p_variant_idx int
-    //   ) returns table(out_counter_id bigint, out_wins int, out_losses int)
-    const jsonKey = getCounterKey(rec); // json-... 고정키
+    const jsonKey = String(rec?._key || "");
+    if (!jsonKey) throw new Error("json_key가 없습니다.");
+
     const { data: rdata, error } = await supabase.rpc("guild_offense_ensure_json_counter", {
-      p_json_key: String(jsonKey),
+      p_json_key: jsonKey,
       p_json_category: String(decodedCategory || "").trim(),
       p_json_team_index: Number(idx),
       p_variant_idx: Number(safeVariantIdx),
     });
     if (error) throw error;
+
     const row = Array.isArray(rdata) ? rdata[0] : rdata;
     const cid = Number(row?.out_counter_id);
     if (!Number.isFinite(cid) || cid <= 0) throw new Error("JSON counter_id 확보 실패");
+
     return {
       counterId: cid,
       wins: Number(row?.out_wins ?? 0),
@@ -506,11 +545,17 @@ export default function GuildOffenseDetailPage({
   };
 
   // =========================
+  // ✅ 카운터 고정키
+  // =========================
+  const getCounterKey = (rec) => {
+    if (rec?.source === "db" && rec?.id != null) return `db-${rec.id}`;
+    return rec?._key || "json-unknown";
+  };
+
+  // =========================
   // ✅ 투표 (DB + JSON 모두 가능)
   // =========================
   const doVote = async (recOrCounterId, type) => {
-    // (1) 호출이 (counterId)로 오면 기존대로 처리
-    // (2) 호출이 (rec)로 오면 JSON이면 ensure 후 DB id로 투표
     let rec = null;
     let counterId = null;
 
@@ -534,11 +579,10 @@ export default function GuildOffenseDetailPage({
       if (rec && rec?.source !== "db") {
         const ensured = await ensureJsonCounterId(rec);
 
-        // 확보된 wins/losses로 먼저 UI 싱크(선택)
+        // ✅ 확보된 wins/losses로 UI 즉시 싱크 (JSON 카드 key로만)
         setVoteOverride((p) => ({
           ...p,
           [key]: {
-            ...(p[key] || {}),
             wins: Number.isFinite(ensured.wins) ? ensured.wins : (p[key]?.wins ?? rec?.wins ?? 0),
             losses: Number.isFinite(ensured.losses) ? ensured.losses : (p[key]?.losses ?? rec?.losses ?? 0),
           },
@@ -570,6 +614,7 @@ export default function GuildOffenseDetailPage({
         losses: Number(row?.out_losses ?? 0),
       };
 
+      // ✅ JSON/DB 상관없이 "현재 카드 key"로만 갱신
       setVoteOverride((p) => ({ ...p, [key]: updated }));
     } catch (e) {
       setVoteErr((p) => ({ ...p, [key]: e?.message || "투표 실패" }));
@@ -590,8 +635,7 @@ export default function GuildOffenseDetailPage({
             승률 <span className="text-slate-500 font-black">(보정)</span>
           </div>
           <div className="text-[12px] font-black text-slate-900">
-            {pct.toFixed(1)}%{" "}
-            <span className="text-slate-400 text-[11px] font-extrabold">(투표 {total})</span>
+            {pct.toFixed(1)}% <span className="text-slate-400 text-[11px] font-extrabold">(투표 {total})</span>
           </div>
         </div>
 
@@ -626,7 +670,6 @@ export default function GuildOffenseDetailPage({
       const { error: dErr } = await supabase.from("guild_offense_counters").delete().eq("id", counterId);
       if (dErr) throw dErr;
 
-      // ✅ 삭제 키 고정 (voteOverride는 db-키로 관리)
       setVoteOverride((p) => ({ ...p, [`db-${counterId}`]: { __deleted: true } }));
     } catch (e) {
       setRowActionErr((p) => ({ ...p, [counterId]: e?.message || "삭제 실패" }));
@@ -640,49 +683,54 @@ export default function GuildOffenseDetailPage({
   };
 
   // =========================
-  // ✅ 카운터: JSON + DB 합치기 (이제 JSON도 투표 가능)
+  // ✅ 카운터: JSON + DB 합치기
+  //  - JSON은 화면에 그대로 1개만 보이게
+  //  - JSON 투표는 DB "집계 row"에 저장되지만, 그 row는 화면에서 숨김
   // =========================
   const jsonCounters = useMemo(() => {
     if (!currentVariant || !Array.isArray(currentVariant.counters)) return [];
 
-    // ✅ JSON도 고정 key 부여 + skillOrders → skills, speed_mode/speed_min 정규화
     return currentVariant.counters.map((x, i) => {
       const orders = Array.isArray(x?.skillOrders) ? x.skillOrders : [];
       const firstOrder = orders[0] || null;
       const speedFromLabel = parseSpeedFromLabel(firstOrder?.label);
 
-      // ✅ 가능하면 JSON 자체 id를 우선 사용(있으면)
-      const stableId = x?.id ? `json-${String(x.id)}` : `json-${decodedCategory}-${idx}-${safeVariantIdx}-${i}`;
+      const stableKey = makeJsonKey(x, i);
+      const agg = jsonDbAgg.get(String(stableKey));
 
       return {
         ...x,
-        source: x?.source || "json",
-        _key: x?._key || stableId,
+        source: "json",
+        _key: stableKey,
+
+        // ✅ wins/losses는 DB 집계가 있으면 그걸 사용
+        wins: agg ? agg.wins : Number(x?.wins ?? 0),
+        losses: agg ? agg.losses : Number(x?.losses ?? 0),
 
         // ✅ UI가 보는 필드로 맞춤
         skills: Array.isArray(firstOrder?.skills) ? firstOrder.skills : [],
         speed_mode: x?.speed_mode ?? x?.speedMode ?? speedFromLabel.speed_mode,
         speed_min: x?.speed_min ?? x?.speedMin ?? speedFromLabel.speed_min,
 
-        // (선택) 원본 유지 (나중에 탭 UI 만들 때 사용)
         _skillOrders: orders,
       };
     });
-  }, [currentVariant, decodedCategory, idx, safeVariantIdx]);
+  }, [currentVariant, jsonDbAgg, makeJsonKey]);
 
+  // ✅ (핵심 수정) DB 카운터는 "집계용 shadow row"는 무조건 숨김
+  // - json_key가 있으면(= JSON과 매칭되는 row) 화면에서 제외
+  // - 혹시 json_key가 없더라도 팀이 비어있으면(= 빈 카드) 화면에서 제외
   const dbOnlyCounters = useMemo(() => {
-    return Array.isArray(dbCounters) ? dbCounters : [];
+    return (Array.isArray(dbCounters) ? dbCounters : []).filter((c) => {
+      if (c?.json_key) return false; // ✅ 가장 확실: JSON 투표 집계 row는 표시 금지
+      if ((Array.isArray(c?.team) ? c.team.length : 0) <= 0) return false; // ✅ 빈 DB카드도 표시 금지
+      return true;
+    });
   }, [dbCounters]);
 
   const baseCounters = useMemo(() => {
     return [...jsonCounters, ...dbOnlyCounters];
   }, [jsonCounters, dbOnlyCounters]);
-
-  // ✅ (중요) 인덱스 j를 쓰지 말고 rec 자체로 고정키 생성
-  const getCounterKey = (rec) => {
-    if (rec?.source === "db" && rec?.id != null) return `db-${rec.id}`;
-    return rec?._key || "json-unknown";
-  };
 
   const sortedCounters = useMemo(() => {
     if (!Array.isArray(baseCounters)) return [];
@@ -700,7 +748,7 @@ export default function GuildOffenseDetailPage({
   }, [baseCounters, voteOverride]);
 
   const renderCounterCard = (recommended, j) => {
-    const detailKey = `${safeVariantIdx}-${getCounterKey(recommended)}`; // ✅ 안정
+    const detailKey = `${safeVariantIdx}-${getCounterKey(recommended)}`;
     const key = getCounterKey(recommended);
     if (voteOverride[key]?.__deleted) return null;
 
@@ -719,9 +767,9 @@ export default function GuildOffenseDetailPage({
 
     const canManage = isDbCounter ? canEditOrDelete(recommended) : false;
 
-    // ✅ 익명 표시
-    const isAnon = !!recommended?.anonymous;
-    const authorId = recommended?.created_by ?? null;
+    // ✅ 익명 표시 (DB 카운터일 때만 익명 적용)
+    const isAnon = isDbCounter && !!recommended?.anonymous;
+    const authorId = isDbCounter ? (recommended?.created_by ?? null) : null;
     const nick = authorId ? nameMap[authorId] : null;
     const authorLabel = isDbCounter ? (isAnon ? "익명" : nick || "알수없음") : "기존";
 
@@ -735,7 +783,7 @@ export default function GuildOffenseDetailPage({
               {authorLabel}
             </span>
 
-            {!isDbCounter ? (
+            {recommended?.source !== "db" ? (
               <span className="text-[11px] font-extrabold px-2 py-1 rounded-full border border-indigo-200 bg-indigo-50 text-indigo-700">
                 JSON
               </span>
@@ -785,7 +833,7 @@ export default function GuildOffenseDetailPage({
 
         {renderWinRateBar(wins, losses)}
 
-        {/* ✅ 투표 버튼 줄 (승률바 아래) : JSON도 투표 가능 */}
+        {/* ✅ 투표 버튼 줄 : JSON도 "기존 카드에서" 승률만 바뀜 */}
         <div className="mt-3 flex justify-end gap-2">
           <button
             type="button"
@@ -861,15 +909,6 @@ export default function GuildOffenseDetailPage({
   };
 
   const goAddCounter = () => {
-    console.log("[goAddCounter fired]", {
-      embedded,
-      decodedCategory,
-      idx,
-      isDb,
-      postId,
-      href: window.location.href,
-    });
-
     if (isDb && postId) {
       navigate(`/guild-offense/counter/new?defensePostId=${postId}&variant=${safeVariantIdx}`);
       return;
@@ -881,7 +920,6 @@ export default function GuildOffenseDetailPage({
     );
   };
 
-  // ✅ 삭제 필터도 고정키로
   const visibleCounters = useMemo(() => {
     return sortedCounters.filter((rec) => {
       const key = getCounterKey(rec);
@@ -943,7 +981,6 @@ export default function GuildOffenseDetailPage({
             </button>
           </div>
 
-          {/* 로딩/에러 표시(선택) */}
           {dbCountersLoading ? <div className="mb-4 text-[12px] font-extrabold text-slate-500">DB 카운터 로딩중...</div> : null}
           {dbCountersErr ? <div className="mb-4 text-[12px] font-extrabold text-rose-600">DB 로드 오류: {dbCountersErr}</div> : null}
 
@@ -1036,11 +1073,7 @@ function DbBuildModal({ heroName, build, onClose }) {
         </div>
 
         <div className="px-3 py-2 border-t border-slate-200 bg-white flex justify-end">
-          <button
-            onClick={onClose}
-            className="px-3 py-1.5 rounded-xl bg-slate-900 text-white text-[12px] font-extrabold"
-            type="button"
-          >
+          <button onClick={onClose} className="px-3 py-1.5 rounded-xl bg-slate-900 text-white text-[12px] font-extrabold" type="button">
             닫기
           </button>
         </div>
