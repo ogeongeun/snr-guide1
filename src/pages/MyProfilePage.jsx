@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import PageShell from "../components/PageShell";
 import { supabase } from "../lib/supabaseClient";
 
-const GUILD_PRESETS = ["천우회", "백우회", "Madday", "조림", "Platinum", "Luckyday","실버타운","추악"];
+const GUILD_PRESETS = ["천우회", "백우회", "Madday","운명", "조림", "Platinum", "Luckyday","실버타운","추악"];
 
 export default function MyProfilePage() {
   const navigate = useNavigate();
