@@ -1,0 +1,6 @@
+{
+  "deno.enable": false,
+
+  "deno.enablePaths": ["./supabase/functions"],
+  "deno.config": "./deno.json"
+}

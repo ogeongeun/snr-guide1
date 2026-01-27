@@ -1,0 +1,185 @@
+// supabase/functions/admin-delete-user/index.ts
+import { createClient } from "@supabase/supabase-js";
+
+const corsHeaders: Record<string, string> = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers":
+    "authorization, apikey, content-type, x-client-info, x-supabase-client-platform, x-supabase-client-version",
+};
+
+Deno.serve(async (req: Request) => {
+  // ✅ CORS preflight
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
+  }
+
+  try {
+    // POST만 허용
+    if (req.method !== "POST") {
+      return new Response("Method Not Allowed", {
+        status: 405,
+        headers: corsHeaders,
+      });
+    }
+
+    // Authorization 헤더 (소문자/대문자 모두 대응)
+    const authHeader =
+      req.headers.get("authorization") ?? req.headers.get("Authorization");
+    if (!authHeader) {
+      return new Response("No auth header", {
+        status: 401,
+        headers: corsHeaders,
+      });
+    }
+
+    // body
+    const body = await req.json().catch(() => ({}));
+    const targetUserId = body?.user_id;
+    if (!targetUserId) {
+      return new Response("user_id required", {
+        status: 400,
+        headers: corsHeaders,
+      });
+    }
+
+    // ✅ 요청자 확인용: anon key + bearer token
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_ANON_KEY")!,
+      {
+        global: {
+          headers: { Authorization: authHeader }, // "Bearer <access_token>"
+        },
+      }
+    );
+
+    const {
+      data: { user: requester },
+      error: userErr,
+    } = await supabase.auth.getUser();
+
+    if (userErr || !requester) {
+      return new Response("Unauthorized", {
+        status: 401,
+        headers: corsHeaders,
+      });
+    }
+
+    // (선택) 자기 자신 삭제 방지
+    if (requester.id === targetUserId) {
+      return new Response("Cannot delete yourself", {
+        status: 400,
+        headers: corsHeaders,
+      });
+    }
+
+    // =========================
+    // ✅ 권한 체크
+    // 1) admins 테이블에 있으면 OK
+    // 2) 아니면 "같은 길드의 길드장"이면 OK
+    // =========================
+    let allowed = false;
+
+    // 1) 관리자 체크 (RLS가 열려 있어야 함)
+    const { data: adminRow, error: adminErr } = await supabase
+      .from("admins")
+      .select("user_id")
+      .eq("user_id", requester.id)
+      .maybeSingle();
+
+    if (adminErr) {
+      return new Response(JSON.stringify({ error: adminErr.message }), {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (adminRow) {
+      allowed = true;
+    }
+
+    // 2) 관리자 아니면: 길드장 권한 확인
+    if (!allowed) {
+      // 요청자가 길드장인 길드 찾기
+      const { data: leaderGuild, error: gErr } = await supabase
+        .from("guilds")
+        .select("id, leader_user_id")
+        .eq("leader_user_id", requester.id)
+        .maybeSingle();
+
+      if (gErr) {
+        return new Response(JSON.stringify({ error: gErr.message }), {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      if (!leaderGuild?.id) {
+        return new Response("Admin only", {
+          status: 403,
+          headers: corsHeaders,
+        });
+      }
+
+      // 삭제 대상이 그 길드의 멤버인지 확인
+      const { data: targetMem, error: memErr } = await supabase
+        .from("guild_members")
+        .select("user_id, guild_id")
+        .eq("guild_id", leaderGuild.id)
+        .eq("user_id", targetUserId)
+        .maybeSingle();
+
+      if (memErr) {
+        return new Response(JSON.stringify({ error: memErr.message }), {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      if (!targetMem) {
+        return new Response("Forbidden", {
+          status: 403,
+          headers: corsHeaders,
+        });
+      }
+
+      allowed = true;
+    }
+
+    if (!allowed) {
+      return new Response("Forbidden", { status: 403, headers: corsHeaders });
+    }
+
+    // =========================
+    // ✅ 서비스 롤로 삭제
+    // =========================
+    const serviceRole = Deno.env.get("SERVICE_ROLE_KEY")!;
+    const adminClient = createClient(Deno.env.get("SUPABASE_URL")!, serviceRole, {
+      auth: { persistSession: false },
+      global: { headers: { Authorization: `Bearer ${serviceRole}` } },
+    });
+
+    const { error: delErr } = await adminClient.auth.admin.deleteUser(targetUserId);
+    if (delErr) throw delErr;
+
+    const { error: profErr } = await adminClient
+      .from("profiles")
+      .delete()
+      .eq("user_id", targetUserId);
+    if (profErr) throw profErr;
+
+    // (권장) 길드 멤버십도 정리
+    await adminClient.from("guild_members").delete().eq("user_id", targetUserId);
+
+    return new Response(JSON.stringify({ ok: true }), {
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    return new Response(JSON.stringify({ error: msg }), {
+      status: 500,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+});

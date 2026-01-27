@@ -14,3 +14,5 @@ if (!supabaseUrl || !supabaseAnonKey) {
     hasAnonKey: !!supabaseAnonKey,
   });
 }
+console.log("SUPABASE_URL =", supabaseUrl);
+console.log("ANON_PREFIX =", (supabaseAnonKey || "").slice(0, 20));

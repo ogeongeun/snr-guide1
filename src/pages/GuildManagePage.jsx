@@ -424,33 +424,40 @@ function MembersPanel({ members, loading }) {
     );
   }
 
-  return (
-    <div className="rounded-2xl border border-slate-200 overflow-hidden">
-      <div className="divide-y divide-slate-100">
-        {members.map((m) => (
-          <div
-            key={m.user_id}
-            className="px-4 py-3 flex items-center gap-3 hover:bg-slate-50"
-          >
-            <span
-              className={`shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold border ${badgeClass(
-                m.role
-              )}`}
-            >
-              {roleLabel(m.role)}
-            </span>
+ return (
+    <div className="space-y-3">
+      {/* ✅ 추가: 안내 문구 (PC 우측 패널에서도 보임) */}
+      <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-semibold text-slate-700">
+        길드를 나가거나 자신의 길드가 아닌 길드원은 핸드폰으로 접속 후 계정삭제를 눌러주세요.
+      </div>
 
-            <div className="min-w-0 flex-1">
-              <div className="text-[14px] font-extrabold text-slate-900 truncate">
-                {m.nickname || "(닉네임 없음)"}
+      <div className="rounded-2xl border border-slate-200 overflow-hidden">
+        <div className="divide-y divide-slate-100">
+          {members.map((m) => (
+            <div
+              key={m.user_id}
+              className="px-4 py-3 flex items-center gap-3 hover:bg-slate-50"
+            >
+              <span
+                className={`shrink-0 rounded-md px-2 py-1 text-[11px] font-extrabold border ${badgeClass(
+                  m.role
+                )}`}
+              >
+                {roleLabel(m.role)}
+              </span>
+
+              <div className="min-w-0 flex-1">
+                <div className="text-[14px] font-extrabold text-slate-900 truncate">
+                  {m.nickname || "(닉네임 없음)"}
+                </div>
+              </div>
+
+              <div className="text-[11px] font-semibold text-slate-500">
+                {m.joined_at ? new Date(m.joined_at).toLocaleDateString() : ""}
               </div>
             </div>
-
-            <div className="text-[11px] font-semibold text-slate-500">
-              {m.joined_at ? new Date(m.joined_at).toLocaleDateString() : ""}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

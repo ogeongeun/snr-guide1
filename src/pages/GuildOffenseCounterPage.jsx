@@ -1,7 +1,7 @@
 // src/pages/GuildOffenseListPage.jsx
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { Link, useNavigate, createSearchParams } from "react-router-dom";
-import { Search, Swords, ChevronDown, ChevronRight } from "lucide-react";
+import { Search, Swords, ChevronDown, ChevronRight, Trash2 } from "lucide-react";
 
 import data from "../data/guildCounter.json";
 import equipmentData from "../data/equipmentRecommend.json";
@@ -74,6 +74,29 @@ const HeroCard = React.memo(function HeroCard({ hero, onClick }) {
 
 export default function GuildOffenseListPage() {
   const navigate = useNavigate();
+// ✅ 관리자 여부
+const [isAdmin, setIsAdmin] = useState(false);
+
+useEffect(() => {
+  const run = async () => {
+    try {
+      const { data } = await supabase.auth.getUser();
+      const uid = data?.user?.id;
+      if (!uid) return setIsAdmin(false);
+
+      const { data: adminRow } = await supabase
+        .from("admins")
+        .select("user_id")
+        .eq("user_id", uid)
+        .maybeSingle();
+
+      setIsAdmin(!!adminRow);
+    } catch {
+      setIsAdmin(false);
+    }
+  };
+  run();
+}, []);
 
   // =========================
   // ✅ DB 방어팀 목록(사용자 등록)
@@ -187,6 +210,35 @@ export default function GuildOffenseListPage() {
     setSelectedHeroKey(heroKey);
     setPresetTag(detectedPreset);
   }, []);
+const deleteDbDefensePost = async (entry) => {
+  if (!isAdmin) return;
+
+  const label = entry?.label || "라벨없음";
+  const ok = window.confirm(`삭제할까?\n\n[DB] ${label}\n\n(되돌릴 수 없음)`);
+  if (!ok) return;
+
+  // UI 선반영
+  setDbDefenseEntries((prev) => prev.filter((x) => x.id !== entry.id));
+
+  try {
+    // 멤버 먼저 삭제 (FK cascade여도 안전)
+    const { error: memErr } = await supabase
+      .from("guild_defense_members")
+      .delete()
+      .eq("post_id", entry.id);
+    if (memErr) throw memErr;
+
+    // 포스트 삭제
+    const { error: postErr } = await supabase
+      .from("guild_defense_posts")
+      .delete()
+      .eq("id", entry.id);
+    if (postErr) throw postErr;
+  } catch (e) {
+    alert(`삭제 실패: ${e?.message || "unknown error"}`);
+    window.location.reload();
+  }
+};
 
   // ✅ JSON + DB 합친 검색 대상
   const allEntries = useMemo(() => {
@@ -443,15 +495,31 @@ export default function GuildOffenseListPage() {
                           >
                             <div className="px-5 py-4 border-b border-slate-100">
                               <div className="flex items-center justify-between gap-2">
-                                <div className="text-[12px] font-extrabold text-slate-500">
-                                  {category}
-                                </div>
-                                {isDb ? (
-                                  <span className="text-[11px] font-extrabold px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                                    DB
-                                  </span>
-                                ) : null}
-                              </div>
+  <div className="text-[12px] font-extrabold text-slate-500">
+    {category}
+  </div>
+
+  <div className="flex items-center gap-2">
+    {isDb ? (
+      <span className="text-[11px] font-extrabold px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+        DB
+      </span>
+    ) : null}
+
+    {isDb && isAdmin ? (
+      <button
+        type="button"
+        onClick={() => deleteDbDefensePost(entry)}
+        className="inline-flex items-center gap-1 rounded-xl px-2.5 py-1.5 text-[11px] font-extrabold bg-rose-600 text-white hover:bg-rose-500"
+        title="DB 방어팀 삭제"
+      >
+        <Trash2 size={14} />
+        삭제
+      </button>
+    ) : null}
+  </div>
+</div>
+
 
                               <div className="mt-1 text-[16px] font-black text-slate-900 truncate">
                                 #{idx + 1} {entry?.label || "라벨없음"}
@@ -661,20 +729,36 @@ export default function GuildOffenseListPage() {
                           className="rounded-3xl border border-slate-200 bg-white shadow-sm overflow-hidden"
                         >
                           <div className="px-5 py-4 border-b border-slate-100">
-                            <div className="flex items-center justify-between gap-2">
-                              <div className="text-[12px] font-extrabold text-slate-500">
-                                {category}
-                              </div>
-                              {isDb ? (
-                                <span className="text-[11px] font-extrabold px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                                  DB
-                                </span>
-                              ) : (
-                                <span className="text-[11px] font-extrabold px-2 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
-                                  JSON
-                                </span>
-                              )}
-                            </div>
+                          <div className="flex items-center justify-between gap-2">
+  <div className="text-[12px] font-extrabold text-slate-500">
+    {category}
+  </div>
+
+  <div className="flex items-center gap-2">
+    {isDb ? (
+      <span className="text-[11px] font-extrabold px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+        DB
+      </span>
+    ) : (
+      <span className="text-[11px] font-extrabold px-2 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+        JSON
+      </span>
+    )}
+
+    {isDb && isAdmin ? (
+      <button
+        type="button"
+        onClick={() => deleteDbDefensePost(entry)}
+        className="inline-flex items-center gap-1 rounded-xl px-2.5 py-1.5 text-[11px] font-extrabold bg-rose-600 text-white hover:bg-rose-500"
+        title="DB 방어팀 삭제"
+      >
+        <Trash2 size={14} />
+        삭제
+      </button>
+    ) : null}
+  </div>
+</div>
+
 
                             <div className="mt-1 text-[15px] font-black text-slate-900 truncate">
                               #{idx + 1} {entry?.label || "라벨없음"}

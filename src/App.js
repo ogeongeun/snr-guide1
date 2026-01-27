@@ -54,6 +54,7 @@ import VoodooPage from "./pages/VoodooPage";
 import MyProfilePage from "./pages/MyProfilePage";
 import AdminUsersPage from "./pages/admin/AdminUsersPage";
 import EssentialSkillDetailPage from "./pages/EssentialSkillDetailPage";
+import GuildGuideStatsPage from "./pages/GuildGuideStatsPage";
 
 // ✅ 방어팀 "새로 추가" 저장 로직 페이지
 import GuildDefenseCreatePage from "./pages/GuildCounterDefenseCreatePage";
@@ -135,6 +136,7 @@ const App = () => {
 <Route path="/guild-manage/defense-king/create" element={<DefenseKingCreatePage />} />
 <Route path="/guild-manage/defense-king/edit" element={<DefenseKingCreatePage />} />
 
+<Route path="/stats/guild-guides" element={<GuildGuideStatsPage />} />
 
 <Route path="/guild-manage/defense/edit" element={<DefenseEditPage />} />
         <Route path="/siege/edit/:id" element={<SiegeTeamEditPage />} />

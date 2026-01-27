@@ -242,6 +242,21 @@ useEffect(() => {
               <StatCard icon="👀" label="오늘 방문자" value={todayVisitors === null ? "불러오는중..." : `${todayVisitors}명`} />
               <StatCard icon="📈" label="누적 방문자" value={totalVisitors === null ? "불러오는중..." : `${totalVisitors}명`} />
             </div>
+{/* 📊 길드 공략 통계 */}
+<Link
+  to="/stats/guild-guides"
+  className="mt-6 block rounded-2xl bg-white border border-slate-200 shadow-sm px-4 py-4 hover:bg-slate-50"
+>
+  <div className="flex items-center gap-3">
+    <span className="text-2xl">📊</span>
+    <div>
+      <div className="text-[15px] font-black text-slate-900">길드별 공략 통계</div>
+      <div className="text-[12px] font-semibold text-slate-600">
+        길드전 / 공성전 공략 수 한눈에 보기
+      </div>
+    </div>
+  </div>
+</Link>
 
             {/* 커뮤니티 */}
             <div className="mt-6">
@@ -355,6 +370,20 @@ useEffect(() => {
               <StatCard icon="👀" label="오늘 방문자" value={todayVisitors === null ? "불러오는중..." : `${todayVisitors}명`} />
               <StatCard icon="📈" label="누적 방문자" value={totalVisitors === null ? "불러오는중..." : `${totalVisitors}명`} />
             </div>
+<Link
+  to="/stats/guild-guides"
+  className="block rounded-2xl bg-white border border-slate-200 shadow-sm px-4 py-4 hover:bg-slate-50"
+>
+  <div className="flex items-center gap-3">
+    <span className="text-2xl">📊</span>
+    <div>
+      <div className="text-[15px] font-black text-slate-900">길드별 공략 통계</div>
+      <div className="text-[12px] font-semibold text-slate-600">
+        길드전 / 공성전 공략 수 요약
+      </div>
+    </div>
+  </div>
+</Link>
 
             {/* 커뮤니티 */}
             <div className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
