@@ -3,7 +3,18 @@ import { useEffect, useMemo, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
-const GUILD_PRESETS = ["천우회", "백우회", "Madday","운명", "조림", "Platinum", "Luckyday", "실버타운","추악","흑령"];
+const GUILD_PRESETS = [
+  "천우회",
+  "백우회",
+  "Madday",
+  "운명",
+  "조림",
+  "Platinum",
+  "Luckyday",
+  "실버타운",
+  "추악",
+  "흑령",
+];
 
 const DUP_TEXT =
   "중복시 이전에 가입한 닉네임이있습니다 관리자에게 말해서 삭제후 가입부탁드립니다";
@@ -17,24 +28,18 @@ export default function ProfileSetupPage() {
   const [nickname, setNickname] = useState("");
   const [session, setSession] = useState(null);
 
-  // ✅ 길드: 프리셋 선택 OR 직접 입력
-  const [guildMode, setGuildMode] = useState("preset"); // "preset" | "custom"
-  const [guildPreset, setGuildPreset] = useState("");
-  const [guildCustom, setGuildCustom] = useState("");
+  // ✅ 길드: 무조건 프리셋 중 하나 선택 (미지정 불가)
+  const [guildPreset, setGuildPreset] = useState(GUILD_PRESETS[0] ?? "");
 
   const [saving, setSaving] = useState(false);
-  const [dupWarn, setDupWarn] = useState(""); // ✅ 중복 경고 배너
+  const [dupWarn, setDupWarn] = useState("");
   const navigate = useNavigate();
 
-  const composedGuild = useMemo(() => {
-    if (guildMode === "custom") return (guildCustom || "").trim();
-    return (guildPreset || "").trim();
-  }, [guildMode, guildPreset, guildCustom]);
+  const composedGuild = useMemo(() => (guildPreset || "").trim(), [guildPreset]);
 
   useEffect(() => {
     const run = async () => {
       try {
-        // 로그인 세션 확인
         const { data: sessionRes } = await supabase.auth.getSession();
         const sess = sessionRes?.session;
 
@@ -45,16 +50,12 @@ export default function ProfileSetupPage() {
 
         setSession(sess);
 
-        // 기존 닉네임/길드 조회
         const { data, error } = await supabase
           .from("profiles")
           .select("nickname,guild,guild_id")
           .eq("user_id", sess.user.id)
           .single();
 
-        // ✅ 이미 "확정 닉네임"이 있으면 홈으로
-        // - TEMP_ 로 시작하는 임시 닉네임은 "미설정" 취급
-        // - "익명"도 미설정 취급
         const hasFinalNickname =
           !error &&
           data?.nickname &&
@@ -66,29 +67,18 @@ export default function ProfileSetupPage() {
           return;
         }
 
-        // ✅ 임시 닉네임(TEMP_)은 입력칸에 자동 채우지 않음
         if (!error && data?.nickname && !isTempNick(data.nickname) && data.nickname !== "익명") {
           setNickname(data.nickname);
         } else {
           setNickname("");
         }
 
-        // ✅ 기존 길드가 있으면 preset/custom 모드 자동 세팅
+        // ✅ 길드: 프리셋이면 그대로, 아니면 기본값(첫 프리셋)
         const currentGuild = (data?.guild || "").trim();
-        if (currentGuild) {
-          if (GUILD_PRESETS.includes(currentGuild)) {
-            setGuildMode("preset");
-            setGuildPreset(currentGuild);
-            setGuildCustom("");
-          } else {
-            setGuildMode("custom");
-            setGuildPreset("");
-            setGuildCustom(currentGuild);
-          }
+        if (currentGuild && GUILD_PRESETS.includes(currentGuild)) {
+          setGuildPreset(currentGuild);
         } else {
-          setGuildMode("preset");
-          setGuildPreset("");
-          setGuildCustom("");
+          setGuildPreset(GUILD_PRESETS[0] ?? "");
         }
       } finally {
         setLoading(false);
@@ -98,7 +88,6 @@ export default function ProfileSetupPage() {
     run();
   }, [navigate]);
 
-  // ✅ 닉네임 중복 체크 (내 user_id 제외)
   const checkDuplicateNickname = async (rawNick) => {
     const n = normalize(rawNick);
     if (!n) return false;
@@ -122,7 +111,7 @@ export default function ProfileSetupPage() {
     const nick = nickname.trim();
     const guildValue = composedGuild.trim();
 
-    setDupWarn(""); // ✅ 저장 시도할 때 경고 초기화
+    setDupWarn("");
 
     if (!nick) {
       alert("닉네임 입력해줘");
@@ -133,40 +122,18 @@ export default function ProfileSetupPage() {
       return;
     }
 
+    // ✅ 미지정 불가 + 프리셋 강제
+    if (!guildValue.length || !GUILD_PRESETS.includes(guildValue)) {
+      alert("길드는 반드시 목록에서 선택해야 합니다.");
+      return;
+    }
+
     try {
       setSaving(true);
 
-      // ✅ 0) 닉네임 중복이면 저장 막고 경고 배너 띄우기
       const isDup = await checkDuplicateNickname(nick);
       if (isDup) {
         setDupWarn(DUP_TEXT);
-        return;
-      }
-
-      // 0) 길드 미지정이면 guild / guild_id 둘 다 null
-      if (!guildValue.length) {
-        const { error } = await supabase
-          .from("profiles")
-          .upsert(
-            {
-              user_id: session.user.id,
-              nickname: nick,
-              guild: null,
-              guild_id: null,
-            },
-            { onConflict: "user_id" }
-          );
-
-        if (error) {
-          if (error.code === "23505") {
-            setDupWarn(DUP_TEXT);
-            return;
-          }
-          alert(error.message);
-          return;
-        }
-
-        navigate("/", { replace: true });
         return;
       }
 
@@ -184,7 +151,7 @@ export default function ProfileSetupPage() {
 
       let guildId = found?.id ?? null;
 
-      // 2) 없으면 guilds에 생성(직접입력 포함)
+      // 2) 없으면 guilds에 생성
       if (!guildId) {
         const { data: created, error: createErr } = await supabase
           .from("guilds")
@@ -193,7 +160,6 @@ export default function ProfileSetupPage() {
           .single();
 
         if (createErr) {
-          // 동시 생성 레이스(UNIQUE 충돌) 가능 → 재조회
           const { data: retry, error: retryErr } = await supabase
             .from("guilds")
             .select("id")
@@ -210,7 +176,7 @@ export default function ProfileSetupPage() {
         }
       }
 
-      // 3) profiles에 닉네임 + 길드 + guild_id 한번에 upsert
+      // 3) profiles에 닉네임 + 길드 + guild_id upsert
       const { error } = await supabase
         .from("profiles")
         .upsert(
@@ -247,14 +213,12 @@ export default function ProfileSetupPage() {
       <div className="bg-white p-6 rounded-xl shadow w-full max-w-md">
         <h1 className="text-xl font-bold text-center mb-4">프로필 설정</h1>
 
-        {/* ✅ 중복 경고 배너(닉네임 입력 영역 위에) */}
         {dupWarn ? (
           <div className="mb-4 rounded-xl border border-red-300 bg-red-50 px-3 py-2 text-sm font-bold text-red-700">
             {dupWarn}
           </div>
         ) : null}
 
-        {/* 닉네임 */}
         <div className="mb-4">
           <div className="text-sm font-bold mb-2">닉네임</div>
           <input
@@ -271,63 +235,28 @@ export default function ProfileSetupPage() {
           </div>
         </div>
 
-        {/* 길드 */}
         <div className="mb-4">
           <div className="text-sm font-bold mb-2">길드</div>
 
-          <div className="flex flex-wrap gap-2 mb-2">
-            <button
-              type="button"
-              onClick={() => setGuildMode("preset")}
-              className={`rounded-xl px-3 py-2 text-sm font-bold border ${
-                guildMode === "preset"
-                  ? "bg-gray-900 text-white border-gray-900"
-                  : "bg-white text-gray-900 border-gray-200 hover:bg-gray-50"
-              }`}
-            >
-              목록에서 선택
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setGuildMode("custom")}
-              className={`rounded-xl px-3 py-2 text-sm font-bold border ${
-                guildMode === "custom"
-                  ? "bg-gray-900 text-white border-gray-900"
-                  : "bg-white text-gray-900 border-gray-200 hover:bg-gray-50"
-              }`}
-            >
-              직접 입력(추가)
-            </button>
+          <div className="mb-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold text-slate-700">
+            길드는 정해진 목록에서만 선택 가능합니다.
           </div>
 
-          {guildMode === "preset" ? (
-            <select
-              value={guildPreset}
-              onChange={(e) => setGuildPreset(e.target.value)}
-              className="w-full border rounded-xl px-3 py-2 text-sm bg-white"
-            >
-              <option value="">선택(미지정)</option>
-              {GUILD_PRESETS.map((g) => (
-                <option key={g} value={g}>
-                  {g}
-                </option>
-              ))}
-            </select>
-          ) : (
-            <input
-              className="w-full border rounded-xl px-3 py-2 text-sm"
-              placeholder="예: 내 길드명 입력"
-              value={guildCustom}
-              onChange={(e) => setGuildCustom(e.target.value)}
-            />
-          )}
+          <select
+            value={guildPreset}
+            onChange={(e) => setGuildPreset(e.target.value)}
+            className="w-full border rounded-xl px-3 py-2 text-sm bg-white"
+          >
+            {GUILD_PRESETS.map((g) => (
+              <option key={g} value={g}>
+                {g}
+              </option>
+            ))}
+          </select>
 
           <div className="mt-2 text-xs text-gray-500">
             저장될 값:{" "}
-            <span className="font-bold text-gray-800">
-              {composedGuild ? composedGuild : "(미지정)"}
-            </span>
+            <span className="font-bold text-gray-800">{composedGuild}</span>
           </div>
         </div>
 
