@@ -9,7 +9,8 @@ import Home from "./pages/Home";
 import FarmingEfficiency from "./pages/FarmingEfficiency";
 import EssentialHeroesPage from "./pages/EssentialHeroesPage";
 import RaidGuidePage from "./pages/RaidGuidePage";
-
+import DefenseKingPage from "./pages/DefenseKingPage";
+import DefenseKingCreatePage from "./pages/DefenseKingCreatePage";
 import SiegePage from "./pages/SiegePage";
 import SiegeSkillDetailPage from "./pages/SiegeSkillDetailPage";
 import LoginPage from "./pages/LoginPage";
@@ -130,6 +131,11 @@ const App = () => {
             </RequireAuth>
           }
         />
+        <Route path="/guild-manage/defense-king" element={<DefenseKingPage />} />
+<Route path="/guild-manage/defense-king/create" element={<DefenseKingCreatePage />} />
+<Route path="/guild-manage/defense-king/edit" element={<DefenseKingCreatePage />} />
+
+
 <Route path="/guild-manage/defense/edit" element={<DefenseEditPage />} />
         <Route path="/siege/edit/:id" element={<SiegeTeamEditPage />} />
         <Route path="/guild-manage/members" element={<GuildMembersPage />} />

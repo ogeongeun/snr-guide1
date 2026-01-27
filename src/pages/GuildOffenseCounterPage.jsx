@@ -487,6 +487,12 @@ export default function GuildOffenseListPage() {
                                   상세 보기 →
                                 </button>
                               </div>
+{/* ✅ DB: 방어 스킬(패턴) 표시 */}
+{isDb && Array.isArray(entry?.skills) && entry.skills.length > 0 ? (
+  <div className="mt-4">
+    <SkillStrip skills={entry.skills} size="w-9 h-9" />
+  </div>
+) : null}
 
                               {/* (선택) JSON 패턴별 버튼은 유지하고 싶으면 여기서 variants로 추가해도 됨 */}
                               {!isDb && variants.length > 0 ? (
@@ -708,6 +714,15 @@ export default function GuildOffenseListPage() {
                                 />
                               </div>
                             ) : null}
+{/* ✅ DB: 방어 스킬(패턴) 표시 */}
+{isDb && Array.isArray(entry?.skills) && entry.skills.length > 0 ? (
+  <div className="mt-3">
+    <div className="text-[12px] font-extrabold text-slate-500 mb-2">
+      방어 스킬(패턴)
+    </div>
+    <SkillStrip skills={entry.skills} size="w-8 h-8" />
+  </div>
+) : null}
 
                             <button
                               type="button"

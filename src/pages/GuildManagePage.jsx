@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { Link, useNavigate } from "react-router-dom";
 import DefenseSubmitPage from "./DefenseSubmitPage";
+import DefenseKingPage from "./DefenseKingPage";
 
 export default function GuildManagePage() {
   const navigate = useNavigate();
@@ -39,6 +40,13 @@ export default function GuildManagePage() {
         emoji: "👥",
         to: "/guild-manage/members",
       },
+      {
+  key: "defense_king",
+  label: "방어왕",
+  desc: "랭킹/세팅",
+  emoji: "👑",
+  to: "/guild-manage/defense-king", // ✅ 모바일 전용 페이지
+},
       {
         key: "defense",
         label: "방어팀 제출",
@@ -313,8 +321,13 @@ export default function GuildManagePage() {
                   <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
                     <div>
                       <div className="text-[12px] font-extrabold text-slate-500">
-                        {active === "members" ? "Members" : "Defense Submit"}
-                      </div>
+  {active === "members"
+    ? "Members"
+    : active === "defense_king"
+    ? "Defense King"
+    : "Defense Submit"}
+</div>
+
                       <div className="mt-1 text-[18px] font-black text-slate-900">
                         {activeMeta?.label}
                       </div>
@@ -329,14 +342,16 @@ export default function GuildManagePage() {
                     </div>
                   </div>
 
-                  <div className="p-5">
-                    {active === "members" ? (
-                      <MembersPanel members={members} loading={membersLoading} />
-                    ) : (
-                      // ✅ PC에서는 우측 패널에 DefenseSubmitPage를 임베드로 표시
-                      <DefenseSubmitPage embedded />
-                    )}
-                  </div>
+                 <div className="p-5">
+  {active === "members" ? (
+    <MembersPanel members={members} loading={membersLoading} />
+  ) : active === "defense_king" ? (
+    <DefenseKingPage embedded />
+  ) : (
+    <DefenseSubmitPage embedded />
+  )}
+</div>
+
                 </div>
               </main>
             </div>
