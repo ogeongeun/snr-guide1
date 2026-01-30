@@ -10,7 +10,7 @@ export default function ExpeditionPage() {
       role: '딜러',
       image: 'darkteo.png',
       attackers: [
-        '고만고만','린','김더지','빈빈빈','이젠다신안함','코요테','하이퍼울트라캡짱','호빗의여정','밤초','메롱헤롱'
+       
       ]
     },
     {
@@ -19,7 +19,7 @@ export default function ExpeditionPage() {
       role: '딜러',
       image: 'darkkile.png',
       attackers: [
-     '고치','막창추척자','파뚱이','시기1','purplesky','6전반없찐','까일','cryingstop','연발이',',건근본'
+     
       ]
     },
     {
@@ -27,7 +27,7 @@ export default function ExpeditionPage() {
       name: '연희',
       role: '버퍼',
       image: 'darkYeonhee.png',
-      attackers: ['떡초','이향','전성우','종아리','준모고기']
+      attackers: []
     },
     {
       id: 'darkcarma',
@@ -35,7 +35,7 @@ export default function ExpeditionPage() {
       role: '탱커',
       image: 'darkcarma.png',
       attackers: [
-       '비첼','위둥','호야','MongDal','떄오'
+       
       ]
     },
     {
