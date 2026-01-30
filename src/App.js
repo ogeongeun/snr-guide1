@@ -55,7 +55,7 @@ import MyProfilePage from "./pages/MyProfilePage";
 import AdminUsersPage from "./pages/admin/AdminUsersPage";
 import EssentialSkillDetailPage from "./pages/EssentialSkillDetailPage";
 import GuildGuideStatsPage from "./pages/GuildGuideStatsPage";
-
+import ExpeditionTeamCreatePage from "./pages/ExpeditionTeamCreatePage";  
 // ✅ 방어팀 "새로 추가" 저장 로직 페이지
 import GuildDefenseCreatePage from "./pages/GuildCounterDefenseCreatePage";
 
@@ -132,6 +132,7 @@ const App = () => {
             </RequireAuth>
           }
         />
+        <Route path="/expedition/create" element={<ExpeditionTeamCreatePage />} />
         <Route path="/guild-manage/defense-king" element={<DefenseKingPage />} />
 <Route path="/guild-manage/defense-king/create" element={<DefenseKingCreatePage />} />
 <Route path="/guild-manage/defense-king/edit" element={<DefenseKingCreatePage />} />
