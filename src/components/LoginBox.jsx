@@ -34,10 +34,13 @@ export default function LoginBox() {
   const [pw, setPw] = useState("");
 
   const signUp = async () => {
-    const { error } = await supabase.auth.signUp({
+    const { error , data} = await supabase.auth.signUp({
       email,
       password: pw,
     });
+
+     console.log("signUp data:", data);
+  console.log("signUp error:", error); // ✅ 핵심
 
     if (error) {
       alert(getKoreanAuthError(error)); // ✅ 한글
