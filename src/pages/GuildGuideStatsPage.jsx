@@ -247,7 +247,7 @@ export default function GuildGuideStatsPage() {
         </div>
 
         <div className="mt-4 text-[12px] font-semibold text-slate-500">
-          * 작성자 현재 길드 기준 집계
+          * 길드 공략추가 참여율이 저조하면 공유 중지할 예정
         </div>
       </div>
 

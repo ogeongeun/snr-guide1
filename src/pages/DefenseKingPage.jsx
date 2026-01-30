@@ -9,6 +9,36 @@ const ringImg = (key) => `/images/ring/${key}.png`;
 const engraveImg = (key) => `/images/ring/${key}.png`;
 const skillImg = (s) => (s?.startsWith("/images/") ? s : `/images/skills/${s || ""}`);
 
+// ✅ 펫 이미지 유틸 (DB에는 pet이 없을 수도 있으니 안전하게)
+const petImg = (src) => {
+  const s = String(src || "");
+  if (!s) return "";
+  if (s.startsWith("/images/")) return s;
+  if (s.includes("/")) return s; // 상대경로/URL이면 그대로
+  // 기본: /images/pets/ 폴더 사용 (너 폴더명 다르면 여기만 수정)
+  return `/images/pets/${s}`;
+};
+
+// ✅ row.pet에서 안전하게 꺼내기
+function readPet(row) {
+  const p = row?.pet;
+  if (!p) return null;
+
+  // 1) json 형태: {key,name,image}
+  if (typeof p === "object") {
+    const key = String(p.key || "").trim();
+    const name = String(p.name || key || "").trim();
+    const image = String(p.image || "").trim();
+    if (!key && !image && !name) return null;
+    return { key, name, image };
+  }
+
+  // 2) 문자열 형태: "ru.png" 또는 "ru" 등
+  const s = String(p).trim();
+  if (!s) return null;
+  return { key: s, name: s, image: s };
+}
+
 export default function DefenseKingPage({ embedded = false, guildId: embeddedGuildId = null }) {
   const navigate = useNavigate();
 
@@ -26,7 +56,7 @@ export default function DefenseKingPage({ embedded = false, guildId: embeddedGui
   const [actionErr, setActionErr] = useState({});
 
   // ✅ DB 세팅 모달
-  const [openBuild, setOpenBuild] = useState(null); // { title, hero, entry }
+  const [openBuild, setOpenBuild] = useState(null); // { title, hero, entry, slotIndex }
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setMe(data?.user ?? null));
@@ -66,7 +96,18 @@ export default function DefenseKingPage({ embedded = false, guildId: embeddedGui
           setErrMsg("길드 소속 정보가 없습니다.");
           return;
         }
-        setGuildId(mem.guild_id);
+             // 🔽🔽🔽 여기부터 추가 🔽🔽🔽
+      const { data: gRow, error: gErr } = await supabase
+        .from("guilds")
+        .select("id,name,parent_guild_id")
+        .eq("id", mem.guild_id)
+        .maybeSingle();
+      if (gErr) throw gErr;
+
+      // ✅ 백우회면 parent_guild_id(천우회)로, 아니면 자기 길드
+      setGuildId(gRow?.parent_guild_id || gRow?.id || mem.guild_id);
+      // 🔼🔼🔼 여기까지 추가 🔼🔼🔼
+
       } catch (e) {
         setErrMsg(e?.message ? String(e.message) : "알 수 없는 오류");
       } finally {
@@ -83,9 +124,13 @@ export default function DefenseKingPage({ embedded = false, guildId: embeddedGui
     setErrMsg("");
 
     try {
+      // ✅ 너가 DB에 pet 컬럼을 아직 안 만들었으면 select에 pet 넣으면 에러남.
+      // 👉 pet 컬럼을 실제로 추가한 뒤에만 아래 주석을 풀어.
+      const SELECT = "id,guild_id,user_id,nickname,defense_count,note,created_at,team,skills,equipment,pet"; // + ",pet"
+
       const { data, error } = await supabase
         .from("guild_defense_king_entries")
-        .select("id,guild_id,user_id,nickname,defense_count,note,created_at,team,skills,equipment")
+        .select(SELECT)
         .eq("guild_id", guildId)
         .order("defense_count", { ascending: false })
         .order("created_at", { ascending: false })
@@ -216,7 +261,9 @@ export default function DefenseKingPage({ embedded = false, guildId: embeddedGui
             {errMsg ? (
               <div className="mt-4 rounded-3xl border border-rose-200 bg-rose-50 p-5">
                 <div className="text-[13px] font-extrabold text-rose-700">오류</div>
-                <div className="mt-1 text-[12px] font-semibold text-rose-700/90 break-all">{errMsg}</div>
+                <div className="mt-1 text-[12px] font-semibold text-rose-700/90 break-all">
+                  {errMsg}
+                </div>
               </div>
             ) : null}
 
@@ -237,6 +284,7 @@ export default function DefenseKingPage({ embedded = false, guildId: embeddedGui
                   const mine = canManage(r);
                   const teamArr = Array.isArray(r.team) ? r.team : [];
                   const skillsArr = Array.isArray(r.skills) ? r.skills : [];
+                  const pet = readPet(r); // ✅ 펫 읽기
 
                   return (
                     <div key={r.id} className="rounded-3xl border border-slate-200 bg-white shadow-sm p-5">
@@ -289,8 +337,12 @@ export default function DefenseKingPage({ embedded = false, guildId: embeddedGui
                       </div>
 
                       {actionErr[r.id] ? (
-                        <div className="mt-2 text-[12px] font-semibold text-rose-600 break-all">{actionErr[r.id]}</div>
+                        <div className="mt-2 text-[12px] font-semibold text-rose-600 break-all">
+                          {actionErr[r.id]}
+                        </div>
                       ) : null}
+
+                     
 
                       {/* ✅ 영웅(클릭 = DB 세팅 모달) */}
                       {teamArr.length > 0 ? (
@@ -321,7 +373,30 @@ export default function DefenseKingPage({ embedded = false, guildId: embeddedGui
                           </div>
                         </div>
                       ) : null}
-
+ {/* ✅ 펫 (있을 때만 표시) */}
+                      {pet ? (
+                        <div className="mt-4 rounded-3xl border border-slate-200 bg-slate-50 p-4">
+                          <div className="text-[12px] font-extrabold text-slate-600">펫</div>
+                          <div className="mt-3 flex items-center gap-3">
+                            <div className="h-11 w-11 rounded-2xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center">
+                              <img
+                                src={petImg(pet.image || pet.key)}
+                                alt={pet.name || pet.key}
+                                className="w-full h-full object-contain"
+                                onError={(e) => (e.currentTarget.style.display = "none")}
+                              />
+                            </div>
+                            <div className="min-w-0">
+                              <div className="text-[13px] font-black text-slate-900 truncate">
+                                {pet.name || pet.key}
+                              </div>
+                              <div className="text-[11px] font-semibold text-slate-500 truncate">
+                                {pet.key || "-"}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ) : null}
                       {/* ✅ 스킬 */}
                       {skillsArr.length > 0 ? (
                         <div className="mt-4 rounded-3xl border border-slate-200 bg-slate-50 p-4">
@@ -341,7 +416,6 @@ export default function DefenseKingPage({ embedded = false, guildId: embeddedGui
                                 />
                               </div>
                             ))}
-                           
                           </div>
                         </div>
                       ) : null}
@@ -382,8 +456,8 @@ function DbBuildModal({ open, title, hero, entry, slotIndex = 0, onClose }) {
   if (!open) return null;
 
   const h = hero || {};
- const equipArr = Array.isArray(entry?.equipment) ? entry.equipment : [];
-const build = equipArr[slotIndex] || {};
+  const equipArr = Array.isArray(entry?.equipment) ? entry.equipment : [];
+  const build = equipArr[slotIndex] || {};
   const weapon = build.weapon || {};
   const armor = build.armor || {};
 
@@ -401,7 +475,7 @@ const build = equipArr[slotIndex] || {};
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black/60 flex items-end lg:items-center justify-center p-3">
-    <div className="w-full max-w-[360px] sm:max-w-md lg:max-w-2xl rounded-3xl bg-white border border-slate-200 shadow-xl overflow-hidden                max-h-[80vh] lg:max-h-none flex flex-col lg:block">
+      <div className="w-full max-w-[360px] sm:max-w-md lg:max-w-2xl rounded-3xl bg-white border border-slate-200 shadow-xl overflow-hidden max-h-[80vh] lg:max-h-none flex flex-col lg:block">
         <div className="p-4 border-b border-slate-200 flex items-center gap-3">
           <div className="min-w-0">
             <div className="text-[12px] font-extrabold text-slate-500">방어왕 세팅</div>

@@ -6,6 +6,7 @@ import { Crown, Shield, Search, X, Save, Trash2 } from "lucide-react";
 import { supabase } from "../lib/supabaseClient";
 import heroesList from "../data/heroes.json";
 import skillImages from "../data/skillImages.json";
+import petImages from "../data/petImages.json"; // ✅ 추가
 
 // ✅ 테이블명만 네 DB에 맞게
 const DEFENSE_KING_TABLE = "guild_defense_king_entries";
@@ -286,6 +287,118 @@ function HeroPickerModal({ open, onClose, onPick }) {
   );
 }
 
+// =========================
+// ✅ 펫 선택 모달
+// petImages.json 형식 가정: [{ key, name, image }, ...]
+// image가 없으면 /images/pets/{key}.png 로 대체
+// =========================
+const petImg = (p) => {
+  const s = String(p || "");
+  if (!s) return "";
+  if (s.startsWith("/images/")) return s;
+  if (s.includes("/")) return s; // 혹시 상대경로/URL 형태면 그대로
+  return `/images/pets/${s}`;
+};
+function normalizePetList(list) {
+  const arr = Array.isArray(list) ? list : [];
+  return arr
+    .map((x) => {
+      const key = String(x?.key ?? "").trim();
+      const name = String(x?.name ?? key).trim();
+      const image = x?.image ? String(x.image) : "";
+      if (!key) return null;
+      return { key, name, image };
+    })
+    .filter(Boolean);
+}
+function PetPickerModal({ open, onClose, onPick }) {
+  const [q, setQ] = useState("");
+
+  useEffect(() => {
+    if (!open) return;
+    setQ("");
+  }, [open]);
+
+  const list = useMemo(() => normalizePetList(petImages), []);
+  const filtered = useMemo(() => {
+    const qq = (q || "").trim().toLowerCase();
+    if (!qq) return list;
+    return list.filter((p) => {
+      const k = String(p.key || "").toLowerCase();
+      const n = String(p.name || "").toLowerCase();
+      return k.includes(qq) || n.includes(qq);
+    });
+  }, [q, list]);
+
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-[90] bg-black/50 flex items-end lg:items-center justify-center p-3">
+      <div className="w-full max-w-3xl rounded-3xl bg-white border border-slate-200 shadow-xl overflow-hidden">
+        <div className="p-4 border-b border-slate-200 flex items-center gap-3">
+          <div className="min-w-0">
+            <div className="text-[12px] font-extrabold text-slate-500">펫 선택</div>
+            <div className="text-[16px] font-black text-slate-900">펫을 선택하세요</div>
+          </div>
+          <div className="flex-1" />
+          <button
+            onClick={onClose}
+            className="rounded-xl px-3 py-2 text-[12px] font-extrabold bg-slate-50 border border-slate-200 text-slate-700 hover:bg-slate-100"
+            type="button"
+          >
+            닫기
+          </button>
+        </div>
+
+        <div className="p-4">
+          <input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="검색 (펫명/키)"
+            className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-[13px] font-semibold text-slate-800 outline-none focus:ring-2 focus:ring-slate-200"
+          />
+
+          <div className="mt-3 max-h-[60vh] overflow-auto rounded-2xl border border-slate-200">
+            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2 p-2">
+              {filtered.map((p) => (
+                <button
+                  key={p.key}
+                  onClick={() => onPick(p)}
+                  className="rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 hover:ring-2 hover:ring-slate-200 p-2 text-left transition"
+                  title={p.name}
+                  type="button"
+                >
+                  <div className="aspect-square rounded-xl border border-slate-200 bg-slate-50 overflow-hidden flex items-center justify-center">
+                    <img
+                      src={petImg(p.image || p.key)}
+                      alt={p.name}
+                      className="w-full h-full object-contain"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                  </div>
+
+                  <div className="mt-1 text-[11px] font-extrabold text-slate-800 truncate">
+                    {p.name}
+                  </div>
+                  <div className="text-[10px] font-semibold text-slate-500 truncate">{p.key}</div>
+                </button>
+              ))}
+
+              {filtered.length === 0 ? (
+                <div className="col-span-full p-6 text-center text-[12px] font-semibold text-slate-600">
+                  검색 결과가 없습니다.
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function GuildDefenseKingCreatePage() {
   const navigate = useNavigate();
   const [sp] = useSearchParams();
@@ -308,6 +421,10 @@ export default function GuildDefenseKingCreatePage() {
   // 방어 횟수/메모
   const [defenseCount, setDefenseCount] = useState("");
   const [note, setNote] = useState("");
+
+  // ✅ 펫(1개)
+  const [pet, setPet] = useState({ key: "", name: "", image: "" });
+  const [petPickOpen, setPetPickOpen] = useState(false);
 
   // 세팅
   const [slots, setSlots] = useState([emptyHeroSlot(), emptyHeroSlot(), emptyHeroSlot()]);
@@ -372,7 +489,7 @@ export default function GuildDefenseKingCreatePage() {
         if (editId) {
           const { data: row, error: rErr } = await supabase
             .from(DEFENSE_KING_TABLE)
-            .select("id,nickname,defense_count,note,team,skills,equipment,guild_id")
+            .select("id,nickname,defense_count,note,team,skills,equipment,guild_id,pet") // ✅ pet 추가
             .eq("id", editId)
             .maybeSingle();
 
@@ -387,6 +504,14 @@ export default function GuildDefenseKingCreatePage() {
           setNickname(row.nickname || "");
           setDefenseCount(String(row.defense_count ?? ""));
           setNote(row.note || "");
+
+          // ✅ 펫 로드
+          const rp = row?.pet && typeof row.pet === "object" ? row.pet : null;
+          setPet({
+            key: rp?.key ? String(rp.key) : "",
+            name: rp?.name ? String(rp.name) : "",
+            image: rp?.image ? String(rp.image) : "",
+          });
 
           const teamArr = Array.isArray(row.team) ? row.team : [];
           const equipArr = Array.isArray(row.equipment) ? row.equipment : [];
@@ -505,6 +630,7 @@ export default function GuildDefenseKingCreatePage() {
     for (let i = 0; i < 3; i++) {
       if (!String(slots[i]?.hero_key || "").trim()) return `영웅 ${i + 1}번이 비어있습니다.`;
     }
+    // ✅ 펫은 선택사항이면 검증 안함 (필수로 하고싶으면 여기서 체크)
     return "";
   };
 
@@ -516,6 +642,10 @@ export default function GuildDefenseKingCreatePage() {
     nickname: String(nickname).trim(),
     defense_count: Number(defenseCount),
     note: note || "",
+    // ✅ 펫 저장(1개)
+    pet: pet?.key
+      ? { key: pet.key, name: pet.name || "", image: pet.image || "" }
+      : null,
     team: slots.map((s) => ({
       hero_key: s.hero_key || "",
       name: s.name || "",
@@ -604,7 +734,7 @@ export default function GuildDefenseKingCreatePage() {
                 {isEdit ? "방어왕 수정" : "방어왕 추가"}
               </h1>
               <p className="mt-1 text-xs lg:text-sm font-semibold text-slate-700/70">
-                닉네임 + 방어횟수 + 세팅(장비/반지/세공/스킬)
+                닉네임 + 방어횟수 + 세팅(장비/반지/세공/스킬/펫)
               </p>
 
               <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -715,6 +845,53 @@ export default function GuildDefenseKingCreatePage() {
                   placeholder="예) 27"
                   className="mt-2 w-full rounded-2xl border border-slate-200 px-3 py-2 text-[13px] font-semibold"
                 />
+              </div>
+
+              {/* ✅ 펫 */}
+              <div className="rounded-3xl border border-slate-200 bg-white p-4">
+                <div className="text-[12px] font-extrabold text-slate-600">펫 (선택)</div>
+                <div className="mt-2 flex items-center gap-3">
+                  <div className="h-12 w-12 rounded-2xl border border-slate-200 bg-slate-50 overflow-hidden flex items-center justify-center">
+                    {pet?.key ? (
+                      <img
+                        src={petImg(pet.image || pet.key)}
+                        alt={pet.name || pet.key}
+                        className="w-full h-full object-contain"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="text-[11px] font-extrabold text-slate-400">없음</div>
+                    )}
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[12px] font-black text-slate-900 truncate">
+                      {pet?.name || (pet?.key ? pet.key : "펫 미선택")}
+                    </div>
+                    <div className="text-[11px] font-semibold text-slate-500 truncate">
+                      {pet?.key || "-"}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setPetPickOpen(true)}
+                      className="rounded-xl px-3 py-2 text-[12px] font-extrabold bg-slate-900 text-white hover:bg-slate-800"
+                    >
+                      {pet?.key ? "변경" : "선택"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPet({ key: "", name: "", image: "" })}
+                      className="rounded-xl px-3 py-2 text-[12px] font-extrabold bg-white border border-slate-200 text-slate-800 hover:bg-slate-50"
+                      disabled={!pet?.key}
+                      title="펫 비우기"
+                    >
+                      제거
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <div className="rounded-3xl border border-slate-200 bg-white p-4">
@@ -931,7 +1108,7 @@ export default function GuildDefenseKingCreatePage() {
                     <div className="text-[11px] font-extrabold text-slate-600">무기 메인옵 2</div>
                     <select
                       value={s.build?.weapon?.main2 || ""}
-                      onChange={(e) => updateWeapon(activeSlot, "main2", e.target.value)}
+                                            onChange={(e) => updateWeapon(activeSlot, "main2", e.target.value)}
                       className="mt-1 w-full rounded-2xl border border-slate-200 px-3 py-2 text-[12px] font-semibold bg-white"
                       disabled={!s?.hero_key}
                     >
@@ -1116,6 +1293,15 @@ export default function GuildDefenseKingCreatePage() {
             return next;
           });
           setHeroPickOpen(false);
+        }}
+      />
+
+      <PetPickerModal
+        open={petPickOpen}
+        onClose={() => setPetPickOpen(false)}
+        onPick={(p) => {
+          setPet({ key: p.key || "", name: p.name || "", image: p.image || "" });
+          setPetPickOpen(false);
         }}
       />
 

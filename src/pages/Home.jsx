@@ -252,7 +252,7 @@ useEffect(() => {
     <div>
       <div className="text-[15px] font-black text-slate-900">길드별 공략 통계</div>
       <div className="text-[12px] font-semibold text-slate-600">
-        길드전 / 공성전 공략 수 한눈에 보기
+        길드 공략 추가 랭킹 확인
       </div>
     </div>
   </div>
@@ -379,7 +379,7 @@ useEffect(() => {
     <div>
       <div className="text-[15px] font-black text-slate-900">길드별 공략 통계</div>
       <div className="text-[12px] font-semibold text-slate-600">
-        길드전 / 공성전 공략 수 요약
+        길드 공략 추가 랭킹 확인
       </div>
     </div>
   </div>
