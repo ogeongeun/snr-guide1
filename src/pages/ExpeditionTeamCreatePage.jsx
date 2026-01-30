@@ -789,16 +789,7 @@ export default function ExpeditionTeamCreatePage() {
             </div>
           </div>
 
-          {/* 세트 메모 */}
-          <div className="rounded-2xl border border-slate-200 p-4">
-            <div className="text-[12px] font-extrabold text-slate-600">세트 메모</div>
-            <textarea
-              value={setNote}
-              onChange={(e) => setSetNote(e.target.value)}
-              placeholder="예) 미흡한 스펙은 반지로 충족..."
-              className="mt-2 w-full min-h-[90px] rounded-2xl border border-slate-200 px-3 py-2 text-[13px] font-semibold"
-            />
-          </div>
+          
 
           {/* 팀 탭 */}
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">

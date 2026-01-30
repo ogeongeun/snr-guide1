@@ -48,5 +48,10 @@
     "key": "yu",
     "name": "유",
     "image": "/images/pet/yu.png"
+  },
+  {
+    "key": "windy",
+    "name": "윈디",
+    "image": "/images/pet/windy.png"
   }
 ]
