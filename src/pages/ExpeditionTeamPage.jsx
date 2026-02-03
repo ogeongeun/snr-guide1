@@ -569,236 +569,243 @@ export default function ExpeditionTeamPage() {
     return <div className="min-h-screen flex items-center justify-center text-red-500">데이터를 찾을 수 없습니다.</div>;
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f7f7fb] to-[#eceef6] py-8 px-3 sm:px-6">
-      <div className="max-w-6xl mx-auto bg-white/95 backdrop-blur-md shadow-lg rounded-3xl p-4 sm:p-6 border border-gray-200">
-        <div className="flex items-center justify-between gap-2 flex-wrap">
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 drop-shadow">
-            ⚔️ {decodedHeroId.toUpperCase()} - 팀 선택
-          </h1>
+ return (
+  <div className="min-h-screen bg-gradient-to-b from-[#f7f7fb] to-[#eceef6] py-8 px-3 sm:px-6">
+    <div className="max-w-6xl mx-auto bg-white/95 backdrop-blur-md shadow-lg rounded-3xl p-4 sm:p-6 border border-gray-200">
+      <div className="flex items-center justify-between gap-2 flex-wrap">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 drop-shadow">
+          ⚔️ {decodedHeroId.toUpperCase()} - 팀 선택
+        </h1>
 
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={loadDb}
-              className="inline-flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-semibold bg-white border border-gray-200 rounded-full shadow-sm hover:shadow-md"
-            >
-              <RefreshCw size={16} />
-              새로고침
-            </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={loadDb}
+            className="inline-flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-semibold bg-white border border-gray-200 rounded-full shadow-sm hover:shadow-md"
+          >
+            <RefreshCw size={16} />
+            새로고침
+          </button>
 
-            <Link
-              to={`/expedition/create?heroId=${encodeURIComponent(decodedHeroId)}`}
-              className="inline-flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform"
-            >
-              <Plus size={16} />
-              공략 추가
-            </Link>
-          </div>
-        </div>
-
-        {/* ✅ 기존(JSON) 공략은 항상 보여줌 */}
-        {hasJson ? (
-          <>
-            <div className="mt-6 text-sm font-bold text-gray-700">📘 기본 공략 (JSON)</div>
-
-            {jsonTeamSets.map((set, setIdx) => (
-              <div key={`json-${setIdx}`} className="mb-10 mt-4">
-                <h2 className="text-xl sm:text-2xl font-semibold text-center text-indigo-700 mb-4">{set.setName}</h2>
-
-                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  {(set.teams || []).map((team) => (
-                    <li
-                      key={`json-team-${setIdx}-${team.id}`}
-                      className="bg-gradient-to-b from-white to-gray-50 border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-4 sm:p-5 flex flex-col justify-between h-fit max-h-[480px]"
-                    >
-                      <h3 className="font-bold text-gray-800 text-center mb-2 text-lg sm:text-xl">🧩 {team.teamName}</h3>
-
-                      {renderHeroes(team.heroes, "grid-cols-5")}
-
-                      {team.note ? <p className="text-[11px] text-red-500 text-center mt-2 italic">※ {team.note}</p> : null}
-
-                      <div className="flex justify-end mt-4">
-                        <Link
-                          to={`/expedition-skill/${encodeURIComponent(decodedHeroId)}/${setIdx}/${team.id - 1}`}
-                          className="px-3 py-1.5 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform"
-                        >
-                          ⚡ 스킬순서 보기
-                        </Link>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-
-                {set.note ? <p className="text-[12px] text-gray-600 text-center mt-4 italic">📘 {set.note}</p> : null}
-              </div>
-            ))}
-          </>
-        ) : null}
-
-        {/* ✅ DB 공략 */}
-        <div className="mt-8 text-sm font-bold text-gray-700">🧾 유저 추가 공략 (DB)</div>
-
-        {dbErr ? <div className="mt-3 rounded-2xl border border-red-200 bg-red-50 p-3 text-red-700 text-sm">{dbErr}</div> : null}
-
-        {loadingDb ? (
-          <div className="mt-33 rounded-2xl border border-gray-200 bg-white p-4 text-sm text-gray-600">DB 공략 불러오는중...</div>
-        ) : dbPosts.length === 0 ? (
-          <div className="mt-3 rounded-2xl border border-gray-200 bg-white p-4 text-sm text-gray-600">
-            아직 DB 공략이 없습니다. “공략 추가”로 등록해줘.
-          </div>
-        ) : (
-          <div className="mt-4 space-y-8">
-            {groupedDb.map((g) => (
-              <div key={g.author} className="rounded-3xl border border-gray-200 bg-white p-4 sm:p-5 shadow-sm">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="text-[13px] sm:text-[14px] font-extrabold text-gray-800">
-                    작성자: <span className="text-indigo-700">{g.author}</span>
-                    <span className="ml-2 text-[12px] font-semibold text-gray-500">({g.posts.length}개)</span>
-                  </div>
-                </div>
-
-                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  {g.posts.map((p) => {
-                    const members = Array.isArray(p.members) ? p.members : [];
-
-                    const heroes = members.slice(0, 5).map((m) => {
-                      const b = parseBuild(m.build);
-                      return {
-                        hero_key: m.hero_key || null,
-                        name: m.hero_name,
-                        image: m.hero_image,
-                        preset: b.set || null,
-                        note: b.note || null,
-                        build: b,
-                      };
-                    });
-
-                    const isMine = !!(me?.id && p.created_by && me.id === p.created_by);
-                    const deleting = deletingPostId === p.post_id;
-
-                    const petFn = normalizePetFilename(p.recommended_pet);
-
-                    return (
-                      <div
-                        key={p.id}
-                        className="bg-gradient-to-b from-white to-gray-50 border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-4 sm:p-5 flex flex-col justify-between"
-                      >
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="text-[11px] text-gray-500">{p.created_at ? new Date(p.created_at).toLocaleDateString() : ""}</div>
-
-                          {isMine ? (
-                            <div className="flex items-center gap-1">
-                              <button
-                                type="button"
-                                onClick={() => goEdit(p.post_id, p.set_idx)} // ✅ setIdx 같이!
-                                className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold bg-white border border-gray-200 hover:bg-gray-50"
-                                title="수정"
-                              >
-                                <Pencil size={14} />
-                                수정
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => deletePost(p.post_id)}
-                                disabled={deleting}
-                                className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold bg-red-50 border border-red-200 text-red-700 hover:bg-red-100 disabled:opacity-60"
-                                title="삭제"
-                              >
-                                <Trash2 size={14} />
-                                {deleting ? "삭제중" : "삭제"}
-                              </button>
-                            </div>
-                          ) : null}
-                        </div>
-
-                        <h3 className="font-bold text-gray-800 text-center mb-2 text-lg sm:text-xl">
-                          🧩 {p.team_name || "팀"}{" "}
-                          <span className="text-[12px] font-semibold text-gray-500">({p.set_name || "세트"})</span>
-                        </h3>
-
-                        {/* ✅ 추천 펫 표시(DB) — 여기만 “요청폭주 방지 컴포넌트”로 교체 */}
-                        <div className="flex items-center justify-center gap-2 mt-1">
-                          <div className="w-10 h-10 rounded-2xl border border-gray-200 bg-white overflow-hidden flex items-center justify-center">
-                            {petFn ? (
-                              <PetImage filename={petFn} className="w-full h-full object-contain" />
-                            ) : (
-                              <div className="text-[10px] font-extrabold text-gray-400">-</div>
-                            )}
-                          </div>
-                          <div className="text-[11px] font-semibold text-gray-600">
-                            펫: <span className="font-extrabold text-gray-800">{petFn || "미지정"}</span>
-                          </div>
-                        </div>
-
-                        {renderHeroes(heroes, "grid-cols-5")}
-
-                        {String(p.note || "").trim() ? <p className="text-[11px] text-red-500 text-center mt-2 italic">※ {p.note}</p> : null}
-
-                        <div className="flex justify-end mt-4">
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setSkillModalTitle(`${p.team_name || "팀"} (${p.set_name || "세트"})`);
-                              setSkillModalSeq(Array.isArray(p.skill_sequence) ? p.skill_sequence : []);
-                              setSkillModalOpen(true);
-                            }}
-                            className="px-3 py-1.5 text-xs sm:text-sm font-semibold text-white bg-slate-900 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform"
-                          >
-                            ⚡ 스킬순서 보기
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <div className="text-center mt-10">
-          <Link to="/expedition" className="text-sm sm:text-base font-medium text-indigo-500 hover:underline hover:text-indigo-600 transition">
-            ← 강림원정대 메인으로
+          <Link
+            to={`/expedition/create?heroId=${encodeURIComponent(decodedHeroId)}`}
+            className="inline-flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform"
+          >
+            <Plus size={16} />
+            공략 추가
           </Link>
         </div>
       </div>
 
-      {/* ✅ DB 저장 장비 모달 */}
-      <UserBuildModal
-        open={buildModalOpen}
-        onClose={() => {
-          setBuildModalOpen(false);
-          setSelectedBuild(null);
-          setSelectedBuildHeroName("");
-          setSelectedBuildHeroImage("");
-        }}
-        heroName={selectedBuildHeroName}
-        heroImage={selectedBuildHeroImage}
-        build={selectedBuild}
-        onOpenRecommend={() => {
-          setBuildModalOpen(false);
-          if (recommendHeroKey) {
-            setSelectedHeroKey(recommendHeroKey);
-            setPresetTag(recommendPreset || null);
-          }
-        }}
-      />
+      {/* ✅ DB 공략을 먼저 */}
+      <div className="mt-8 text-sm font-bold text-gray-700">🧾 유저 추가 공략 (DB)</div>
 
-      {/* ✅ 추천 장비 모달 */}
-      {selectedHeroKey ? (
-        <EquipmentModal
-          heroKey={selectedHeroKey}
-          presetTag={presetTag}
-          onClose={() => {
-            setSelectedHeroKey(null);
-            setPresetTag(null);
-          }}
-        />
+      {dbErr ? (
+        <div className="mt-3 rounded-2xl border border-red-200 bg-red-50 p-3 text-red-700 text-sm">{dbErr}</div>
       ) : null}
 
-      {/* ✅ DB 스킬순서 모달 */}
-      <SkillSequenceModal open={skillModalOpen} onClose={() => setSkillModalOpen(false)} title={skillModalTitle} sequence={skillModalSeq} />
+      {loadingDb ? (
+        <div className="mt-33 rounded-2xl border border-gray-200 bg-white p-4 text-sm text-gray-600">DB 공략 불러오는중...</div>
+      ) : dbPosts.length === 0 ? (
+        <div className="mt-3 rounded-2xl border border-gray-200 bg-white p-4 text-sm text-gray-600">
+          아직 DB 공략이 없습니다. “공략 추가”로 등록해줘.
+        </div>
+      ) : (
+        <div className="mt-4 space-y-8">
+          {groupedDb.map((g) => (
+            <div key={g.author} className="rounded-3xl border border-gray-200 bg-white p-4 sm:p-5 shadow-sm">
+              <div className="flex items-center justify-between gap-3">
+                <div className="text-[13px] sm:text-[14px] font-extrabold text-gray-800">
+                  작성자: <span className="text-indigo-700">{g.author}</span>
+                  <span className="ml-2 text-[12px] font-semibold text-gray-500">({g.posts.length}개)</span>
+                </div>
+              </div>
+
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {g.posts.map((p) => {
+                  const members = Array.isArray(p.members) ? p.members : [];
+
+                  const heroes = members.slice(0, 5).map((m) => {
+                    const b = parseBuild(m.build);
+                    return {
+                      hero_key: m.hero_key || null,
+                      name: m.hero_name,
+                      image: m.hero_image,
+                      preset: b.set || null,
+                      note: b.note || null,
+                      build: b,
+                    };
+                  });
+
+                  const isMine = !!(me?.id && p.created_by && me.id === p.created_by);
+                  const deleting = deletingPostId === p.post_id;
+
+                  const petFn = normalizePetFilename(p.recommended_pet);
+
+                  return (
+                    <div
+                      key={p.id}
+                      className="bg-gradient-to-b from-white to-gray-50 border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-4 sm:p-5 flex flex-col justify-between"
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="text-[11px] text-gray-500">
+                          {p.created_at ? new Date(p.created_at).toLocaleDateString() : ""}
+                        </div>
+
+                        {isMine ? (
+                          <div className="flex items-center gap-1">
+                            <button
+                              type="button"
+                              onClick={() => goEdit(p.post_id, p.set_idx)}
+                              className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold bg-white border border-gray-200 hover:bg-gray-50"
+                              title="수정"
+                            >
+                              <Pencil size={14} />
+                              수정
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => deletePost(p.post_id)}
+                              disabled={deleting}
+                              className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold bg-red-50 border border-red-200 text-red-700 hover:bg-red-100 disabled:opacity-60"
+                              title="삭제"
+                            >
+                              <Trash2 size={14} />
+                              {deleting ? "삭제중" : "삭제"}
+                            </button>
+                          </div>
+                        ) : null}
+                      </div>
+
+                      <h3 className="font-bold text-gray-800 text-center mb-2 text-lg sm:text-xl">
+                        🧩 {p.team_name || "팀"}{" "}
+                        <span className="text-[12px] font-semibold text-gray-500">({p.set_name || "세트"})</span>
+                      </h3>
+
+                      <div className="flex items-center justify-center gap-2 mt-1">
+                        <div className="w-10 h-10 rounded-2xl border border-gray-200 bg-white overflow-hidden flex items-center justify-center">
+                          {petFn ? <PetImage filename={petFn} className="w-full h-full object-contain" /> : (
+                            <div className="text-[10px] font-extrabold text-gray-400">-</div>
+                          )}
+                        </div>
+                        <div className="text-[11px] font-semibold text-gray-600">
+                          펫: <span className="font-extrabold text-gray-800">{petFn || "미지정"}</span>
+                        </div>
+                      </div>
+
+                      {renderHeroes(heroes, "grid-cols-5")}
+
+                      {String(p.note || "").trim() ? (
+                        <p className="text-[11px] text-red-500 text-center mt-2 italic">※ {p.note}</p>
+                      ) : null}
+
+                      <div className="flex justify-end mt-4">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSkillModalTitle(`${p.team_name || "팀"} (${p.set_name || "세트"})`);
+                            setSkillModalSeq(Array.isArray(p.skill_sequence) ? p.skill_sequence : []);
+                            setSkillModalOpen(true);
+                          }}
+                          className="px-3 py-1.5 text-xs sm:text-sm font-semibold text-white bg-slate-900 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform"
+                        >
+                          ⚡ 스킬순서 보기
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* ✅ JSON 공략은 아래로 */}
+      {hasJson ? (
+        <>
+          <div className="mt-10 text-sm font-bold text-gray-700">📘 기본 공략 (JSON)</div>
+
+          {jsonTeamSets.map((set, setIdx) => (
+            <div key={`json-${setIdx}`} className="mb-10 mt-4">
+              <h2 className="text-xl sm:text-2xl font-semibold text-center text-indigo-700 mb-4">{set.setName}</h2>
+
+              <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {(set.teams || []).map((team) => (
+                  <li
+                    key={`json-team-${setIdx}-${team.id}`}
+                    className="bg-gradient-to-b from-white to-gray-50 border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-4 sm:p-5 flex flex-col justify-between h-fit max-h-[480px]"
+                  >
+                    <h3 className="font-bold text-gray-800 text-center mb-2 text-lg sm:text-xl">🧩 {team.teamName}</h3>
+
+                    {renderHeroes(team.heroes, "grid-cols-5")}
+
+                    {team.note ? <p className="text-[11px] text-red-500 text-center mt-2 italic">※ {team.note}</p> : null}
+
+                    <div className="flex justify-end mt-4">
+                      <Link
+                        to={`/expedition-skill/${encodeURIComponent(decodedHeroId)}/${setIdx}/${team.id - 1}`}
+                        className="px-3 py-1.5 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-transform"
+                      >
+                        ⚡ 스킬순서 보기
+                      </Link>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              {set.note ? <p className="text-[12px] text-gray-600 text-center mt-4 italic">📘 {set.note}</p> : null}
+            </div>
+          ))}
+        </>
+      ) : null}
+
+      <div className="text-center mt-10">
+        <Link to="/expedition" className="text-sm sm:text-base font-medium text-indigo-500 hover:underline hover:text-indigo-600 transition">
+          ← 강림원정대 메인으로
+        </Link>
+      </div>
     </div>
-  );
+
+    {/* 모달들은 그대로 */}
+    <UserBuildModal
+      open={buildModalOpen}
+      onClose={() => {
+        setBuildModalOpen(false);
+        setSelectedBuild(null);
+        setSelectedBuildHeroName("");
+        setSelectedBuildHeroImage("");
+      }}
+      heroName={selectedBuildHeroName}
+      heroImage={selectedBuildHeroImage}
+      build={selectedBuild}
+      onOpenRecommend={() => {
+        setBuildModalOpen(false);
+        if (recommendHeroKey) {
+          setSelectedHeroKey(recommendHeroKey);
+          setPresetTag(recommendPreset || null);
+        }
+      }}
+    />
+
+    {selectedHeroKey ? (
+      <EquipmentModal
+        heroKey={selectedHeroKey}
+        presetTag={presetTag}
+        onClose={() => {
+          setSelectedHeroKey(null);
+          setPresetTag(null);
+        }}
+      />
+    ) : null}
+
+    <SkillSequenceModal
+      open={skillModalOpen}
+      onClose={() => setSkillModalOpen(false)}
+      title={skillModalTitle}
+      sequence={skillModalSeq}
+    />
+  </div>
+);
+
 }
