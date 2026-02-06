@@ -14,6 +14,15 @@
     "image": "/images/skills/choseon2.png"
   },
   {
+    "key": "yupo1",
+    "name": "여포1",
+    "image": "/images/skills/yupo1.png"
+  }, {
+    "key": "yupo2",
+    "name": "여포2",
+    "image": "/images/skills/yupo2.png"
+  },
+  {
     "key": "ace2",
     "name": "에이스2",
     "image": "/images/skills/ace2.png"
