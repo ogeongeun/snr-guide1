@@ -5,6 +5,11 @@
     "name": "에이스",
     "image": "/images/heroes/ace.png"
   },
+    {
+    "key": "yupo",
+    "name": "여포",
+    "image": "/images/heroes/yupo.png"
+  },
   {
     "key": "choseon",
     "name": "초선",
