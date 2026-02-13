@@ -77,11 +77,11 @@ Deno.serve(async (req: Request) => {
     // =========================
     // ✅ 권한 체크
     // 1) admins 테이블에 있으면 OK
-    // 2) 아니면 "같은 길드의 길드장"이면 OK
+    // 2) 아니면 "같은 길드의 leader"이면 OK (guild_members.role = 'leader' 기준)
     // =========================
     let allowed = false;
 
-    // 1) 관리자 체크 (RLS가 열려 있어야 함)
+    // 1) 관리자 체크
     const { data: adminRow, error: adminErr } = await supabase
       .from("admins")
       .select("user_id")
@@ -99,34 +99,39 @@ Deno.serve(async (req: Request) => {
       allowed = true;
     }
 
-    // 2) 관리자 아니면: 길드장 권한 확인
+    // 2) 관리자 아니면: guild_members에서 leader인지 확인
+    let leaderGuildId: string | null = null;
+
     if (!allowed) {
-      // 요청자가 길드장인 길드 찾기
-      const { data: leaderGuild, error: gErr } = await supabase
-        .from("guilds")
-        .select("id, leader_user_id")
-        .eq("leader_user_id", requester.id)
+      // 요청자가 leader로 등록된 길드 찾기
+      const { data: myLeaderRow, error: lgErr } = await supabase
+        .from("guild_members")
+        .select("guild_id, role")
+        .eq("user_id", requester.id)
+        .eq("role", "leader")
         .maybeSingle();
 
-      if (gErr) {
-        return new Response(JSON.stringify({ error: gErr.message }), {
+      if (lgErr) {
+        return new Response(JSON.stringify({ error: lgErr.message }), {
           status: 500,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
 
-      if (!leaderGuild?.id) {
-        return new Response("Admin only", {
+      if (!myLeaderRow?.guild_id) {
+        return new Response("Forbidden", {
           status: 403,
           headers: corsHeaders,
         });
       }
 
+      leaderGuildId = myLeaderRow.guild_id;
+
       // 삭제 대상이 그 길드의 멤버인지 확인
       const { data: targetMem, error: memErr } = await supabase
         .from("guild_members")
         .select("user_id, guild_id")
-        .eq("guild_id", leaderGuild.id)
+        .eq("guild_id", leaderGuildId)
         .eq("user_id", targetUserId)
         .maybeSingle();
 
@@ -152,7 +157,7 @@ Deno.serve(async (req: Request) => {
     }
 
     // =========================
-    // ✅ 서비스 롤로 삭제
+    // ✅ 서비스 롤로 삭제 (Auth 사용자 삭제 + 관련 row 정리)
     // =========================
     const serviceRole = Deno.env.get("SERVICE_ROLE_KEY")!;
     const adminClient = createClient(Deno.env.get("SUPABASE_URL")!, serviceRole, {
@@ -160,17 +165,23 @@ Deno.serve(async (req: Request) => {
       global: { headers: { Authorization: `Bearer ${serviceRole}` } },
     });
 
+    // ✅ Auth 유저 삭제
     const { error: delErr } = await adminClient.auth.admin.deleteUser(targetUserId);
     if (delErr) throw delErr;
 
+    // ✅ 프로필 삭제 (프로젝트 스키마에 맞게)
     const { error: profErr } = await adminClient
       .from("profiles")
       .delete()
       .eq("user_id", targetUserId);
     if (profErr) throw profErr;
 
-    // (권장) 길드 멤버십도 정리
-    await adminClient.from("guild_members").delete().eq("user_id", targetUserId);
+    // ✅ 길드 멤버십 정리 (전체 길드에서 제거)
+    const { error: gmErr } = await adminClient
+      .from("guild_members")
+      .delete()
+      .eq("user_id", targetUserId);
+    if (gmErr) throw gmErr;
 
     return new Response(JSON.stringify({ ok: true }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
