@@ -8,30 +8,34 @@ const corsHeaders: Record<string, string> = {
     "authorization, apikey, content-type, x-client-info, x-supabase-client-platform, x-supabase-client-version",
 };
 
+function json(body: Record<string, unknown>, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+}
+
+type DeleteUserRequestBody = {
+  user_id?: string;
+};
+
+type CleanupResult =
+  | { ok: true }
+  | { ok: false; step: "profiles" | "guild_members"; error: string };
+
 Deno.serve(async (req: Request) => {
-  if (req.method === "OPTIONS") {
-    return new Response("ok", { headers: corsHeaders });
-  }
+  if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
   try {
-    if (req.method !== "POST") {
-      return new Response("Method Not Allowed", {
-        status: 405,
-        headers: corsHeaders,
-      });
-    }
+    if (req.method !== "POST") return json({ error: "Method Not Allowed" }, 405);
 
     const authHeader =
       req.headers.get("authorization") ?? req.headers.get("Authorization");
-    if (!authHeader) {
-      return new Response("No auth header", { status: 401, headers: corsHeaders });
-    }
+    if (!authHeader) return json({ error: "No auth header" }, 401);
 
-    const body = await req.json().catch(() => ({}));
-    const targetUserId = body?.user_id;
-    if (!targetUserId) {
-      return new Response("user_id required", { status: 400, headers: corsHeaders });
-    }
+    const body: DeleteUserRequestBody = await req.json().catch(() => ({}));
+    const targetUserId = body.user_id;
+    if (!targetUserId) return json({ error: "user_id required" }, 400);
 
     // requester client (anon + user jwt)
     const supabase = createClient(
@@ -45,48 +49,30 @@ Deno.serve(async (req: Request) => {
       error: userErr,
     } = await supabase.auth.getUser();
 
-    if (userErr || !requester) {
-      return new Response("Unauthorized", { status: 401, headers: corsHeaders });
-    }
+    if (userErr || !requester) return json({ error: "Unauthorized" }, 401);
+    if (requester.id === targetUserId)
+      return json({ error: "Cannot delete yourself" }, 400);
 
-    if (requester.id === targetUserId) {
-      return new Response("Cannot delete yourself", { status: 400, headers: corsHeaders });
-    }
-
-    // ✅ service role client를 여기서 먼저 만든다 (위로 올림)
+    // service role client (RLS bypass)
     const serviceRole = Deno.env.get("SERVICE_ROLE_KEY")!;
     const adminClient = createClient(Deno.env.get("SUPABASE_URL")!, serviceRole, {
       auth: { persistSession: false },
       global: { headers: { Authorization: `Bearer ${serviceRole}` } },
     });
 
-    // =========================
-    // ✅ 권한 체크
-    // 1) admins 테이블에 있으면 OK   (adminClient로 체크)
-    // 2) 아니면 같은 길드 leader이면 OK
-    // =========================
-    let allowed = false;
-
-    // ✅ 관리자 체크: adminClient로 (RLS 영향 제거)
+    // ✅ 권한 체크: admins는 adminClient로
     const { data: adminRow, error: adminErr } = await adminClient
       .from("admins")
       .select("user_id")
       .eq("user_id", requester.id)
       .maybeSingle();
 
-    if (adminErr) {
-      return new Response(JSON.stringify({ error: adminErr.message }), {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
+    if (adminErr) return json({ error: adminErr.message }, 500);
 
-    if (adminRow) allowed = true;
-
-    // 2) 관리자 아니면: leader인지 확인(본인 row라 supabase로 가능)
-    let leaderGuildId: string | null = null;
+    let allowed = !!adminRow;
 
     if (!allowed) {
+      // leader 체크(본인 row만 읽음)
       const { data: myLeaderRow, error: lgErr } = await supabase
         .from("guild_members")
         .select("guild_id, role, created_at")
@@ -96,20 +82,12 @@ Deno.serve(async (req: Request) => {
         .limit(1)
         .maybeSingle();
 
-      if (lgErr) {
-        return new Response(JSON.stringify({ error: lgErr.message }), {
-          status: 500,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
-      }
+      if (lgErr) return json({ error: lgErr.message }, 500);
+      if (!myLeaderRow?.guild_id) return json({ error: "Forbidden" }, 403);
 
-      if (!myLeaderRow?.guild_id) {
-        return new Response("Forbidden", { status: 403, headers: corsHeaders });
-      }
+      const leaderGuildId: string = myLeaderRow.guild_id;
 
-      leaderGuildId = myLeaderRow.guild_id;
-
-      // ✅ 삭제 대상이 그 길드의 멤버인지 확인: adminClient로 (RLS 우회)
+      // target 멤버 확인은 adminClient로 (RLS 우회)
       const { data: targetMem, error: memErr } = await adminClient
         .from("guild_members")
         .select("user_id, guild_id")
@@ -117,50 +95,77 @@ Deno.serve(async (req: Request) => {
         .eq("user_id", targetUserId)
         .maybeSingle();
 
-      if (memErr) {
-        return new Response(JSON.stringify({ error: memErr.message }), {
-          status: 500,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
-      }
-
-      if (!targetMem) {
-        return new Response("Forbidden", { status: 403, headers: corsHeaders });
-      }
+      if (memErr) return json({ error: memErr.message }, 500);
+      if (!targetMem) return json({ error: "Forbidden" }, 403);
 
       allowed = true;
     }
 
-    if (!allowed) {
-      return new Response("Forbidden", { status: 403, headers: corsHeaders });
+    if (!allowed) return json({ error: "Forbidden" }, 403);
+
+    // =========================
+    // ✅ 1) Auth에 유저가 존재하는지 먼저 확인
+    // =========================
+    let authExists = false;
+    const { data: gotUser, error: getErr } = await adminClient.auth.admin.getUserById(
+      targetUserId
+    );
+    if (!getErr && gotUser?.user?.id) authExists = true;
+
+    // =========================
+    // ✅ 2) 정리 작업: profiles / guild_members는 항상 시도
+    // =========================
+    const cleanup = async (): Promise<CleanupResult> => {
+      const { error: profErr } = await adminClient
+        .from("profiles")
+        .delete()
+        .eq("user_id", targetUserId);
+      if (profErr) return { ok: false, step: "profiles", error: profErr.message };
+
+      const { error: gmErr } = await adminClient
+        .from("guild_members")
+        .delete()
+        .eq("user_id", targetUserId);
+      if (gmErr) return { ok: false, step: "guild_members", error: gmErr.message };
+
+      return { ok: true };
+    };
+
+    // =========================
+    // ✅ 3) Auth 삭제
+    // - auth가 없으면: cleanup만 하고 OK
+    // - auth가 있는데 삭제 실패하면: 에러 상세 반환
+    // =========================
+    if (authExists) {
+      const { error: delErr } = await adminClient.auth.admin.deleteUser(targetUserId);
+      if (delErr) {
+        return json(
+          {
+            error: delErr.message || "Database error deleting user",
+            step: "auth.deleteUser",
+            targetUserId,
+          },
+          500
+        );
+      }
     }
 
-    // =========================
-    // ✅ 서비스 롤로 삭제
-    // =========================
-    const { error: delErr } = await adminClient.auth.admin.deleteUser(targetUserId);
-    if (delErr) throw delErr;
+    const cleaned = await cleanup();
+    if (!cleaned.ok) {
+      return json(
+        {
+          error: cleaned.error,
+          step: cleaned.step,
+          targetUserId,
+          authExists,
+        },
+        500
+      );
+    }
 
-    const { error: profErr } = await adminClient
-      .from("profiles")
-      .delete()
-      .eq("user_id", targetUserId);
-    if (profErr) throw profErr;
-
-    const { error: gmErr } = await adminClient
-      .from("guild_members")
-      .delete()
-      .eq("user_id", targetUserId);
-    if (gmErr) throw gmErr;
-
-    return new Response(JSON.stringify({ ok: true }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return json({ ok: true, targetUserId, authExists });
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
-    return new Response(JSON.stringify({ error: msg }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return json({ error: msg }, 500);
   }
 });

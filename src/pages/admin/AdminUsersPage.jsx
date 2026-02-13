@@ -4,7 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import PageShell from "../../components/PageShell";
 import { supabase } from "../../lib/supabaseClient";
 
-// ✅ fetch URL은 안 써도 됨 (invoke로 호출)
+const FN_URL =
+  "https://kbgwomgulrsizkicmbro.supabase.co/functions/v1/admin-delete-user";
+
 export default function AdminUsersPage() {
   const navigate = useNavigate();
 
@@ -14,18 +16,16 @@ export default function AdminUsersPage() {
   const [users, setUsers] = useState([]);
   const [q, setQ] = useState("");
 
-  // ✅ 내 UID (본인 삭제 방지/표시용)
   const [myUid, setMyUid] = useState(null);
-
-  // ✅ 삭제 중 상태
   const [deletingId, setDeletingId] = useState(null);
 
   useEffect(() => {
     const run = async () => {
       setLoading(true);
 
-      const { data: userRes } = await supabase.auth.getUser();
-      const uid = userRes?.user?.id;
+      // ✅ getUser가 가끔 session missing으로 터질 수 있으니 session부터 확인
+      const { data: sess } = await supabase.auth.getSession();
+      const uid = sess?.session?.user?.id;
       if (!uid) {
         navigate("/login", { replace: true });
         return;
@@ -66,7 +66,6 @@ export default function AdminUsersPage() {
     run();
   }, [navigate]);
 
-  /** 닉네임별 카운트 (완전 동일 중복용) */
   const nicknameCounts = useMemo(() => {
     const map = {};
     for (const u of users) {
@@ -77,7 +76,6 @@ export default function AdminUsersPage() {
     return map;
   }, [users]);
 
-  /** ✅ 완전 동일 중복 닉네임 유저만 */
   const duplicateUsers = useMemo(() => {
     return users.filter((u) => {
       const nick = u.nickname?.trim();
@@ -85,7 +83,6 @@ export default function AdminUsersPage() {
     });
   }, [users, nicknameCounts]);
 
-  /** ✅ 포함 닉네임 그룹 (예: '천우회'가 '천우회1'에 포함) */
   const includeNickGroups = useMemo(() => {
     const nicks = Array.from(
       new Set(users.map((u) => (u.nickname || "").trim()).filter(Boolean))
@@ -100,17 +97,14 @@ export default function AdminUsersPage() {
     });
 
     const groups = [];
-
     for (let i = 0; i < nicks.length; i++) {
       const base = nicks[i];
       const matches = [];
-
       for (let j = 0; j < nicks.length; j++) {
         if (i === j) continue;
         const other = nicks[j];
         if (other.includes(base)) matches.push(other);
       }
-
       if (matches.length > 0) {
         groups.push({
           base,
@@ -128,14 +122,12 @@ export default function AdminUsersPage() {
         b.matches.length - a.matches.length ||
         a.base.localeCompare(b.base, "ko")
     );
-
     return groups;
   }, [users]);
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
     if (!s) return users;
-
     return users.filter((u) => {
       const nick = (u.nickname || "").toLowerCase();
       const guild = (u.guild || "").toLowerCase();
@@ -145,49 +137,26 @@ export default function AdminUsersPage() {
   }, [users, q]);
 
   // =========================
-  // ✅ 삭제 함수 (Edge Function 호출) - supabase.functions.invoke 사용
+  // ✅ 삭제 함수 (Edge Function) - fetch로 호출 (응답 바디 100% 확인)
   // =========================
   const deleteUser = async (targetUserId) => {
     if (!targetUserId) return;
 
-    // 본인 삭제 방지
     if (myUid && targetUserId === myUid) {
       alert("본인 계정은 삭제할 수 없습니다.");
       return;
     }
 
     const ok = window.confirm(
-      `정말 삭제할까요?\n\n- auth 사용자 삭제\n- profiles 행 삭제\n\n(되돌릴 수 없음)`
+      `정말 삭제할까요?\n\n- auth 사용자 삭제\n- profiles 삭제\n- guild_members 삭제\n\n(되돌릴 수 없음)`
     );
     if (!ok) return;
 
     try {
       setDeletingId(targetUserId);
 
-      // ✅ 토큰/만료 확인 로그
       const { data: sess } = await supabase.auth.getSession();
       const token = sess?.session?.access_token;
-
-      console.log("DELETE USER DEBUG");
-      console.log("token exists =", !!token);
-      console.log("token preview =", token?.slice(0, 20));
-      console.log(
-        "apikey preview =",
-        process.env.REACT_APP_SUPABASE_ANON_KEY?.slice(0, 20)
-      );
-
-      if (token) {
-        try {
-          const payload = JSON.parse(atob(token.split(".")[1]));
-          console.log("JWT iss =", payload.iss);
-          console.log("JWT aud =", payload.aud);
-          console.log("JWT sub =", payload.sub);
-          console.log("JWT role =", payload.role);
-          console.log("JWT exp =", payload.exp, "now =", Math.floor(Date.now() / 1000));
-        } catch (e) {
-          console.log("JWT decode failed", e);
-        }
-      }
 
       if (!token) {
         alert("로그인이 필요합니다.");
@@ -195,19 +164,36 @@ export default function AdminUsersPage() {
         return;
       }
 
-      // ✅ 가장 안전한 방식: invoke (apikey/Authorization 자동 구성)
-      const { data, error } = await supabase.functions.invoke("admin-delete-user", {
-        body: { user_id: targetUserId },
+      const res = await fetch(FN_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          apikey: process.env.REACT_APP_SUPABASE_ANON_KEY,
+        },
+        body: JSON.stringify({ user_id: targetUserId }),
       });
 
-      if (error) {
-        throw new Error(error.message || "삭제 실패");
+      const text = await res.text().catch(() => "");
+      console.log("[admin-delete-user] status =", res.status);
+      console.log("[admin-delete-user] body =", text);
+
+      if (!res.ok) {
+        // JSON이면 code/error 보여주기
+        try {
+          const parsed = text ? JSON.parse(text) : null;
+          alert(
+            `삭제 실패 (HTTP ${res.status})\n` +
+              (parsed?.code ? `code: ${parsed.code}\n` : "") +
+              (parsed?.error ? `error: ${parsed.error}\n` : "") +
+              `raw:\n${text || "(empty)"}`
+          );
+        } catch {
+          alert(`삭제 실패 (HTTP ${res.status})\nraw:\n${text || "(empty)"}`);
+        }
+        return;
       }
 
-      // (선택) 함수가 반환한 값 찍기
-      console.log("delete result =", data);
-
-      // UI 반영: 목록에서 제거
       setUsers((prev) => prev.filter((u) => u.user_id !== targetUserId));
       alert("삭제 완료");
     } catch (e) {
@@ -235,7 +221,6 @@ export default function AdminUsersPage() {
         <Card>관리자만 접근 가능합니다.</Card>
       ) : (
         <div className="grid gap-4">
-          {/* 🟠 포함 닉네임 섹션 */}
           {includeNickGroups.length > 0 && (
             <div className="rounded-2xl bg-amber-50 border border-amber-200 shadow-sm overflow-hidden">
               <div className="px-4 py-3 border-b border-amber-200 text-sm font-black text-amber-800">
@@ -269,7 +254,8 @@ export default function AdminUsersPage() {
                     </div>
 
                     <div className="mt-2 text-xs font-semibold text-slate-600">
-                      기준 계정: {g.usersBase.length} / 포함 계정: {g.usersMatches.length}
+                      기준 계정: {g.usersBase.length} / 포함 계정:{" "}
+                      {g.usersMatches.length}
                     </div>
                   </div>
                 ))}
@@ -277,7 +263,6 @@ export default function AdminUsersPage() {
             </div>
           )}
 
-          {/* 🔴 완전 중복 닉네임 섹션 */}
           {duplicateUsers.length > 0 && (
             <div className="rounded-2xl bg-red-50 border border-red-200 shadow-sm overflow-hidden">
               <div className="px-4 py-3 border-b border-red-200 text-sm font-black text-red-700">
@@ -304,7 +289,6 @@ export default function AdminUsersPage() {
             </div>
           )}
 
-          {/* 검색 */}
           <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-4">
             <div className="text-sm font-black text-slate-900">검색</div>
             <div className="mt-2 flex items-center gap-2">
@@ -320,7 +304,6 @@ export default function AdminUsersPage() {
             </div>
           </div>
 
-          {/* 전체 목록 */}
           <div className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
             <div className="px-4 py-3 border-b border-slate-100 text-sm font-black text-slate-900">
               전체 목록
