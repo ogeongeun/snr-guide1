@@ -75,9 +75,18 @@ Deno.serve(async (req: Request) => {
     }
 
     // =========================
+    // ✅ service role client (RLS 우회) - 위로 올림!
+    // =========================
+    const serviceRole = Deno.env.get("SERVICE_ROLE_KEY")!;
+    const adminClient = createClient(Deno.env.get("SUPABASE_URL")!, serviceRole, {
+      auth: { persistSession: false },
+      global: { headers: { Authorization: `Bearer ${serviceRole}` } },
+    });
+
+    // =========================
     // ✅ 권한 체크
     // 1) admins 테이블에 있으면 OK
-    // 2) 아니면 "같은 길드의 leader"이면 OK (guild_members.role = 'leader' 기준)
+    // 2) 아니면 "같은 길드의 leader"이면 OK (guild_members.role='leader' 기준)
     // =========================
     let allowed = false;
 
@@ -103,7 +112,7 @@ Deno.serve(async (req: Request) => {
     let leaderGuildId: string | null = null;
 
     if (!allowed) {
-      // 요청자가 leader로 등록된 길드 찾기
+      // 요청자가 leader로 등록된 길드 찾기 (본인 row라 RLS 통과)
       const { data: myLeaderRow, error: lgErr } = await supabase
         .from("guild_members")
         .select("guild_id, role")
@@ -127,8 +136,9 @@ Deno.serve(async (req: Request) => {
 
       leaderGuildId = myLeaderRow.guild_id;
 
-      // 삭제 대상이 그 길드의 멤버인지 확인
-      const { data: targetMem, error: memErr } = await supabase
+      // ✅ 삭제 대상이 그 길드의 멤버인지 확인
+      // ⚠️ 여기만 adminClient로 바꿔서 RLS 우회!
+      const { data: targetMem, error: memErr } = await adminClient
         .from("guild_members")
         .select("user_id, guild_id")
         .eq("guild_id", leaderGuildId)
@@ -159,24 +169,19 @@ Deno.serve(async (req: Request) => {
     // =========================
     // ✅ 서비스 롤로 삭제 (Auth 사용자 삭제 + 관련 row 정리)
     // =========================
-    const serviceRole = Deno.env.get("SERVICE_ROLE_KEY")!;
-    const adminClient = createClient(Deno.env.get("SUPABASE_URL")!, serviceRole, {
-      auth: { persistSession: false },
-      global: { headers: { Authorization: `Bearer ${serviceRole}` } },
-    });
 
     // ✅ Auth 유저 삭제
     const { error: delErr } = await adminClient.auth.admin.deleteUser(targetUserId);
     if (delErr) throw delErr;
 
-    // ✅ 프로필 삭제 (프로젝트 스키마에 맞게)
+    // ✅ 프로필 삭제
     const { error: profErr } = await adminClient
       .from("profiles")
       .delete()
       .eq("user_id", targetUserId);
     if (profErr) throw profErr;
 
-    // ✅ 길드 멤버십 정리 (전체 길드에서 제거)
+    // ✅ 길드 멤버십 정리
     const { error: gmErr } = await adminClient
       .from("guild_members")
       .delete()

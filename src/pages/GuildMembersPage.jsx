@@ -104,60 +104,87 @@ export default function GuildMembersPage() {
   // =========================
   // ✅ 계정 삭제 (Edge Function)
   // =========================
-  const deleteAccount = async (targetUserId) => {
-    if (!targetUserId) return;
+ // =========================
+// ✅ 계정 삭제 (Edge Function)
+// =========================
+const deleteAccount = async (targetUserId) => {
+  if (!targetUserId) return;
 
-    if (!isLeader) {
-      alert("길드장만 가능합니다.");
+  if (!isLeader) {
+    alert("길드장만 가능합니다.");
+    return;
+  }
+
+  if (myUid && targetUserId === myUid) {
+    alert("본인 계정은 삭제할 수 없습니다.");
+    return;
+  }
+
+  const ok = window.confirm(
+    "정말 계정을 삭제할까요?\n\n- auth 사용자 삭제\n- profiles 삭제\n- guild_members 삭제\n\n(되돌릴 수 없음)"
+  );
+  if (!ok) return;
+
+  try {
+    setDeletingId(targetUserId);
+
+    const { data: sess, error: sErr } = await supabase.auth.getSession();
+    if (sErr) throw sErr;
+
+    const token = sess?.session?.access_token;
+
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/login", { replace: true });
       return;
     }
 
-    if (myUid && targetUserId === myUid) {
-      alert("본인 계정은 삭제할 수 없습니다.");
-      return;
-    }
+    const res = await fetch(FN_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        // ✅ Vite/CRA 환경에 맞게 바꿔야 함 (아래 참고)
+       apikey: process.env.REACT_APP_SUPABASE_ANON_KEY,
 
-    const ok = window.confirm(
-      "정말 계정을 삭제할까요?\n\n- auth 사용자 삭제\n- profiles 삭제\n- guild_members 삭제\n\n(되돌릴 수 없음)"
-    );
-    if (!ok) return;
+      },
+      body: JSON.stringify({ user_id: targetUserId }),
+    });
 
-    try {
-      setDeletingId(targetUserId);
+    const json = await res.json().catch(() => ({}));
 
-      const { data: sess } = await supabase.auth.getSession();
-      const token = sess?.session?.access_token;
+    if (!res.ok) {
+      // ✅ 여기서 code/error/메시지를 알림창에 보여줌
+      const code = json?.code;
+      const errorMsg = json?.error;
+      const message = json?.message;
 
-      if (!token) {
-        alert("로그인이 필요합니다.");
-        navigate("/login", { replace: true });
-        return;
-      }
-
-      const res = await fetch(FN_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-          apikey: process.env.REACT_APP_SUPABASE_ANON_KEY,
-        },
-        body: JSON.stringify({ user_id: targetUserId }),
+      // 개발용으로 콘솔에도 남기기
+      console.error("admin-delete-user failed:", {
+        status: res.status,
+        json,
       });
 
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        throw new Error(json?.error || `삭제 실패 (HTTP ${res.status})`);
+      if (code) {
+        alert(`삭제 실패: ${code}${message ? `\n${message}` : ""}`);
+      } else if (errorMsg) {
+        alert(`삭제 실패: ${errorMsg}`);
+      } else {
+        alert(`삭제 실패 (HTTP ${res.status})`);
       }
-
-      // UI 반영
-      setMembers((prev) => prev.filter((m) => m.user_id !== targetUserId));
-      alert("삭제 완료");
-    } catch (e) {
-      alert(e?.message || String(e));
-    } finally {
-      setDeletingId(null);
+      return;
     }
-  };
+
+    // UI 반영
+    setMembers((prev) => prev.filter((m) => m.user_id !== targetUserId));
+    alert("삭제 완료");
+  } catch (e) {
+    alert(e?.message || String(e));
+  } finally {
+    setDeletingId(null);
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-slate-50">
