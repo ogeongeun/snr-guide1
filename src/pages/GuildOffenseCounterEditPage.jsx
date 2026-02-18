@@ -21,6 +21,14 @@ const SET_OPTIONS = [
   "조율자",
 ];
 
+// ✅ 진형 옵션(저장용)
+const FORMATION_OPTIONS = [
+  { value: "기본진형", label: "기본진형", desc: "뒤 3 / 앞 2" },
+  { value: "밸런스진형", label: "밸런스진형", desc: "뒤 2 / 앞 3" },
+  { value: "공격진형", label: "공격진형", desc: "앞 1 / 뒤 4" },
+  { value: "보호진형", label: "보호진형", desc: "뒤 1 / 앞 4" },
+];
+
 const WEAPON_MAIN_OPTIONS = [
   "약점공격",
   "치명타확률",
@@ -40,6 +48,7 @@ const ARMOR_MAIN_OPTIONS = [
   "효과저항",
 ];
 
+// ✅ build 기본값에 position 추가 (앞/뒤 저장)
 const defaultBuild = () => ({
   set: "",
   weapon: { main1: "", main2: "" },
@@ -47,6 +56,7 @@ const defaultBuild = () => ({
   subOption: "",
   speed: null,
   note: "",
+  position: "", // "front" | "back"
 });
 
 const emptyHero = () => ({ hero_key: "", name: "", image: "", build: defaultBuild() });
@@ -65,8 +75,10 @@ function useQuery() {
 
 const heroImg = (src) => (src?.startsWith("/images/") ? src : `/images/heroes/${src || ""}`);
 
+// ✅ build normalize에 position 포함
 function normalizeBuild(raw) {
   const b = raw && typeof raw === "object" ? raw : {};
+  const pos = String(b.position || "");
   return {
     set: String(b.set || ""),
     weapon: {
@@ -80,6 +92,7 @@ function normalizeBuild(raw) {
     subOption: String(b.subOption || ""),
     speed: Number.isFinite(b.speed) ? b.speed : b.speed === 0 ? 0 : null,
     note: String(b.note || ""),
+    position: pos === "front" || pos === "back" ? pos : "", // ✅ 안전화
   };
 }
 
@@ -132,11 +145,12 @@ export default function GuildOffenseCounterEditPage() {
   // ✅ 입력값
   // ------------------------------------------------------
   const [anonymous, setAnonymous] = useState(false);
-  
-  
 
   const [note, setNote] = useState("");
   const [detail, setDetail] = useState("");
+
+  // ✅ 진형
+  const [formation, setFormation] = useState("기본진형");
 
   // ✅ 속공 조건
   const [speedMode, setSpeedMode] = useState("any");
@@ -179,7 +193,7 @@ export default function GuildOffenseCounterEditPage() {
         const { data: cRow, error: cErr } = await supabase
           .from("guild_offense_counters")
           .select(
-            "id, post_id, variant_idx,  note, detail, skills, pets, speed_mode, speed_min, created_by, anonymous"
+            "id, post_id, variant_idx, formation, note, detail, skills, pets, speed_mode, speed_min, created_by, anonymous"
           )
           .eq("id", Number(counterId))
           .maybeSingle();
@@ -192,7 +206,10 @@ export default function GuildOffenseCounterEditPage() {
         setCreatedBy(cRow.created_by || null);
 
         setAnonymous(!!cRow.anonymous);
-       
+
+        // ✅ 진형 로드
+        setFormation(String(cRow.formation || "기본진형"));
+
         setNote(String(cRow.note || ""));
         setDetail(String(cRow.detail || ""));
 
@@ -351,6 +368,10 @@ export default function GuildOffenseCounterEditPage() {
 
     for (let i = 0; i < 3; i++) {
       if (!String(slots[i]?.name || "").trim()) return `공격 영웅 ${i + 1}번이 비어있습니다.`;
+
+      // ✅ 추가: 앞/뒤 필수
+      const pos = String(slots[i]?.build?.position || "");
+      if (pos !== "front" && pos !== "back") return `공격 영웅 ${i + 1}번의 앞/뒤(포지션)를 선택하세요.`;
     }
 
     if (speedMode === "win") {
@@ -371,7 +392,7 @@ export default function GuildOffenseCounterEditPage() {
     setSaving(true);
     try {
       const payload = {
-       
+        formation: String(formation || "").trim() || "기본진형",
         note: note || "",
         detail: detail || "",
         speed_mode: speedMode,
@@ -381,14 +402,10 @@ export default function GuildOffenseCounterEditPage() {
         anonymous: !!anonymous,
       };
 
-      const { error: upErr } = await supabase
-        .from("guild_offense_counters")
-        .update(payload)
-        .eq("id", Number(counterId));
-
+      const { error: upErr } = await supabase.from("guild_offense_counters").update(payload).eq("id", Number(counterId));
       if (upErr) throw upErr;
 
-      // ✅ members upsert (slot 1~3)
+      // ✅ members upsert (slot 1~3) - build.position 포함되어 DB(json) 저장됨
       const membersPayload = slots.slice(0, 3).map((x, i) => ({
         counter_id: Number(counterId),
         slot: i + 1,
@@ -399,7 +416,6 @@ export default function GuildOffenseCounterEditPage() {
       }));
 
       // upsert 키가 (counter_id, slot) 유니크여야 깔끔함
-      // 만약 유니크 없으면 "delete 후 insert"로 바꿔야 함.
       const { error: mErr } = await supabase
         .from("guild_offense_counter_members")
         .upsert(membersPayload, { onConflict: "counter_id,slot" });
@@ -418,8 +434,7 @@ export default function GuildOffenseCounterEditPage() {
   // ✅ UI
   // ------------------------------------------------------
   const targetLabel = useMemo(() => {
-    if (Number.isFinite(postId) && postId !== null)
-      return `DB 방어팀 #${postId} · 패턴 #${(Number(variantIdx) || 0) + 1}`;
+    if (Number.isFinite(postId) && postId !== null) return `DB 방어팀 #${postId} · 패턴 #${(Number(variantIdx) || 0) + 1}`;
     return "대상 없음";
   }, [postId, variantIdx]);
 
@@ -454,10 +469,7 @@ export default function GuildOffenseCounterEditPage() {
               >
                 ← 뒤로
               </button>
-              <Link
-                to="/"
-                className="rounded-xl px-4 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800"
-              >
+              <Link to="/" className="rounded-xl px-4 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800">
                 홈
               </Link>
             </div>
@@ -475,17 +487,14 @@ export default function GuildOffenseCounterEditPage() {
           <div
             className="h-28 lg:h-32 w-full"
             style={{
-              background:
-                "linear-gradient(135deg, rgba(244,63,94,0.14), rgba(99,102,241,0.16), rgba(251,191,36,0.12))",
+              background: "linear-gradient(135deg, rgba(244,63,94,0.14), rgba(99,102,241,0.16), rgba(251,191,36,0.12))",
             }}
           />
           <div className="absolute inset-0 flex items-center justify-between px-5 lg:px-8">
             <div className="min-w-0">
-              <h1 className="text-[22px] lg:text-[28px] font-black tracking-tight text-slate-900">
-                카운터 수정
-              </h1>
+              <h1 className="text-[22px] lg:text-[28px] font-black tracking-tight text-slate-900">카운터 수정</h1>
               <p className="mt-1 text-xs lg:text-sm font-semibold text-slate-700/70">
-                공격팀 3명 + 영웅별 장비 + 스킬(최대 3개) + 펫(최대 3개) + 속공조건
+                공격팀 3명 + (앞/뒤) + 영웅별 장비 + 스킬(최대 3개) + 펫(최대 3개) + 속공조건
               </p>
 
               <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -514,10 +523,7 @@ export default function GuildOffenseCounterEditPage() {
               >
                 ← 뒤로
               </button>
-              <Link
-                to="/"
-                className="rounded-xl px-4 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800"
-              >
+              <Link to="/" className="rounded-xl px-4 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800">
                 홈
               </Link>
             </div>
@@ -538,9 +544,7 @@ export default function GuildOffenseCounterEditPage() {
             <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between gap-3">
               <div className="min-w-0">
                 <div className="text-[12px] font-extrabold text-slate-500">수정 후 저장</div>
-                <div className="mt-1 text-[15px] font-black text-slate-900 truncate">
-                  카운터 수정
-                </div>
+                <div className="mt-1 text-[15px] font-black text-slate-900 truncate">카운터 수정</div>
               </div>
 
               <button
@@ -591,12 +595,28 @@ export default function GuildOffenseCounterEditPage() {
                     </button>
                   </div>
 
-                  <div className="mt-2 text-[12px] font-semibold text-slate-500">
-                    익명 선택 시 목록/상세에서 작성자 닉네임이 숨겨집니다.
-                  </div>
+                  <div className="mt-2 text-[12px] font-semibold text-slate-500">익명 선택 시 목록/상세에서 작성자 닉네임이 숨겨집니다.</div>
                 </div>
 
-               
+                {/* 진형 */}
+                <div className="rounded-3xl border border-slate-200 bg-white p-4">
+                  <div className="text-[12px] font-extrabold text-slate-600">진형</div>
+                  <div className="mt-2">
+                    <select
+                      value={formation}
+                      disabled={!canEdit}
+                      onChange={(e) => setFormation(e.target.value)}
+                      className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-[12px] font-semibold disabled:opacity-60"
+                    >
+                      {FORMATION_OPTIONS.map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label} ({opt.desc})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="mt-2 text-[12px] font-semibold text-slate-500">저장 시 이 진형이 카운터에 기록됩니다.</div>
+                </div>
 
                 {/* 속공 조건 */}
                 <div className="rounded-3xl border border-slate-200 bg-white p-4">
@@ -621,19 +641,9 @@ export default function GuildOffenseCounterEditPage() {
                           ].join(" ")}
                         >
                           <div className="text-[12px] font-black">{o.label}</div>
-                          {o.key === "win" ? (
-                            <div className={`mt-1 text-[12px] font-semibold ${on ? "text-white/80" : "text-slate-500"}`}>
-                              속공을 “이기는” 상황에서만 유효한 카운터
-                            </div>
-                          ) : o.key === "lose" ? (
-                            <div className={`mt-1 text-[12px] font-semibold ${on ? "text-white/80" : "text-slate-500"}`}>
-                              속공을 “지는” 상황에서도 가능한 카운터
-                            </div>
-                          ) : (
-                            <div className={`mt-1 text-[12px] font-semibold ${on ? "text-white/80" : "text-slate-500"}`}>
-                              속공 조건 없이 적용
-                            </div>
-                          )}
+                          <div className={`mt-1 text-[12px] font-semibold ${on ? "text-white/80" : "text-slate-500"}`}>
+                            {o.key === "win" ? "속공을 “이기는” 상황에서만 유효한 카운터" : o.key === "lose" ? "속공을 “지는” 상황에서도 가능한 카운터" : "속공 조건 없이 적용"}
+                          </div>
                         </button>
                       );
                     })}
@@ -651,9 +661,7 @@ export default function GuildOffenseCounterEditPage() {
                         placeholder="예) 81"
                         className="mt-1 w-full rounded-2xl border border-slate-200 px-3 py-2 text-[12px] font-semibold disabled:opacity-60"
                       />
-                      <div className="mt-1 text-[12px] font-semibold text-slate-500">
-                        예) “81 이상이면 안전” 같은 기준을 적어두면 됨.
-                      </div>
+                      <div className="mt-1 text-[12px] font-semibold text-slate-500">예) “81 이상이면 안전” 같은 기준을 적어두면 됨.</div>
                     </div>
                   ) : null}
                 </div>
@@ -688,13 +696,14 @@ export default function GuildOffenseCounterEditPage() {
                 {/* 공격 영웅 3명 */}
                 <div className="rounded-3xl border border-slate-200 bg-white p-4">
                   <div className="text-[12px] font-extrabold text-slate-600">공격 영웅 3명</div>
-                  <div className="mt-1 text-[12px] font-semibold text-slate-500">
-                    아래 카드 클릭 → 선택/장비 편집, “선택/변경”으로 영웅 변경
-                  </div>
+                  <div className="mt-1 text-[12px] font-semibold text-slate-500">아래 카드 클릭 → 선택/장비 편집, “선택/변경”으로 영웅 변경</div>
 
                   <div className="mt-3 grid grid-cols-3 gap-3">
                     {slots.map((x, idx2) => {
                       const on = idx2 === activeSlot;
+                      const pos = String(x?.build?.position || "");
+                      const posLabel = pos === "front" ? "앞" : pos === "back" ? "뒤" : "미선택";
+
                       return (
                         <div
                           key={idx2}
@@ -706,9 +715,7 @@ export default function GuildOffenseCounterEditPage() {
                         >
                           <div className="flex items-center justify-between">
                             <div className="text-[11px] font-extrabold text-slate-500">슬롯 {idx2 + 1}</div>
-                            <div className={`text-[10px] font-extrabold ${on ? "text-slate-900" : "text-slate-300"}`}>
-                              {on ? "편집중" : ""}
-                            </div>
+                            <div className={`text-[10px] font-extrabold ${on ? "text-slate-900" : "text-slate-300"}`}>{on ? "편집중" : ""}</div>
                           </div>
 
                           <div className="mt-2 w-full aspect-square rounded-2xl border border-slate-200 bg-slate-50 overflow-hidden flex items-center justify-center">
@@ -720,6 +727,41 @@ export default function GuildOffenseCounterEditPage() {
                           </div>
 
                           <div className="mt-2 text-[12px] font-black text-slate-900 truncate">{x?.name || "영웅 미선택"}</div>
+
+                          {/* ✅ 앞/뒤 선택(저장됨: build.position) */}
+                          <div className="mt-2" onClick={(e) => e.stopPropagation()}>
+                            <div className="inline-flex w-full rounded-2xl border border-slate-200 overflow-hidden">
+                              <button
+                                type="button"
+                                disabled={!canEdit}
+                                onClick={() => updateBuild(idx2, { position: "front" })}
+                                className={[
+                                  "flex-1 px-2 py-2 text-[11px] font-extrabold transition",
+                                  x?.build?.position === "front" ? "bg-slate-900 text-white" : "bg-white text-slate-700 hover:bg-slate-50",
+                                  !canEdit ? "opacity-60 cursor-not-allowed" : "",
+                                ].join(" ")}
+                              >
+                                앞
+                              </button>
+
+                              <button
+                                type="button"
+                                disabled={!canEdit}
+                                onClick={() => updateBuild(idx2, { position: "back" })}
+                                className={[
+                                  "flex-1 px-2 py-2 text-[11px] font-extrabold transition border-l border-slate-200",
+                                  x?.build?.position === "back" ? "bg-slate-900 text-white" : "bg-white text-slate-700 hover:bg-slate-50",
+                                  !canEdit ? "opacity-60 cursor-not-allowed" : "",
+                                ].join(" ")}
+                              >
+                                뒤
+                              </button>
+                            </div>
+
+                            <div className="mt-1 text-[11px] font-semibold text-slate-500">
+                              현재: <span className="font-extrabold text-slate-800">{posLabel}</span>
+                            </div>
+                          </div>
 
                           <button
                             type="button"
@@ -749,6 +791,13 @@ export default function GuildOffenseCounterEditPage() {
                     슬롯 {activeSlot + 1} · {s?.name || "영웅 미선택"}
                   </div>
 
+                  <div className="mt-2 text-[12px] font-semibold text-slate-500">
+                    포지션:{" "}
+                    <span className="font-extrabold text-slate-800">
+                      {s.build?.position === "front" ? "앞" : s.build?.position === "back" ? "뒤" : "미선택"}
+                    </span>
+                  </div>
+
                   <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <div className="text-[11px] font-extrabold text-slate-600">세트</div>
@@ -760,7 +809,9 @@ export default function GuildOffenseCounterEditPage() {
                       >
                         <option value="">선택</option>
                         {SET_OPTIONS.map((opt) => (
-                          <option key={opt} value={opt}>{opt}</option>
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -791,7 +842,9 @@ export default function GuildOffenseCounterEditPage() {
                       >
                         <option value="">선택</option>
                         {WEAPON_MAIN_OPTIONS.map((opt) => (
-                          <option key={opt} value={opt}>{opt}</option>
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -806,7 +859,9 @@ export default function GuildOffenseCounterEditPage() {
                       >
                         <option value="">선택</option>
                         {WEAPON_MAIN_OPTIONS.map((opt) => (
-                          <option key={opt} value={opt}>{opt}</option>
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -821,7 +876,9 @@ export default function GuildOffenseCounterEditPage() {
                       >
                         <option value="">선택</option>
                         {ARMOR_MAIN_OPTIONS.map((opt) => (
-                          <option key={opt} value={opt}>{opt}</option>
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -836,7 +893,9 @@ export default function GuildOffenseCounterEditPage() {
                       >
                         <option value="">선택</option>
                         {ARMOR_MAIN_OPTIONS.map((opt) => (
-                          <option key={opt} value={opt}>{opt}</option>
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -870,9 +929,7 @@ export default function GuildOffenseCounterEditPage() {
                 {/* 스킬 3개 */}
                 <div className="rounded-3xl border border-slate-200 bg-white p-4">
                   <div className="text-[12px] font-extrabold text-slate-600">공격팀 스킬 (최대 3개)</div>
-                  <div className="mt-1 text-[12px] font-semibold text-slate-500">
-                    아래에서 클릭하면 빈 칸부터 채워짐 (슬롯 클릭하면 제거)
-                  </div>
+                  <div className="mt-1 text-[12px] font-semibold text-slate-500">아래에서 클릭하면 빈 칸부터 채워짐 (슬롯 클릭하면 제거)</div>
 
                   <div className="mt-3 grid grid-cols-3 gap-3">
                     {skills.map((s2, i) => (
@@ -945,9 +1002,7 @@ export default function GuildOffenseCounterEditPage() {
                       })}
 
                       {!filteredSkillImages.length ? (
-                        <div className="col-span-full text-[12px] font-semibold text-slate-500">
-                          검색 결과가 없습니다.
-                        </div>
+                        <div className="col-span-full text-[12px] font-semibold text-slate-500">검색 결과가 없습니다.</div>
                       ) : null}
                     </div>
                   </div>
@@ -958,9 +1013,7 @@ export default function GuildOffenseCounterEditPage() {
                   <div className="flex items-center justify-between gap-3">
                     <div className="min-w-0">
                       <div className="text-[12px] font-extrabold text-slate-600">펫 (최대 3개)</div>
-                      <div className="mt-1 text-[12px] font-semibold text-slate-500">
-                        선택/해제 가능 (3개 초과 시 오래된 것 교체)
-                      </div>
+                      <div className="mt-1 text-[12px] font-semibold text-slate-500">선택/해제 가능 (3개 초과 시 오래된 것 교체)</div>
                     </div>
 
                     <button
@@ -1013,7 +1066,6 @@ export default function GuildOffenseCounterEditPage() {
                     )}
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -1027,11 +1079,14 @@ export default function GuildOffenseCounterEditPage() {
           heroImg={heroImg}
           onClose={() => setPickerOpen(false)}
           onPick={(hero) => {
+            // ✅ 영웅 변경 시: 장비 초기화 + 포지션은 유지(원하는 동작)
+            // 포지션까지 초기화하고 싶으면 아래 prevPos를 ""로 바꿔.
+            const prevPos = String(slots[pickerSlot]?.build?.position || "");
             updateSlot(pickerSlot, {
               hero_key: hero.key || "",
               name: hero.name || "",
               image: hero.image || "",
-              build: defaultBuild(), // ✅ 영웅 바꾸면 장비 초기화 (원하면 유지로 바꿔줌)
+              build: { ...defaultBuild(), position: prevPos === "front" || prevPos === "back" ? prevPos : "" },
             });
             setActiveSlot(pickerSlot);
             setPickerOpen(false);
@@ -1109,9 +1164,7 @@ function HeroPickerModal({ heroesList, heroImg, onClose, onPick }) {
             ))}
           </div>
 
-          {!filtered.length ? (
-            <div className="mt-4 text-[12px] font-semibold text-slate-500">검색 결과가 없습니다.</div>
-          ) : null}
+          {!filtered.length ? <div className="mt-4 text-[12px] font-semibold text-slate-500">검색 결과가 없습니다.</div> : null}
         </div>
       </div>
     </div>
@@ -1139,9 +1192,7 @@ function PetPickerModal({ pets, selected, q, setQ, onClose, onToggle }) {
 
         <div className="p-4">
           <div className="flex items-center justify-between gap-2">
-            <div className="text-[12px] font-extrabold text-slate-700">
-              현재 선택: {Array.isArray(selected) ? selected.length : 0}/3
-            </div>
+            <div className="text-[12px] font-extrabold text-slate-700">현재 선택: {Array.isArray(selected) ? selected.length : 0}/3</div>
             <div className="relative w-[260px] max-w-full">
               <input
                 value={q}
@@ -1172,12 +1223,8 @@ function PetPickerModal({ pets, selected, q, setQ, onClose, onToggle }) {
                     <img src={p.image} alt={p.name} className="w-full h-full object-contain" loading="lazy" />
                   </div>
                   <div className="mt-2 text-[12px] font-extrabold truncate">{p.name}</div>
-                  <div className={`text-[11px] font-semibold truncate ${on ? "text-white/80" : "text-slate-500"}`}>
-                    {p.key}
-                  </div>
-                  <div className={`mt-2 text-[11px] font-extrabold ${on ? "text-white/80" : "text-slate-400"}`}>
-                    {on ? "선택됨 ✓" : "탭해서 선택"}
-                  </div>
+                  <div className={`text-[11px] font-semibold truncate ${on ? "text-white/80" : "text-slate-500"}`}>{p.key}</div>
+                  <div className={`mt-2 text-[11px] font-extrabold ${on ? "text-white/80" : "text-slate-400"}`}>{on ? "선택됨 ✓" : "탭해서 선택"}</div>
                 </button>
               );
             })}

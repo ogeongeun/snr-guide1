@@ -294,13 +294,40 @@ export default function GuildOffenseDetailPage({
     );
   };
 
+  // ✅✅✅ build.position 기반으로 앞/뒤 구분 (없으면 back) ✅✅✅
+  const getPos = (hero) => {
+    const p = String(hero?.build?.position || "").trim().toLowerCase();
+    if (p === "front" || p === "앞") return "front";
+    if (p === "back" || p === "뒤") return "back";
+    return "back";
+  };
+
+  // ✅✅✅ 팀을 back/front로 분리 ✅✅✅
+  const splitTeamByPos = (team) => {
+    const list = Array.isArray(team) ? team : [];
+    const back = [];
+    const front = [];
+    list.forEach((h) => {
+      const p = getPos(h);
+      if (p === "front") front.push(h);
+      else back.push(h);
+    });
+    return { back, front };
+  };
+
   const renderHeroCard = (hero) => {
     const b = hero?.build || null;
     const buildOn = hasBuild(b);
+    const pos = getPos(hero);
+    const posLabel = pos === "front" ? "앞" : "뒤";
+    const posTone =
+      pos === "front"
+        ? "border-rose-200 bg-rose-50 text-rose-700"
+        : "border-indigo-200 bg-indigo-50 text-indigo-700";
 
     return (
       <button
-        key={`${hero?.hero_key || hero?.name}-${hero?.image}`}
+        key={`${hero?.hero_key || hero?.name}-${hero?.image}-${pos}`}
         type="button"
         onClick={() => {
           if (buildOn) {
@@ -312,10 +339,54 @@ export default function GuildOffenseDetailPage({
         className="flex flex-col items-center bg-white border border-slate-200 rounded-2xl p-2"
         title={buildOn ? "DB 세팅 있음" : "기본 추천 열기"}
       >
+        <div className="w-full flex items-center justify-between gap-2">
+          <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full border ${posTone}`}>
+            {posLabel}
+          </span>
+          {buildOn ? <span className="w-2 h-2 rounded-full bg-emerald-500" /> : <span className="w-2 h-2" />}
+        </div>
+
         <img src={heroImg(hero?.image)} alt={hero?.name} className="w-14 h-14 object-contain" loading="lazy" />
         <p className="text-[11px] mt-1 font-semibold text-slate-700">{hero?.name}</p>
-        {buildOn ? <span className="mt-1 w-2 h-2 rounded-full bg-emerald-500" /> : <div className="h-2" />}
       </button>
+    );
+  };
+
+  // ✅✅✅ 앞/뒤에 따라 2줄(뒤=위, 앞=아래)로 배치 ✅✅✅
+  const TeamFormationGrid = ({ team }) => {
+    const { back, front } = splitTeamByPos(team);
+
+    // 5인(back3/front2)까지 고려: back에 3 있으면 3열, 아니면 2열
+    const cols = back.length >= 3 || front.length >= 3 ? 3 : 2;
+
+    const Row = ({ title, list }) => {
+      if (!list.length) return null;
+
+      // 2열일 때 1명은 가운데(=col-span-2)로
+      const oneSpanClass =
+        cols === 2 ? "col-span-2 flex justify-center" : "col-span-3 flex justify-center";
+
+      return (
+        <div>
+          <div className="mb-2 text-[12px] font-extrabold text-slate-500 text-center">{title}</div>
+
+          <div className={`grid gap-2 ${cols === 3 ? "grid-cols-3" : "grid-cols-2"}`}>
+            {list.length === 1 ? (
+              <div className={oneSpanClass}>{renderHeroCard(list[0])}</div>
+            ) : (
+              list.map((h) => renderHeroCard(h))
+            )}
+          </div>
+        </div>
+      );
+    };
+
+    return (
+      <div className="w-full">
+        <Row title="뒤" list={back} />
+        <div className="h-3" />
+        <Row title="앞" list={front} />
+      </div>
     );
   };
 
@@ -361,14 +432,23 @@ export default function GuildOffenseDetailPage({
     );
   };
 
+  // ✅ 진형 칩
+  const renderFormationChip = (rec) => {
+    const v = String(rec?.formation || "").trim();
+    const label = v || "기본진형";
+    return (
+      <span className="text-[11px] font-extrabold px-2 py-1 rounded-full border border-slate-200 bg-white text-slate-700">
+        진형: {label}
+      </span>
+    );
+  };
+
   // =========================
   // ✅ JSON 카운터의 "고정키" (DB json_key와 1:1 매칭용)
   // =========================
   const makeJsonKey = useCallback(
     (x, i) => {
-      // ✅ JSON 자체 id가 있으면 그걸 최우선(영구키)
       if (x?.id != null && String(x.id).trim() !== "") return `json-${String(x.id)}`;
-      // ✅ 없으면 화면 위치 기반(카테고리/팀/패턴/인덱스)
       return `json-${String(decodedCategory)}-${Number(idx)}-${Number(safeVariantIdx)}-${Number(i)}`;
     },
     [decodedCategory, idx, safeVariantIdx]
@@ -381,7 +461,6 @@ export default function GuildOffenseDetailPage({
     const run = async () => {
       setDbCountersErr("");
 
-      // ✅ DB 방어팀 or JSON 방어팀 모두 허용
       const canLoadByPost = isDb && Number.isFinite(Number(postId)) && Number(postId) > 0;
       const canLoadByJson = !canLoadByPost && decodedCategory && Number.isFinite(idx);
 
@@ -396,7 +475,7 @@ export default function GuildOffenseDetailPage({
         let q = supabase
           .from("guild_offense_counters")
           .select(
-            "id,post_id,variant_idx,recommendation,first_attack,note,detail,pets,skills,created_at,wins,losses,created_by,anonymous,speed_mode,speed_min,json_category,json_team_index,json_key"
+            "id,post_id,variant_idx,formation,recommendation,first_attack,note,detail,pets,skills,created_at,wins,losses,created_by,anonymous,speed_mode,speed_min,json_category,json_team_index,json_key"
           )
           .eq("variant_idx", Number(safeVariantIdx))
           .order("created_at", { ascending: false });
@@ -435,7 +514,10 @@ export default function GuildOffenseDetailPage({
         const uids = [...new Set((counters || []).map((c) => c.created_by).filter(Boolean))];
 
         if (uids.length) {
-          const { data: profs, error: pErr } = await supabase.from("profiles").select("user_id,nickname").in("user_id", uids);
+          const { data: profs, error: pErr } = await supabase
+            .from("profiles")
+            .select("user_id,nickname")
+            .in("user_id", uids);
 
           if (!pErr) {
             const m = {};
@@ -450,29 +532,23 @@ export default function GuildOffenseDetailPage({
 
         const mapped = (counters || []).map((c) => {
           const ms = (byCounter.get(c.id) || []).sort((a, b) => (a.slot ?? 0) - (b.slot ?? 0));
-          const team = ms.slice(0, 3).map((m) => ({
+          const team = ms.slice(0, 5).map((m) => ({
             hero_key: m.hero_key || "",
             name: m.hero_name || "",
             image: m.hero_image || "",
-            build: m.build || {},
+            build: m.build || {}, // ✅ build.position 포함
           }));
 
-          // ✅ json_key가 붙어있는 row는 "JSON 집계용(shadow)" 일 수 있음
-          // ✅ 팀이 비어있으면 무조건 집계용으로 간주 (화면에서 숨길 예정)
           const isJsonAgg = !!c?.json_key && (!Array.isArray(team) || team.length === 0);
 
           return {
             id: c.id,
             source: "db",
-
-            // ✅ JSON 집계 매칭용
+            formation: String(c.formation || "기본진형"),
             json_key: c.json_key || null,
             is_json_agg: isJsonAgg,
-
-            // (참고) json 방어팀 필터링에 사용될 수 있음
             json_category: c.json_category || null,
             json_team_index: c.json_team_index ?? null,
-
             firstAttack: !!c.first_attack,
             note: c.note || "",
             detail: c.detail || "",
@@ -508,7 +584,6 @@ export default function GuildOffenseDetailPage({
     const m = new Map();
     (dbCounters || []).forEach((c) => {
       if (!c?.json_key) return;
-      // ✅ 집계 row든 아니든 json_key가 있으면 그 값을 JSON 카드에 반영
       m.set(String(c.json_key), {
         wins: Number(c.wins || 0),
         losses: Number(c.losses || 0),
@@ -519,7 +594,7 @@ export default function GuildOffenseDetailPage({
   }, [dbCounters]);
 
   // =========================
-  // ✅ (추가) JSON 카운터도 투표 가능하게: JSON을 DB counter_id로 "확보" 후 투표
+  // ✅ JSON 카운터도 투표 가능하게: JSON을 DB counter_id로 "확보" 후 투표
   // =========================
   const ensureJsonCounterId = async (rec) => {
     const jsonKey = String(rec?._key || "");
@@ -575,11 +650,9 @@ export default function GuildOffenseDetailPage({
     setVoteLoading((p) => ({ ...p, [key]: true }));
 
     try {
-      // ✅ JSON이면 먼저 DB counter_id 확보(또는 생성)
       if (rec && rec?.source !== "db") {
         const ensured = await ensureJsonCounterId(rec);
 
-        // ✅ 확보된 wins/losses로 UI 즉시 싱크 (JSON 카드 key로만)
         setVoteOverride((p) => ({
           ...p,
           [key]: {
@@ -614,7 +687,6 @@ export default function GuildOffenseDetailPage({
         losses: Number(row?.out_losses ?? 0),
       };
 
-      // ✅ JSON/DB 상관없이 "현재 카드 key"로만 갱신
       setVoteOverride((p) => ({ ...p, [key]: updated }));
     } catch (e) {
       setVoteErr((p) => ({ ...p, [key]: e?.message || "투표 실패" }));
@@ -683,9 +755,7 @@ export default function GuildOffenseDetailPage({
   };
 
   // =========================
-  // ✅ 카운터: JSON + DB 합치기
-  //  - JSON은 화면에 그대로 1개만 보이게
-  //  - JSON 투표는 DB "집계 row"에 저장되지만, 그 row는 화면에서 숨김
+  // ✅ JSON + DB 합치기
   // =========================
   const jsonCounters = useMemo(() => {
     if (!currentVariant || !Array.isArray(currentVariant.counters)) return [];
@@ -703,11 +773,11 @@ export default function GuildOffenseDetailPage({
         source: "json",
         _key: stableKey,
 
-        // ✅ wins/losses는 DB 집계가 있으면 그걸 사용
+        formation: String(x?.formation || "기본진형"),
+
         wins: agg ? agg.wins : Number(x?.wins ?? 0),
         losses: agg ? agg.losses : Number(x?.losses ?? 0),
 
-        // ✅ UI가 보는 필드로 맞춤
         skills: Array.isArray(firstOrder?.skills) ? firstOrder.skills : [],
         speed_mode: x?.speed_mode ?? x?.speedMode ?? speedFromLabel.speed_mode,
         speed_min: x?.speed_min ?? x?.speedMin ?? speedFromLabel.speed_min,
@@ -717,13 +787,10 @@ export default function GuildOffenseDetailPage({
     });
   }, [currentVariant, jsonDbAgg, makeJsonKey]);
 
-  // ✅ (핵심 수정) DB 카운터는 "집계용 shadow row"는 무조건 숨김
-  // - json_key가 있으면(= JSON과 매칭되는 row) 화면에서 제외
-  // - 혹시 json_key가 없더라도 팀이 비어있으면(= 빈 카드) 화면에서 제외
   const dbOnlyCounters = useMemo(() => {
     return (Array.isArray(dbCounters) ? dbCounters : []).filter((c) => {
-      if (c?.json_key) return false; // ✅ 가장 확실: JSON 투표 집계 row는 표시 금지
-      if ((Array.isArray(c?.team) ? c.team.length : 0) <= 0) return false; // ✅ 빈 DB카드도 표시 금지
+      if (c?.json_key) return false;
+      if ((Array.isArray(c?.team) ? c.team.length : 0) <= 0) return false;
       return true;
     });
   }, [dbCounters]);
@@ -758,7 +825,6 @@ export default function GuildOffenseDetailPage({
     const loading = !!voteLoading[key];
     const err = voteErr[key];
 
-    // ✅ 수정/삭제 로딩/에러는 DB id 기준
     const isDbCounter = recommended?.source === "db" && recommended?.id != null;
     const dbId = isDbCounter ? Number(recommended.id) : null;
 
@@ -767,7 +833,6 @@ export default function GuildOffenseDetailPage({
 
     const canManage = isDbCounter ? canEditOrDelete(recommended) : false;
 
-    // ✅ 익명 표시 (DB 카운터일 때만 익명 적용)
     const isAnon = isDbCounter && !!recommended?.anonymous;
     const authorId = isDbCounter ? (recommended?.created_by ?? null) : null;
     const nick = authorId ? nameMap[authorId] : null;
@@ -776,7 +841,7 @@ export default function GuildOffenseDetailPage({
     return (
       <div key={key} className="relative mb-6 rounded-2xl p-4 bg-white border border-slate-200">
         <div className="flex justify-between items-center mb-2">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <div className="text-[12px] font-extrabold text-slate-500">카운터 #{j + 1}</div>
 
             <span className="text-[11px] font-extrabold px-2 py-1 rounded-full border border-slate-200 bg-slate-50 text-slate-700">
@@ -792,6 +857,8 @@ export default function GuildOffenseDetailPage({
                 DB
               </span>
             )}
+
+            {renderFormationChip(recommended)}
           </div>
 
           <div className="flex items-center gap-2">
@@ -833,7 +900,6 @@ export default function GuildOffenseDetailPage({
 
         {renderWinRateBar(wins, losses)}
 
-        {/* ✅ 투표 버튼 줄 : JSON도 "기존 카드에서" 승률만 바뀜 */}
         <div className="mt-3 flex justify-end gap-2">
           <button
             type="button"
@@ -871,9 +937,10 @@ export default function GuildOffenseDetailPage({
         {err ? <div className="mt-2 text-[12px] font-semibold text-rose-600">투표 오류: {err}</div> : null}
         {actErr ? <div className="mt-2 text-[12px] font-semibold text-rose-600">처리 오류: {actErr}</div> : null}
 
+        {/* ✅✅✅ 여기: 가로 2열 + 앞/뒤 2줄 배치로 변경 ✅✅✅ */}
         <div className="mt-4 flex justify-center items-start">
-          <div className="grid grid-cols-3 gap-2">
-            {Array.isArray(recommended?.team) ? recommended.team.slice(0, 3).map(renderHeroCard) : null}
+          <div className="w-full max-w-[320px]">
+            <TeamFormationGrid team={Array.isArray(recommended?.team) ? recommended.team.slice(0, 5) : []} />
           </div>
           {renderPetIcons(recommended?.pet)}
         </div>
@@ -914,7 +981,6 @@ export default function GuildOffenseDetailPage({
       return;
     }
 
-    // ✅ JSON 방어팀
     navigate(
       `/guild-offense/counter/new?jsonCategory=${encodeURIComponent(decodedCategory)}&jsonTeamIndex=${idx}&variant=${safeVariantIdx}`
     );
@@ -1073,7 +1139,11 @@ function DbBuildModal({ heroName, build, onClose }) {
         </div>
 
         <div className="px-3 py-2 border-t border-slate-200 bg-white flex justify-end">
-          <button onClick={onClose} className="px-3 py-1.5 rounded-xl bg-slate-900 text-white text-[12px] font-extrabold" type="button">
+          <button
+            onClick={onClose}
+            className="px-3 py-1.5 rounded-xl bg-slate-900 text-white text-[12px] font-extrabold"
+            type="button"
+          >
             닫기
           </button>
         </div>
