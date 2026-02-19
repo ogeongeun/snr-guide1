@@ -5,6 +5,11 @@
     "name": "에이스",
     "image": "/images/heroes/ace.png"
   },
+  {
+    "key": "rag",
+    "name": "라드그리드",
+    "image": "/images/heroes/rag.png"
+  },
     {
     "key": "yupo",
     "name": "여포",
