@@ -14,6 +14,15 @@
     "image": "/images/skills/choseon2.png"
   },
   {
+    "key": "rag1",
+    "name": "라드그리드1",
+    "image": "/images/skills/rag1.png"
+  }, {
+    "key": "rag2",
+    "name": "라드그리드2",
+    "image": "/images/skills/rag2.png"
+  },
+  {
     "key": "yupo1",
     "name": "여포1",
     "image": "/images/skills/yupo1.png"
