@@ -8,7 +8,8 @@
     "key": "choseon1",
     "name": "초선1",
     "image": "/images/skills/choseon1.png"
-  }, {
+  },
+  {
     "key": "choseon2",
     "name": "초선2",
     "image": "/images/skills/choseon2.png"
@@ -545,6 +546,11 @@
     "key": "pie2",
     "name": "파이2",
     "image": "/images/skills/pie2.png"
+  },
+  {
+    "key": "platon1",
+    "name": "플라튼1",
+    "image": "/images/skills/platon1.png"
   },
   {
     "key": "platon2",
