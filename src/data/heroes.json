@@ -76,6 +76,21 @@
     "name": "카구라",
     "image": "/images/heroes/cagura.png"
   },
+   {
+    "key": "back",
+    "name": "백룡",
+    "image": "/images/heroes/back.png"
+  },
+   {
+    "key": "sogyo",
+    "name": "소교",
+    "image": "/images/heroes/sogyo.png"
+  },
+   {
+    "key": "gwanu",
+    "name": "관우",
+    "image": "/images/heroes/gwanu.png"
+  },
   {
     "key": "carin",
     "name": "카린",

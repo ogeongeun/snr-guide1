@@ -683,6 +683,36 @@
     "image": "/images/skills/trude2.png"
   },
   {
+    "key": "sogyo1",
+    "name": "소교1",
+    "image": "/images/skills/sogyo1.png"
+  },
+ {
+    "key": "sogyo2",
+    "name": "소교2",
+    "image": "/images/skills/sogyo2.png"
+  },
+  {
+    "key": "back1",
+    "name": "백룡1",
+    "image": "/images/skills/back1.png"
+  },
+{
+    "key": "back2",
+    "name": "백룡2",
+    "image": "/images/skills/back2.png"
+  },
+  {
+    "key": "gwanu1",
+    "name": "관우1",
+    "image": "/images/skills/gwanu1.png"
+  },
+ {
+    "key": "gwanu2",
+    "name": "관우2",
+    "image": "/images/skills/gwanu2.png"
+  },
+  {
     "key": "vanessa1",
     "name": "바네사1",
     "image": "/images/skills/vanessa1.png"
