@@ -86,6 +86,11 @@
     "name": "소교",
     "image": "/images/heroes/sogyo.png"
   },
+    {
+    "key": "regin",
+    "name": "레긴레이프",
+    "image": "/images/heroes/regin.png"
+  },
    {
     "key": "gwanu",
     "name": "관우",
