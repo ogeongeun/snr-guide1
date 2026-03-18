@@ -713,6 +713,16 @@
     "image": "/images/skills/gwanu2.png"
   },
   {
+    "key": "regin1",
+    "name": "레긴레이프1",
+    "image": "/images/skills/regin1.png"
+  },
+   {
+    "key": "regin2",
+    "name": "레긴레이프2",
+    "image": "/images/skills/regin2.png"
+  },
+  {
     "key": "vanessa1",
     "name": "바네사1",
     "image": "/images/skills/vanessa1.png"
