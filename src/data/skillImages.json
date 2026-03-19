@@ -411,7 +411,11 @@
     "name": "라이언2",
     "image": "/images/skills/lion2.png"
   },
-  
+   {
+    "key": "look1",
+    "name": "룩1",
+    "image": "/images/skills/look1.png"
+  },
   {
     "key": "look2",
     "name": "룩2",
