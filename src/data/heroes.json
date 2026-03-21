@@ -16,6 +16,11 @@
     "image": "/images/heroes/yupo.png"
   },
   {
+    "key": "shao",
+    "name": "샤오",
+    "image": "/images/heroes/shao.png"
+  },
+  {
     "key": "choseon",
     "name": "초선",
     "image": "/images/heroes/choseon.png"
