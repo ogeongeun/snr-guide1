@@ -15,6 +15,16 @@
     "image": "/images/skills/choseon2.png"
   },
   {
+    "key": "shao1",
+    "name": "샤오1",
+    "image": "/images/skills/shao1.png"
+  },
+  {
+    "key": "shao2",
+    "name": "샤오2",
+    "image": "/images/skills/shao2.png"
+  },
+  {
     "key": "rag1",
     "name": "라드그리드1",
     "image": "/images/skills/rag1.png"
