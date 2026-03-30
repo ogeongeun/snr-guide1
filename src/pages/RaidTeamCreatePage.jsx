@@ -48,14 +48,8 @@ const defaultBuild = () => ({
 });
 
 const defaultSkillOrder = () => ({
-  skills: [
-    { stageTitle: "1스테이지", images: [] },
-    { stageTitle: "2스테이지", images: [] },
-    { stageTitle: "3스테이지", images: [] },
-  ],
+  images: [],
 });
-
-const deepClone = (v) => JSON.parse(JSON.stringify(v));
 
 function filenameFromImagePath(p) {
   if (!p) return "";
@@ -101,36 +95,7 @@ export default function RaidTeamCreatePage() {
   const [pickerSlot, setPickerSlot] = useState(0);
 
   const [skillOrder, setSkillOrder] = useState(() => defaultSkillOrder());
-  const [activeStageIdx, setActiveStageIdx] = useState(2);
   const [skillQ, setSkillQ] = useState("");
-  const [skillUndoStack, setSkillUndoStack] = useState([]);
-
-  const commitSkillOrder = (updater) => {
-    setSkillOrder((prev) => {
-      const prevSnap = deepClone(prev || defaultSkillOrder());
-      const draft = deepClone(prevSnap);
-      const next = updater(draft);
-
-      if (!next) return prev;
-
-      setSkillUndoStack((stk) => {
-        const nextStk = [...stk, prevSnap];
-        if (nextStk.length > 50) nextStk.shift();
-        return nextStk;
-      });
-
-      return next;
-    });
-  };
-
-  const undoSkillOrder = () => {
-    setSkillUndoStack((stk) => {
-      if (!stk.length) return stk;
-      const last = stk[stk.length - 1];
-      setSkillOrder(() => last);
-      return stk.slice(0, -1);
-    });
-  };
 
   useEffect(() => {
     const run = async () => {
@@ -224,34 +189,25 @@ export default function RaidTeamCreatePage() {
     return "";
   };
 
-  const pushSkillImageToStage = (stageIdx, imgFilename) => {
+  const pushSkillImage = (imgFilename) => {
     if (!imgFilename) return;
-    commitSkillOrder((draft) => {
-      const stage = draft?.skills?.[stageIdx];
-      if (!stage) return null;
-      stage.images = Array.isArray(stage.images) ? stage.images : [];
-      stage.images.push(imgFilename);
-      return draft;
+    setSkillOrder((prev) => ({
+      ...prev,
+      images: [...(prev.images || []), imgFilename],
+    }));
+  };
+
+  const removeSkillAt = (index) => {
+    setSkillOrder((prev) => {
+      const next = [...(prev.images || [])];
+      if (index < 0 || index >= next.length) return prev;
+      next.splice(index, 1);
+      return { ...prev, images: next };
     });
   };
 
-  const clearStage = (stageIdx) => {
-    commitSkillOrder((draft) => {
-      const stage = draft?.skills?.[stageIdx];
-      if (!stage) return null;
-      stage.images = [];
-      return draft;
-    });
-  };
-
-  const removeOneAt = (stageIdx, index) => {
-    commitSkillOrder((draft) => {
-      const stage = draft?.skills?.[stageIdx];
-      if (!stage?.images?.length) return null;
-      if (index < 0 || index >= stage.images.length) return null;
-      stage.images.splice(index, 1);
-      return draft;
-    });
+  const clearSkills = () => {
+    setSkillOrder({ images: [] });
   };
 
   const save = async () => {
@@ -306,17 +262,12 @@ export default function RaidTeamCreatePage() {
         throw memErr;
       }
 
-      navigate(`/raid/${encodeURIComponent(selectedBossKey)}`);
+      navigate(`/raid-guide/${encodeURIComponent(selectedBossKey)}`);
     } catch (e) {
       setErr(e?.message || "저장 실패");
     } finally {
       setSaving(false);
     }
-  };
-
-  const currentStage = skillOrder?.skills?.[activeStageIdx] || {
-    stageTitle: `${activeStageIdx + 1}스테이지`,
-    images: [],
   };
 
   return (
@@ -427,61 +378,31 @@ export default function RaidTeamCreatePage() {
             <div>
               <div className="text-[12px] font-extrabold text-slate-600">스킬 순서</div>
               <div className="mt-1 text-[12px] font-semibold text-slate-500">
-                스테이지(1/2/3) 선택 후, 아래 스킬 이미지를 클릭하면 순서대로 쌓입니다.
+                아래 스킬 이미지를 클릭하면 순서대로 쌓입니다.
               </div>
             </div>
 
-            <div className="mt-3 flex flex-wrap items-center gap-2">
-              {[0, 1, 2].map((i) => {
-                const on = i === activeStageIdx;
-                return (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => setActiveStageIdx(i)}
-                    className={`px-3 py-2 rounded-2xl border text-[12px] font-extrabold transition ${
-                      on
-                        ? "bg-indigo-600 text-white border-indigo-600"
-                        : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
-                    }`}
-                  >
-                    {i + 1}스테이지
-                  </button>
-                );
-              })}
-
-              <div className="ml-auto flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={undoSkillOrder}
-                  disabled={!skillUndoStack.length}
-                  className="px-3 py-2 rounded-2xl border border-slate-200 bg-white text-[12px] font-extrabold text-slate-700 hover:bg-slate-50 disabled:opacity-60"
-                >
-                  ← 되돌리기
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => clearStage(activeStageIdx)}
-                  className="px-3 py-2 rounded-2xl border border-rose-200 bg-rose-50 text-[12px] font-extrabold text-rose-700 hover:bg-rose-100"
-                >
-                  스테이지 초기화
-                </button>
-              </div>
+            <div className="mt-3 flex justify-end">
+              <button
+                type="button"
+                onClick={clearSkills}
+                className="px-3 py-2 rounded-2xl border border-rose-200 bg-rose-50 text-[12px] font-extrabold text-rose-700 hover:bg-rose-100"
+              >
+                전체 초기화
+              </button>
             </div>
 
             <div className="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-3">
               <div className="text-[12px] font-extrabold text-slate-700">
-                {currentStage?.stageTitle || `${activeStageIdx + 1}스테이지`} ·{" "}
-                {(currentStage?.images || []).length}개
+                스킬 순서 · {(skillOrder?.images || []).length}개
               </div>
 
               <div className="mt-2 flex flex-wrap gap-2">
-                {(currentStage?.images || []).map((img, idx) => (
+                {(skillOrder?.images || []).map((img, idx) => (
                   <button
                     key={`${img}-${idx}`}
                     type="button"
-                    onClick={() => removeOneAt(activeStageIdx, idx)}
+                    onClick={() => removeSkillAt(idx)}
                     className="relative w-10 h-10 rounded-2xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center"
                     title={`클릭하면 삭제 (${idx + 1}번)`}
                   >
@@ -496,7 +417,7 @@ export default function RaidTeamCreatePage() {
                     </div>
                   </button>
                 ))}
-                {!((currentStage?.images || []).length) ? (
+                {!((skillOrder?.images || []).length) ? (
                   <div className="text-[12px] font-semibold text-slate-400">
                     (비어있음) 아래에서 스킬을 눌러 추가하세요.
                   </div>
@@ -524,7 +445,7 @@ export default function RaidTeamCreatePage() {
                     <button
                       key={x.key}
                       type="button"
-                      onClick={() => pushSkillImageToStage(activeStageIdx, filename)}
+                      onClick={() => pushSkillImage(filename)}
                       className="rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 p-2 text-left"
                       title={filename}
                     >

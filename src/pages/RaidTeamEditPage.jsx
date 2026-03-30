@@ -48,14 +48,8 @@ const defaultBuild = () => ({
 });
 
 const defaultSkillOrder = () => ({
-  skills: [
-    { stageTitle: "1스테이지", images: [] },
-    { stageTitle: "2스테이지", images: [] },
-    { stageTitle: "3스테이지", images: [] },
-  ],
+  images: [],
 });
-
-const deepClone = (v) => JSON.parse(JSON.stringify(v));
 
 function filenameFromImagePath(p) {
   if (!p) return "";
@@ -110,7 +104,6 @@ export default function RaidTeamEditPage() {
   const [pickerSlot, setPickerSlot] = useState(0);
 
   const [skillOrder, setSkillOrder] = useState(() => defaultSkillOrder());
-  const [activeStageIdx, setActiveStageIdx] = useState(2);
   const [skillQ, setSkillQ] = useState("");
 
   useEffect(() => {
@@ -193,21 +186,13 @@ export default function RaidTeamEditPage() {
         setSlots(nextSlots);
 
         const one = post.skill_order || defaultSkillOrder();
-        const normalized = deepClone(one);
 
-        normalized.skills = Array.isArray(normalized.skills)
-          ? normalized.skills.map((st, i) => {
-              const title = st?.stageTitle || `${i + 1}스테이지`;
-              const imgs = Array.isArray(st?.images) ? st.images : [];
-              return {
-                stageTitle: title,
-                images: imgs.map(normalizeSkillImageToFilename).filter(Boolean),
-              };
-            })
-          : defaultSkillOrder().skills;
+        setSkillOrder({
+          images: Array.isArray(one.images)
+            ? one.images.map(normalizeSkillImageToFilename).filter(Boolean)
+            : [],
+        });
 
-        setSkillOrder(normalized);
-        setActiveStageIdx(2);
         setLoadingPage(false);
       } catch (e) {
         setErr(e?.message || "불러오기 실패");
@@ -300,46 +285,25 @@ export default function RaidTeamEditPage() {
     return "";
   };
 
-  const pushSkillImageToStage = (stageIdx, imgFilename) => {
+  const pushSkillImage = (imgFilename) => {
     if (!imgFilename) return;
+    setSkillOrder((prev) => ({
+      ...prev,
+      images: [...(prev.images || []), imgFilename],
+    }));
+  };
+
+  const removeSkillAt = (index) => {
     setSkillOrder((prev) => {
-      const next = deepClone(prev || defaultSkillOrder());
-      const stage = next?.skills?.[stageIdx];
-      if (!stage) return prev;
-      stage.images = Array.isArray(stage.images) ? stage.images : [];
-      stage.images.push(imgFilename);
-      return next;
+      const next = [...(prev.images || [])];
+      if (index < 0 || index >= next.length) return prev;
+      next.splice(index, 1);
+      return { ...prev, images: next };
     });
   };
 
-  const undoStage = (stageIdx) => {
-    setSkillOrder((prev) => {
-      const next = deepClone(prev || defaultSkillOrder());
-      const stage = next?.skills?.[stageIdx];
-      if (!stage?.images?.length) return prev;
-      stage.images.pop();
-      return next;
-    });
-  };
-
-  const clearStage = (stageIdx) => {
-    setSkillOrder((prev) => {
-      const next = deepClone(prev || defaultSkillOrder());
-      const stage = next?.skills?.[stageIdx];
-      if (!stage) return prev;
-      stage.images = [];
-      return next;
-    });
-  };
-
-  const removeOneAt = (stageIdx, index) => {
-    setSkillOrder((prev) => {
-      const next = deepClone(prev || defaultSkillOrder());
-      const stage = next?.skills?.[stageIdx];
-      if (!stage?.images?.length) return prev;
-      stage.images.splice(index, 1);
-      return next;
-    });
+  const clearSkills = () => {
+    setSkillOrder({ images: [] });
   };
 
   const save = async () => {
@@ -397,7 +361,7 @@ export default function RaidTeamEditPage() {
 
       if (insErr) throw insErr;
 
-      navigate(`/raid/${encodeURIComponent(bossKey)}`);
+      navigate(`/raid-guide/${encodeURIComponent(bossKey)}`);
     } catch (e) {
       setErr(e?.message || "저장 실패");
     } finally {
@@ -405,17 +369,12 @@ export default function RaidTeamEditPage() {
     }
   };
 
-  const currentStage = skillOrder?.skills?.[activeStageIdx] || {
-    stageTitle: `${activeStageIdx + 1}스테이지`,
-    images: [],
-  };
-
   return (
     <PageShell
       title="레이드 팀 수정"
       right={
         <button
-          onClick={() => navigate(`/raid/${encodeURIComponent(bossKey)}`)}
+          onClick={() => navigate(`/raid-guide/${encodeURIComponent(bossKey)}`)}
           className="rounded-xl px-3 py-2 text-sm font-extrabold bg-white border border-slate-200 text-slate-800 hover:bg-slate-100"
         >
           ← 돌아가기
@@ -541,62 +500,32 @@ export default function RaidTeamEditPage() {
             <div>
               <div className="text-[12px] font-extrabold text-slate-600">스킬 순서</div>
               <div className="mt-1 text-[12px] font-semibold text-slate-500">
-                스테이지(1/2/3) 선택 후, 아래 스킬 이미지를 클릭하면 순서대로 쌓입니다.
+                아래 스킬 이미지를 클릭하면 순서대로 쌓입니다.
               </div>
             </div>
 
-            <div className="mt-3 flex flex-wrap items-center gap-2">
-              {[0, 1, 2].map((i) => {
-                const on = i === activeStageIdx;
-                return (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => setActiveStageIdx(i)}
-                    disabled={!isMine}
-                    className={`px-3 py-2 rounded-2xl border text-[12px] font-extrabold transition disabled:opacity-60 ${
-                      on
-                        ? "bg-indigo-600 text-white border-indigo-600"
-                        : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
-                    }`}
-                  >
-                    {i + 1}스테이지
-                  </button>
-                );
-              })}
-
-              <div className="ml-auto flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={() => undoStage(activeStageIdx)}
-                  disabled={!isMine}
-                  className="px-3 py-2 rounded-2xl border border-slate-200 bg-white text-[12px] font-extrabold text-slate-700 hover:bg-slate-50 disabled:opacity-60"
-                >
-                  ← 되돌리기
-                </button>
-                <button
-                  type="button"
-                  onClick={() => clearStage(activeStageIdx)}
-                  disabled={!isMine}
-                  className="px-3 py-2 rounded-2xl border border-rose-200 bg-rose-50 text-[12px] font-extrabold text-rose-700 hover:bg-rose-100 disabled:opacity-60"
-                >
-                  스테이지 초기화
-                </button>
-              </div>
+            <div className="mt-3 flex justify-end">
+              <button
+                type="button"
+                onClick={clearSkills}
+                disabled={!isMine}
+                className="px-3 py-2 rounded-2xl border border-rose-200 bg-rose-50 text-[12px] font-extrabold text-rose-700 hover:bg-rose-100 disabled:opacity-60"
+              >
+                전체 초기화
+              </button>
             </div>
 
             <div className="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-3">
               <div className="text-[12px] font-extrabold text-slate-700">
-                {currentStage?.stageTitle || `${activeStageIdx + 1}스테이지`} ·{" "}
-                {(currentStage?.images || []).length}개
+                스킬 순서 · {(skillOrder?.images || []).length}개
               </div>
 
               <div className="mt-2 flex flex-wrap gap-2">
-                {(currentStage?.images || []).map((img, idx) => (
+                {(skillOrder?.images || []).map((img, idx) => (
                   <button
                     key={`${img}-${idx}`}
                     type="button"
-                    onClick={() => removeOneAt(activeStageIdx, idx)}
+                    onClick={() => removeSkillAt(idx)}
                     disabled={!isMine}
                     className="relative w-10 h-10 rounded-2xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center disabled:opacity-60"
                     title={`클릭하면 삭제 (${idx + 1}번)`}
@@ -612,7 +541,7 @@ export default function RaidTeamEditPage() {
                     </div>
                   </button>
                 ))}
-                {!((currentStage?.images || []).length) ? (
+                {!((skillOrder?.images || []).length) ? (
                   <div className="text-[12px] font-semibold text-slate-400">
                     (비어있음) 아래에서 스킬을 눌러 추가하세요.
                   </div>
@@ -641,7 +570,7 @@ export default function RaidTeamEditPage() {
                     <button
                       key={x.key}
                       type="button"
-                      onClick={() => pushSkillImageToStage(activeStageIdx, filename)}
+                      onClick={() => pushSkillImage(filename)}
                       disabled={!isMine}
                       className="rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 p-2 text-left disabled:opacity-60"
                       title={filename}

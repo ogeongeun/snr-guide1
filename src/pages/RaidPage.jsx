@@ -33,7 +33,7 @@ export default function RaidPage() {
             {raidBossOptions.map((boss) => (
               <button
                 key={boss.key}
-                onClick={() => navigate(`/raid/${encodeURIComponent(boss.key)}`)}
+                onClick={() => navigate(`/raid-guide/${encodeURIComponent(boss.key)}`)}
                 className="w-full text-left px-4 py-3 flex items-center gap-3 hover:bg-slate-50"
               >
                 <div className="min-w-0 flex-1">

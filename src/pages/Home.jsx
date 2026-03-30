@@ -52,7 +52,7 @@ const Home = () => {
     { title: "길드전", path: "/guild-defense", description: "길드전 방어팀 공격팀 추천", emoji: "🛡️" },
     { title: "강림원정대", path: "/expedition", description: "보스별 공략 및 추천 영웅 세팅", emoji: "🔥" },
     { title: "총력전", path: "/grand-battle", description: "총력전 전용 팀 구성 및 공략 정보", emoji: "⚔️" },
-    { title: "레이드", path: "/raid", description: "레이드 영웅장비 및 추천 스킬순서", emoji: "🐉" },
+    { title: "레이드", path: "/raid-guide", description: "레이드 영웅장비 및 추천 스킬순서", emoji: "🐉" },
     { title: "장비 강화 가이드", path: "/enhance-guide", description: "무기/방어구 선택 후 강화 우선순위 안내", emoji: "⚙️" },
     { title: "장비 추천", path: "/equipment", description: "영웅들의 장비 추천", emoji: "🛠" },
     { title: "무한의 탑", path: "/infinity-tower", description: "층별 조건에 맞춘 공략 덱 정보", emoji: "🏯" },

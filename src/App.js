@@ -140,8 +140,8 @@ const App = () => {
         <Route path="/guild-manage/defense-king" element={<DefenseKingPage />} />
 <Route path="/guild-manage/defense-king/create" element={<DefenseKingCreatePage />} />
 <Route path="/guild-manage/defense-king/edit" element={<DefenseKingCreatePage />} />
-<Route path="/raid" element={<RaidPage />} />
-<Route path="/raid/:bossKey" element={<RaidBossPage />} />
+<Route path="/raid-guide" element={<RaidPage />} />
+<Route path="/raid-guide/:bossKey" element={<RaidBossPage />} />
 <Route path="/raid/new" element={<RaidTeamCreatePage />} />
 <Route path="/raid/edit/:id" element={<RaidTeamEditPage />} />
 <Route path="/raid/team/:id/skills" element={<RaidTeamSkillPage />} />
