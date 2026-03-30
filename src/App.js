@@ -8,7 +8,11 @@ import GuildDefenseSubmitPage from "./pages/DefenseSubmitPage";
 import Home from "./pages/Home";
 import FarmingEfficiency from "./pages/FarmingEfficiency";
 import EssentialHeroesPage from "./pages/EssentialHeroesPage";
-import RaidGuidePage from "./pages/RaidGuidePage";
+import RaidPage from "./pages/RaidPage";
+import RaidBossPage from "./pages/RaidBossPage";
+import RaidTeamCreatePage from "./pages/RaidTeamCreatePage";
+import RaidTeamEditPage from "./pages/RaidTeamEditPage";
+import RaidTeamSkillPage from "./pages/RaidTeamSkillPage";
 import DefenseKingPage from "./pages/DefenseKingPage";
 import DefenseKingCreatePage from "./pages/DefenseKingCreatePage";
 import SiegePage from "./pages/SiegePage";
@@ -22,7 +26,7 @@ import CommunityWritePage from "./pages/community/CommunityWritePage";
 import CommunityPostPage from "./pages/community/CommunityPostPage";
 
 import SkillOrderPage from "./pages/SkillOrderPage";
-import RaidSkillDetailPage from "./pages/RaidSkillDetailPage";
+
 import AdventureDetailPage from "./pages/AdventureDetailPage";
 import Adventure from "./pages/Adventure";
 import InfinityTowerDetailPage from "./pages/InfinityTowerDetailPage";
@@ -136,7 +140,11 @@ const App = () => {
         <Route path="/guild-manage/defense-king" element={<DefenseKingPage />} />
 <Route path="/guild-manage/defense-king/create" element={<DefenseKingCreatePage />} />
 <Route path="/guild-manage/defense-king/edit" element={<DefenseKingCreatePage />} />
-
+<Route path="/raid" element={<RaidPage />} />
+<Route path="/raid/:bossKey" element={<RaidBossPage />} />
+<Route path="/raid/new" element={<RaidTeamCreatePage />} />
+<Route path="/raid/edit/:id" element={<RaidTeamEditPage />} />
+<Route path="/raid/team/:id/skills" element={<RaidTeamSkillPage />} />
 <Route path="/stats/guild-guides" element={<GuildGuideStatsPage />} />
 
 <Route path="/guild-manage/defense/edit" element={<DefenseEditPage />} />
@@ -174,8 +182,8 @@ const App = () => {
           element={<EssentialSkillDetailPage />}
         />
 
-        <Route path="/raid-guide" element={<RaidGuidePage />} />
-        <Route path="/raid-skill/:bossKey/:teamIndex" element={<RaidSkillDetailPage />} />
+       
+
 
         <Route path="/siege/new" element={<SiegeTeamCreatePage />} />
         <Route path="/siege" element={<SiegePage />} />
