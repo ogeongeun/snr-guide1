@@ -11,6 +11,9 @@ const raidBossOptions = [
     key: "steel_predator_15",
     label: "강철의 포식자(15단계)",
   },
+    { key: "leonid_event", label: "레오니드(돌발)" },
+  { key: "astrea_event", label: "아스트레아(돌발)" },
+  { key: "kallistra_event", label: "칼리스트라(돌발)" },
 ];
 
 export default raidBossOptions;
