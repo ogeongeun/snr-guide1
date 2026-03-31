@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import PageShell from "../components/PageShell";
+import RaidBuildModal from "../components/RaidBuildModal";
 import { supabase } from "../lib/supabaseClient";
 import { getRaidBossLabel } from "../data/raidBossOptions";
 
@@ -24,6 +25,97 @@ function SkillStrip({ skills, size = "w-9 h-9" }) {
   );
 }
 
+function BuildSummary({ build }) {
+  const b = build || {};
+  const hasWeapon = b?.weapon?.main1 || b?.weapon?.main2;
+  const hasArmor = b?.armor?.main1 || b?.armor?.main2;
+
+  const hasAny =
+    b?.set ||
+    Number.isFinite(b?.speed) ||
+    hasWeapon ||
+    hasArmor ||
+    b?.subOption ||
+    b?.note;
+
+  if (!hasAny) {
+    return (
+      <div className="mt-2 text-[11px] font-semibold text-slate-400 text-center">
+        장비 정보 없음
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-2 space-y-1">
+      {b?.set ? (
+        <div className="text-[11px] font-semibold text-slate-700 text-center break-words">
+          세트: {b.set}
+        </div>
+      ) : null}
+
+      {Number.isFinite(b?.speed) ? (
+        <div className="text-[11px] font-semibold text-slate-700 text-center">
+          속공: {b.speed}
+        </div>
+      ) : null}
+
+      {hasWeapon ? (
+        <div className="text-[11px] font-semibold text-slate-600 text-center break-words">
+          무기: {[b?.weapon?.main1, b?.weapon?.main2].filter(Boolean).join(" / ")}
+        </div>
+      ) : null}
+
+      {hasArmor ? (
+        <div className="text-[11px] font-semibold text-slate-600 text-center break-words">
+          방어구: {[b?.armor?.main1, b?.armor?.main2].filter(Boolean).join(" / ")}
+        </div>
+      ) : null}
+
+      {b?.subOption ? (
+        <div className="text-[11px] font-semibold text-slate-500 text-center break-words">
+          {b.subOption}
+        </div>
+      ) : null}
+
+      {b?.note ? (
+        <div className="text-[11px] font-semibold text-rose-600 text-center break-words">
+          {b.note}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function HeroCard({ hero, onClick }) {
+  return (
+    <button
+      type="button"
+      onClick={() => onClick(hero)}
+      className="rounded-2xl border border-slate-200 bg-slate-50 p-3 hover:bg-white transition text-left"
+    >
+      <div className="w-full aspect-square rounded-2xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center">
+        {hero.hero_image ? (
+          <img
+            src={heroImg(hero.hero_image)}
+            alt={hero.hero_name}
+            className="w-full h-full object-contain"
+            loading="lazy"
+          />
+        ) : (
+          <div className="text-[11px] font-extrabold text-slate-400">없음</div>
+        )}
+      </div>
+
+      <div className="mt-2 text-[12px] font-black text-slate-900 text-center truncate">
+        {hero.hero_name || "-"}
+      </div>
+
+      <BuildSummary build={hero.build} />
+    </button>
+  );
+}
+
 function RaidBossPanel({ bossKey }) {
   const navigate = useNavigate();
 
@@ -34,6 +126,8 @@ function RaidBossPanel({ bossKey }) {
   const [err, setErr] = useState("");
   const [teams, setTeams] = useState([]);
   const [deletingId, setDeletingId] = useState("");
+
+  const [selectedHero, setSelectedHero] = useState(null);
 
   useEffect(() => {
     const run = async () => {
@@ -121,6 +215,10 @@ function RaidBossPanel({ bossKey }) {
     loadTeams();
   }, [bossKey]);
 
+  const handleHeroClick = (hero) => {
+    setSelectedHero(hero);
+  };
+
   const deleteTeam = async (team) => {
     if (!team?.id) return;
     if (!me?.id) {
@@ -201,143 +299,132 @@ function RaidBossPanel({ bossKey }) {
   }
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between gap-3">
-        <div>
-          <div className="text-[12px] font-extrabold text-slate-500">보스</div>
-          <div className="mt-1 text-[18px] font-black text-slate-900">
-            {getRaidBossLabel(bossKey)}
+    <>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <div className="text-[12px] font-extrabold text-slate-500">보스</div>
+            <div className="mt-1 text-[18px] font-black text-slate-900">
+              {getRaidBossLabel(bossKey)}
+            </div>
           </div>
+
+          <button
+            onClick={() => navigate(`/raid/new?boss=${encodeURIComponent(bossKey)}`)}
+            className="rounded-2xl px-4 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800"
+          >
+            팀 추가
+          </button>
         </div>
 
-        <button
-          onClick={() => navigate(`/raid/new?boss=${encodeURIComponent(bossKey)}`)}
-          className="rounded-2xl px-4 py-2 text-sm font-extrabold bg-slate-900 text-white hover:bg-slate-800"
-        >
-          팀 추가
-        </button>
-      </div>
+        {teams.map((team) => {
+          const isMine = String(me?.id || "") === String(team.created_by || "");
+          const isDeleting = String(deletingId) === String(team.id);
 
-      {teams.map((team) => {
-        const isMine = String(me?.id || "") === String(team.created_by || "");
-        const isDeleting = String(deletingId) === String(team.id);
-
-        return (
-          <div
-            key={team.id}
-            className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden"
-          >
-            <div className="px-5 py-4 border-b border-slate-100">
-              <div className="flex items-center justify-between gap-3">
-                <div className="min-w-0">
-                  <div className="text-[15px] font-black text-slate-900">
-                    {team.title || "제목 없음"}
-                  </div>
-
-                  {team.note ? (
-                    <div className="mt-1 text-[12px] font-semibold text-slate-600 break-words">
-                      {team.note}
-                    </div>
-                  ) : null}
-
-                  <div className="mt-2 flex flex-wrap items-center gap-2">
-                    {team.anonymous ? (
-                      <span className="text-[11px] font-extrabold px-2 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
-                        익명
-                      </span>
-                    ) : (
-                      <span className="text-[11px] font-extrabold px-2 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
-                        작성자 표시
-                      </span>
-                    )}
-
-                    {isMine ? (
-                      <span className="text-[11px] font-extrabold px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                        내 글
-                      </span>
-                    ) : null}
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 shrink-0">
-                  <Link
-                    to={`/raid/team/${team.id}/skills`}
-                    className="rounded-xl px-3 py-2 text-xs font-extrabold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
-                  >
-                    스킬 보기
-                  </Link>
-
-                  {isMine ? (
-                    <>
-                      <Link
-                        to={`/raid/edit/${team.id}`}
-                        className="rounded-xl px-3 py-2 text-xs font-extrabold bg-slate-900 text-white hover:bg-slate-800"
-                      >
-                        수정
-                      </Link>
-
-                      <button
-                        type="button"
-                        onClick={() => deleteTeam(team)}
-                        disabled={isDeleting}
-                        className="rounded-xl px-3 py-2 text-xs font-extrabold bg-rose-600 text-white hover:bg-rose-500 disabled:opacity-60"
-                      >
-                        {isDeleting ? "삭제중..." : "삭제"}
-                      </button>
-                    </>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-
-            <div className="p-5">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-                {team.members.map((hero, idx) => (
-                  <div
-                    key={`${team.id}-${idx}`}
-                    className="rounded-2xl border border-slate-200 bg-slate-50 p-3"
-                  >
-                    <div className="w-full aspect-square rounded-2xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center">
-                      {hero.hero_image ? (
-                        <img
-                          src={heroImg(hero.hero_image)}
-                          alt={hero.hero_name}
-                          className="w-full h-full object-contain"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="text-[11px] font-extrabold text-slate-400">
-                          없음
-                        </div>
-                      )}
+          return (
+            <div
+              key={team.id}
+              className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden"
+            >
+              <div className="px-5 py-4 border-b border-slate-100">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="text-[15px] font-black text-slate-900">
+                      {team.title || "제목 없음"}
                     </div>
 
-                    <div className="mt-2 text-[12px] font-black text-slate-900 text-center truncate">
-                      {hero.hero_name || "-"}
-                    </div>
-
-                    {hero.build?.note ? (
-                      <div className="mt-1 text-[11px] font-semibold text-rose-600 text-center leading-tight break-words">
-                        {hero.build.note}
+                    {team.note ? (
+                      <div className="mt-1 text-[12px] font-semibold text-slate-600 break-words">
+                        {team.note}
                       </div>
                     ) : null}
+
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      {team.anonymous ? (
+                        <span className="text-[11px] font-extrabold px-2 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
+                          익명
+                        </span>
+                      ) : (
+                        <span className="text-[11px] font-extrabold px-2 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+                          작성자 표시
+                        </span>
+                      )}
+
+                      {isMine ? (
+                        <span className="text-[11px] font-extrabold px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                          내 글
+                        </span>
+                      ) : null}
+                    </div>
                   </div>
-                ))}
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <Link
+                      to={`/raid/team/${team.id}/skills`}
+                      className="rounded-xl px-3 py-2 text-xs font-extrabold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
+                    >
+                      스킬 보기
+                    </Link>
+
+                    {isMine ? (
+                      <>
+                        <Link
+                          to={`/raid/edit/${team.id}`}
+                          className="rounded-xl px-3 py-2 text-xs font-extrabold bg-slate-900 text-white hover:bg-slate-800"
+                        >
+                          수정
+                        </Link>
+
+                        <button
+                          type="button"
+                          onClick={() => deleteTeam(team)}
+                          disabled={isDeleting}
+                          className="rounded-xl px-3 py-2 text-xs font-extrabold bg-rose-600 text-white hover:bg-rose-500 disabled:opacity-60"
+                        >
+                          {isDeleting ? "삭제중..." : "삭제"}
+                        </button>
+                      </>
+                    ) : null}
+                  </div>
+                </div>
               </div>
 
-              {team.skillImages.length > 0 ? (
-                <div className="mt-4">
-                  <div className="text-[12px] font-extrabold text-slate-500 mb-2">
-                    스킬 순서 미리보기
-                  </div>
-                  <SkillStrip skills={team.skillImages} size="w-8 h-8" />
+              <div className="p-5">
+                <div className="mb-3 text-[12px] font-semibold text-slate-500">
+                  영웅을 클릭하면 저장된 장비 세팅을 볼 수 있음
                 </div>
-              ) : null}
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                  {team.members.map((hero, idx) => (
+                    <HeroCard
+                      key={`${team.id}-${idx}`}
+                      hero={hero}
+                      onClick={handleHeroClick}
+                    />
+                  ))}
+                </div>
+
+                {team.skillImages.length > 0 ? (
+                  <div className="mt-4">
+                    <div className="text-[12px] font-extrabold text-slate-500 mb-2">
+                      스킬 순서 미리보기
+                    </div>
+                    <SkillStrip skills={team.skillImages} size="w-8 h-8" />
+                  </div>
+                ) : null}
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+
+      {selectedHero ? (
+        <RaidBuildModal
+          hero={selectedHero}
+          onClose={() => setSelectedHero(null)}
+        />
+      ) : null}
+    </>
   );
 }
 
