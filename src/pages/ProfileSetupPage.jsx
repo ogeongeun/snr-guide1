@@ -8,6 +8,7 @@ const GUILD_PRESETS = [
   "백우회",
   "Madday",
   "운명",
+  "명예",
   "조림",
   "Platinum",
   "Luckyday",
