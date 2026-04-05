@@ -86,6 +86,26 @@
     "name": "백룡",
     "image": "/images/heroes/back.png"
   },
+  {
+    "key": "rand",
+    "name": "란드그리드",
+    "image": "/images/heroes/rand.png"
+  },
+  {
+    "key": "deo",
+    "name": "돼오",
+    "image": "/images/heroes/deo.png"
+  },
+  {
+    "key": "yujinho",
+    "name": "유진호",
+    "image": "/images/heroes/yujinho.png"
+  },
+  {
+    "key": "leejuhee",
+    "name": "이주희",
+    "image": "/images/heroes/leejuhee.png"
+  },
    {
     "key": "sogyo",
     "name": "소교",
