@@ -725,6 +725,25 @@
     "key": "gwanu2",
     "name": "관우2",
     "image": "/images/skills/gwanu2.png"
+  },{
+    "key": "rand1",
+    "name": "란드그리드1",
+    "image": "/images/skills/rand1.png"
+  },
+ {
+    "key": "rand2",
+    "name": "란드그리드2",
+    "image": "/images/skills/rand2.png"
+  },
+  {
+    "key": "deo1",
+    "name": "돼오1",
+    "image": "/images/skills/deo1.png"
+  },
+ {
+    "key": "deo2",
+    "name": "돼오2",
+    "image": "/images/skills/deo2.png"
   },
   {
     "key": "regin1",
