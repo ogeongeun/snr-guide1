@@ -106,6 +106,16 @@
     "name": "이주희",
     "image": "/images/heroes/leejuhee.png"
   },
+  {
+    "key": "nata",
+    "name": "나타",
+    "image": "/images/heroes/nata.png"
+  },
+  {
+    "key": "mist",
+    "name": "미스트",
+    "image": "/images/heroes/mist.png"
+  },
    {
     "key": "sogyo",
     "name": "소교",
