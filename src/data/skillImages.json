@@ -756,6 +756,26 @@
     "image": "/images/skills/regin2.png"
   },
   {
+    "key": "mist1",
+    "name": "미스트1",
+    "image": "/images/skills/mist1.png"
+  },
+   {
+    "key": "mist2",
+    "name": "미스트2",
+    "image": "/images/skills/mist2.png"
+  },
+  {
+    "key": "nata1",
+    "name": "나타1",
+    "image": "/images/skills/nata1.png"
+  },
+   {
+    "key": "nata2",
+    "name": "나타2",
+    "image": "/images/skills/nata2.png"
+  },
+  {
     "key": "vanessa1",
     "name": "바네사1",
     "image": "/images/skills/vanessa1.png"
