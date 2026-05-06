@@ -6,6 +6,11 @@
     "image": "/images/heroes/ace.png"
   },
   {
+    "key": "omog",
+    "name": "오목",
+    "image": "/images/heroes/omog.png"
+  },
+  {
     "key": "rag",
     "name": "라드그리드",
     "image": "/images/heroes/rag.png"
