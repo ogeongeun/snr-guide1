@@ -15,6 +15,16 @@
     "image": "/images/skills/choseon2.png"
   },
   {
+    "key": "omog1",
+    "name": "오목1",
+    "image": "/images/skills/omog1.png"
+  },
+  {
+    "key": "omog2",
+    "name": "오목2",
+    "image": "/images/skills/omog2.png"
+  },
+  {
     "key": "shao1",
     "name": "샤오1",
     "image": "/images/skills/Shao1.png"
