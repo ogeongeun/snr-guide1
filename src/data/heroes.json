@@ -11,6 +11,11 @@
     "image": "/images/heroes/omog.png"
   },
   {
+    "key": "kall",
+    "name": "칼헤론",
+    "image": "/images/heroes/kall.PNG"
+  },
+  {
     "key": "rag",
     "name": "라드그리드",
     "image": "/images/heroes/rag.png"
