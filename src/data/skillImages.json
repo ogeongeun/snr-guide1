@@ -10,6 +10,16 @@
     "image": "/images/skills/choseon1.png"
   },
   {
+    "key": "kall1",
+    "name": "칼헤론1",
+    "image": "/images/skills/kall1.PNG"
+  },
+  {
+    "key": "kall2",
+    "name": "칼헤론2",
+    "image": "/images/skills/kall2.PNG"
+  },
+  {
     "key": "choseon2",
     "name": "초선2",
     "image": "/images/skills/choseon2.png"
