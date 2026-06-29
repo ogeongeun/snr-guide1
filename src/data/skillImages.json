@@ -796,6 +796,11 @@
     "image": "/images/skills/gdel1.png"
   },
   {
+    "key": "gsil3",
+    "name": "각성실베스타3",
+    "image": "/images/skills/gsil3.png"
+  },
+  {
     "key": "gschool1",
     "name": "각성스쿨드1",
     "image": "/images/skills/gschool1.png"
@@ -807,6 +812,32 @@
     "key": "gschool3",
     "name": "각성스쿨드3",
     "image": "/images/skills/gschool3.png"
+  },
+  {
+    "key": "gorca1",
+    "name": "각성오르카1",
+    "image": "/images/skills/gorca1.png"
+  },{
+    "key": "gorca2",
+    "name": "각성오르카2",
+    "image": "/images/skills/gorca2.png"
+  },{
+    "key": "gorca3",
+    "name": "각성오르카3",
+    "image": "/images/skills/gorca3.png"
+  },
+  {
+    "key": "gclemis1",
+    "name": "각성클레미스1",
+    "image": "/images/skills/gclemis1.png"
+  },{
+    "key": "gclemis2",
+    "name": "각성클레미스2",
+    "image": "/images/skills/gclemis2.png"
+  },{
+    "key": "gclemis3",
+    "name": "각성클레미스3",
+    "image": "/images/skills/gclemis3.png"
   },
    {
     "key": "nata2",

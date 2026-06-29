@@ -16,6 +16,21 @@
     "image": "/images/heroes/gschool.png"
   },
   {
+    "key": "gsil",
+    "name": "각성실베스타",
+    "image": "/images/heroes/gsil.png"
+  },
+   {
+    "key": "gorca",
+    "name": "각성오르카",
+    "image": "/images/heroes/gorca.png"
+  },
+  {
+    "key": "gclemis",
+    "name": "각성클레미스",
+    "image": "/images/heroes/gclemis.png"
+  },
+  {
     "key": "omog",
     "name": "오목",
     "image": "/images/heroes/omog.png"
