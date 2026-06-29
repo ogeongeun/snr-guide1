@@ -5,6 +5,16 @@
     "name": "에이스",
     "image": "/images/heroes/ace.png"
   },
+   {
+    "key": "gdel",
+    "name": "각성 델론즈",
+    "image": "/images/heroes/gdel.png"
+  },
+  {
+    "key": "gschool",
+    "name": "각성 스쿨드",
+    "image": "/images/heroes/gschool.png"
+  },
   {
     "key": "omog",
     "name": "오목",

@@ -790,6 +790,24 @@
     "name": "나타1",
     "image": "/images/skills/nata1.png"
   },
+  {
+    "key": "gdel1",
+    "name": "각성델론즈1",
+    "image": "/images/skills/gdel1.png"
+  },
+  {
+    "key": "gschool1",
+    "name": "각성스쿨드1",
+    "image": "/images/skills/gschool1.png"
+  },{
+    "key": "gschool2",
+    "name": "각성스쿨드2",
+    "image": "/images/skills/gschool2.png"
+  },{
+    "key": "gschool3",
+    "name": "각성스쿨드3",
+    "image": "/images/skills/gschool3.png"
+  },
    {
     "key": "nata2",
     "name": "나타2",
